@@ -1,0 +1,1 @@
+Trofers is a minecraft mod that adds customizable trophies intended for use by modpack makers.

@@ -1,0 +1,124 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "#top",
+    "top": "trofers:block/small_trophy_top",
+    "side": "trofers:block/small_trophy_side"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        2,
+        12
+      ],
+      "faces": {
+        "down": {
+          "texture": "#top",
+          "tintindex": 2
+        },
+        "up": {
+          "texture": "#top",
+          "tintindex": 2
+        },
+        "north": {
+          "texture": "#side",
+          "tintindex": 2
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 2
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 2
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 2
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        2,
+        5
+      ],
+      "to": [
+        11,
+        4,
+        11
+      ],
+      "faces": {
+        "down": {
+          "texture": "#top",
+          "tintindex": 1
+        },
+        "up": {
+          "texture": "#top",
+          "tintindex": 1
+        },
+        "north": {
+          "texture": "#side",
+          "tintindex": 1
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 1
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 1
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 1
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        4,
+        4
+      ],
+      "to": [
+        12,
+        6,
+        12
+      ],
+      "faces": {
+        "down": {
+          "texture": "#top",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#top",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      }
+    }
+  ]
+}
