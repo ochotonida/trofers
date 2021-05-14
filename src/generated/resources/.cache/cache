@@ -4,6 +4,9 @@ b14368f9e7ff750413646978af5430e47596d4cf assets/trofers/blockstates/trophy.json
 e301a9a8c03c7ff63937f5ac487fd7e4d3224baf assets/trofers/models/block/large_trophy.json
 a6d956ca647f13583f332c5b0067d323e019ca2b assets/trofers/models/block/small_trophy.json
 9f1f436ab02b8bc0f69d580f2dd771b15a624240 assets/trofers/models/block/trophy.json
-d37980b7f58c763b8c6747c69264c9f5881905bd assets/trofers/models/item/large_trophy.json
-d37980b7f58c763b8c6747c69264c9f5881905bd assets/trofers/models/item/small_trophy.json
-d37980b7f58c763b8c6747c69264c9f5881905bd assets/trofers/models/item/trophy.json
+62bb513f570d97d39ffe5ab115a4651ff4415980 assets/trofers/models/item/large_trophy.json
+62bb513f570d97d39ffe5ab115a4651ff4415980 assets/trofers/models/item/small_trophy.json
+62bb513f570d97d39ffe5ab115a4651ff4415980 assets/trofers/models/item/trophy.json
+7506c91ae34988728a88f25210d06d06373b5fc6 data/trofers/loot_tables/blocks/large_trophy.json
+6a70f177a6009f5ce5bc19220d516972b2725267 data/trofers/loot_tables/blocks/small_trophy.json
+8062f9dd869ffc260196942c79d1d288be5762f8 data/trofers/loot_tables/blocks/trophy.json

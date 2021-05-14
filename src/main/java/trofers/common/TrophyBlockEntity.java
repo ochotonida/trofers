@@ -1,9 +1,8 @@
 package trofers.common;
 
-import net.minecraft.client.Minecraft;
-import trofers.common.init.ModBlockEntityTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -12,6 +11,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.util.Constants;
+import trofers.common.init.ModBlockEntityTypes;
+
 import javax.annotation.Nullable;
 
 public class TrophyBlockEntity extends TileEntity {
@@ -174,7 +175,7 @@ public class TrophyBlockEntity extends TileEntity {
         return super.save(tag);
     }
 
-    private CompoundNBT saveTrophy(CompoundNBT tag) {
+    public CompoundNBT saveTrophy(CompoundNBT tag) {
         if (displayHeightOffset != 0) {
             tag.putFloat("DisplayHeight", displayHeightOffset);
         }

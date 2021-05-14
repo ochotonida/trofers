@@ -9,12 +9,14 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -149,6 +151,20 @@ public class TrophyBlock extends Block {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader level, BlockPos pos, PlayerEntity player) {
+        ItemStack stack = super.getPickBlock(state, target, level, pos, player);
+        TileEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof TrophyBlockEntity) {
+            CompoundNBT tag = stack.getOrCreateTag();
+            CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
+            tag.put("BlockEntityTag", blockEntityTag);
+
+            ((TrophyBlockEntity) blockEntity).saveTrophy(blockEntityTag);
+        }
+        return stack;
     }
 
     @Override

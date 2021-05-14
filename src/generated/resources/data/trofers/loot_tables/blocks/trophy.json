@@ -1,0 +1,57 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "DisplayHeight",
+                  "target": "BlockEntityTag.DisplayHeight",
+                  "op": "replace"
+                },
+                {
+                  "source": "DisplayScale",
+                  "target": "BlockEntityTag.DisplayScale",
+                  "op": "replace"
+                },
+                {
+                  "source": "AnimationSpeed",
+                  "target": "BlockEntityTag.AnimationSpeed",
+                  "op": "replace"
+                },
+                {
+                  "source": "Item",
+                  "target": "BlockEntityTag.Item",
+                  "op": "replace"
+                },
+                {
+                  "source": "Name",
+                  "target": "BlockEntityTag.Name",
+                  "op": "replace"
+                },
+                {
+                  "source": "Animation",
+                  "target": "BlockEntityTag.Animation",
+                  "op": "replace"
+                },
+                {
+                  "source": "Colors",
+                  "target": "BlockEntityTag.Colors",
+                  "op": "replace"
+                }
+              ]
+            }
+          ],
+          "name": "trofers:trophy"
+        }
+      ]
+    }
+  ]
+}

@@ -1,11 +1,11 @@
 package trofers.data;
 
-import trofers.Trofers;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import trofers.Trofers;
 
 @Mod.EventBusSubscriber(modid = Trofers.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
@@ -15,7 +15,7 @@ public class DataGenerators {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
         if (event.includeServer()) {
-            // generator.addProvider(new LootTables(generator)); //TODO
+            generator.addProvider(new LootTables(generator));
         }
         if (event.includeClient()) {
             BlockStates blockStates = new BlockStates(generator, helper);
