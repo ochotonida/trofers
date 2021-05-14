@@ -23,7 +23,7 @@ public enum TrophyAnimation {
 
     public static TrophyAnimation byName(String name) {
         for (TrophyAnimation animation : values()) {
-            if (animation.name.equals(name)) {
+            if (animation.name.equals(name.toLowerCase())) {
                 return animation;
             }
         }

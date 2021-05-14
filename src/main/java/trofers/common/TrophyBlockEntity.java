@@ -2,7 +2,6 @@ package trofers.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -19,8 +18,8 @@ public class TrophyBlockEntity extends TileEntity {
     private float displayHeightOffset;
     private float displayScale;
     private float animationSpeed;
-    private final float animationOffset;
-    private final int[] colors = new int[] {0xFFFFFF, 0xFFFFFF, 0xFFFFFF};
+    private float animationOffset;
+    private final int[] colors = new int[]{0xFFFFFF, 0xFFFFFF, 0xFFFFFF};
     private TrophyAnimation animation = TrophyAnimation.FIXED;
     private ItemStack item = ItemStack.EMPTY;
     @Nullable
@@ -28,11 +27,6 @@ public class TrophyBlockEntity extends TileEntity {
 
     public TrophyBlockEntity() {
         super(ModBlockEntityTypes.TROPHY.get());
-        if (Minecraft.getInstance().level != null) {
-            animationOffset = Minecraft.getInstance().level.getRandom().nextFloat() * 420;
-        } else {
-            animationOffset = 0;
-        }
     }
 
     public String getName() {
@@ -70,6 +64,9 @@ public class TrophyBlockEntity extends TileEntity {
     }
 
     public float getAnimationSpeed() {
+        if (animationOffset == 0 && level != null) {
+            animationOffset = level.getRandom().nextFloat() * 420;
+        }
         return animationSpeed;
     }
 

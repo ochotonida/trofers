@@ -1,9 +1,5 @@
 package trofers;
 
-import trofers.common.TrophyBlockEntity;
-import trofers.common.init.ModBlockEntityTypes;
-import trofers.common.init.ModBlocks;
-import trofers.common.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.CompoundNBT;
@@ -16,16 +12,15 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import trofers.common.TrophyBlockEntity;
+import trofers.common.init.ModBlockEntityTypes;
+import trofers.common.init.ModBlocks;
+import trofers.common.init.ModItems;
 
 @Mod(Trofers.MODID)
 public class Trofers {
 
     public static final String MODID = "trofers";
-
-    // TODO create & add logo
-    // TODO test multiplayer
-    // TODO rotating item display
-    // TODO fix pick block/dropped item
 
     public Trofers() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();

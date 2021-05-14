@@ -75,33 +75,40 @@ public class TrophyItem extends BlockItem {
 
     @Override
     public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT compoundNBT) {
-        return new ICapabilityProvider() {
+        return new TrophyItemHandlerProvider(stack);
+    }
 
-            private final LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
+    private static class TrophyItemHandlerProvider implements ICapabilityProvider {
 
-            private IItemHandler createHandler() {
-                ItemStackHandler handler = new TrophyItemHandler();
-                if (stack.hasTag()) {
-                    CompoundNBT tag = stack.getTag();
-                    // noinspection ConstantConditions
-                    if (tag.contains("BlockEntityTag", Constants.NBT.TAG_COMPOUND)) {
-                        CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
-                        if (blockEntityTag.contains("Item", Constants.NBT.TAG_COMPOUND)) {
-                            handler.deserializeNBT(blockEntityTag.getCompound("Item"));
-                        }
+        private final ItemStack stack;
+        private final LazyOptional<IItemHandler> handler = LazyOptional.of(this::createHandler);
+
+        private TrophyItemHandlerProvider(ItemStack stack) {
+            this.stack = stack;
+        }
+
+        private IItemHandler createHandler() {
+            ItemStackHandler handler = new TrophyItemHandler();
+            if (stack.hasTag()) {
+                CompoundNBT tag = stack.getTag();
+                // noinspection ConstantConditions
+                if (tag.contains("BlockEntityTag", Constants.NBT.TAG_COMPOUND)) {
+                    CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
+                    if (blockEntityTag.contains("Item", Constants.NBT.TAG_COMPOUND)) {
+                        handler.deserializeNBT(blockEntityTag.getCompound("Item"));
                     }
                 }
-                return handler;
             }
+            return handler;
+        }
 
-            @Override
-            public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
-                if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-                    return handler.cast();
-                }
-                return LazyOptional.empty();
+        @Override
+        public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction side) {
+            if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+                return handler.cast();
             }
-        };
+            return LazyOptional.empty();
+        }
     }
 
     private static class TrophyItemHandler extends ItemStackHandler {
