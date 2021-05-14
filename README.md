@@ -1,11 +1,13 @@
 # Trofers
 
 Trofers is a minecraft mod that adds customizable trophies, mostly intended for use by modpack makers. The trophies can be customized either by
-spawning them with custom nbt or by interacting with them after placing them down in creative mode.
+spawning them with custom nbt, or by interacting with them after placing them down in creative mode.
+
+![image](https://user-images.githubusercontent.com/37985539/118311814-af3b9380-b4f0-11eb-8e90-714ea53f2dcb.png)
 
 ## Customizing Trophies
 
-Trofers currently adds 3 trophy bases of 3 different sizes, which can be customized by setting the following tags in the item's `BlockEntityTag`:
+Trofers currently adds 3 trophy bases of different sizes, which can be customized by setting the following tags in the item's `BlockEntityTag`:
 
 * `Name`: The name of the trophy while in the player's inventory. Can be set in creative mode by right-clicking the block with a name tag.
 
