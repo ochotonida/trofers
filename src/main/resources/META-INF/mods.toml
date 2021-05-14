@@ -8,8 +8,8 @@ modId = "trofers"
 version = "1.16.5-1.0.0"
 displayName = "Trofers"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/trofers"
-logoFile="logo.png"
-description='''Adds customizable trophies, mostly intended for use by modpack makers'''
+logoFile = "logo.png"
+description = '''Adds customizable trophies, intended for use by modpack makers'''
 
 [[dependencies.trofers]]
     modId="forge"
