@@ -1,7 +1,6 @@
 package trofers;
 
 import trofers.common.TrophyBlockEntity;
-import trofers.common.TrophyHelper;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.init.ModBlocks;
 import trofers.common.init.ModItems;
@@ -64,11 +63,11 @@ public class Trofers {
                 if (tag != null) {
                     CompoundNBT colorTag = tag.getCompound("BlockEntityTag").getCompound("Colors");
                     if (index == 0 && colorTag.contains("Top")) {
-                        return TrophyHelper.getCombinedColor(colorTag.getCompound("Top"));
+                        return TrophyBlockEntity.getCombinedColor(colorTag.getCompound("Top"));
                     } else if (index == 1 && colorTag.contains("Middle")) {
-                        return TrophyHelper.getCombinedColor(colorTag.getCompound("Middle"));
+                        return TrophyBlockEntity.getCombinedColor(colorTag.getCompound("Middle"));
                     } else if (index == 2 && colorTag.contains("Bottom")) {
-                        return TrophyHelper.getCombinedColor(colorTag.getCompound("Bottom"));
+                        return TrophyBlockEntity.getCombinedColor(colorTag.getCompound("Bottom"));
                     }
                 }
                 return 0xFFFFFF;

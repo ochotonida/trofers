@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
+import trofers.common.TrophyAnimation;
 
 public class TrophyBlockEntityRenderer extends TileEntityRenderer<TrophyBlockEntity> {
 
@@ -29,12 +30,14 @@ public class TrophyBlockEntityRenderer extends TileEntityRenderer<TrophyBlockEnt
         Direction direction = trophy.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING).getOpposite();
         matrixStack.mulPose(Vector3f.YP.rotationDegrees(-direction.toYRot()));
 
-        render(trophy.getItem(), trophy.getDisplayHeight(), trophy.getDisplayScale(), matrixStack, buffer, light, overlay);
-
+        if (Minecraft.getInstance().player != null) {
+            float animationProgress = (Minecraft.getInstance().player.tickCount + partialTicks) * trophy.getAnimationSpeed() + trophy.getAnimationOffset();
+            render(trophy.getItem(), animationProgress, trophy.getAnimation(), trophy.getDisplayHeight(), trophy.getDisplayScale(), matrixStack, buffer, light, overlay);
+        }
         matrixStack.popPose();
     }
 
-    protected static void render(ItemStack displayItem, float displayHeight, float displayScale, MatrixStack matrixStack, IRenderTypeBuffer buffer, int light, int overlay) {
+    protected static void render(ItemStack displayItem, float animationProgress, TrophyAnimation animation, float displayHeight, float displayScale, MatrixStack matrixStack, IRenderTypeBuffer buffer, int light, int overlay) {
         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
         IBakedModel model = renderer.getModel(displayItem, Minecraft.getInstance().level, null);
 
@@ -49,7 +52,18 @@ public class TrophyBlockEntityRenderer extends TileEntityRenderer<TrophyBlockEnt
         if (!model.isGui3d()) {
             matrixStack.scale(0.5F, 0.5F, 0.5F);
         }
+        applyRotation(animationProgress, animation, matrixStack);
 
         Minecraft.getInstance().getItemRenderer().renderStatic(displayItem, ItemCameraTransforms.TransformType.FIXED, light, overlay, matrixStack, buffer);
+    }
+
+    private static void applyRotation(float animationProgress, TrophyAnimation animation, MatrixStack matrixStack) {
+        if (animation == TrophyAnimation.SPINNING) {
+            matrixStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress * 6));
+        } else if (animation == TrophyAnimation.TUMBLING) {
+            matrixStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress * 6 + 45));
+            matrixStack.mulPose(Vector3f.ZP.rotationDegrees(animationProgress * 4.5F + 45));
+            matrixStack.mulPose(Vector3f.XP.rotationDegrees(animationProgress * 2.25F + 45));
+        }
     }
 }

@@ -45,6 +45,10 @@ public class TrophyBlock extends Block {
         return height;
     }
 
+    public float getDefaultDisplayScale() {
+        return (getHeight() - 2 - 2) / 4F;
+    }
+
     private static VoxelShape createShape(int height) {
         int width = 2 * (height - 2);
         return VoxelShapes.or(
@@ -73,6 +77,7 @@ public class TrophyBlock extends Block {
                 TrophyBlockEntity trophy = (TrophyBlockEntity) blockEntity;
                 boolean usedItem = setColor(trophy, level, pos, player, hand, rayTrace)
                         || setName(trophy, level, pos, player, hand)
+                        || setAnimation(trophy, level, pos, player, hand)
                         || setItem(trophy, level, pos, player, hand);
 
                 if (usedItem) {
@@ -117,18 +122,27 @@ public class TrophyBlock extends Block {
         }
 
         ITextComponent name = stack.getHoverName();
-        if (!trophy.getName().equals(name)) {
+        if (!name.equals(trophy.getName())) {
             trophy.setName(name);
             level.playSound(player, pos, SoundEvents.ITEM_FRAME_ROTATE_ITEM, SoundCategory.BLOCKS, 1, 1);
         }
         return true;
     }
 
+    private boolean setAnimation(TrophyBlockEntity trophy, World level, BlockPos pos, PlayerEntity player, Hand hand) {
+        ItemStack stack = player.getItemInHand(hand);
+        if (stack.getItem() == Items.STICK) {
+            trophy.setAnimation(TrophyAnimation.values()[(trophy.getAnimation().ordinal() + 1) % TrophyAnimation.values().length]);
+            level.playSound(player, pos, SoundEvents.ITEM_FRAME_ROTATE_ITEM, SoundCategory.BLOCKS, 1, 1);
+            return true;
+        }
+        return false;
+    }
+
     private boolean setItem(TrophyBlockEntity trophy, World level, BlockPos pos, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
         if (!(stack.isEmpty() && hand == Hand.OFF_HAND) && !ItemStack.matches(stack, trophy.getItem())) {
-            System.out.println(stack);
             trophy.setItem(stack.copy());
             SoundEvent soundEvent = stack.isEmpty() ? SoundEvents.ITEM_FRAME_REMOVE_ITEM : SoundEvents.ITEM_FRAME_ADD_ITEM;
             level.playSound(player, pos, soundEvent, SoundCategory.BLOCKS, 1, 1);
