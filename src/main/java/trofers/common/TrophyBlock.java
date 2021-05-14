@@ -20,7 +20,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -123,7 +122,7 @@ public class TrophyBlock extends Block {
             return false;
         }
 
-        ITextComponent name = stack.getHoverName();
+        String name = stack.getHoverName().getContents();
         if (!name.equals(trophy.getName())) {
             trophy.setName(name);
             level.playSound(player, pos, SoundEvents.ITEM_FRAME_ROTATE_ITEM, SoundCategory.BLOCKS, 1, 1);

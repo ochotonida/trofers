@@ -9,7 +9,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.util.Constants;
 import trofers.common.init.ModBlockEntityTypes;
 
@@ -25,7 +24,7 @@ public class TrophyBlockEntity extends TileEntity {
     private TrophyAnimation animation = TrophyAnimation.FIXED;
     private ItemStack item = ItemStack.EMPTY;
     @Nullable
-    private ITextComponent name;
+    private String name;
 
     public TrophyBlockEntity() {
         super(ModBlockEntityTypes.TROPHY.get());
@@ -36,11 +35,11 @@ public class TrophyBlockEntity extends TileEntity {
         }
     }
 
-    public ITextComponent getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(ITextComponent name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -144,7 +143,7 @@ public class TrophyBlockEntity extends TileEntity {
         displayHeightOffset = tag.getFloat("DisplayHeight");
         animationSpeed = tag.contains("AnimationSpeed") ? tag.getFloat("AnimationSpeed") : 1;
         item = tag.contains("Item") ? ItemStack.of(tag.getCompound("Item")) : ItemStack.EMPTY;
-        setName(tag.contains("Name", Constants.NBT.TAG_STRING) ? ITextComponent.Serializer.fromJson(tag.getString("Name")) : null);
+        setName(tag.contains("Name", Constants.NBT.TAG_STRING) ? tag.getString("Name") : null);
         animation = TrophyAnimation.byName(tag.getString("Animation"));
 
         CompoundNBT colorTag = tag.getCompound("Colors");
@@ -189,7 +188,7 @@ public class TrophyBlockEntity extends TileEntity {
             tag.put("Item", item.serializeNBT());
         }
         if (name != null) {
-            tag.putString("Name", ITextComponent.Serializer.toJson(name));
+            tag.putString("Name", name);
         }
         tag.putString("Animation", animation.getName());
 

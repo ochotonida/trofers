@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -38,10 +39,7 @@ public class TrophyItem extends BlockItem {
             if (tag.contains("BlockEntityTag", Constants.NBT.TAG_COMPOUND)) {
                 CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
                 if (blockEntityTag.contains("Name", Constants.NBT.TAG_STRING)) {
-                    ITextComponent component = ITextComponent.Serializer.fromJson(blockEntityTag.getString("Name"));
-                    if (component != null) {
-                        return component;
-                    }
+                    return new StringTextComponent(blockEntityTag.getString("Name"));
                 }
             }
         }
