@@ -64,13 +64,13 @@ public class TrophyBlockEntity extends TileEntity {
     }
 
     public float getAnimationSpeed() {
-        if (animationOffset == 0 && level != null) {
-            animationOffset = level.getRandom().nextFloat() * 420;
-        }
         return animationSpeed;
     }
 
     public float getAnimationOffset() {
+        if (animationOffset == 0 && level != null) {
+            animationOffset = level.getRandom().nextFloat() * 420;
+        }
         return animationOffset;
     }
 
@@ -178,7 +178,7 @@ public class TrophyBlockEntity extends TileEntity {
         if (displayScale != 0) {
             tag.putFloat("DisplayScale", displayScale);
         }
-        if (animationSpeed != 1 && animation != TrophyAnimation.FIXED) {
+        if (animationSpeed != 0 && animationSpeed != 1 && animation != TrophyAnimation.FIXED) {
             tag.putFloat("AnimationSpeed", animationSpeed);
         }
         if (!item.isEmpty()) {
