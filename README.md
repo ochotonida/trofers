@@ -1,4 +1,4 @@
-# Trofers [![CurseForge](http://cf.way2muchnoise.eu/full_482265_downloads.svg)](https://minecraft.curseforge.com/projects/trofers)
+# Trofers [![CurseForge](http://cf.way2muchnoise.eu/full_482265_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/trofers)
 
 Trofers is a minecraft mod that adds customizable trophies, mostly intended for use by modpack makers. The trophies can be customized either by
 spawning them with custom nbt, or by interacting with them after placing them down in creative mode.
