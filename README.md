@@ -20,7 +20,7 @@ Trofers currently adds 3 trophy bases of different sizes, which can be customize
   mode will also set the item. Right-clicking with an empty hand will remove it.
 
 * `Animation`: Controls the animation of the item. There are currently 3 animations:
-  `"Static"`, `"Spinning"` and `"Tumbling"`. While in creative mode, right-clicking a trophy with a stick will cycle through the animations.
+  `"Fixed"`, `"Spinning"` and `"Tumbling"`. While in creative mode, right-clicking a trophy with a stick will cycle through the animations.
 
 * `AnimationSpeed`: Controls the speed of the animation (Default: 1). Animation speed can currently only be changed by editing NBT.
 
