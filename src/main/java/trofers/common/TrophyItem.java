@@ -17,6 +17,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import trofers.Trofers;
 
 import javax.annotation.Nullable;
 
@@ -24,11 +25,6 @@ public class TrophyItem extends BlockItem {
 
     public TrophyItem(TrophyBlock block, Properties properties) {
         super(block, properties);
-    }
-
-    @Override
-    public String getDescriptionId() {
-        return "item.memorabilia.empty_trophy";
     }
 
     @Override
@@ -54,7 +50,7 @@ public class TrophyItem extends BlockItem {
                 } else {
                     name = displayStack.getItem().getName(displayStack);
                 }
-                return new TranslationTextComponent("item.memorabilia.trophy", name.getString());
+                return new TranslationTextComponent(String.format("item.%s.trophy", Trofers.MODID), name.getString());
             }
         }
         return super.getName(stack);
