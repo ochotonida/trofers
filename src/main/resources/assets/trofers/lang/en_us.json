@@ -1,5 +1,7 @@
 {
   "itemGroup.trofers": "Trofers",
-  "item.memorabilia.empty_trophy": "Trophy",
-  "item.memorabilia.trophy": "%s Trophy"
+  "block.trofers.small_trophy": "Trophy",
+  "block.trofers.trophy": "Trophy",
+  "block.trofers.large_trophy": "Trophy",
+  "item.trofers.trophy": "%s Trophy"
 }
