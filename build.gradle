@@ -1,25 +1,28 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
+        maven { url = 'https://sizableshrimp.me/maven' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.+', changing: true
+        classpath group: 'me.sizableshrimp.parchmenttest', name: 'ForgeGradle', version: '5.1.+', changing: true
     }
 }
-
 apply plugin: 'net.minecraftforge.gradle'
+
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.16.5-1.0.0'
+version = '1.17.1-2.0.0'
 group = 'trofers'
 archivesBaseName = 'trofers'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(8)
+java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.16.5'
+    mappings channel: 'parchment', version: '2021.08.02-1.17.1'
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -74,26 +77,26 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.5-36.1.16'
+    minecraft 'net.minecraftforge:forge:1.17.1-37.0.19'
 
-    compileOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.90:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.16.5:7.6.4.90")
+    // compileOnly fg.deobf("mezz.jei:jei-1.17.1:8.0.0.0:api")
+    // runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.0.0.0")
 }
 
+// Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
-            "Specification-Title": "trofers",
-            "Specification-Vendor": "ochotonida",
-            "Specification-Version": "1",
-            "Implementation-Title": project.name,
-            "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"ochotonida",
-            "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Specification-Title": "trofers",
+                "Specification-Vendor": "ochotonida",
+                "Specification-Version": "1",
+                "Implementation-Title": project.name,
+                "Implementation-Version": project.jar.archiveVersion,
+                "Implementation-Vendor": "ochotonida",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
-
 
 jar.finalizedBy('reobfJar')
 
@@ -105,7 +108,7 @@ publishing {
     }
     repositories {
         maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
+            url "file://${project.projectDir}/mcmodsrepo"
         }
     }
 }

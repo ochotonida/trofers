@@ -1,17 +1,17 @@
 package trofers;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.common.TrophyBlockEntity;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.init.ModBlocks;
@@ -21,6 +21,10 @@ import trofers.common.init.ModItems;
 public class Trofers {
 
     public static final String MODID = "trofers";
+
+    // TODO gui right click on empty trophy
+    // use map<resourcelocation, trophy>
+    // possibly use recipe manager (available from item renderer?)
 
     public Trofers() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -42,7 +46,7 @@ public class Trofers {
         public static void onColorHandler(ColorHandlerEvent.Block event) {
             event.getBlockColors().register((state, level, pos, index) -> {
                 if (index >= 0 && index < 3 && level != null && pos != null) {
-                    TileEntity blockEntity = level.getBlockEntity(pos);
+                    BlockEntity blockEntity = level.getBlockEntity(pos);
                     if (blockEntity instanceof TrophyBlockEntity) {
                         return ((TrophyBlockEntity) blockEntity).getColor(index);
                     }
@@ -54,9 +58,9 @@ public class Trofers {
         @SubscribeEvent
         public static void onColorHandler(ColorHandlerEvent.Item event) {
             event.getItemColors().register((stack, index) -> {
-                CompoundNBT tag = stack.getTag();
+                CompoundTag tag = stack.getTag();
                 if (tag != null) {
-                    CompoundNBT colorTag = tag.getCompound("BlockEntityTag").getCompound("Colors");
+                    CompoundTag colorTag = tag.getCompound("BlockEntityTag").getCompound("Colors");
                     if (index == 0 && colorTag.contains("Top")) {
                         return TrophyBlockEntity.getCombinedColor(colorTag.getCompound("Top"));
                     } else if (index == 1 && colorTag.contains("Middle")) {

@@ -1,26 +1,26 @@
 modLoader="javafml"
-loaderVersion="[34,)"
+loaderVersion="[37,)"
 issueTrackerURL="https://github.com/ochotonida/trofers/issues"
 license="MIT"
 
 [[mods]]
 modId = "trofers"
-version = "1.16.5-1.0.0"
+version = "1.17.1-2.0.0"
 displayName = "Trofers"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/trofers"
 logoFile = "logo.png"
-description = '''Adds customizable trophies, intended for use by modpack makers'''
+description = '''Adds customizable trophies'''
 
 [[dependencies.trofers]]
     modId="forge"
     mandatory=true
-    versionRange="[34.1.0,)"
+    versionRange="[37,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.trofers]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3,1.17)"
+    versionRange="[1.17.1,1.18)"
     ordering="NONE"
     side="BOTH"

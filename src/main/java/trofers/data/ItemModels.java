@@ -1,6 +1,6 @@
 package trofers.data;
 
-import net.minecraft.client.renderer.model.BlockModel;
+import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelBuilder;

@@ -1,19 +1,20 @@
 package trofers.common;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.util.Constants;
 import trofers.common.init.ModBlockEntityTypes;
 
 import javax.annotation.Nullable;
 
-public class TrophyBlockEntity extends TileEntity {
+public class TrophyBlockEntity extends BlockEntity {
 
     private float displayHeightOffset;
     private float displayScale;
@@ -25,15 +26,16 @@ public class TrophyBlockEntity extends TileEntity {
     @Nullable
     private String name;
 
-    public TrophyBlockEntity() {
-        super(ModBlockEntityTypes.TROPHY.get());
+    public TrophyBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntityTypes.TROPHY.get(), pos, state);
     }
 
+    @Nullable
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@Nullable String name) {
         this.name = name;
     }
 
@@ -85,15 +87,15 @@ public class TrophyBlockEntity extends TileEntity {
 
     public int getTrophyHeight() {
         Block block = getBlockState().getBlock();
-        if (block instanceof TrophyBlock) {
-            return ((TrophyBlock) block).getHeight();
+        if (block instanceof TrophyBlock trophy) {
+            return trophy.getHeight();
         }
         return 6;
     }
 
     @Override
-    public AxisAlignedBB getRenderBoundingBox() {
-        return new AxisAlignedBB(getBlockPos().offset(-1, 0, -1), getBlockPos().offset(1, 1.5, 1));
+    public AABB getRenderBoundingBox() {
+        return new AABB(getBlockPos().offset(-1, 0, -1), getBlockPos().offset(1, 1.5, 1));
     }
 
     private void onContentsChanged() {
@@ -105,34 +107,34 @@ public class TrophyBlockEntity extends TileEntity {
     }
 
     @Override
-    public CompoundNBT getUpdateTag() {
-        return save(saveTrophy(new CompoundNBT()));
+    public CompoundTag getUpdateTag() {
+        return save(saveTrophy(new CompoundTag()));
     }
 
     @Nullable
     @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        return new SUpdateTileEntityPacket(getBlockPos(), 0, getUpdateTag());
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return new ClientboundBlockEntityDataPacket(getBlockPos(), 0, getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket packet) {
+    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet) {
         if (level != null) {
-            loadTrophy(packet.getTag(), level.getBlockState(getBlockPos()));
+            loadTrophy(packet.getTag());
         }
     }
 
     @Override
-    public void load(BlockState state, CompoundNBT tag) {
-        super.load(state, tag);
-        loadTrophy(tag, state);
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        loadTrophy(tag);
     }
 
-    public void loadTrophy(CompoundNBT tag, BlockState state) {
+    public void loadTrophy(CompoundTag tag) {
         if (tag.contains("DisplayScale")) {
             displayScale = tag.getFloat("DisplayScale");
-        } else if (state.getBlock() instanceof TrophyBlock) {
-            displayScale = ((TrophyBlock) state.getBlock()).getDefaultDisplayScale();
+        } else if (getBlockState().getBlock() instanceof TrophyBlock trophy) {
+            displayScale = trophy.getDefaultDisplayScale();
         } else {
             displayScale = 0;
         }
@@ -143,17 +145,17 @@ public class TrophyBlockEntity extends TileEntity {
         setName(tag.contains("Name", Constants.NBT.TAG_STRING) ? tag.getString("Name") : null);
         animation = TrophyAnimation.byName(tag.getString("Animation"));
 
-        CompoundNBT colorTag = tag.getCompound("Colors");
+        CompoundTag colorTag = tag.getCompound("Colors");
         readColor(colorTag, 0, "Top");
         readColor(colorTag, 1, "Middle");
         readColor(colorTag, 2, "Bottom");
 
         if (level != null && level.isClientSide()) {
-            level.sendBlockUpdated(getBlockPos(), state, state, Constants.BlockFlags.RERENDER_MAIN_THREAD);
+            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.RERENDER_MAIN_THREAD);
         }
     }
 
-    private void readColor(CompoundNBT tag, int index, String name) {
+    private void readColor(CompoundTag tag, int index, String name) {
         if (tag.contains(name)) {
             colors[index] = getCombinedColor(tag.getCompound(name));
         } else {
@@ -161,17 +163,17 @@ public class TrophyBlockEntity extends TileEntity {
         }
     }
 
-    public static int getCombinedColor(CompoundNBT tag) {
+    public static int getCombinedColor(CompoundTag tag) {
         return tag.getInt("Red") << 16 | tag.getInt("Green") << 8 | tag.getInt("Blue");
     }
 
     @Override
-    public CompoundNBT save(CompoundNBT tag) {
+    public CompoundTag save(CompoundTag tag) {
         saveTrophy(tag);
         return super.save(tag);
     }
 
-    public CompoundNBT saveTrophy(CompoundNBT tag) {
+    public CompoundTag saveTrophy(CompoundTag tag) {
         if (displayHeightOffset != 0) {
             tag.putFloat("DisplayHeight", displayHeightOffset);
         }
@@ -189,7 +191,7 @@ public class TrophyBlockEntity extends TileEntity {
         }
         tag.putString("Animation", animation.getName());
 
-        CompoundNBT colorTag = new CompoundNBT();
+        CompoundTag colorTag = new CompoundTag();
         saveColor(colorTag, 0, "Top");
         saveColor(colorTag, 1, "Middle");
         saveColor(colorTag, 2, "Bottom");
@@ -199,10 +201,10 @@ public class TrophyBlockEntity extends TileEntity {
         return tag;
     }
 
-    private void saveColor(CompoundNBT tag, int index, String name) {
+    private void saveColor(CompoundTag tag, int index, String name) {
         if (colors[index] != 0xFFFFF) {
             int color = colors[index];
-            CompoundNBT colorTag = new CompoundNBT();
+            CompoundTag colorTag = new CompoundTag();
             colorTag.putInt("Red", (color >> 16) & 255);
             colorTag.putInt("Green", (color >> 8) & 255);
             colorTag.putInt("Blue", color & 255);

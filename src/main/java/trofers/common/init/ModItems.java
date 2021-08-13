@@ -1,13 +1,13 @@
 package trofers.common.init;
 
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
-import trofers.client.TrophyItemRenderer;
 import trofers.common.TrophyBlock;
 import trofers.common.TrophyItem;
-import net.minecraft.item.*;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -19,9 +19,8 @@ public class ModItems {
 
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, Trofers.MODID);
 
-    public static final ItemGroup CREATIVE_TAB = new ItemGroup(Trofers.MODID) {
+    public static final CreativeModeTab CREATIVE_TAB = new CreativeModeTab(Trofers.MODID) {
         @Override
-        @OnlyIn(Dist.CLIENT)
         public ItemStack makeIcon() {
             return new ItemStack(TROPHY.get());
         }
@@ -42,7 +41,7 @@ public class ModItems {
                                 .stacksTo(1)
                                 .rarity(Rarity.RARE)
                                 .tab(CREATIVE_TAB)
-                                .setISTER(() -> TrophyItemRenderer::new)
+                                // TODO .setISTER(() -> TrophyItemRenderer::new)
                 )
         );
         TROPHIES.add(trophy);
