@@ -174,18 +174,20 @@ public class Trophy {
             animation = TrophyAnimation.fromJson(object.get("animation"));
         }
 
-        double animationSpeed = readOptionalDouble(object, "animation_speed", 1);
-        double displayScale = readOptionalDouble(object, "display_scale", 1);
-        double displayHeight = readOptionalDouble(object, "display_height", 0);
+        double animationSpeed = readOptionalDouble(object, "animationSpeed", 1);
+        double displayScale = readOptionalDouble(object, "displayScale", 1);
+        double displayHeight = readOptionalDouble(object, "displayHeight", 0);
 
-        int color = 0xFFFFFF;
-        if (object.has("color")) {
-            color = readColor(object.get("color"));
-        }
-
-        int accentColor = color;
-        if (object.has("accent_color")) {
-            accentColor = readColor(object.get("accent_color"));
+        int color, accentColor;
+        color = accentColor = 0xFFFFFF;
+        if (object.has("colors")) {
+            JsonObject colors = GsonHelper.getAsJsonObject(object, "colors");
+            if (colors.has("base")) {
+                color = accentColor = readColor(colors.get("color"));
+            }
+            if (colors.has("accent")) {
+                accentColor = readColor(colors.get("accent"));
+            }
         }
 
         Component name = null;

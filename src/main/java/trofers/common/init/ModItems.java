@@ -3,7 +3,6 @@ package trofers.common.init;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
 import trofers.common.trophy.block.TrophyBlock;
@@ -38,8 +37,6 @@ public class ModItems {
                         block.get(),
                         new Item.Properties()
                                 .fireResistant()
-                                .stacksTo(1)
-                                .rarity(Rarity.RARE)
                                 .tab(CREATIVE_TAB)
                 )
         );
