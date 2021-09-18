@@ -2,7 +2,7 @@ package trofers.data;
 
 import net.minecraft.core.Direction;
 import trofers.Trofers;
-import trofers.common.TrophyBlock;
+import trofers.common.trophy.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.*;
@@ -35,7 +35,7 @@ public class BlockStates extends BlockStateProvider {
                 .texture("particle", "#top")
                 .texture("top", texturePath + "_top")
                 .texture("side", texturePath + "_side");
-        centeredBox(modelBuilder, width, 0, 2, 2);
+        centeredBox(modelBuilder, width, 0, 2, 0);
         centeredBox(modelBuilder, width - 2, 2, height - 2, 1);
         centeredBox(modelBuilder, width, height - 2, height, 0);
     }

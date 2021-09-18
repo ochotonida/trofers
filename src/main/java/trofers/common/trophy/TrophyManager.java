@@ -1,50 +1,47 @@
 package trofers.common.trophy;
 
-import com.google.common.collect.ImmutableMap;
+import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonParseException;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraft.world.level.storage.loot.*;
+import trofers.Trofers;
 
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class TrophyManager extends SimpleJsonResourceReloadListener {
 
-    private static Map<ResourceLocation, Trophy> trophies = ImmutableMap.of();
+    protected static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+
+    private static Map<ResourceLocation, Trophy> trophies = Map.of();
 
     public TrophyManager() {
-        super((new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create(), "trofers");
+        super(GSON, "trofers");
     }
 
-    public Trophy get(ResourceLocation id) {
+    public static Trophy get(ResourceLocation id) {
         return trophies.getOrDefault(id, null);
     }
 
+    public static Collection<Trophy> values() {
+        return trophies.values();
+    }
+
     protected void apply(Map<ResourceLocation, JsonElement> resources, ResourceManager resourceManager, ProfilerFiller profilerFiller) {
-        ImmutableMap.Builder<ResourceLocation, Trophy> builder = ImmutableMap.builder();
+        Map<ResourceLocation, Trophy> trophies = new HashMap<>();
 
         resources.forEach((id, element) -> {
             try {
-                builder.put(id, Trophy.fromJson(element));
-            } catch (JsonParseException exception) {
-                LOGGER.error("Couldn't parse trophy {}", id, exception);
+                trophies.put(id, Trophy.fromJson(element, id));
+            } catch (Exception exception) {
+                Trofers.LOGGER.error("Couldn't parse trophy {}", id, exception);
             }
-
         });
-        builder.put(BuiltInLootTables.EMPTY, LootTable.EMPTY);
-        ImmutableMap<ResourceLocation, Trophy> immutablemap = builder.build();
-        trophies = immutablemap;
-    }
-
-    /**
-     * Validate the given LootTable with the given ID using the given ValidationContext.
-     */
-    public static void validate(ValidationContext pValidator, ResourceLocation pId, LootTable pLootTable) {
-        pLootTable.validate(pValidator.setParams(pLootTable.getParamSet()).enterTable("{" + pId + "}", pId));
+        TrophyManager.trophies = trophies;
+        Trofers.LOGGER.info("Loaded {} trophies", trophies.size());
     }
 }

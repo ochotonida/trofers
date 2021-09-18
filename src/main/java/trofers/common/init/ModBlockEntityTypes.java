@@ -4,7 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
-import trofers.common.TrophyBlockEntity;
+import trofers.common.trophy.block.TrophyBlockEntity;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -21,8 +21,4 @@ public class ModBlockEntityTypes {
                             .toArray(Block[]::new)
             ).build(null)
     );
-
-    public static void addRenderers() {
-        // TODO ClientRegistry.bindTileEntityRenderer(TROPHY.get(), TrophyBlockEntityRenderer::new);
-    }
 }

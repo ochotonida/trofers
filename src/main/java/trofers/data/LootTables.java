@@ -14,11 +14,10 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
-import trofers.common.TrophyBlock;
+import trofers.common.trophy.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -35,17 +34,9 @@ public class LootTables extends LootTableProvider {
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
         List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = new ArrayList<>();
 
-        List<String> tags = Arrays.asList(
-                "DisplayHeight",
-                "DisplayScale",
-                "AnimationSpeed",
-                "Item",
-                "Name",
-                "Animation",
-                "Colors"
-        );
-        CopyNbtFunction.Builder copyNbtBuilder = CopyNbtFunction.copyData(ContextNbtProvider.BLOCK_ENTITY);
-        tags.forEach(tag -> copyNbtBuilder.copy(tag, "BlockEntityTag." + tag));
+        CopyNbtFunction.Builder copyNbtBuilder = CopyNbtFunction
+                .copyData(ContextNbtProvider.BLOCK_ENTITY)
+                .copy("Trophy", "BlockEntityTag.Trophy");
 
         for (RegistryObject<TrophyBlock> trophy : ModBlocks.TROPHIES) {
             ResourceLocation location = new ResourceLocation(Trofers.MODID, "blocks/" + trophy.getId().getPath());

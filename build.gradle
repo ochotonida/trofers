@@ -1,14 +1,16 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://sizableshrimp.me/maven' }
+        maven { url = 'https://maven.parchmentmc.org' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'me.sizableshrimp.parchmenttest', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
@@ -21,7 +23,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(16)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'parchment', version: '2021.08.02-1.17.1'
+    mappings channel: 'parchment', version: '2021.09.05-1.17.1'
 
     runs {
         client {
@@ -68,22 +70,10 @@ sourceSets.main.resources {
   srcDir 'src/generated/resources'
 }
 
-repositories {
-    maven {
-        // JEI
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-}
-
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.17.1-37.0.19'
-
-    // compileOnly fg.deobf("mezz.jei:jei-1.17.1:8.0.0.0:api")
-    // runtimeOnly fg.deobf("mezz.jei:jei-1.17.1:8.0.0.0")
+    minecraft 'net.minecraftforge:forge:1.17.1-37.0.67'
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([

@@ -4,7 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
-import trofers.common.TrophyBlock;
+import trofers.common.trophy.block.TrophyBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

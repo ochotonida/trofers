@@ -3,5 +3,7 @@
   "block.trofers.small_trophy": "Trophy",
   "block.trofers.trophy": "Trophy",
   "block.trofers.large_trophy": "Trophy",
-  "item.trofers.trophy": "%s Trophy"
+  "button.trofers.next": "»",
+  "button.trofers.previous": "«",
+  "button.trofers.cancel": "Cancel"
 }
