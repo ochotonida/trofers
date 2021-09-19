@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.strider"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 180,
+      "green": 64,
+      "blue": 64
+    }
+  },
+  "entity": {
+    "type": "minecraft:strider",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

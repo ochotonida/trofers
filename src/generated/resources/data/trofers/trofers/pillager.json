@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.pillager"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 146,
+      "green": 156,
+      "blue": 156
+    }
+  },
+  "entity": {
+    "type": "minecraft:pillager",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:crossbow\",tag:{Damage:0}},{}]}"
+  },
+  "displayScale": 0.25
+}

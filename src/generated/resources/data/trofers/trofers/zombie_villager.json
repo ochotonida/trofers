@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.zombie_villager"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 118,
+      "green": 160,
+      "blue": 69
+    }
+  },
+  "entity": {
+    "type": "minecraft:zombie_villager",
+    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
+  },
+  "displayScale": 0.25
+}

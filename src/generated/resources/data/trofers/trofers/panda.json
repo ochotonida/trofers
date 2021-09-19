@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.panda"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 228,
+      "green": 228,
+      "blue": 228
+    }
+  },
+  "entity": {
+    "type": "minecraft:panda",
+    "nbt": "{MainGene:\"playful\"}"
+  },
+  "displayScale": 0.25
+}

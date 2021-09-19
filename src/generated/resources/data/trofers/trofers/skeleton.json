@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.skeleton"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 189,
+      "green": 189,
+      "blue": 189
+    }
+  },
+  "entity": {
+    "type": "minecraft:skeleton",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:bow\",tag:{Damage:0}},{}]}"
+  },
+  "displayScale": 0.25
+}

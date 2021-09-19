@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.magma_cube"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 50,
+      "green": 1,
+      "blue": 0
+    }
+  },
+  "entity": {
+    "type": "minecraft:magma_cube",
+    "nbt": "{}"
+  },
+  "displayScale": 0.5
+}

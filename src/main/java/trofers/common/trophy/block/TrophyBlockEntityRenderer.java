@@ -92,7 +92,11 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
             return;
         }
 
-        float displayScale = (float) (0.5 * trophy.getDisplayScale());
+        if (!trophy.shouldAnimateEntity()) {
+            ticks = 0;
+        }
+
+        float displayScale = (float) trophy.getDisplayScale();
         poseStack.scale(displayScale, displayScale, displayScale);
 
         poseStack.translate(0, entity.getBbHeight() / 2, 0);

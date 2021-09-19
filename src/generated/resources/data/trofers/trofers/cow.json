@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.cow"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 67,
+      "green": 54,
+      "blue": 38
+    }
+  },
+  "entity": {
+    "type": "minecraft:cow",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

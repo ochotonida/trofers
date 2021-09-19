@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.wither_skeleton"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 52,
+      "green": 52,
+      "blue": 52
+    }
+  },
+  "entity": {
+    "type": "minecraft:wither_skeleton",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:stone_sword\",tag:{Damage:0}},{}]}"
+  },
+  "displayScale": 0.25
+}

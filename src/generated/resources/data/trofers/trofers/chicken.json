@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.chicken"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 255,
+      "green": 255,
+      "blue": 255
+    }
+  },
+  "entity": {
+    "type": "minecraft:chicken",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

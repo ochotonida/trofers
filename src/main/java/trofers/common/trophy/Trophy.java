@@ -28,25 +28,27 @@ public class Trophy {
     @Nullable
     private final EntityType<?> entityType;
     private final CompoundTag entityTag;
+    private final boolean animateEntity;
     private final TrophyAnimation animation;
     @Nullable
     private final Component name;
     private final double animationSpeed;
-    private final double displayScale;
-    private final double displayHeight;
+    private final float displayScale;
+    private final float displayHeight;
     private final int color;
     private final int accentColor;
 
-    private Trophy(
+    public Trophy(
             ResourceLocation id,
             ItemStack item,
-            EntityType<?> entityType,
+            @Nullable EntityType<?> entityType,
             CompoundTag entityTag,
+            boolean animateEntity,
             TrophyAnimation animation,
-            Component name,
+            @Nullable Component name,
             double animationSpeed,
-            double displayScale,
-            double displayHeight,
+            float displayScale,
+            float displayHeight,
             int color,
             int accentColor
     ) {
@@ -54,6 +56,7 @@ public class Trophy {
         this.item = item;
         this.entityType = entityType;
         this.entityTag = entityTag;
+        this.animateEntity = animateEntity;
         this.animation = animation;
         this.name = name;
         this.animationSpeed = animationSpeed;
@@ -98,6 +101,19 @@ public class Trophy {
 
     public ItemStack getItem() {
         return item;
+    }
+
+    @Nullable
+    public EntityType<?> getEntityType() {
+        return entityType;
+    }
+
+    public CompoundTag getEntityTag() {
+        return entityTag;
+    }
+
+    public boolean shouldAnimateEntity() {
+        return animateEntity;
     }
 
     public boolean hasEntity() {
@@ -151,6 +167,7 @@ public class Trophy {
 
         EntityType<?> entityType = null;
         CompoundTag entityTag = new CompoundTag();
+        boolean animateEntity = false;
         if (object.has("entity")) {
             JsonObject entity = GsonHelper.getAsJsonObject(object, "entity");
             ResourceLocation typeID = new ResourceLocation(GsonHelper.getAsString(entity, "type"));
@@ -161,6 +178,9 @@ public class Trophy {
             if (entity.has("nbt")) {
                 JsonElement nbtElement = entity.get("nbt");
                 entityTag = readNBT(nbtElement);
+            }
+            if (entity.has("animateEntity")) {
+                animateEntity = GsonHelper.getAsBoolean(entity, "animateEntity");
             }
         }
 
@@ -175,15 +195,15 @@ public class Trophy {
         }
 
         double animationSpeed = readOptionalDouble(object, "animationSpeed", 1);
-        double displayScale = readOptionalDouble(object, "displayScale", 1);
-        double displayHeight = readOptionalDouble(object, "displayHeight", 0);
+        float displayScale = (float) readOptionalDouble(object, "displayScale", 1);
+        float displayHeight = (float) readOptionalDouble(object, "displayHeight", 0);
 
         int color, accentColor;
         color = accentColor = 0xFFFFFF;
         if (object.has("colors")) {
             JsonObject colors = GsonHelper.getAsJsonObject(object, "colors");
             if (colors.has("base")) {
-                color = accentColor = readColor(colors.get("color"));
+                color = accentColor = readColor(colors.get("base"));
             }
             if (colors.has("accent")) {
                 accentColor = readColor(colors.get("accent"));
@@ -200,6 +220,7 @@ public class Trophy {
                 item,
                 entityType,
                 entityTag,
+                animateEntity,
                 animation,
                 name,
                 animationSpeed,

@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.polar_bear"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 242,
+      "green": 242,
+      "blue": 244
+    }
+  },
+  "entity": {
+    "type": "minecraft:polar_bear",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

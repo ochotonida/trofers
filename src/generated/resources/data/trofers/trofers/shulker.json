@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.shulker"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 152,
+      "green": 106,
+      "blue": 151
+    }
+  },
+  "entity": {
+    "type": "minecraft:shulker",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

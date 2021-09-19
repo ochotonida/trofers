@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.rabbit"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 140,
+      "green": 119,
+      "blue": 94
+    }
+  },
+  "entity": {
+    "type": "minecraft:rabbit",
+    "nbt": "{RabbitType:0}"
+  },
+  "displayScale": 0.25
+}

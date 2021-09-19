@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.wolf"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 220,
+      "green": 218,
+      "blue": 219
+    }
+  },
+  "entity": {
+    "type": "minecraft:wolf",
+    "nbt": "{Owner:[I;0,0,0,0],Sitting:1b}"
+  },
+  "displayScale": 0.25
+}

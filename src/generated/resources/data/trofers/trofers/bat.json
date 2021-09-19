@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.bat"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 91,
+      "green": 75,
+      "blue": 49
+    }
+  },
+  "entity": {
+    "type": "minecraft:bat",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

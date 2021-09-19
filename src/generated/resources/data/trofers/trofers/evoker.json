@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.evoker"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 149,
+      "green": 156,
+      "blue": 156
+    }
+  },
+  "entity": {
+    "type": "minecraft:evoker",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

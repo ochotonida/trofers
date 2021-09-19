@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.elder_guardian"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 191,
+      "green": 187,
+      "blue": 170
+    }
+  },
+  "entity": {
+    "type": "minecraft:elder_guardian",
+    "nbt": "{}"
+  },
+  "displayScale": 0.10625000298023224
+}

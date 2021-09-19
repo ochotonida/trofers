@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.cave_spider"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 0,
+      "green": 45,
+      "blue": 48
+    }
+  },
+  "entity": {
+    "type": "minecraft:cave_spider",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

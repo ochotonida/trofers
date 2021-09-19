@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.trader_llama"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 66,
+      "green": 95,
+      "blue": 144
+    }
+  },
+  "entity": {
+    "type": "minecraft:trader_llama",
+    "nbt": "{Variant:2}"
+  },
+  "displayScale": 0.25
+}

@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.creeper"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 72,
+      "green": 178,
+      "blue": 58
+    }
+  },
+  "entity": {
+    "type": "minecraft:creeper",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

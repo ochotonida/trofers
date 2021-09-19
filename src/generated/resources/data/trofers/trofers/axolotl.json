@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.axolotl"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 251,
+      "green": 193,
+      "blue": 226
+    }
+  },
+  "entity": {
+    "type": "minecraft:axolotl",
+    "nbt": "{Variant:0}"
+  },
+  "displayScale": 0.25
+}

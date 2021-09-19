@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.spider"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 78,
+      "green": 68,
+      "blue": 60
+    }
+  },
+  "entity": {
+    "type": "minecraft:spider",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

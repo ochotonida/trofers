@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.zombified_piglin"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 107,
+      "green": 143,
+      "blue": 67
+    }
+  },
+  "entity": {
+    "type": "minecraft:zombified_piglin",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_sword\",tag:{Damage:0}},{}]}"
+  },
+  "displayScale": 0.25
+}

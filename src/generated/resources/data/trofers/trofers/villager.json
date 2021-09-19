@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.villager"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 191,
+      "green": 136,
+      "blue": 109
+    }
+  },
+  "entity": {
+    "type": "minecraft:villager",
+    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
+  },
+  "displayScale": 0.25
+}

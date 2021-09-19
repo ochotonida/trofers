@@ -16,6 +16,7 @@ public class DataGenerators {
         ExistingFileHelper helper = event.getExistingFileHelper();
         if (event.includeServer()) {
             generator.addProvider(new LootTables(generator));
+            generator.addProvider(new Trophies(generator));
         }
         if (event.includeClient()) {
             BlockStates blockStates = new BlockStates(generator, helper);

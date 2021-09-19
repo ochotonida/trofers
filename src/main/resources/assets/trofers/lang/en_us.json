@@ -5,5 +5,6 @@
   "block.trofers.large_trophy": "Trophy",
   "button.trofers.next": "»",
   "button.trofers.previous": "«",
-  "button.trofers.cancel": "Cancel"
+  "button.trofers.cancel": "Cancel",
+  "trophy.trofers.entity": "%s Trophy"
 }

@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.goat"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 194,
+      "green": 171,
+      "blue": 142
+    }
+  },
+  "entity": {
+    "type": "minecraft:goat",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

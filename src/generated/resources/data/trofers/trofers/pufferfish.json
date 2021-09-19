@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.pufferfish"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 227,
+      "green": 151,
+      "blue": 11
+    }
+  },
+  "entity": {
+    "type": "minecraft:pufferfish",
+    "nbt": "{PuffState:2}"
+  },
+  "displayScale": 0.25
+}

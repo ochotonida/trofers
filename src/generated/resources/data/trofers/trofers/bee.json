@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.bee"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 235,
+      "green": 197,
+      "blue": 66
+    }
+  },
+  "entity": {
+    "type": "minecraft:bee",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

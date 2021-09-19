@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.llama"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 227,
+      "green": 228,
+      "blue": 212
+    }
+  },
+  "entity": {
+    "type": "minecraft:llama",
+    "nbt": "{Variant:3}"
+  },
+  "displayScale": 0.25
+}

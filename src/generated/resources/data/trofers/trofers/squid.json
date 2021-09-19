@@ -1,0 +1,28 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.squid"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 84,
+      "green": 109,
+      "blue": 128
+    }
+  },
+  "entity": {
+    "type": "minecraft:squid",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25,
+  "displayHeight": 5.0
+}

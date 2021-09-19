@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.pig"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 241,
+      "green": 163,
+      "blue": 164
+    }
+  },
+  "entity": {
+    "type": "minecraft:pig",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

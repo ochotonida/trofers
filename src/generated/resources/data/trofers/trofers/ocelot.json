@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.ocelot"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 237,
+      "green": 178,
+      "blue": 98
+    }
+  },
+  "entity": {
+    "type": "minecraft:ocelot",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}

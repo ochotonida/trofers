@@ -1,0 +1,28 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.ghast"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 240,
+      "green": 240,
+      "blue": 240
+    }
+  },
+  "entity": {
+    "type": "minecraft:ghast",
+    "nbt": "{}"
+  },
+  "displayScale": 0.07500000298023224,
+  "displayHeight": 5.0
+}

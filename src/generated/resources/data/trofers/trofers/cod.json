@@ -1,0 +1,27 @@
+{
+  "name": {
+    "translate": "trophy.trofers.entity",
+    "with": [
+      {
+        "translate": "entity.minecraft.cod"
+      }
+    ]
+  },
+  "colors": {
+    "base": {
+      "red": 96,
+      "green": 96,
+      "blue": 96
+    },
+    "accent": {
+      "red": 182,
+      "green": 152,
+      "blue": 108
+    }
+  },
+  "entity": {
+    "type": "minecraft:cod",
+    "nbt": "{}"
+  },
+  "displayScale": 0.25
+}
