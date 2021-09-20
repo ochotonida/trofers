@@ -13,7 +13,7 @@ public class ModBlockEntityTypes {
 
     public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Trofers.MODID);
 
-    public static final RegistryObject<BlockEntityType<TrophyBlockEntity>> TROPHY = REGISTRY.register(ModBlocks.TROPHY.getId().getPath(),
+    public static final RegistryObject<BlockEntityType<TrophyBlockEntity>> TROPHY = REGISTRY.register("trophy",
             () -> BlockEntityType.Builder.of(
                     TrophyBlockEntity::new,
                     ModBlocks.TROPHIES.stream()

@@ -1,5 +1,6 @@
 package trofers.common.init;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,15 +22,21 @@ public class ModItems {
     public static final CreativeModeTab CREATIVE_TAB = new CreativeModeTab(Trofers.MODID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(TROPHY.get());
+            ItemStack result = new ItemStack(MEDIUM_PILLAR.get());
+            result.getOrCreateTagElement("BlockEntityTag")
+                    .putString("Trophy", new ResourceLocation(Trofers.MODID, "panda").toString());
+            return result;
         }
     };
 
     public static final Set<RegistryObject<TrophyItem>> TROPHIES = new HashSet<>();
 
-    public static final RegistryObject<TrophyItem> SMALL_TROPHY = addTrophy(ModBlocks.SMALL_TROPHY);
-    public static final RegistryObject<TrophyItem> TROPHY = addTrophy(ModBlocks.TROPHY);
-    public static final RegistryObject<TrophyItem> LARGE_TROPHY = addTrophy(ModBlocks.LARGE_TROPHY);
+    public static final RegistryObject<TrophyItem> SMALL_PILLAR = addTrophy(ModBlocks.SMALL_PILLAR);
+    public static final RegistryObject<TrophyItem> MEDIUM_PILLAR = addTrophy(ModBlocks.MEDIUM_PILLAR);
+    public static final RegistryObject<TrophyItem> LARGE_PILLAR = addTrophy(ModBlocks.LARGE_PILLAR);
+    public static final RegistryObject<TrophyItem> SMALL_PLATE = addTrophy(ModBlocks.SMALL_PLATE);
+    public static final RegistryObject<TrophyItem> MEDIUM_PLATE = addTrophy(ModBlocks.MEDIUM_PLATE);
+    public static final RegistryObject<TrophyItem> LARGE_PLATE = addTrophy(ModBlocks.LARGE_PLATE);
 
     private static RegistryObject<TrophyItem> addTrophy(RegistryObject<TrophyBlock> block) {
         RegistryObject<TrophyItem> trophy = REGISTRY.register(block.getId().getPath(), () ->

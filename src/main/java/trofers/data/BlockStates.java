@@ -2,6 +2,8 @@ package trofers.data;
 
 import net.minecraft.core.Direction;
 import trofers.Trofers;
+import trofers.common.trophy.block.PillarTrophyBlock;
+import trofers.common.trophy.block.PlateTrophyBlock;
 import trofers.common.trophy.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
 import net.minecraft.data.DataGenerator;
@@ -20,24 +22,38 @@ public class BlockStates extends BlockStateProvider {
             String modelLocation = Trofers.MODID + ":block/" + trophy.getId().getPath();
             ModelBuilder<?> builder = models().withExistingParent(modelLocation, "block");
             horizontalBlock(trophy.get(), state -> builder);
-            buildTrophy(builder, trophy.get());
+            if (trophy.get() instanceof PillarTrophyBlock) {
+                createPillar(builder, trophy.get());
+            } else if (trophy.get() instanceof PlateTrophyBlock){
+                createPlate(builder, trophy.get());
+            }
         });
     }
 
-    public static void buildTrophy(ModelBuilder<?> modelBuilder, TrophyBlock block) {
-        int height = block.getHeight();
-        int width = 2 * (height - 2);
+    public static void createPillar(ModelBuilder<?> modelBuilder, TrophyBlock block) {
+        int size = block.getSize();
+        int width = 2 * (size - 2);
+        centeredBox(modelBuilder, width, 0, 2, 0);
+        centeredBox(modelBuilder, width - 2, 2, size - 2, 1);
+        centeredBox(modelBuilder, width, size - 2, size, 0);
+        setTextures(modelBuilder, block);
+    }
 
+    public static void createPlate(ModelBuilder<?> modelBuilder, TrophyBlock block) {
+        int size = block.getSize();
+        int width = 2 * (size - 2);
+        centeredBox(modelBuilder, width, 0, 2, 0);
+        setTextures(modelBuilder, block);
+    }
+
+    public static void setTextures(ModelBuilder<?> modelBuilder, TrophyBlock block) {
         // noinspection ConstantConditions
         String name = block.getRegistryName().getPath();
-        String texturePath = Trofers.MODID + ":block/" + name;
+        String texturePath = Trofers.MODID + ":block/" + name.replace("plate", "pillar");
         modelBuilder
                 .texture("particle", "#top")
                 .texture("top", texturePath + "_top")
                 .texture("side", texturePath + "_side");
-        centeredBox(modelBuilder, width, 0, 2, 0);
-        centeredBox(modelBuilder, width - 2, 2, height - 2, 1);
-        centeredBox(modelBuilder, width, height - 2, height, 0);
     }
 
     public static void centeredBox(ModelBuilder<?> builder, int width, int minY, int maxY, int tintIndex) {

@@ -20,22 +20,17 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import trofers.common.init.ModBlockEntityTypes;
 
 import javax.annotation.Nullable;
 
-public class TrophyBlock extends BaseEntityBlock {
+public abstract class TrophyBlock extends BaseEntityBlock {
 
-    private final int height;
-    private final VoxelShape shape;
+    private final int size;
 
-    public TrophyBlock(Properties properties, int height) {
+    public TrophyBlock(Properties properties, int size) {
         super(properties);
-        this.height = height;
-        this.shape = createShape(height);
+        this.size = size;
         registerDefaultState(
                 defaultBlockState()
                         .setValue(BlockStateProperties.WATERLOGGED, false)
@@ -43,27 +38,15 @@ public class TrophyBlock extends BaseEntityBlock {
         );
     }
 
-    public int getHeight() {
-        return height;
-    }
+    public abstract int getHeight();
 
-    private static VoxelShape createShape(int height) {
-        int width = 2 * (height - 2);
-        return Shapes.or(
-                centeredBox(width, 0, 2),
-                centeredBox(width - 2, 2, height - 2),
-                centeredBox(width, height - 2, height)
-        );
-    }
-
-    private static VoxelShape centeredBox(int width, int minY, int maxY) {
-        return Block.box(8 - width / 2D, minY, 8 - width / 2D, 8 + width / 2D, maxY, 8 + width / 2D);
+    public int getSize() {
+        return size;
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return shape;
+    public String getDescriptionId() {
+        return "block.trofers.trophy";
     }
 
     @Override

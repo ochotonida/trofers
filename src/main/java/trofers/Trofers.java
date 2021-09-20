@@ -23,10 +23,6 @@ public class Trofers {
 
     public static final Logger LOGGER = LogManager.getLogger("Trofers");
 
-    // TODO trophy data generator
-    // TODO test multiplayer
-    // TODO add new trophy models (pillar/plate, emissive pillar/plate?)
-
     public Trofers() {
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> TrofersClient::new);
 

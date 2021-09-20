@@ -1,33 +1,33 @@
 {
   "variants": {
     "facing=north,waterlogged=false": {
-      "model": "trofers:block/small_trophy"
+      "model": "trofers:block/large_plate"
     },
     "facing=south,waterlogged=false": {
-      "model": "trofers:block/small_trophy",
+      "model": "trofers:block/large_plate",
       "y": 180
     },
     "facing=west,waterlogged=false": {
-      "model": "trofers:block/small_trophy",
+      "model": "trofers:block/large_plate",
       "y": 270
     },
     "facing=east,waterlogged=false": {
-      "model": "trofers:block/small_trophy",
+      "model": "trofers:block/large_plate",
       "y": 90
     },
     "facing=north,waterlogged=true": {
-      "model": "trofers:block/small_trophy"
+      "model": "trofers:block/large_plate"
     },
     "facing=south,waterlogged=true": {
-      "model": "trofers:block/small_trophy",
+      "model": "trofers:block/large_plate",
       "y": 180
     },
     "facing=west,waterlogged=true": {
-      "model": "trofers:block/small_trophy",
+      "model": "trofers:block/large_plate",
       "y": 270
     },
     "facing=east,waterlogged=true": {
-      "model": "trofers:block/small_trophy",
+      "model": "trofers:block/large_plate",
       "y": 90
     }
   }
