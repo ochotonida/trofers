@@ -48,36 +48,18 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
     }
 
     public static void render(Trophy trophy, float ticks, int trophyHeight, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
-        float animationProgress = 6 * ticks * trophy.animation().speed();
-
-        if (trophy.animation().type() == Trophy.Animation.Type.SPINNING) {
-            poseStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress));
-        }
-
-        poseStack.mulPose(Vector3f.XP.rotationDegrees(trophy.display().xRotation()));
-        poseStack.translate(trophy.display().xOffset() / 16D, 0, 0);
-        poseStack.mulPose(Vector3f.YP.rotationDegrees(trophy.display().yRotation()));
-        poseStack.translate(0, (trophyHeight + trophy.display().yOffset()) / 16D, 0);
-        poseStack.mulPose(Vector3f.ZP.rotationDegrees(trophy.display().zRotation()));
-        poseStack.translate(0, 0, trophy.display().zOffset() / 16D);
-
-        if (!trophy.item().isEmpty()) {
-            renderItem(trophy, poseStack, multiBufferSource, light, overlay);
-        }
-        if (trophy.entity() != null) {
-            renderEntity(trophy, ticks, poseStack, multiBufferSource, light);
-        }
+        renderItem(trophy, ticks, trophyHeight, poseStack, multiBufferSource, light, overlay);
+        renderEntity(trophy, ticks, trophyHeight, poseStack, multiBufferSource, light);
     }
 
-    private static void renderItem(Trophy trophy, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
+    private static void renderItem(Trophy trophy, float ticks, int trophyHeight, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
         poseStack.pushPose();
-
-        float displayScale = trophy.display().scale();
 
         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
         BakedModel model = renderer.getModel(trophy.item(), Minecraft.getInstance().level, null, 0);
 
-        poseStack.scale(displayScale, displayScale, displayScale);
+        float yOffset = 0.25F;
+        translateRotate(poseStack, trophy, trophyHeight, yOffset, ticks);
 
         poseStack.translate(0, 0.25, 0);
 
@@ -90,28 +72,52 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         poseStack.popPose();
     }
 
-    @SuppressWarnings("ConstantConditions")
-    private static void renderEntity(Trophy trophy, float ticks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
-        if (Minecraft.getInstance().level == null) {
+    private static void renderEntity(Trophy trophy, float ticks, int trophyHeight, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
+        if (Minecraft.getInstance().level == null || trophy.entity() == null) {
             return;
         }
-
         Entity entity = trophy.entity().getOrCreateEntity(Minecraft.getInstance().level);
         if (entity == null) {
             return;
         }
         poseStack.pushPose();
 
+        float entityHeight = entity.getBbHeight();
+        translateRotate(poseStack, trophy, trophyHeight, entityHeight / 2, ticks);
+
         if (!trophy.entity().isAnimated()) {
             ticks = 0;
         }
-
-        float scale = trophy.display().scale();
-        poseStack.scale(scale, scale, scale);
 
         poseStack.mulPose(Vector3f.YP.rotationDegrees(180));
 
         Minecraft.getInstance().getEntityRenderDispatcher().render(entity, 0, 0, 0, 0, ticks, poseStack, multiBufferSource, light);
         poseStack.popPose();
+    }
+
+    private static void translateRotate(PoseStack poseStack, Trophy trophy, int trophyHeight, float yRotationOffset, float ticks) {
+        yRotationOffset *= trophy.display().scale();
+        float animationProgress = 6 * ticks * trophy.animation().speed();
+
+        poseStack.translate(0, (trophyHeight + trophy.display().yOffset()) / 16D, 0);
+        poseStack.translate(0, yRotationOffset, 0);
+        if (trophy.animation().type() == Trophy.Animation.Type.SPINNING) {
+            poseStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress));
+        } else if (trophy.animation().type() == Trophy.Animation.Type.TUMBLING) {
+            poseStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress));
+            poseStack.mulPose(Vector3f.XP.rotationDegrees(animationProgress * 0.8F));
+            poseStack.mulPose(Vector3f.ZP.rotationDegrees(animationProgress * 0.6F));
+        }
+        poseStack.translate(0, -yRotationOffset, 0);
+
+        poseStack.translate(trophy.display().xOffset() / 16D, 0, 0);
+        poseStack.translate(0, 0, trophy.display().zOffset() / 16D);
+
+        poseStack.mulPose(Vector3f.XP.rotationDegrees(trophy.display().xRotation()));
+        poseStack.mulPose(Vector3f.YP.rotationDegrees(trophy.display().yRotation()));
+        poseStack.mulPose(Vector3f.ZP.rotationDegrees(trophy.display().zRotation()));
+
+        float scale = trophy.display().scale();
+        poseStack.scale(scale, scale, scale);
     }
 }
