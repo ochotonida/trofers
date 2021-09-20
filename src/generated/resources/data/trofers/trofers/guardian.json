@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:guardian"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 144,
       "blue": 135
     }
-  },
-  "entity": {
-    "type": "minecraft:guardian",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

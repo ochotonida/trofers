@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:magma_cube",
+    "nbt": "{Size:1}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 1,
       "blue": 0
     }
-  },
-  "entity": {
-    "type": "minecraft:magma_cube",
-    "nbt": "{}"
-  },
-  "displayScale": 0.5
+  }
 }

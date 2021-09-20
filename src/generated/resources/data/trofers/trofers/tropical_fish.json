@@ -7,6 +7,20 @@
       }
     ]
   },
+  "display": {
+    "offset": {
+      "x": -0.375,
+      "y": 1.0
+    },
+    "rotation": {
+      "z": -90.0
+    },
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:tropical_fish",
+    "nbt": "{Variant:235798785}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +32,5 @@
       "green": 64,
       "blue": 64
     }
-  },
-  "entity": {
-    "type": "minecraft:tropical_fish",
-    "nbt": "{Variant:235143425}"
-  },
-  "displayScale": 0.25
+  }
 }

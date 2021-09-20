@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:evoker"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 156,
       "blue": 156
     }
-  },
-  "entity": {
-    "type": "minecraft:evoker",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

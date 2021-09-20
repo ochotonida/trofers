@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:villager",
+    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 136,
       "blue": 109
     }
-  },
-  "entity": {
-    "type": "minecraft:villager",
-    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
-  },
-  "displayScale": 0.25
+  }
 }

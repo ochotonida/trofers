@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:cat",
+    "nbt": "{CatType:0,Sitting:1b}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 101,
       "blue": 73
     }
-  },
-  "entity": {
-    "type": "minecraft:cat",
-    "nbt": "{CatType:0,Sitting:1b}"
-  },
-  "displayScale": 0.25
+  }
 }

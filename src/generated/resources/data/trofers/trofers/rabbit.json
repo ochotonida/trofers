@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:rabbit",
+    "nbt": "{RabbitType:0}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 119,
       "blue": 94
     }
-  },
-  "entity": {
-    "type": "minecraft:rabbit",
-    "nbt": "{RabbitType:0}"
-  },
-  "displayScale": 0.25
+  }
 }

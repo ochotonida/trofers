@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:slime",
+    "nbt": "{Size:1}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 194,
       "blue": 100
     }
-  },
-  "entity": {
-    "type": "minecraft:slime",
-    "nbt": "{}"
-  },
-  "displayScale": 0.5
+  }
 }

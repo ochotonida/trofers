@@ -7,6 +7,19 @@
       }
     ]
   },
+  "display": {
+    "offset": {
+      "x": -0.375,
+      "y": 1.0
+    },
+    "rotation": {
+      "z": -90.0
+    },
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:cod"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +31,5 @@
       "green": 152,
       "blue": 108
     }
-  },
-  "entity": {
-    "type": "minecraft:cod",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

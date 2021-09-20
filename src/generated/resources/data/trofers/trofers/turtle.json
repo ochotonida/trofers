@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:turtle"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 162,
       "blue": 64
     }
-  },
-  "entity": {
-    "type": "minecraft:turtle",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

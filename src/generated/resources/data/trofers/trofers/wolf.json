@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:wolf",
+    "nbt": "{Owner:[I;0,0,0,0],Sitting:1b}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 218,
       "blue": 219
     }
-  },
-  "entity": {
-    "type": "minecraft:wolf",
-    "nbt": "{Owner:[I;0,0,0,0],Sitting:1b}"
-  },
-  "displayScale": 0.25
+  }
 }

@@ -109,7 +109,12 @@ public class TrophyScreen extends Screen {
         this.currentPage = currentPage;
         trophyButtons.forEach(this::removeWidget);
 
-        List<Trophy> trophies = TrophyManager.values().stream().sorted(Comparator.comparing(trophy -> trophy.getId().toString())).collect(Collectors.toCollection(ArrayList::new));
+        List<Trophy> trophies = TrophyManager.values()
+                .stream()
+                .filter(trophy -> !trophy.isHidden())
+                .sorted(Comparator.comparing(trophy -> trophy.id().toString()))
+                .collect(Collectors.toCollection(ArrayList::new));
+
         int index = currentPage * columns * rows;
 
         for (int row = 0; row < rows; row++) {
@@ -120,7 +125,7 @@ public class TrophyScreen extends Screen {
 
                 ItemStack stack = new ItemStack(trophyItem);
                 Trophy trophy = trophies.get(index++);
-                stack.getOrCreateTagElement("BlockEntityTag").putString("Trophy", trophy.getId().toString());
+                stack.getOrCreateTagElement("BlockEntityTag").putString("Trophy", trophy.id().toString());
 
                 int x = columnStart + column * (BUTTON_SIZE + BUTTON_SPACING);
                 int y = rowStart + row * (BUTTON_SIZE + BUTTON_SPACING);

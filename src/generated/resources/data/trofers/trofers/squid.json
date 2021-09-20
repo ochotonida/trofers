@@ -7,6 +7,15 @@
       }
     ]
   },
+  "display": {
+    "offset": {
+      "y": 5.0
+    },
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:squid"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,11 +27,5 @@
       "green": 109,
       "blue": 128
     }
-  },
-  "entity": {
-    "type": "minecraft:squid",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25,
-  "displayHeight": 5.0
+  }
 }

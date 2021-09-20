@@ -62,8 +62,7 @@ public class TrophyItemRenderer extends BlockEntityWithoutLevelRenderer {
         float partialTicks = Minecraft.getInstance().getFrameTime() * (Minecraft.getInstance().isPaused() ? 0 : 1);
         float ticks = (Minecraft.getInstance().player.tickCount + partialTicks);
 
-        double displayHeight = trophy.getDisplayHeight() + ((TrophyBlock) ((BlockItem) stack.getItem()).getBlock()).getHeight();
-
-        TrophyBlockEntityRenderer.render(trophy, ticks, displayHeight, poseStack, multiBufferSource, light, overlay);
+        int trophyHeight = ((TrophyBlock) ((BlockItem) stack.getItem()).getBlock()).getHeight();
+        TrophyBlockEntityRenderer.render(trophy, ticks, trophyHeight, poseStack, multiBufferSource, light, overlay);
     }
 }

@@ -7,6 +7,15 @@
       }
     ]
   },
+  "display": {
+    "offset": {
+      "y": 5.0
+    },
+    "scale": 0.075
+  },
+  "entity": {
+    "type": "minecraft:ghast"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,11 +27,5 @@
       "green": 240,
       "blue": 240
     }
-  },
-  "entity": {
-    "type": "minecraft:ghast",
-    "nbt": "{}"
-  },
-  "displayScale": 0.07500000298023224,
-  "displayHeight": 5.0
+  }
 }

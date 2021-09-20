@@ -7,6 +7,19 @@
       }
     ]
   },
+  "display": {
+    "offset": {
+      "x": -0.375,
+      "y": 1.0
+    },
+    "rotation": {
+      "z": -90.0
+    },
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:salmon"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +31,5 @@
       "green": 55,
       "blue": 53
     }
-  },
-  "entity": {
-    "type": "minecraft:salmon",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

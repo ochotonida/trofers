@@ -7,6 +7,16 @@
       }
     ]
   },
+  "display": {
+    "offset": {
+      "y": 5.0
+    },
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:glow_squid",
+    "nbt": "{DarkTicksRemaining:1}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,11 +28,5 @@
       "green": 161,
       "blue": 161
     }
-  },
-  "entity": {
-    "type": "minecraft:glow_squid",
-    "nbt": "{DarkTicksRemaining:1}"
-  },
-  "displayScale": 0.25,
-  "displayHeight": 5.0
+  }
 }

@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:polar_bear"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 242,
       "blue": 244
     }
-  },
-  "entity": {
-    "type": "minecraft:polar_bear",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

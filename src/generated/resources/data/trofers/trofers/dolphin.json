@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:dolphin"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 196,
       "blue": 216
     }
-  },
-  "entity": {
-    "type": "minecraft:dolphin",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:blaze"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 231,
       "blue": 70
     }
-  },
-  "entity": {
-    "type": "minecraft:blaze",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

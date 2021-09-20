@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:cow"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 54,
       "blue": 38
     }
-  },
-  "entity": {
-    "type": "minecraft:cow",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

@@ -40,8 +40,8 @@ public class TrophyItem extends BlockItem {
     @Override
     public Component getName(ItemStack stack) {
         Trophy trophy = Trophy.getTrophy(stack);
-        if (trophy != null && trophy.getName() != null) {
-            return trophy.getName();
+        if (trophy != null && trophy.name() != null) {
+            return trophy.name();
         }
         return super.getName(stack);
     }
@@ -51,7 +51,7 @@ public class TrophyItem extends BlockItem {
     public String getCreatorModId(ItemStack stack) {
         Trophy trophy = Trophy.getTrophy(stack);
         if (trophy != null) {
-            return trophy.getId().getNamespace();
+            return trophy.id().getNamespace();
         }
         return super.getCreatorModId(stack);
     }

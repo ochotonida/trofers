@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:cave_spider"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 45,
       "blue": 48
     }
-  },
-  "entity": {
-    "type": "minecraft:cave_spider",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

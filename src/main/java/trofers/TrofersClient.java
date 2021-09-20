@@ -41,9 +41,9 @@ public class TrofersClient {
                     }
 
                     if (index == 0) {
-                        return trophy.getColor();
+                        return trophy.colors().base();
                     } else if (index == 1) {
-                        return trophy.getAccentColor();
+                        return trophy.colors().accent();
                     }
                 }
             }
@@ -56,9 +56,9 @@ public class TrofersClient {
             Trophy trophy = Trophy.getTrophy(stack);
             if (trophy != null) {
                 if (index == 0) {
-                    return trophy.getColor();
+                    return trophy.colors().base();
                 } else if (index == 1) {
-                    return trophy.getAccentColor();
+                    return trophy.colors().accent();
                 }
             }
             return 0xFFFFFF;

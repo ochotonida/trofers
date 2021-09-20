@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:parrot",
+    "nbt": "{Variant:0}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 0,
       "blue": 0
     }
-  },
-  "entity": {
-    "type": "minecraft:parrot",
-    "nbt": "{Variant:0}"
-  },
-  "displayScale": 0.25
+  }
 }

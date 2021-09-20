@@ -7,6 +7,20 @@
       }
     ]
   },
+  "display": {
+    "offset": {
+      "x": 0.75,
+      "z": 0.5
+    },
+    "rotation": {
+      "y": -90.0
+    },
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:fox",
+    "nbt": "{Sleeping:1b,Type:\"red\"}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +32,5 @@
       "green": 124,
       "blue": 33
     }
-  },
-  "entity": {
-    "type": "minecraft:fox",
-    "nbt": "{Type:\"red\"}"
-  },
-  "displayScale": 0.25
+  }
 }

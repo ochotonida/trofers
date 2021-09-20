@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:wither_skeleton",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:stone_sword\",tag:{Damage:0}},{}]}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 52,
       "blue": 52
     }
-  },
-  "entity": {
-    "type": "minecraft:wither_skeleton",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:stone_sword\",tag:{Damage:0}},{}]}"
-  },
-  "displayScale": 0.25
+  }
 }

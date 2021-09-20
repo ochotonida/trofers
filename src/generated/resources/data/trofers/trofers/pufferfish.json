@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:pufferfish",
+    "nbt": "{PuffState:2}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 151,
       "blue": 11
     }
-  },
-  "entity": {
-    "type": "minecraft:pufferfish",
-    "nbt": "{PuffState:2}"
-  },
-  "displayScale": 0.25
+  }
 }

@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:witch"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 148,
       "blue": 130
     }
-  },
-  "entity": {
-    "type": "minecraft:witch",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

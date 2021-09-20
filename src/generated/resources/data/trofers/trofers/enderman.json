@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:enderman",
+    "nbt": "{CarriedBlockState:{Name:\"minecraft:tnt\"}}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 66,
       "blue": 230
     }
-  },
-  "entity": {
-    "type": "minecraft:enderman",
-    "nbt": "{CarriedBlockState:{Name:\"minecraft:tnt\"}}"
-  },
-  "displayScale": 0.25
+  }
 }

@@ -7,6 +7,13 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:llama",
+    "nbt": "{Variant:3}"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +25,5 @@
       "green": 228,
       "blue": 212
     }
-  },
-  "entity": {
-    "type": "minecraft:llama",
-    "nbt": "{Variant:3}"
-  },
-  "displayScale": 0.25
+  }
 }

@@ -28,7 +28,7 @@ public class SetTrophyPacket {
 
     @SuppressWarnings("unused")
     void encode(FriendlyByteBuf buffer) {
-        buffer.writeResourceLocation(trophy.getId());
+        buffer.writeResourceLocation(trophy.id());
         buffer.writeBlockPos(blockPos);
     }
 

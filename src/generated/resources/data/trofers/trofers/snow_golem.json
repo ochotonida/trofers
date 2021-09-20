@@ -7,6 +7,12 @@
       }
     ]
   },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "minecraft:snow_golem"
+  },
   "colors": {
     "base": {
       "red": 96,
@@ -18,10 +24,5 @@
       "green": 255,
       "blue": 255
     }
-  },
-  "entity": {
-    "type": "minecraft:snow_golem",
-    "nbt": "{}"
-  },
-  "displayScale": 0.25
+  }
 }

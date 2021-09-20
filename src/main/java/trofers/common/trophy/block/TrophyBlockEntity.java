@@ -39,7 +39,7 @@ public class TrophyBlockEntity extends BlockEntity {
     public void setTrophy(@Nullable Trophy trophy) {
         this.trophy = trophy;
         if (trophy != null) {
-            trophyID = trophy.getId();
+            trophyID = trophy.id();
         } else {
             trophyID = null;
         }
@@ -49,13 +49,6 @@ public class TrophyBlockEntity extends BlockEntity {
     @Nullable
     public ResourceLocation getTrophyID() {
         return trophyID;
-    }
-
-    public double getDisplayHeight() {
-        if (trophy == null) {
-            return 0;
-        }
-        return getTrophyHeight() + trophy.getDisplayHeight();
     }
 
     public float getAnimationOffset() {
@@ -70,7 +63,7 @@ public class TrophyBlockEntity extends BlockEntity {
         if (block instanceof TrophyBlock trophy) {
             return trophy.getHeight();
         }
-        return 6;
+        return 0;
     }
 
     @Override
