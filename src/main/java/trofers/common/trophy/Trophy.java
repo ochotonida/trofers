@@ -371,6 +371,7 @@ public record Trophy(
 
             entity = type.create(level);
             if (entity != null) {
+                entity.setId(0);
                 entity.load(nbt);
                 if (!nbt.hasUUID("UUID")) {
                     entity.setUUID(Util.NIL_UUID);

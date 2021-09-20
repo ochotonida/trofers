@@ -120,6 +120,7 @@ public class Trophies implements DataProvider {
         displayInfos.put(EntityType.GHAST, new Trophy.DisplayInfo(0, 5, 0, 0.075F));
         displayInfos.put(EntityType.GLOW_SQUID, new Trophy.DisplayInfo(0, 5, 0, 0.25F));
         displayInfos.put(EntityType.SQUID, new Trophy.DisplayInfo(0, 5, 0, 0.25F));
+        displayInfos.put(EntityType.PHANTOM, new Trophy.DisplayInfo(0, 1, 0, 0.25F));
 
         displayInfos.put(EntityType.ELDER_GUARDIAN, new Trophy.DisplayInfo(0.10625F));
         displayInfos.put(EntityType.RAVAGER, new Trophy.DisplayInfo(0.175F));
@@ -140,8 +141,8 @@ public class Trophies implements DataProvider {
         entityData.get(EntityType.AXOLOTL).putInt("Variant", 0);
         entityData.get(EntityType.CAT).putInt("CatType", 0);
         entityData.get(EntityType.CAT).putBoolean("Sitting", true);
-        entityData.get(EntityType.ENDERMAN).put("CarriedBlockState", new CompoundTag());
-        entityData.get(EntityType.ENDERMAN).getCompound("CarriedBlockState").putString("Name", "minecraft:tnt");
+        entityData.get(EntityType.ENDERMAN).put("carriedBlockState", new CompoundTag());
+        entityData.get(EntityType.ENDERMAN).getCompound("carriedBlockState").putString("Name", "minecraft:tnt");
         entityData.get(EntityType.FOX).putString("Type", "red");
         entityData.get(EntityType.FOX).putBoolean("Sleeping", true);
         entityData.get(EntityType.GLOW_SQUID).putInt("DarkTicksRemaining", 1);
