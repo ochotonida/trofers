@@ -79,9 +79,13 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     private void onContentsChanged() {
-        if (level != null && !level.isClientSide) {
-            level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE);
-            setChanged();
+        if (level != null) {
+            if (!level.isClientSide()) {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE);
+                setChanged();
+            } else {
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.RERENDER_MAIN_THREAD);
+            }
         }
     }
 
