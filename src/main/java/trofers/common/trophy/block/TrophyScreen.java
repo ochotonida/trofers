@@ -37,8 +37,8 @@ public class TrophyScreen extends Screen {
     private static final int VERTICAL_PADDING = 20;
     private static final int BUTTON_SIZE = 40;
     private static final int BUTTON_SPACING = 8;
-    private static final int CANCEL_BUTTON_WIDTH = 64;
-    private static final int UPPER_BUTTON_SIZE = 16;
+    private static final int CANCEL_BUTTON_WIDTH = 96;
+    private static final int UPPER_BUTTON_SIZE = 20;
     private static final int MIN_ROWS = 2;
     private static final int MIN_COLUMNS = 2;
     private static final int MAX_COLUMNS = 16;
@@ -152,7 +152,7 @@ public class TrophyScreen extends Screen {
                 VERTICAL_PADDING,
                 UPPER_BUTTON_SIZE,
                 UPPER_BUTTON_SIZE,
-                new TranslatableComponent(String.format("button.%s.previous", Trofers.MODID)),
+                new TextComponent("<"),
                 button -> setCurrentPage(currentPage - 1)
         ));
         nextButton = addRenderableWidget(new ExtendedButton(
@@ -160,7 +160,7 @@ public class TrophyScreen extends Screen {
                 VERTICAL_PADDING,
                 UPPER_BUTTON_SIZE,
                 UPPER_BUTTON_SIZE,
-                new TranslatableComponent(String.format("button.%s.next", Trofers.MODID)),
+                new TextComponent(">"),
                 button -> setCurrentPage(currentPage + 1)
         ));
     }

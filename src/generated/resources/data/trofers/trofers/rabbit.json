@@ -1,6 +1,6 @@
 {
   "name": {
-    "translate": "trophy.trofers.entity",
+    "translate": "trophy.trofers.composed",
     "with": [
       {
         "translate": "entity.minecraft.rabbit"

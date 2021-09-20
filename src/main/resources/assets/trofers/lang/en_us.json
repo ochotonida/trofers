@@ -1,8 +1,6 @@
 {
   "itemGroup.trofers": "Trofers",
   "block.trofers.trophy": "Trophy",
-  "button.trofers.next": "»",
-  "button.trofers.previous": "«",
   "button.trofers.cancel": "Cancel",
-  "trophy.trofers.entity": "%s Trophy"
+  "trophy.trofers.composed": "%s Trophy"
 }

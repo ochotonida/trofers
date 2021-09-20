@@ -189,7 +189,7 @@ public class Trophies implements DataProvider {
     }
 
     private Component createName(EntityType<?> entityType) {
-        return new TranslatableComponent("trophy.trofers.entity", entityType.getDescription());
+        return new TranslatableComponent("trophy.trofers.composed", entityType.getDescription());
     }
 
     private void addTrophy(Trophy trophy) {
