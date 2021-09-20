@@ -189,8 +189,7 @@ public record Trophy(
 
         public enum Type {
             FIXED("fixed"),
-            SPINNING("spinning"),
-            TUMBLING("tumbling");
+            SPINNING("spinning");
 
             private final String name;
 
