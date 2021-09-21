@@ -1,6 +1,5 @@
 package trofers.common.trophy.block;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -119,7 +118,7 @@ public abstract class TrophyBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (player.isCreative()) {
             if (level.isClientSide()) {
-                Minecraft.getInstance().setScreen(new TrophyScreen(state.getBlock().asItem(), pos));
+                TrophyScreen.open(state.getBlock().asItem(), pos);
                 return InteractionResult.SUCCESS;
             } else {
                 return InteractionResult.CONSUME;

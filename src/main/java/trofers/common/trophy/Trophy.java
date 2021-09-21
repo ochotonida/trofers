@@ -314,15 +314,18 @@ public record Trophy(
                 int green = GsonHelper.getAsInt(object, "green");
                 int blue = GsonHelper.getAsInt(object, "blue");
                 return red << 16 | green << 8 | blue;
-            } else if (GsonHelper.isStringValue(element)) {
-                TextColor color =  TextColor.parseColor(element.getAsString());
-                if (color == null) {
-                    throw new JsonParseException(String.format("Couldn't parse color string: %s", element.getAsString()));
-                }
-                return color.getValue();
+            } else if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
+                return parseColor(element.getAsString());
             } else {
                 throw new JsonParseException(String.format("Expected color to be json object or string, got %s", element));
             }
+        }
+
+        private static int parseColor(String string) {
+            if (string.startsWith("#")) {
+                return Integer.parseInt(string.substring(1), 16);
+            }
+            throw new JsonParseException(String.format("Couldn't parse color string: %s", string));
         }
     }
 
