@@ -1,12 +1,12 @@
 package trofers.common.trophy.block;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.Shapes;
-import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.world.IBlockReader;
 
 public class PillarTrophyBlock extends TrophyBlock {
 
@@ -23,7 +23,7 @@ public class PillarTrophyBlock extends TrophyBlock {
 
     private VoxelShape createShape(int size) {
         int width = 2 * (size - 2);
-        return Shapes.or(
+        return VoxelShapes.or(
                 centeredBox(width, 0, 2),
                 centeredBox(width - 2, 2, size - 2),
                 centeredBox(width, size - 2, size)
@@ -36,7 +36,7 @@ public class PillarTrophyBlock extends TrophyBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader level, BlockPos pos, ISelectionContext context) {
         return shape;
     }
 }

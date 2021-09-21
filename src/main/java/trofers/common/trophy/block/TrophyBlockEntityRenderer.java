@@ -1,23 +1,24 @@
 package trofers.common.trophy.block;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
-import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.entity.Entity;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.vector.Vector3f;
 import trofers.common.trophy.Trophy;
 
-public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBlockEntity> {
+public class TrophyBlockEntityRenderer extends TileEntityRenderer<TrophyBlockEntity> {
 
-    @SuppressWarnings("unused")
-    public TrophyBlockEntityRenderer(BlockEntityRendererProvider.Context context) { }
+    public TrophyBlockEntityRenderer(TileEntityRendererDispatcher dispatcher) {
+        super(dispatcher);
+    }
 
     @Override
     public boolean shouldRenderOffScreen(TrophyBlockEntity blockEntity) {
@@ -25,7 +26,7 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
     }
 
     @Override
-    public void render(TrophyBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
+    public void render(TrophyBlockEntity blockEntity, float partialTicks, MatrixStack poseStack, IRenderTypeBuffer multiBufferSource, int light, int overlay) {
         poseStack.pushPose();
 
         poseStack.translate(0.5, 0, 0.5);
@@ -42,16 +43,16 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         poseStack.popPose();
     }
 
-    public static void render(Trophy trophy, float ticks, int trophyHeight, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
+    public static void render(Trophy trophy, float ticks, int trophyHeight, MatrixStack poseStack, IRenderTypeBuffer multiBufferSource, int light, int overlay) {
         renderItem(trophy, ticks, trophyHeight, poseStack, multiBufferSource, light, overlay);
         renderEntity(trophy, ticks, trophyHeight, poseStack, multiBufferSource, light);
     }
 
-    private static void renderItem(Trophy trophy, float ticks, int trophyHeight, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
+    private static void renderItem(Trophy trophy, float ticks, int trophyHeight, MatrixStack poseStack, IRenderTypeBuffer multiBufferSource, int light, int overlay) {
         poseStack.pushPose();
 
         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
-        BakedModel model = renderer.getModel(trophy.item(), Minecraft.getInstance().level, null, 0);
+        IBakedModel model = renderer.getModel(trophy.item(), Minecraft.getInstance().level, null);
 
         float yOffset = 0.25F;
         translateRotate(poseStack, trophy, trophyHeight, yOffset, ticks);
@@ -62,12 +63,12 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
             poseStack.scale(0.5F, 0.5F, 0.5F);
         }
 
-        Minecraft.getInstance().getItemRenderer().renderStatic(trophy.item(), ItemTransforms.TransformType.FIXED, light, overlay, poseStack, multiBufferSource, 0);
+        Minecraft.getInstance().getItemRenderer().renderStatic(trophy.item(), ItemCameraTransforms.TransformType.FIXED, light, overlay, poseStack, multiBufferSource);
 
         poseStack.popPose();
     }
 
-    private static void renderEntity(Trophy trophy, float ticks, int trophyHeight, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
+    private static void renderEntity(Trophy trophy, float ticks, int trophyHeight, MatrixStack poseStack, IRenderTypeBuffer multiBufferSource, int light) {
         if (Minecraft.getInstance().level == null || trophy.entity() == null) {
             return;
         }
@@ -90,7 +91,7 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         poseStack.popPose();
     }
 
-    private static void translateRotate(PoseStack poseStack, Trophy trophy, int trophyHeight, float yRotationOffset, float ticks) {
+    private static void translateRotate(MatrixStack poseStack, Trophy trophy, int trophyHeight, float yRotationOffset, float ticks) {
         yRotationOffset *= trophy.display().scale();
         float animationProgress = 6 * ticks * trophy.animation().speed();
 

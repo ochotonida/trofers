@@ -1,14 +1,15 @@
 package trofers.data;
 
-import net.minecraft.core.Direction;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.util.Direction;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelBuilder;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import trofers.Trofers;
+import trofers.common.init.ModBlocks;
 import trofers.common.trophy.block.PillarTrophyBlock;
 import trofers.common.trophy.block.PlateTrophyBlock;
 import trofers.common.trophy.block.TrophyBlock;
-import trofers.common.init.ModBlocks;
-import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.*;
-import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class BlockStates extends BlockStateProvider {
 

@@ -1,9 +1,9 @@
 package trofers.common.init;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.RegistryObject;
 import trofers.Trofers;
 import trofers.common.trophy.block.PillarTrophyBlock;
 import trofers.common.trophy.block.PlateTrophyBlock;
@@ -42,7 +42,7 @@ public class ModBlocks {
         return trophy;
     }
 
-    private static BlockBehaviour.Properties createProperties() {
-        return Block.Properties.of(Material.STONE).strength(1.5F);
+    private static Block.Properties createProperties() {
+        return Block.Properties.of(Material.STONE).strength(1.5F).harvestTool(ToolType.PICKAXE);
     }
 }

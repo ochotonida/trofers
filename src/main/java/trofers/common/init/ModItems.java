@@ -1,15 +1,16 @@
 package trofers.common.init;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.RegistryObject;
 import trofers.Trofers;
 import trofers.common.trophy.block.TrophyBlock;
 import trofers.common.trophy.item.TrophyItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import trofers.common.trophy.item.TrophyItemRenderer;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class ModItems {
 
     public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, Trofers.MODID);
 
-    public static final CreativeModeTab CREATIVE_TAB = new CreativeModeTab(Trofers.MODID) {
+    public static final ItemGroup CREATIVE_TAB = new ItemGroup(Trofers.MODID) {
         @Override
         public ItemStack makeIcon() {
             ItemStack result = new ItemStack(MEDIUM_PILLAR.get());
@@ -45,6 +46,7 @@ public class ModItems {
                         new Item.Properties()
                                 .fireResistant()
                                 .tab(CREATIVE_TAB)
+                                .setISTER(() -> TrophyItemRenderer::new)
                 )
         );
         TROPHIES.add(trophy);

@@ -1,15 +1,14 @@
 package trofers.common.trophy.block;
 
-import net.minecraft.ResourceLocationException;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.Connection;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.AABB;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.ResourceLocationException;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 import trofers.Trofers;
 import trofers.common.init.ModBlockEntityTypes;
@@ -18,7 +17,7 @@ import trofers.common.trophy.TrophyManager;
 
 import javax.annotation.Nullable;
 
-public class TrophyBlockEntity extends BlockEntity {
+public class TrophyBlockEntity extends TileEntity {
 
     @Nullable
     private Trophy trophy;
@@ -27,8 +26,8 @@ public class TrophyBlockEntity extends BlockEntity {
 
     private float animationOffset;
 
-    public TrophyBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntityTypes.TROPHY.get(), pos, state);
+    public TrophyBlockEntity() {
+        super(ModBlockEntityTypes.TROPHY.get());
     }
 
     @Nullable
@@ -67,8 +66,8 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     @Override
-    public AABB getRenderBoundingBox() {
-        return new AABB(getBlockPos().offset(-1, 0, -1), getBlockPos().offset(1, 16, 1));
+    public AxisAlignedBB getRenderBoundingBox() {
+        return new AxisAlignedBB(getBlockPos().offset(-1, 0, -1), getBlockPos().offset(1, 16, 1));
     }
 
     private void onContentsChanged() {
@@ -83,35 +82,35 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        return save(new CompoundTag());
+    public CompoundNBT getUpdateTag() {
+        return save(new CompoundNBT());
     }
 
     @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        load(tag);
+    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
+        load(state, tag);
     }
 
     @Nullable
     @Override
-    public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return new ClientboundBlockEntityDataPacket(getBlockPos(), 0, getUpdateTag());
+    public SUpdateTileEntityPacket getUpdatePacket() {
+        return new SUpdateTileEntityPacket(getBlockPos(), 0, getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet) {
+    public void onDataPacket(NetworkManager connection, SUpdateTileEntityPacket packet) {
         if (level != null) {
-            load(packet.getTag());
+            load(getBlockState(), packet.getTag());
         }
     }
 
     @Override
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    public void load(BlockState state, CompoundNBT tag) {
+        super.load(state, tag);
         loadTrophy(tag);
     }
 
-    public void loadTrophy(CompoundTag tag) {
+    public void loadTrophy(CompoundNBT tag) {
         trophy = null;
         trophyID = null;
 
@@ -134,12 +133,12 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag save(CompoundTag tag) {
+    public CompoundNBT save(CompoundNBT tag) {
         saveTrophy(tag);
         return super.save(tag);
     }
 
-    public void saveTrophy(CompoundTag tag) {
+    public void saveTrophy(CompoundNBT tag) {
         if (trophyID != null) {
             tag.putString("Trophy", trophyID.toString());
         }

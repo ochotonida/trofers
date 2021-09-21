@@ -3,21 +3,18 @@ package trofers.data;
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.minecraft.Util;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentUtils;
-import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.data.DirectoryCache;
+import net.minecraft.data.IDataProvider;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.*;
 import net.minecraftforge.common.util.Constants;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
@@ -27,7 +24,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.function.Consumer;
 
-public class Trophies implements DataProvider {
+public class Trophies implements IDataProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 
@@ -43,9 +40,8 @@ public class Trophies implements DataProvider {
 
         Map<EntityType<?>, Integer> entityColors = new HashMap<>();
         Map<EntityType<?>, Trophy.DisplayInfo> displayInfos = new HashMap<>();
-        Map<EntityType<?>, CompoundTag> entityData = new HashMap<>();
+        Map<EntityType<?>, CompoundNBT> entityData = new HashMap<>();
 
-        entityColors.put(EntityType.AXOLOTL, 0xfbc1e2);
         entityColors.put(EntityType.BAT, 0x75653f);
         entityColors.put(EntityType.BEE, 0xebc542);
         entityColors.put(EntityType.BLAZE, 0xede746);
@@ -64,8 +60,6 @@ public class Trophies implements DataProvider {
         entityColors.put(EntityType.EVOKER, 0x959c9c);
         entityColors.put(EntityType.FOX, 0xe37c21);
         entityColors.put(EntityType.GHAST, 0xf0f0f0);
-        entityColors.put(EntityType.GLOW_SQUID, 0x32a1a1);
-        entityColors.put(EntityType.GOAT, 0xc2ab8e);
         entityColors.put(EntityType.GUARDIAN, 0x6a9087);
         entityColors.put(EntityType.HOGLIN, 0xd5957b);
         entityColors.put(EntityType.HORSE, 0x926633);
@@ -116,11 +110,10 @@ public class Trophies implements DataProvider {
 
         entityColors.keySet().forEach(type -> {
             displayInfos.put(type, new Trophy.DisplayInfo(0, 0, 0, 0, 0, 0, 0.25F));
-            entityData.put(type, new CompoundTag());
+            entityData.put(type, new CompoundNBT());
         });
 
         displayInfos.put(EntityType.GHAST, new Trophy.DisplayInfo(0, 5, 0, 0.075F));
-        displayInfos.put(EntityType.GLOW_SQUID, new Trophy.DisplayInfo(0, 5, 0, 0.25F));
         displayInfos.put(EntityType.SQUID, new Trophy.DisplayInfo(0, 5, 0, 0.25F));
         displayInfos.put(EntityType.PHANTOM, new Trophy.DisplayInfo(0, 1, 0, 0.25F));
 
@@ -140,14 +133,12 @@ public class Trophies implements DataProvider {
                 -3/8F, 1, 0, 0, 0, -90, 0.25F
         ));
 
-        entityData.get(EntityType.AXOLOTL).putInt("Variant", 0);
         entityData.get(EntityType.CAT).putInt("CatType", 0);
         entityData.get(EntityType.CAT).putBoolean("Sitting", true);
-        entityData.get(EntityType.ENDERMAN).put("carriedBlockState", new CompoundTag());
+        entityData.get(EntityType.ENDERMAN).put("carriedBlockState", new CompoundNBT());
         entityData.get(EntityType.ENDERMAN).getCompound("carriedBlockState").putString("Name", "minecraft:tnt");
         entityData.get(EntityType.FOX).putString("Type", "red");
         entityData.get(EntityType.FOX).putBoolean("Sleeping", true);
-        entityData.get(EntityType.GLOW_SQUID).putInt("DarkTicksRemaining", 1);
         entityData.get(EntityType.HOGLIN).putBoolean("IsImmuneToZombification", true);
         entityData.get(EntityType.HORSE).putInt("Variant", 1 | 1 << 8);
         entityData.get(EntityType.LLAMA).putInt("Variant", 3);
@@ -164,14 +155,14 @@ public class Trophies implements DataProvider {
         putHandItem(entityData.get(EntityType.STRAY), Items.BOW);
         entityData.get(EntityType.TRADER_LLAMA).putInt("Variant", 2);
         entityData.get(EntityType.TROPICAL_FISH).putInt("Variant", 1 | 1 << 8 | 14 << 16 | 14 << 24);
-        entityData.get(EntityType.VILLAGER).put("VillagerData", new CompoundTag());
+        entityData.get(EntityType.VILLAGER).put("VillagerData", new CompoundNBT());
         entityData.get(EntityType.VILLAGER).getCompound("VillagerData").putInt("level", 1);
         entityData.get(EntityType.VILLAGER).getCompound("VillagerData").putString("profession", "minecraft:weaponsmith");
         entityData.get(EntityType.VILLAGER).getCompound("VillagerData").putString("type", "minecraft:plains");
         entityData.get(EntityType.WOLF).putBoolean("Sitting", true);
         entityData.get(EntityType.WOLF).putUUID("Owner", Util.NIL_UUID);
         putHandItem(entityData.get(EntityType.WITHER_SKELETON), Items.STONE_SWORD);
-        entityData.get(EntityType.ZOMBIE_VILLAGER).put("VillagerData", new CompoundTag());
+        entityData.get(EntityType.ZOMBIE_VILLAGER).put("VillagerData", new CompoundNBT());
         entityData.get(EntityType.ZOMBIE_VILLAGER).getCompound("VillagerData").putInt("level", 1);
         entityData.get(EntityType.ZOMBIE_VILLAGER).getCompound("VillagerData").putString("profession", "minecraft:weaponsmith");
         entityData.get(EntityType.ZOMBIE_VILLAGER).getCompound("VillagerData").putString("type", "minecraft:plains");
@@ -192,19 +183,19 @@ public class Trophies implements DataProvider {
         });
     }
 
-    private void putHandItem(CompoundTag tag, Item item) {
-        tag.put("HandItems", new ListTag());
-        tag.getList("HandItems", Constants.NBT.TAG_COMPOUND).add(new ItemStack(item).save(new CompoundTag()));
-        tag.getList("HandItems", Constants.NBT.TAG_COMPOUND).add(new CompoundTag());
+    private void putHandItem(CompoundNBT tag, Item item) {
+        tag.put("HandItems", new ListNBT());
+        tag.getList("HandItems", Constants.NBT.TAG_COMPOUND).add(new ItemStack(item).save(new CompoundNBT()));
+        tag.getList("HandItems", Constants.NBT.TAG_COMPOUND).add(new CompoundNBT());
     }
 
-    private Component createName(EntityType<?> entityType, int color) {
-        return ComponentUtils.mergeStyles(
-                new TranslatableComponent(
+    private ITextComponent createName(EntityType<?> entityType, int color) {
+        return TextComponentUtils.mergeStyles(
+                new TranslationTextComponent(
                         "trophy.trofers.composed",
                         entityType.getDescription()
                 ),
-                Style.EMPTY.withColor(color)
+                Style.EMPTY.withColor(Color.fromRgb(color))
         );
     }
 
@@ -213,7 +204,7 @@ public class Trophies implements DataProvider {
     }
 
     @Override
-    public void run(HashCache cache) {
+    public void run(DirectoryCache cache) {
         addTrophies();
 
         Path outputFolder = generator.getOutputFolder();
@@ -224,7 +215,7 @@ public class Trophies implements DataProvider {
             } else {
                 Path path = createPath(outputFolder, trophy);
                 try {
-                    DataProvider.save(GSON, cache, trophy.toJson(), path);
+                    IDataProvider.save(GSON, cache, trophy.toJson(), path);
                 } catch (IOException ioexception) {
                     Trofers.LOGGER.error("Couldn't save trophy {}", path, ioexception);
                 }

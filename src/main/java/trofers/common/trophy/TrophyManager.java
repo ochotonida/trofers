@@ -3,21 +3,21 @@ package trofers.common.trophy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
-import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.client.resources.JsonReloadListener;
+import net.minecraft.profiler.IProfiler;
+import net.minecraft.resources.IResourceManager;
+import net.minecraft.util.ResourceLocation;
 import trofers.Trofers;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TrophyManager extends SimpleJsonResourceReloadListener {
+public class TrophyManager extends JsonReloadListener {
 
     protected static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
-    private static Map<ResourceLocation, Trophy> trophies = Map.of();
+    private static Map<ResourceLocation, Trophy> trophies = new HashMap<>();
 
     public TrophyManager() {
         super(GSON, "trofers");
@@ -31,7 +31,8 @@ public class TrophyManager extends SimpleJsonResourceReloadListener {
         return trophies.values();
     }
 
-    protected void apply(Map<ResourceLocation, JsonElement> resources, ResourceManager resourceManager, ProfilerFiller profilerFiller) {
+    @Override
+    protected void apply(Map<ResourceLocation, JsonElement> resources, IResourceManager resourceManager, IProfiler profilerFiller) {
         Map<ResourceLocation, Trophy> trophies = new HashMap<>();
 
         resources.forEach((id, element) -> {

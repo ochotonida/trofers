@@ -1,33 +1,31 @@
 package trofers.common.trophy.item;
 
-import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.IItemRenderProperties;
+import net.minecraft.block.BlockState;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.text.ITextComponent;
+import trofers.common.trophy.Trophy;
 import trofers.common.trophy.block.TrophyBlock;
 import trofers.common.trophy.block.TrophyBlockEntity;
-import trofers.common.trophy.Trophy;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.function.Consumer;
 
 public class TrophyItem extends BlockItem {
 
-    public TrophyItem(TrophyBlock block, Properties properties) {
+    public TrophyItem(TrophyBlock block, Item.Properties properties) {
         super(block, properties);
     }
 
     @Override
-    protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
+    protected boolean placeBlock(BlockItemUseContext context, BlockState state) {
         if (super.placeBlock(context, state)) {
-            BlockEntity blockEntity = context.getLevel().getBlockEntity(context.getClickedPos());
-            CompoundTag tag = context.getItemInHand().getTag();
+            TileEntity blockEntity = context.getLevel().getBlockEntity(context.getClickedPos());
+            CompoundNBT tag = context.getItemInHand().getTag();
             if (blockEntity instanceof TrophyBlockEntity trophy && tag != null) {
                 trophy.loadTrophy(tag.getCompound("BlockEntityTag"));
             }
@@ -38,7 +36,7 @@ public class TrophyItem extends BlockItem {
 
     @Nonnull
     @Override
-    public Component getName(ItemStack stack) {
+    public ITextComponent getName(ItemStack stack) {
         Trophy trophy = Trophy.getTrophy(stack);
         if (trophy != null && trophy.name() != null) {
             return trophy.name();
@@ -54,18 +52,5 @@ public class TrophyItem extends BlockItem {
             return trophy.id().getNamespace();
         }
         return super.getCreatorModId(stack);
-    }
-
-    @Override
-    public void initializeClient(Consumer<IItemRenderProperties> consumer) {
-        consumer.accept(new IItemRenderProperties() {
-
-            private final BlockEntityWithoutLevelRenderer renderer = new TrophyItemRenderer();
-
-            @Override
-            public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
-                return renderer;
-            }
-        });
     }
 }

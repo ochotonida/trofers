@@ -1,9 +1,9 @@
 package trofers.common.network;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.network.NetworkEvent;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
 import trofers.common.trophy.block.TrophyBlockEntity;
@@ -16,7 +16,7 @@ public class SetTrophyPacket {
     private final BlockPos blockPos;
 
     @SuppressWarnings("unused")
-    public SetTrophyPacket(FriendlyByteBuf buffer) {
+    public SetTrophyPacket(PacketBuffer buffer) {
         this.trophy = TrophyManager.get(buffer.readResourceLocation());
         this.blockPos = buffer.readBlockPos();
     }
@@ -27,13 +27,13 @@ public class SetTrophyPacket {
     }
 
     @SuppressWarnings("unused")
-    void encode(FriendlyByteBuf buffer) {
+    void encode(PacketBuffer buffer) {
         buffer.writeResourceLocation(trophy.id());
         buffer.writeBlockPos(blockPos);
     }
 
     void handle(Supplier<NetworkEvent.Context> context) {
-        ServerPlayer player = context.get().getSender();
+        ServerPlayerEntity player = context.get().getSender();
         if (player != null) {
             context.get().enqueueWork(() -> {
                 if (player.isCreative()

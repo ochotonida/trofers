@@ -1,9 +1,9 @@
 package trofers.common.init;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-import net.minecraft.world.level.storage.loot.entries.LootTableReference;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.StandaloneLootEntry;
+import net.minecraft.loot.TableLootEntry;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.LootTableLoadEvent;
 import trofers.Trofers;
 
@@ -13,7 +13,7 @@ import java.util.List;
 public class ModLootTables {
 
     public static final List<String> LOOT_TABLE_LOCATIONS = Arrays.asList(
-            "entities/axolotl",
+            // "entities/axolotl",
             "entities/bat",
             "entities/bee",
             "entities/blaze",
@@ -32,8 +32,8 @@ public class ModLootTables {
             "entities/evoker",
             "entities/fox",
             "entities/ghast",
-            "entities/glow_squid",
-            "entities/goat",
+            // "entities/glow_squid",
+            // "entities/goat",
             "entities/guardian",
             "entities/hoglin",
             "entities/horse",
@@ -103,8 +103,8 @@ public class ModLootTables {
                 .build();
     }
 
-    private static LootPoolEntryContainer.Builder<?> getInjectEntry(String name) {
+    private static StandaloneLootEntry.Builder<?> getInjectEntry(String name) {
         ResourceLocation table = new ResourceLocation(Trofers.MODID, "inject/" + name);
-        return LootTableReference.lootTableReference(table).setWeight(1);
+        return TableLootEntry.lootTableReference(table).setWeight(1);
     }
 }

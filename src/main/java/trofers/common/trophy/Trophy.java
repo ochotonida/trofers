@@ -2,45 +2,69 @@ package trofers.common.trophy;
 
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.ResourceLocationException;
-import net.minecraft.Util;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.TagParser;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextColor;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.util.JSONUtils;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.ResourceLocationException;
+import net.minecraft.util.Util;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.Objects;
 
-public record Trophy(
-        ResourceLocation id,
-        @Nullable
-        Component name,
-        DisplayInfo display,
-        Animation animation,
-        ItemStack item,
-        @Nullable
-        EntityInfo entity,
-        ColorInfo colors,
-        boolean isHidden
-) {
+public final class Trophy {
+    private final ResourceLocation id;
+    @Nullable
+    private final ITextComponent name;
+    private final DisplayInfo display;
+    private final Animation animation;
+    private final ItemStack item;
+    @Nullable
+    private final EntityInfo entity;
+    private final ColorInfo colors;
+    private final boolean isHidden;
+
+    public Trophy(
+            ResourceLocation id,
+            @Nullable
+            ITextComponent name,
+            DisplayInfo display,
+            Animation animation,
+            ItemStack item,
+            @Nullable
+                    EntityInfo entity,
+            ColorInfo colors,
+            boolean isHidden
+    ) {
+        this.id = id;
+        this.name = name;
+        this.display = display;
+        this.animation = animation;
+        this.item = item;
+        this.entity = entity;
+        this.colors = colors;
+        this.isHidden = isHidden;
+    }
 
     @Nullable
     public static Trophy getTrophy(ItemStack stack) {
-        CompoundTag tag = stack.getTag();
+        CompoundNBT tag = stack.getTag();
         if (tag == null) {
             return null;
         }
 
-        CompoundTag blockEntityTag = tag.getCompound("BlockEntityTag");
+        CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
 
         if (!blockEntityTag.contains("Trophy", Constants.NBT.TAG_STRING)) {
             return null;
@@ -57,13 +81,13 @@ public record Trophy(
     public JsonObject toJson() {
         JsonObject result = new JsonObject();
 
-        result.add("name", Component.Serializer.toJsonTree(name()));
+        result.add("name", TextComponent.Serializer.toJsonTree(name()));
 
-        if (!display().equals(Trophy.DisplayInfo.NONE)) {
+        if (!display().equals(DisplayInfo.NONE)) {
             result.add("display", display().toJson());
         }
 
-        if (animation().type() != Trophy.Animation.Type.FIXED) {
+        if (animation().type() != Animation.Type.FIXED) {
             result.add("animation", animation().toJson());
         }
 
@@ -75,7 +99,7 @@ public record Trophy(
             result.add("entity", entity().toJson());
         }
 
-        if (!colors().equals(Trophy.ColorInfo.NONE)) {
+        if (!colors().equals(ColorInfo.NONE)) {
             result.add("colors", colors().toJson());
         }
 
@@ -101,41 +125,41 @@ public record Trophy(
     }
 
     public static Trophy fromJson(JsonElement element, ResourceLocation id) {
-        JsonObject object = GsonHelper.convertToJsonObject(element, "trophy");
+        JsonObject object = JSONUtils.convertToJsonObject(element, "trophy");
 
         EntityInfo entity = null;
         if (object.has("entity")) {
-            entity = EntityInfo.fromJson(GsonHelper.getAsJsonObject(object, "entity"));
+            entity = EntityInfo.fromJson(JSONUtils.getAsJsonObject(object, "entity"));
         }
 
         ItemStack item = ItemStack.EMPTY;
         if (object.has("item")) {
-            item = CraftingHelper.getItemStack(GsonHelper.getAsJsonObject(object, "item"), true);
+            item = CraftingHelper.getItemStack(JSONUtils.getAsJsonObject(object, "item"), true);
         }
 
         Animation animation = Animation.STATIC;
         if (object.has("animation")) {
-            animation = Animation.fromJson(GsonHelper.getAsJsonObject(object, "animation"));
+            animation = Animation.fromJson(JSONUtils.getAsJsonObject(object, "animation"));
         }
 
         DisplayInfo display = DisplayInfo.NONE;
         if (object.has("display")) {
-            display = DisplayInfo.fromJson(GsonHelper.getAsJsonObject(object, "display"));
+            display = DisplayInfo.fromJson(JSONUtils.getAsJsonObject(object, "display"));
         }
 
         ColorInfo colors = ColorInfo.NONE;
         if (object.has("colors")) {
-            colors = ColorInfo.fromJson(GsonHelper.getAsJsonObject(object, "colors"));
+            colors = ColorInfo.fromJson(JSONUtils.getAsJsonObject(object, "colors"));
         }
 
-        Component name = null;
+        ITextComponent name = null;
         if (object.has("name")) {
-            name = Component.Serializer.fromJson(object.get("name"));
+            name = TextComponent.Serializer.fromJson(object.get("name"));
         }
 
         boolean isHidden = false;
         if (object.has("isHidden")) {
-            isHidden = GsonHelper.getAsBoolean(object, "isHidden");
+            isHidden = JSONUtils.getAsBoolean(object, "isHidden");
         }
 
         return new Trophy(
@@ -150,12 +174,12 @@ public record Trophy(
         );
     }
 
-    private static CompoundTag readNBT(JsonElement element) {
+    private static CompoundNBT readNBT(JsonElement element) {
         try {
             if (element.isJsonObject())
-                return TagParser.parseTag(TrophyManager.GSON.toJson(element));
+                return JsonToNBT.parseTag(TrophyManager.GSON.toJson(element));
             else {
-                return TagParser.parseTag(GsonHelper.convertToString(element, "nbt"));
+                return JsonToNBT.parseTag(JSONUtils.convertToString(element, "nbt"));
             }
         } catch (CommandSyntaxException exception) {
             throw new JsonSyntaxException(String.format("Invalid NBT Entry: %s", exception));
@@ -164,14 +188,89 @@ public record Trophy(
 
     private static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
         if (object.has(memberName)) {
-            return GsonHelper.getAsFloat(object, memberName);
+            return JSONUtils.getAsFloat(object, memberName);
         }
         return defaultValue;
     }
 
-    public record Animation(Type type, float speed) {
+    public ResourceLocation id() {
+        return id;
+    }
+
+    @Nullable
+    public ITextComponent name() {
+        return name;
+    }
+
+    public DisplayInfo display() {
+        return display;
+    }
+
+    public Animation animation() {
+        return animation;
+    }
+
+    public ItemStack item() {
+        return item;
+    }
+
+    @Nullable
+    public EntityInfo entity() {
+        return entity;
+    }
+
+    public ColorInfo colors() {
+        return colors;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (Trophy) obj;
+        return Objects.equals(this.id, that.id) &&
+                Objects.equals(this.name, that.name) &&
+                Objects.equals(this.display, that.display) &&
+                Objects.equals(this.animation, that.animation) &&
+                Objects.equals(this.item, that.item) &&
+                Objects.equals(this.entity, that.entity) &&
+                Objects.equals(this.colors, that.colors) &&
+                this.isHidden == that.isHidden;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, display, animation, item, entity, colors, isHidden);
+    }
+
+    @Override
+    public String toString() {
+        return "Trophy[" +
+                "id=" + id + ", " +
+                "name=" + name + ", " +
+                "display=" + display + ", " +
+                "animation=" + animation + ", " +
+                "item=" + item + ", " +
+                "entity=" + entity + ", " +
+                "colors=" + colors + ", " +
+                "isHidden=" + isHidden + ']';
+    }
+
+
+    public static final class Animation {
 
         public static final Animation STATIC = new Animation(Type.FIXED, 1);
+        private final Type type;
+        private final float speed;
+
+        public Animation(Type type, float speed) {
+            this.type = type;
+            this.speed = speed;
+        }
 
         public JsonObject toJson() {
             JsonObject result = new JsonObject();
@@ -188,6 +287,36 @@ public record Trophy(
             return new Animation(type, speed);
         }
 
+        public Type type() {
+            return type;
+        }
+
+        public float speed() {
+            return speed;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            var that = (Animation) obj;
+            return Objects.equals(this.type, that.type) &&
+                    Float.floatToIntBits(this.speed) == Float.floatToIntBits(that.speed);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(type, speed);
+        }
+
+        @Override
+        public String toString() {
+            return "Animation[" +
+                    "type=" + type + ", " +
+                    "speed=" + speed + ']';
+        }
+
+
         public enum Type {
             FIXED("fixed"),
             SPINNING("spinning"),
@@ -200,7 +329,7 @@ public record Trophy(
             }
 
             public static Type fromJson(JsonElement element) {
-                String name = GsonHelper.convertToString(element, "animation");
+                String name = JSONUtils.convertToString(element, "animation");
                 for (Type animation : Type.values()) {
                     if (animation.name.equals(name)) {
                         return animation;
@@ -211,10 +340,27 @@ public record Trophy(
         }
     }
 
-    public record DisplayInfo(float xOffset, float yOffset, float zOffset, float xRotation, float yRotation,
-                              float zRotation, float scale) {
+    public static final class DisplayInfo {
 
         public static final DisplayInfo NONE = new DisplayInfo(0, 0, 0, 0, 0, 0, 1);
+        private final float xOffset;
+        private final float yOffset;
+        private final float zOffset;
+        private final float xRotation;
+        private final float yRotation;
+        private final float zRotation;
+        private final float scale;
+
+        public DisplayInfo(float xOffset, float yOffset, float zOffset, float xRotation, float yRotation,
+                           float zRotation, float scale) {
+            this.xOffset = xOffset;
+            this.yOffset = yOffset;
+            this.zOffset = zOffset;
+            this.xRotation = xRotation;
+            this.yRotation = yRotation;
+            this.zRotation = zRotation;
+            this.scale = scale;
+        }
 
         public DisplayInfo(float scale) {
             this(0, 0, 0, scale);
@@ -254,7 +400,7 @@ public record Trophy(
             float xOffset, yOffset, zOffset;
             xOffset = yOffset = zOffset = 0;
             if (object.has("offset")) {
-                JsonObject offset = GsonHelper.getAsJsonObject(object, "offset");
+                JsonObject offset = JSONUtils.getAsJsonObject(object, "offset");
                 xOffset = readOptionalFloat(offset, "x", 0);
                 yOffset = readOptionalFloat(offset, "y", 0);
                 zOffset = readOptionalFloat(offset, "z", 0);
@@ -263,7 +409,7 @@ public record Trophy(
             float xRotation, yRotation, zRotation;
             xRotation = yRotation = zRotation = 0;
             if (object.has("rotation")) {
-                JsonObject rotation = GsonHelper.getAsJsonObject(object, "rotation");
+                JsonObject rotation = JSONUtils.getAsJsonObject(object, "rotation");
                 xRotation = readOptionalFloat(rotation, "x", 0);
                 yRotation = readOptionalFloat(rotation, "y", 0);
                 zRotation = readOptionalFloat(rotation, "z", 0);
@@ -273,11 +419,78 @@ public record Trophy(
 
             return new DisplayInfo(xOffset, yOffset, zOffset, xRotation, yRotation, zRotation, scale);
         }
+
+        public float xOffset() {
+            return xOffset;
+        }
+
+        public float yOffset() {
+            return yOffset;
+        }
+
+        public float zOffset() {
+            return zOffset;
+        }
+
+        public float xRotation() {
+            return xRotation;
+        }
+
+        public float yRotation() {
+            return yRotation;
+        }
+
+        public float zRotation() {
+            return zRotation;
+        }
+
+        public float scale() {
+            return scale;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            var that = (DisplayInfo) obj;
+            return Float.floatToIntBits(this.xOffset) == Float.floatToIntBits(that.xOffset) &&
+                    Float.floatToIntBits(this.yOffset) == Float.floatToIntBits(that.yOffset) &&
+                    Float.floatToIntBits(this.zOffset) == Float.floatToIntBits(that.zOffset) &&
+                    Float.floatToIntBits(this.xRotation) == Float.floatToIntBits(that.xRotation) &&
+                    Float.floatToIntBits(this.yRotation) == Float.floatToIntBits(that.yRotation) &&
+                    Float.floatToIntBits(this.zRotation) == Float.floatToIntBits(that.zRotation) &&
+                    Float.floatToIntBits(this.scale) == Float.floatToIntBits(that.scale);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(xOffset, yOffset, zOffset, xRotation, yRotation, zRotation, scale);
+        }
+
+        @Override
+        public String toString() {
+            return "DisplayInfo[" +
+                    "xOffset=" + xOffset + ", " +
+                    "yOffset=" + yOffset + ", " +
+                    "zOffset=" + zOffset + ", " +
+                    "xRotation=" + xRotation + ", " +
+                    "yRotation=" + yRotation + ", " +
+                    "zRotation=" + zRotation + ", " +
+                    "scale=" + scale + ']';
+        }
+
     }
 
-    public record ColorInfo(int base, int accent) {
+    public static final class ColorInfo {
 
         public static final ColorInfo NONE = new ColorInfo(0xFFFFFF, 0xFFFFFF);
+        private final int base;
+        private final int accent;
+
+        public ColorInfo(int base, int accent) {
+            this.base = base;
+            this.accent = accent;
+        }
 
         public JsonObject toJson() {
             JsonObject result = new JsonObject();
@@ -310,12 +523,12 @@ public record Trophy(
         private static int readColor(JsonElement element) {
             if (element.isJsonObject()) {
                 JsonObject object = element.getAsJsonObject();
-                int red = GsonHelper.getAsInt(object, "red");
-                int green = GsonHelper.getAsInt(object, "green");
-                int blue = GsonHelper.getAsInt(object, "blue");
+                int red = JSONUtils.getAsInt(object, "red");
+                int green = JSONUtils.getAsInt(object, "green");
+                int blue = JSONUtils.getAsInt(object, "blue");
                 return red << 16 | green << 8 | blue;
-            } else if (GsonHelper.isStringValue(element)) {
-                TextColor color =  TextColor.parseColor(element.getAsString());
+            } else if (JSONUtils.isStringValue(element)) {
+                Color color = Color.parseColor(element.getAsString());
                 if (color == null) {
                     throw new JsonParseException(String.format("Couldn't parse color string: %s", element.getAsString()));
                 }
@@ -324,18 +537,48 @@ public record Trophy(
                 throw new JsonParseException(String.format("Expected color to be json object or string, got %s", element));
             }
         }
+
+        public int base() {
+            return base;
+        }
+
+        public int accent() {
+            return accent;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) return true;
+            if (obj == null || obj.getClass() != this.getClass()) return false;
+            var that = (ColorInfo) obj;
+            return this.base == that.base &&
+                    this.accent == that.accent;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(base, accent);
+        }
+
+        @Override
+        public String toString() {
+            return "ColorInfo[" +
+                    "base=" + base + ", " +
+                    "accent=" + accent + ']';
+        }
+
     }
 
     public static class EntityInfo {
 
         private final EntityType<?> type;
-        private final CompoundTag nbt;
+        private final CompoundNBT nbt;
         private final boolean isAnimated;
 
         @Nullable
         private Entity entity;
 
-        public EntityInfo(EntityType<?> type, CompoundTag nbt, boolean isAnimated) {
+        public EntityInfo(EntityType<?> type, CompoundNBT nbt, boolean isAnimated) {
             this.type = type;
             this.nbt = nbt;
             this.isAnimated = isAnimated;
@@ -346,7 +589,7 @@ public record Trophy(
             return type;
         }
 
-        public CompoundTag getTag() {
+        public CompoundNBT getTag() {
             return nbt;
         }
 
@@ -355,14 +598,14 @@ public record Trophy(
         }
 
         @Nullable
-        public Entity getOrCreateEntity(Level level) {
+        public Entity getOrCreateEntity(World level) {
             if (entity == null || entity.level != level) {
                 createEntity(level);
             }
             return entity;
         }
 
-        private void createEntity(Level level) {
+        private void createEntity(World level) {
             if (type == null) {
                 return;
             }
@@ -391,19 +634,19 @@ public record Trophy(
         }
 
         public static EntityInfo fromJson(JsonObject object) {
-            ResourceLocation typeID = new ResourceLocation(GsonHelper.getAsString(object, "type"));
+            ResourceLocation typeID = new ResourceLocation(JSONUtils.getAsString(object, "type"));
             if (!ForgeRegistries.ENTITIES.containsKey(typeID)) {
                 throw new JsonParseException(String.format("Unknown entity type %s", typeID));
             }
             EntityType<?> type = ForgeRegistries.ENTITIES.getValue(typeID);
-            CompoundTag nbt = new CompoundTag();
+            CompoundNBT nbt = new CompoundNBT();
             if (object.has("nbt")) {
                 JsonElement nbtElement = object.get("nbt");
                 nbt = readNBT(nbtElement);
             }
             boolean isAnimated = false;
             if (object.has("animated")) {
-                isAnimated = GsonHelper.getAsBoolean(object, "animated");
+                isAnimated = JSONUtils.getAsBoolean(object, "animated");
             }
             return new EntityInfo(type, nbt, isAnimated);
         }

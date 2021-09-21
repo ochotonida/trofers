@@ -1,27 +1,27 @@
 package trofers.common.trophy.block;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.platform.InputConstants;
-import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.CrashReport;
-import net.minecraft.CrashReportCategory;
-import net.minecraft.ReportedException;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.button.Button;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlas;
-import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fmlclient.gui.widget.ExtendedButton;
+import net.minecraft.client.util.InputMappings;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.crash.ReportedException;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.client.gui.widget.ExtendedButton;
 import trofers.Trofers;
 import trofers.common.network.NetworkHandler;
 import trofers.common.network.SetTrophyPacket;
@@ -58,20 +58,20 @@ public class TrophyScreen extends Screen {
     private final BlockPos blockPos;
 
     public TrophyScreen(Item trophyItem, BlockPos blockPos) {
-        super(TextComponent.EMPTY);
+        super(StringTextComponent.EMPTY);
         this.trophyItem = trophyItem;
         this.blockPos = blockPos;
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+    public void render(MatrixStack poseStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(poseStack);
         super.render(poseStack, mouseX, mouseY, partialTicks);
     }
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        InputConstants.Key mouseKey = InputConstants.getKey(keyCode, scanCode);
+        InputMappings.Input mouseKey = InputMappings.getKey(keyCode, scanCode);
         if (super.keyPressed(keyCode, scanCode, modifiers)) {
             return true;
         } else if (minecraft != null && minecraft.options.keyInventory.isActiveAndMatches(mouseKey)) {
@@ -107,7 +107,10 @@ public class TrophyScreen extends Screen {
 
     private void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
-        trophyButtons.forEach(this::removeWidget);
+        trophyButtons.forEach(button -> {
+            buttons.remove(button);
+            children.remove(button);
+        });
 
         List<Trophy> trophies = TrophyManager.values()
                 .stream()
@@ -129,7 +132,7 @@ public class TrophyScreen extends Screen {
 
                 int x = columnStart + column * (BUTTON_SIZE + BUTTON_SPACING);
                 int y = rowStart + row * (BUTTON_SIZE + BUTTON_SPACING);
-                trophyButtons.add(addRenderableWidget(new ItemButton(x, y, BUTTON_SIZE, stack, button -> setTrophy(trophy))));
+                trophyButtons.add(addButton(new ItemButton(x, y, BUTTON_SIZE, stack, button -> setTrophy(trophy))));
             }
         }
 
@@ -143,29 +146,29 @@ public class TrophyScreen extends Screen {
     }
 
     private void createUpperButtons() {
-        addRenderableWidget(new ExtendedButton(
+        addButton(new ExtendedButton(
                 width / 2 - CANCEL_BUTTON_WIDTH / 2,
                 VERTICAL_PADDING,
                 CANCEL_BUTTON_WIDTH,
                 UPPER_BUTTON_SIZE,
-                new TranslatableComponent(String.format("button.%s.cancel", Trofers.MODID)),
+                new TranslationTextComponent(String.format("button.%s.cancel", Trofers.MODID)),
                 button -> onClose()
         ));
 
-        previousButton = addRenderableWidget(new ExtendedButton(
+        previousButton = addButton(new ExtendedButton(
                 width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - UPPER_BUTTON_SIZE,
                 VERTICAL_PADDING,
                 UPPER_BUTTON_SIZE,
                 UPPER_BUTTON_SIZE,
-                new TextComponent("<"),
+                new StringTextComponent("<"),
                 button -> setCurrentPage(currentPage - 1)
         ));
-        nextButton = addRenderableWidget(new ExtendedButton(
+        nextButton = addButton(new ExtendedButton(
                 width / 2 + CANCEL_BUTTON_WIDTH / 2 + BUTTON_SPACING,
                 VERTICAL_PADDING,
                 UPPER_BUTTON_SIZE,
                 UPPER_BUTTON_SIZE,
-                new TextComponent(">"),
+                new StringTextComponent(">"),
                 button -> setCurrentPage(currentPage + 1)
         ));
     }
@@ -189,13 +192,13 @@ public class TrophyScreen extends Screen {
 
         private final ItemStack item;
 
-        public ItemButton(int xPos, int yPos, int size, ItemStack item, OnPress handler) {
-            super(xPos, yPos, size, size, TextComponent.EMPTY, handler);
+        public ItemButton(int xPos, int yPos, int size, ItemStack item, IPressable handler) {
+            super(xPos, yPos, size, size, StringTextComponent.EMPTY, handler);
             this.item = item;
         }
 
         @Override
-        public void renderButton(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+        public void renderButton(MatrixStack poseStack, int mouseX, int mouseY, float partialTicks) {
             super.renderButton(poseStack, mouseX, mouseY, partialTicks);
 
             renderScaledGuiItem(
@@ -211,14 +214,14 @@ public class TrophyScreen extends Screen {
         }
 
         @Override
-        public void renderToolTip(PoseStack poseStack, int mouseX, int mouseY) {
+        public void renderToolTip(MatrixStack poseStack, int mouseX, int mouseY) {
             renderTooltip(poseStack, item, mouseX, mouseY);
         }
 
         @SuppressWarnings("SameParameterValue")
         private void renderScaledGuiItem(ItemStack item, int x, int y, float scale) {
             if (!item.isEmpty()) {
-                BakedModel bakedmodel = itemRenderer.getModel(item, null, Minecraft.getInstance().player, 0);
+                IBakedModel bakedmodel = itemRenderer.getModel(item, null, Minecraft.getInstance().player);
                 itemRenderer.blitOffset += 50;
                 try {
                     renderGuiItem(item, x, y, scale, bakedmodel);
@@ -237,36 +240,39 @@ public class TrophyScreen extends Screen {
         }
 
         @SuppressWarnings("deprecation")
-        protected void renderGuiItem(ItemStack item, int x, int y, float scale, BakedModel model) {
-            Minecraft.getInstance().textureManager.getTexture(TextureAtlas.LOCATION_BLOCKS).setFilter(false, false);
-            RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
+        protected void renderGuiItem(ItemStack item, int x, int y, float scale, IBakedModel model) {
+            RenderSystem.pushMatrix();
+            Minecraft.getInstance().textureManager.bind(AtlasTexture.LOCATION_BLOCKS);
+            // noinspection ConstantConditions
+            Minecraft.getInstance().textureManager.getTexture(AtlasTexture.LOCATION_BLOCKS).setFilter(false, false);
+            RenderSystem.enableRescaleNormal();
+            RenderSystem.enableAlphaTest();
+            RenderSystem.defaultAlphaFunc();
             RenderSystem.enableBlend();
             RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.setShaderColor(1, 1, 1, 1);
-            PoseStack modelViewStack = RenderSystem.getModelViewStack();
-            modelViewStack.pushPose();
-            modelViewStack.translate(x, y, 100 + itemRenderer.blitOffset);
-            modelViewStack.translate(16 * scale / 2, 16 * scale / 2, 0);
-            modelViewStack.scale(1, -1, 1);
-            modelViewStack.scale(scale, scale, scale);
-            modelViewStack.scale(16, 16, 16);
-            RenderSystem.applyModelViewMatrix();
-            PoseStack poseStack = new PoseStack();
-            MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
+            RenderSystem.color4f(1, 1, 1, 1);
+            RenderSystem.translatef(x, y, 100 + itemRenderer.blitOffset);
+            RenderSystem.translatef(16 * scale / 2, 16 * scale / 2, 0);
+            RenderSystem.scalef(1, -1, 1);
+            RenderSystem.scalef(scale, scale, scale);
+            RenderSystem.scalef(16, 16, 16);
+            MatrixStack matrixstack = new MatrixStack();
+            IRenderTypeBuffer.Impl buffer = Minecraft.getInstance().renderBuffers().bufferSource();
             boolean flag = !model.usesBlockLight();
             if (flag) {
-                Lighting.setupForFlatItems();
+                RenderHelper.setupForFlatItems();
             }
 
-            itemRenderer.render(item, ItemTransforms.TransformType.GUI, false, poseStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, model);
+            itemRenderer.render(item, ItemCameraTransforms.TransformType.GUI, false, matrixstack, buffer, 15728880, OverlayTexture.NO_OVERLAY, model);
             buffer.endBatch();
             RenderSystem.enableDepthTest();
             if (flag) {
-                Lighting.setupFor3DItems();
+                RenderHelper.setupFor3DItems();
             }
 
-            modelViewStack.popPose();
-            RenderSystem.applyModelViewMatrix();
+            RenderSystem.disableAlphaTest();
+            RenderSystem.disableRescaleNormal();
+            RenderSystem.popMatrix();
         }
     }
 }

@@ -13,7 +13,7 @@
   },
   "entity": {
     "type": "minecraft:skeleton",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:bow\",tag:{Damage:0}},{}]}"
+    "nbt": "{HandItems:[{id:\"minecraft:bow\",Count:1b,tag:{Damage:0}},{}]}"
   },
   "colors": {
     "base": "#606060",

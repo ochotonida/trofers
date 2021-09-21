@@ -13,7 +13,7 @@
   },
   "entity": {
     "type": "minecraft:wither_skeleton",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:stone_sword\",tag:{Damage:0}},{}]}"
+    "nbt": "{HandItems:[{id:\"minecraft:stone_sword\",Count:1b,tag:{Damage:0}},{}]}"
   },
   "colors": {
     "base": "#606060",

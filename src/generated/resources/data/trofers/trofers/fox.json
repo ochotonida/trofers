@@ -20,7 +20,7 @@
   },
   "entity": {
     "type": "minecraft:fox",
-    "nbt": "{Sleeping:1b,Type:\"red\"}"
+    "nbt": "{Type:\"red\",Sleeping:1b}"
   },
   "colors": {
     "base": "#606060",

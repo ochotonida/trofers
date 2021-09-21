@@ -1,22 +1,22 @@
 package trofers;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import trofers.common.trophy.block.TrophyBlockEntity;
-import trofers.common.trophy.block.TrophyBlockEntityRenderer;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.init.ModBlocks;
 import trofers.common.init.ModItems;
 import trofers.common.trophy.Trophy;
+import trofers.common.trophy.block.TrophyBlockEntity;
+import trofers.common.trophy.block.TrophyBlockEntityRenderer;
 
 public class TrofersClient {
 
@@ -29,17 +29,17 @@ public class TrofersClient {
     }
 
     public void onClientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> BlockEntityRenderers.register(ModBlockEntityTypes.TROPHY.get(), TrophyBlockEntityRenderer::new));
+        event.enqueueWork(() -> ClientRegistry.bindTileEntityRenderer(ModBlockEntityTypes.TROPHY.get(), TrophyBlockEntityRenderer::new));
 
         ModBlocks.TROPHIES.forEach(
-                trophy -> ItemBlockRenderTypes.setRenderLayer(trophy.get(), RenderType.cutout())
+                trophy -> RenderTypeLookup.setRenderLayer(trophy.get(), RenderType.cutout())
         );
     }
 
     public void onBlockColorHandler(ColorHandlerEvent.Block event) {
         event.getBlockColors().register((state, level, pos, index) -> {
             if (index >= 0 && index < 3 && level != null && pos != null) {
-                BlockEntity blockEntity = level.getBlockEntity(pos);
+                TileEntity blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof TrophyBlockEntity trophyBlockEntity) {
                     Trophy trophy = trophyBlockEntity.getTrophy();
                     if (trophy == null) {
