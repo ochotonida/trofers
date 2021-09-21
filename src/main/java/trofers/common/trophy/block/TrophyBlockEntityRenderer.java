@@ -25,11 +25,6 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
     }
 
     @Override
-    public int getViewDistance() {
-        return 128;
-    }
-
-    @Override
     public void render(TrophyBlockEntity blockEntity, float partialTicks, PoseStack poseStack, MultiBufferSource multiBufferSource, int light, int overlay) {
         poseStack.pushPose();
 
