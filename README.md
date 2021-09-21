@@ -1,31 +1,42 @@
 # Trofers [![CurseForge](http://cf.way2muchnoise.eu/full_482265_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/trofers)
 
-Trofers is a minecraft mod that adds customizable trophies, mostly intended for use by modpack makers. The trophies can be customized either by
-spawning them with custom nbt, or by interacting with them after placing them down in creative mode.
+Trofers is a minecraft mod that adds customizable trophies. Trophies can be added using data packs.
+The mod's data pack includes a trophy for every non-boss mob, entities have a small chance to drop these when killed by a player.
+(This can be disabled in the config)
 
-![image](https://user-images.githubusercontent.com/37985539/118311814-af3b9380-b4f0-11eb-8e90-714ea53f2dcb.png)
-
+![image](https://user-images.githubusercontent.com/37985539/134157534-8d5308a9-b96d-4f2f-afe1-9e44bb15bd29.png)
 ## Customizing Trophies
 
-Trofers currently adds 3 trophy bases of different sizes, which can be customized by setting the following tags in the item's `BlockEntityTag`:
+Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following fields can be customized 
+(all fields are optional unless stated otherwise):
 
-* `Name`: The name of the trophy while in the player's inventory. Can be set in creative mode by right-clicking the block with a name tag.
+* `name`: The name of the trophy as a text component (can be a string). 
+  Information on how to format these can be found [here](https://minecraft.fandom.com/wiki/Raw_JSON_text_format).
+* `item`: An object describing the item the trophy should display. Contains the following fields:
+  * `item`: (_required_) The item ID
+  * `count`: The size of the item stack
+  * `nbt`: The NBT of the item stack, either as a JSON object or stringified NBT
+* `entity`: An object describing the entity the trophy should display. Contains the following fields:
+  * `type`: (_required_) The entity ID
+  * `nbt`: The NBT of the entity, either as a JSON object or stringified NBT
+  * `animated` (_default = true_) Whether the entity's idle animation should be played. 
+    Note that some animations may not work because the entity is not being ticked.
+* `display`: An object containing information about how to display the item/entity
+  * `offset`: An object describing the position of the item/entity
+    * `x`/`y`/`z`: Offset in 1/16-ths of a block
+  * `rotation`: An object describing the rotation of the item/entity
+    * `x`/`y`/`z`: Rotation in degrees
+  * `scale`: (_default = 1_) The size of the item/entity
+* `animation`: An object describing the animation of the item/entity
+  * `type`: (_default = "fixed"_) The animation type, either "fixed", "spinning" or "tumbling"
+  * `speed`: Affects the speed of the animation
+* `colors`: An object describing the colors of the trophy base
+  * `base`/`accent`: A color, either in hexadecimal as a string (`"#RRGGBB"`), 
+    or as an object with `red`/`green`/`blue` fields between 0 and 255.
+* `hidden`: (_default = false_) Whether the trophy should be hidden from trophy selection screen in creative mode
 
-* `Colors`: A compound tag used to change the colors of the trophy's model parts. This tag consists of the compound tags `Bottom`, `Middle` and `Top`.
-  Each one of these tags has subtags `Red`, `Green` and `Blue`, which are integers between 0 and 255. Colors can be customized in creative mode by
-  right-clicking the trophy with dyes.
-
-* `Item`: The item to be displayed on the trophy. Can be any item stack, including count and NBT. See the
-  [Minecraft wiki](https://minecraft.fandom.com/wiki/Tutorials/Command_NBT_tags#Items) for more info. Right-clicking a trophy with an item in creative
-  mode will also set the item. Right-clicking with an empty hand will remove it.
-
-* `Animation`: Controls the animation of the item. There are currently 3 animations:
-  `"Fixed"`, `"Spinning"` and `"Tumbling"`. While in creative mode, right-clicking a trophy with a stick will cycle through the animations.
-
-* `AnimationSpeed`: Controls the speed of the animation (Default: 1). Animation speed can currently only be changed by editing NBT.
-
-* `DisplayScale`: The size of the displayed item (Default: 1 for large trophies, 0.75 for normal trophies and 0.5 for small trophies). Display scale
-  can currently only be changed by editing NBT.
-
-* `DisplayHeight`: Controls the height (in 1/16th's of a block) of the displayed item, starting from the top of the trophy (a small offset gets added
-  when using the spinning/tumbling animations). Display height can currently only be changed by editing NBT.
+## Adding a trophy to a trophy base
+Trofers currently adds 6 trophy bases. 
+Placing one down and right-clicking it while in creative will open a menu that allows you to pick any existing trophy.
+You can also set the trophy by changing the item's NBT: `{BlockEntityTag:{Trophy:"namespace:path"}}`.
+Changes made to your data pack will apply to any existing trophies.
