@@ -38,6 +38,7 @@ public class Trofers {
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(ModLootTables::onLootTableLoad);
+        MinecraftForge.EVENT_BUS.addListener(TrophyManager::onDataPackReload);
     }
 
     public void onCommonSetup(FMLCommonSetupEvent event) {

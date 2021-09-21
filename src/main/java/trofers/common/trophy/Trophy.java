@@ -7,7 +7,7 @@ import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextColor;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
@@ -52,6 +52,50 @@ public record Trophy(
         }
 
         return null;
+    }
+
+    public void toNetwork(FriendlyByteBuf buffer) {
+        buffer.writeResourceLocation(id);
+        buffer.writeBoolean(name != null);
+        if (name != null) {
+            buffer.writeComponent(name);
+        }
+        display.toNetwork(buffer);
+        animation.toNetwork(buffer);
+        buffer.writeItem(item);
+        buffer.writeBoolean(entity != null);
+        if (entity != null) {
+            entity.toNetwork(buffer);
+        }
+        colors.toNetwork(buffer);
+        buffer.writeBoolean(isHidden);
+    }
+
+    public static Trophy fromNetwork(FriendlyByteBuf buffer) {
+        ResourceLocation id = buffer.readResourceLocation();
+        Component name = null;
+        if (buffer.readBoolean()) {
+            name = buffer.readComponent();
+        }
+        DisplayInfo display = DisplayInfo.fromNetwork(buffer);
+        Animation animation = Animation.fromNetwork(buffer);
+        ItemStack item = buffer.readItem();
+        EntityInfo entity = null;
+        if (buffer.readBoolean()) {
+            entity = EntityInfo.fromNetwork(buffer);
+        }
+        ColorInfo colors = ColorInfo.fromNetwork(buffer);
+        boolean isHidden = buffer.readBoolean();
+        return new Trophy(
+                id,
+                name,
+                display,
+                animation,
+                item,
+                entity,
+                colors,
+                isHidden
+        );
     }
 
     public JsonObject toJson() {
@@ -173,6 +217,20 @@ public record Trophy(
 
         public static final Animation STATIC = new Animation(Type.FIXED, 1);
 
+        public void toNetwork(FriendlyByteBuf buffer) {
+            buffer.writeByte(type.ordinal());
+            buffer.writeFloat(speed);
+        }
+
+        public static Animation fromNetwork(FriendlyByteBuf buffer) {
+            Type type = Type.values()[buffer.readByte()];
+            float speed = buffer.readFloat();
+            if (type == Type.FIXED) {
+                return STATIC;
+            }
+            return new Animation(type, speed);
+        }
+
         public JsonObject toJson() {
             JsonObject result = new JsonObject();
             result.addProperty("type", type().name());
@@ -222,6 +280,28 @@ public record Trophy(
 
         public DisplayInfo(float xOffset, float yOffset, float zOffset, float scale) {
             this(xOffset, yOffset, zOffset, 0, 0, 0, scale);
+        }
+
+        public void toNetwork(FriendlyByteBuf buffer) {
+            buffer.writeFloat(xOffset);
+            buffer.writeFloat(yOffset);
+            buffer.writeFloat(zOffset);
+            buffer.writeFloat(xRotation);
+            buffer.writeFloat(yRotation);
+            buffer.writeFloat(zRotation);
+            buffer.writeFloat(scale);
+        }
+
+        public static DisplayInfo fromNetwork(FriendlyByteBuf buffer) {
+            return new DisplayInfo(
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat()
+            );
         }
 
         public JsonObject toJson() {
@@ -278,6 +358,15 @@ public record Trophy(
     public record ColorInfo(int base, int accent) {
 
         public static final ColorInfo NONE = new ColorInfo(0xFFFFFF, 0xFFFFFF);
+
+        public void toNetwork(FriendlyByteBuf buffer) {
+            buffer.writeInt(base);
+            buffer.writeInt(accent);
+        }
+
+        public static ColorInfo fromNetwork(FriendlyByteBuf buffer) {
+            return new ColorInfo(buffer.readInt(), buffer.readInt());
+        }
 
         public JsonObject toJson() {
             JsonObject result = new JsonObject();
@@ -378,6 +467,18 @@ public record Trophy(
                     entity.setUUID(Util.NIL_UUID);
                 }
             }
+        }
+
+        public void toNetwork(FriendlyByteBuf buffer) {
+            // noinspection ConstantConditions
+            buffer.writeResourceLocation(type.getRegistryName());
+            buffer.writeNbt(nbt);
+            buffer.writeBoolean(isAnimated);
+        }
+
+        public static EntityInfo fromNetwork(FriendlyByteBuf buffer) {
+            EntityType<?> type = ForgeRegistries.ENTITIES.getValue(buffer.readResourceLocation());
+            return new EntityInfo(type, buffer.readNbt(), buffer.readBoolean());
         }
 
         public JsonObject toJson() {

@@ -17,5 +17,6 @@ public class NetworkHandler {
 
     public static void register() {
         INSTANCE.registerMessage(0, SetTrophyPacket.class, SetTrophyPacket::encode, SetTrophyPacket::new, SetTrophyPacket::handle);
+        INSTANCE.registerMessage(1, TrophySyncPacket.class, TrophySyncPacket::encode, TrophySyncPacket::new, TrophySyncPacket::handle);
     }
 }
