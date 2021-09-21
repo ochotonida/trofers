@@ -33,17 +33,23 @@ public class BlockStates extends BlockStateProvider {
     public static void createPillar(ModelBuilder<?> modelBuilder, TrophyBlock block) {
         int size = block.getSize();
         int width = 2 * (size - 2);
-        centeredBox(modelBuilder, width, 0, 2, 0);
-        centeredBox(modelBuilder, width - 2, 2, size - 2, 1);
-        centeredBox(modelBuilder, width, size - 2, size, 0);
+        texturedCenteredBox(modelBuilder, width, 0, 2, 0);
+        texturedCenteredBox(modelBuilder, width - 2, 2, size - 2, 1);
+        texturedCenteredBox(modelBuilder, width, size - 2, size, 0);
         setTextures(modelBuilder, block);
     }
 
     public static void createPlate(ModelBuilder<?> modelBuilder, TrophyBlock block) {
         int size = block.getSize();
         int width = 2 * (size - 2);
-        centeredBox(modelBuilder, width, 0, 2, 0);
+        texturedCenteredBox(modelBuilder, width, 0, 2, 0);
+        centeredBox(modelBuilder, width, 0, 2)
+                .face(Direction.UP).tintindex(1).texture("#overlay");
+
         setTextures(modelBuilder, block);
+        // noinspection ConstantConditions
+        String overlayTexture = Trofers.MODID + ":block/" + block.getRegistryName().getPath() + "_overlay";
+        modelBuilder.texture("overlay", overlayTexture);
     }
 
     public static void setTextures(ModelBuilder<?> modelBuilder, TrophyBlock block) {
@@ -56,10 +62,17 @@ public class BlockStates extends BlockStateProvider {
                 .texture("side", texturePath + "_side");
     }
 
-    public static void centeredBox(ModelBuilder<?> builder, int width, int minY, int maxY, int tintIndex) {
-        builder.element()
+    public static void texturedCenteredBox(ModelBuilder<?> builder, int width, int minY, int maxY, int tintIndex) {
+        centeredBox(builder, width, minY, maxY)
+                .allFaces((direction, face) -> face
+                                .tintindex(tintIndex)
+                                .texture(direction.getAxis() == Direction.Axis.Y ? "#top" : "#side")
+                );
+    }
+
+    public static ModelBuilder<?>.ElementBuilder centeredBox(ModelBuilder<?> builder, int width, int minY, int maxY) {
+        return builder.element()
                 .from(8 - width / 2F, minY, 8 - width / 2F)
-                .to(8 + width / 2F, maxY, 8 + width / 2F)
-                .allFaces((direction, face) -> face.tintindex(tintIndex).texture(direction.getAxis() == Direction.Axis.Y ? "#top" : "#side"));
+                .to(8 + width / 2F, maxY, 8 + width / 2F);
     }
 }

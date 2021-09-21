@@ -109,10 +109,10 @@ public class Trophies implements DataProvider {
         entityColors.put(EntityType.WITCH, 0xa39482);
         entityColors.put(EntityType.WITHER_SKELETON, 0x626565);
         entityColors.put(EntityType.WOLF, 0xdcdadb);
-        entityColors.put(EntityType.ZOGLIN, 0x688c44);
+        entityColors.put(EntityType.ZOGLIN, 0xe59796);
         entityColors.put(EntityType.ZOMBIE, 0x70955c);
         entityColors.put(EntityType.ZOMBIE_VILLAGER, 0x76a045);
-        entityColors.put(EntityType.ZOMBIFIED_PIGLIN, 0x688c44);
+        entityColors.put(EntityType.ZOMBIFIED_PIGLIN, 0xe59796);
 
         entityColors.keySet().forEach(type -> {
             displayInfos.put(type, new Trophy.DisplayInfo(0, 0, 0, 0, 0, 0, 0.25F));

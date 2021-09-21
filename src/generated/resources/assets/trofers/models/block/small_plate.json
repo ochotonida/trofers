@@ -3,7 +3,8 @@
   "textures": {
     "particle": "#top",
     "top": "trofers:block/small_pillar_top",
-    "side": "trofers:block/small_pillar_side"
+    "side": "trofers:block/small_pillar_side",
+    "overlay": "trofers:block/small_plate_overlay"
   },
   "elements": [
     {
@@ -41,6 +42,24 @@
         "east": {
           "texture": "#side",
           "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        2,
+        12
+      ],
+      "faces": {
+        "up": {
+          "texture": "#overlay",
+          "tintindex": 1
         }
       }
     }

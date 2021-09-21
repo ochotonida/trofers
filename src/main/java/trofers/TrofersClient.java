@@ -1,5 +1,7 @@
 package trofers;
 
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -28,6 +30,10 @@ public class TrofersClient {
 
     public void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> BlockEntityRenderers.register(ModBlockEntityTypes.TROPHY.get(), TrophyBlockEntityRenderer::new));
+
+        ModBlocks.TROPHIES.forEach(
+                trophy -> ItemBlockRenderTypes.setRenderLayer(trophy.get(), RenderType.cutout())
+        );
     }
 
     public void onBlockColorHandler(ColorHandlerEvent.Block event) {
