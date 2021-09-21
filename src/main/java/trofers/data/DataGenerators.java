@@ -18,6 +18,7 @@ public class DataGenerators {
             Trophies trophies = new Trophies(generator);
             generator.addProvider(trophies);
             generator.addProvider(new LootTables(generator, trophies));
+            generator.addProvider(new BlockTags(generator, helper));
         }
         if (event.includeClient()) {
             BlockStates blockStates = new BlockStates(generator, helper);
