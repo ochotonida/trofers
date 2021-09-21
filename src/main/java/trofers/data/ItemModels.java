@@ -39,7 +39,7 @@ public class ItemModels extends ItemModelProvider {
                     .end()
                     .transform(ModelBuilder.Perspective.FIRSTPERSON_RIGHT)
                         .rotation(0, 135, 0)
-                        .translation(0, 2, 0)
+                        .translation(0, block.getId().getPath().contains("plate") ? 2 + 5 * 0.4F : 2, 0)
                         .scale(0.4F)
                     .end()
                 .end());
