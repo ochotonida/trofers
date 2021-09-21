@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.ResourceLocationException;
@@ -74,6 +75,50 @@ public final class Trophy {
         }
 
         return null;
+    }
+
+    public void toNetwork(PacketBuffer buffer) {
+        buffer.writeResourceLocation(id);
+        buffer.writeBoolean(name != null);
+        if (name != null) {
+            buffer.writeComponent(name);
+        }
+        display.toNetwork(buffer);
+        animation.toNetwork(buffer);
+        buffer.writeItem(item);
+        buffer.writeBoolean(entity != null);
+        if (entity != null) {
+            entity.toNetwork(buffer);
+        }
+        colors.toNetwork(buffer);
+        buffer.writeBoolean(isHidden);
+    }
+
+    public static Trophy fromNetwork(PacketBuffer buffer) {
+        ResourceLocation id = buffer.readResourceLocation();
+        ITextComponent name = null;
+        if (buffer.readBoolean()) {
+            name = buffer.readComponent();
+        }
+        DisplayInfo display = DisplayInfo.fromNetwork(buffer);
+        Animation animation = Animation.fromNetwork(buffer);
+        ItemStack item = buffer.readItem();
+        EntityInfo entity = null;
+        if (buffer.readBoolean()) {
+            entity = EntityInfo.fromNetwork(buffer);
+        }
+        ColorInfo colors = ColorInfo.fromNetwork(buffer);
+        boolean isHidden = buffer.readBoolean();
+        return new Trophy(
+                id,
+                name,
+                display,
+                animation,
+                item,
+                entity,
+                colors,
+                isHidden
+        );
     }
 
     public JsonObject toJson() {
@@ -270,6 +315,20 @@ public final class Trophy {
             this.speed = speed;
         }
 
+        public void toNetwork(PacketBuffer buffer) {
+            buffer.writeByte(type.ordinal());
+            buffer.writeFloat(speed);
+        }
+
+        public static Animation fromNetwork(PacketBuffer buffer) {
+            Type type = Type.values()[buffer.readByte()];
+            float speed = buffer.readFloat();
+            if (type == Type.FIXED) {
+                return STATIC;
+            }
+            return new Animation(type, speed);
+        }
+
         public JsonObject toJson() {
             JsonObject result = new JsonObject();
             result.addProperty("type", type().name());
@@ -366,6 +425,28 @@ public final class Trophy {
 
         public DisplayInfo(float xOffset, float yOffset, float zOffset, float scale) {
             this(xOffset, yOffset, zOffset, 0, 0, 0, scale);
+        }
+
+        public void toNetwork(PacketBuffer buffer) {
+            buffer.writeFloat(xOffset);
+            buffer.writeFloat(yOffset);
+            buffer.writeFloat(zOffset);
+            buffer.writeFloat(xRotation);
+            buffer.writeFloat(yRotation);
+            buffer.writeFloat(zRotation);
+            buffer.writeFloat(scale);
+        }
+
+        public static DisplayInfo fromNetwork(PacketBuffer buffer) {
+            return new DisplayInfo(
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat(),
+                    buffer.readFloat()
+            );
         }
 
         public JsonObject toJson() {
@@ -488,6 +569,15 @@ public final class Trophy {
         public ColorInfo(int base, int accent) {
             this.base = base;
             this.accent = accent;
+        }
+
+        public void toNetwork(PacketBuffer buffer) {
+            buffer.writeInt(base);
+            buffer.writeInt(accent);
+        }
+
+        public static ColorInfo fromNetwork(PacketBuffer buffer) {
+            return new ColorInfo(buffer.readInt(), buffer.readInt());
         }
 
         public JsonObject toJson() {
@@ -619,6 +709,18 @@ public final class Trophy {
                     entity.setUUID(Util.NIL_UUID);
                 }
             }
+        }
+
+        public void toNetwork(PacketBuffer buffer) {
+            // noinspection ConstantConditions
+            buffer.writeResourceLocation(type.getRegistryName());
+            buffer.writeNbt(nbt);
+            buffer.writeBoolean(isAnimated);
+        }
+
+        public static EntityInfo fromNetwork(PacketBuffer buffer) {
+            EntityType<?> type = ForgeRegistries.ENTITIES.getValue(buffer.readResourceLocation());
+            return new EntityInfo(type, buffer.readNbt(), buffer.readBoolean());
         }
 
         public JsonObject toJson() {
