@@ -11,7 +11,6 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.ResourceLocationException;
 import net.minecraft.util.Util;
-import net.minecraft.util.text.Color;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.world.World;
@@ -526,15 +525,18 @@ public final class Trophy {
                 int green = JSONUtils.getAsInt(object, "green");
                 int blue = JSONUtils.getAsInt(object, "blue");
                 return red << 16 | green << 8 | blue;
-            } else if (JSONUtils.isStringValue(element)) {
-                Color color = Color.parseColor(element.getAsString());
-                if (color == null) {
-                    throw new JsonParseException(String.format("Couldn't parse color string: %s", element.getAsString()));
-                }
-                return color.getValue();
+            } else if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
+                return parseColor(element.getAsString());
             } else {
                 throw new JsonParseException(String.format("Expected color to be json object or string, got %s", element));
             }
+        }
+
+        private static int parseColor(String string) {
+            if (string.startsWith("#")) {
+                return Integer.parseInt(string.substring(1), 16);
+            }
+            throw new JsonParseException(String.format("Couldn't parse color string: %s", string));
         }
 
         public int base() {

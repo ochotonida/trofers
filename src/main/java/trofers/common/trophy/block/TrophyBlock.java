@@ -118,7 +118,7 @@ public abstract class TrophyBlock extends Block {
     public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hitResult) {
         if (player.isCreative()) {
             if (level.isClientSide()) {
-                Minecraft.getInstance().setScreen(new TrophyScreen(state.getBlock().asItem(), pos));
+                TrophyScreen.open(state.getBlock().asItem(), pos);
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.CONSUME;

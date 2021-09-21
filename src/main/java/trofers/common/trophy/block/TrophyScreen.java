@@ -63,6 +63,10 @@ public class TrophyScreen extends Screen {
         this.blockPos = blockPos;
     }
 
+    public static void open(Item item, BlockPos pos) {
+        Minecraft.getInstance().setScreen(new TrophyScreen(item, pos));
+    }
+
     @Override
     public void render(MatrixStack poseStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(poseStack);
