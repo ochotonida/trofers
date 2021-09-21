@@ -150,6 +150,7 @@ public class Trophies implements IDataProvider {
         putHandItem(entityData.get(EntityType.PILLAGER), Items.CROSSBOW);
         entityData.get(EntityType.PUFFERFISH).putInt("PuffState", 2);
         entityData.get(EntityType.RABBIT).putInt("RabbitType", 0);
+        entityData.get(EntityType.SHULKER).putByte("Color", (byte) 16);
         putHandItem(entityData.get(EntityType.SKELETON), Items.BOW);
         entityData.get(EntityType.SLIME).putInt("Size", 1);
         putHandItem(entityData.get(EntityType.STRAY), Items.BOW);

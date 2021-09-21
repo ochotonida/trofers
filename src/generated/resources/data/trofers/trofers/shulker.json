@@ -12,7 +12,8 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "minecraft:shulker"
+    "type": "minecraft:shulker",
+    "nbt": "{Color:16b}"
   },
   "colors": {
     "base": "#606060",
