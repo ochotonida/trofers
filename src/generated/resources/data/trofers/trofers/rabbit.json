@@ -1,5 +1,6 @@
 {
   "name": {
+    "color": "#A28B72",
     "translate": "trophy.trofers.composed",
     "with": [
       {
@@ -21,9 +22,9 @@
       "blue": 96
     },
     "accent": {
-      "red": 140,
-      "green": 119,
-      "blue": 94
+      "red": 162,
+      "green": 139,
+      "blue": 114
     }
   }
 }

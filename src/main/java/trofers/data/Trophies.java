@@ -10,6 +10,8 @@ import net.minecraft.data.HashCache;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentUtils;
+import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -44,21 +46,21 @@ public class Trophies implements DataProvider {
         Map<EntityType<?>, CompoundTag> entityData = new HashMap<>();
 
         entityColors.put(EntityType.AXOLOTL, 0xfbc1e2);
-        entityColors.put(EntityType.BAT, 0x5b4b31);
+        entityColors.put(EntityType.BAT, 0x75653f);
         entityColors.put(EntityType.BEE, 0xebc542);
         entityColors.put(EntityType.BLAZE, 0xede746);
-        entityColors.put(EntityType.CAT, 0x856549);
-        entityColors.put(EntityType.CAVE_SPIDER, 0x002d30);
+        entityColors.put(EntityType.CAT, 0x937155);
+        entityColors.put(EntityType.CAVE_SPIDER, 0x147b6a);
         entityColors.put(EntityType.CHICKEN, 0xffffff);
         entityColors.put(EntityType.COD, 0xb6986c);
-        entityColors.put(EntityType.COW, 0x433626);
+        entityColors.put(EntityType.COW, 0x6c5234);
         entityColors.put(EntityType.CREEPER, 0x48b23a);
         entityColors.put(EntityType.DOLPHIN, 0xb0c4d8);
         entityColors.put(EntityType.DONKEY, 0x817164);
         entityColors.put(EntityType.DROWNED, 0x56847e);
         entityColors.put(EntityType.ELDER_GUARDIAN, 0xbfbbaa);
-        entityColors.put(EntityType.ENDERMAN, 0xc442e6);
-        entityColors.put(EntityType.ENDERMITE, 0x372647);
+        entityColors.put(EntityType.ENDERMAN, 0xa14fb6);
+        entityColors.put(EntityType.ENDERMITE, 0x644b84);
         entityColors.put(EntityType.EVOKER, 0x959c9c);
         entityColors.put(EntityType.FOX, 0xe37c21);
         entityColors.put(EntityType.GHAST, 0xf0f0f0);
@@ -67,12 +69,12 @@ public class Trophies implements DataProvider {
         entityColors.put(EntityType.GUARDIAN, 0x6a9087);
         entityColors.put(EntityType.HOGLIN, 0xd5957b);
         entityColors.put(EntityType.HORSE, 0x926633);
-        entityColors.put(EntityType.HUSK, 0x6b6251);
+        entityColors.put(EntityType.HUSK, 0xc7ab6f);
         entityColors.put(EntityType.IRON_GOLEM, 0xcdb297);
         entityColors.put(EntityType.LLAMA, 0xe3e4d4);
-        entityColors.put(EntityType.MAGMA_CUBE, 0x320100);
+        entityColors.put(EntityType.MAGMA_CUBE, 0xff4600);
         entityColors.put(EntityType.MOOSHROOM, 0xa41012);
-        entityColors.put(EntityType.MULE, 0x502c1a);
+        entityColors.put(EntityType.MULE, 0x89492c);
         entityColors.put(EntityType.OCELOT, 0xedb262);
         entityColors.put(EntityType.PANDA, 0xe4e4e4);
         entityColors.put(EntityType.PARROT, 0xe60000);
@@ -83,19 +85,19 @@ public class Trophies implements DataProvider {
         entityColors.put(EntityType.PILLAGER, 0x929c9c);
         entityColors.put(EntityType.POLAR_BEAR, 0xf2f2f4);
         entityColors.put(EntityType.PUFFERFISH, 0xe3970b);
-        entityColors.put(EntityType.RABBIT, 0x8c775e);
-        entityColors.put(EntityType.RAVAGER, 0x6f6d69);
+        entityColors.put(EntityType.RABBIT, 0xa28b72);
+        entityColors.put(EntityType.RAVAGER, 0x91acab);
         entityColors.put(EntityType.SALMON, 0xa83735);
         entityColors.put(EntityType.SHEEP, 0xffffff);
         entityColors.put(EntityType.SHULKER, 0x986a97);
-        entityColors.put(EntityType.SILVERFISH, 0x727473);
+        entityColors.put(EntityType.SILVERFISH, 0x778c99);
         entityColors.put(EntityType.SKELETON, 0xbdbdbd);
         entityColors.put(EntityType.SKELETON_HORSE, 0xd0d0d2);
         entityColors.put(EntityType.SLIME, 0x77c264);
         entityColors.put(EntityType.SNOW_GOLEM, 0xffffff);
-        entityColors.put(EntityType.SPIDER, 0x4e443c);
+        entityColors.put(EntityType.SPIDER, 0x7a6755);
         entityColors.put(EntityType.SQUID, 0x546d80);
-        entityColors.put(EntityType.STRAY, 0x586c6f);
+        entityColors.put(EntityType.STRAY, 0x607576);
         entityColors.put(EntityType.STRIDER, 0xb44040);
         entityColors.put(EntityType.TRADER_LLAMA, 0x425f90);
         entityColors.put(EntityType.TROPICAL_FISH, 0xFF4040);
@@ -103,14 +105,14 @@ public class Trophies implements DataProvider {
         entityColors.put(EntityType.VEX, 0x89a0b6);
         entityColors.put(EntityType.VILLAGER, 0xbf886d);
         entityColors.put(EntityType.VINDICATOR, 0x929c9c);
-        entityColors.put(EntityType.WANDERING_TRADER, 0x37547f);
+        entityColors.put(EntityType.WANDERING_TRADER, 0x425f90);
         entityColors.put(EntityType.WITCH, 0xa39482);
-        entityColors.put(EntityType.WITHER_SKELETON, 0x343434);
+        entityColors.put(EntityType.WITHER_SKELETON, 0x626565);
         entityColors.put(EntityType.WOLF, 0xdcdadb);
-        entityColors.put(EntityType.ZOGLIN, 0x6b8f43);
+        entityColors.put(EntityType.ZOGLIN, 0x688c44);
         entityColors.put(EntityType.ZOMBIE, 0x70955c);
         entityColors.put(EntityType.ZOMBIE_VILLAGER, 0x76a045);
-        entityColors.put(EntityType.ZOMBIFIED_PIGLIN, 0x6b8f43);
+        entityColors.put(EntityType.ZOMBIFIED_PIGLIN, 0x688c44);
 
         entityColors.keySet().forEach(type -> {
             displayInfos.put(type, new Trophy.DisplayInfo(0, 0, 0, 0, 0, 0, 0.25F));
@@ -179,7 +181,7 @@ public class Trophies implements DataProvider {
             // noinspection ConstantConditions
             addTrophy(new Trophy(
                     new ResourceLocation(Trofers.MODID, type.getRegistryName().getPath()),
-                    createName(type),
+                    createName(type, entityColors.get(type)),
                     displayInfos.get(type),
                     Trophy.Animation.STATIC,
                     ItemStack.EMPTY,
@@ -196,8 +198,14 @@ public class Trophies implements DataProvider {
         tag.getList("HandItems", Constants.NBT.TAG_COMPOUND).add(new CompoundTag());
     }
 
-    private Component createName(EntityType<?> entityType) {
-        return new TranslatableComponent("trophy.trofers.composed", entityType.getDescription());
+    private Component createName(EntityType<?> entityType, int color) {
+        return ComponentUtils.mergeStyles(
+                new TranslatableComponent(
+                        "trophy.trofers.composed",
+                        entityType.getDescription()
+                ),
+                Style.EMPTY.withColor(color)
+        );
     }
 
     private void addTrophy(Trophy trophy) {
