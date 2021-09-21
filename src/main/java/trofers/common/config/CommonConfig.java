@@ -14,6 +14,6 @@ public class CommonConfig {
                         "No trophies will drop from entities when this value is set to 0"
                 )
                 .translation(String.format("config.%s.trophy_chance", Trofers.MODID))
-                .defineInRange("trophy_chance", 0.002, 0, 1);
+                .defineInRange("trophy_chance", 0.001, 0, 1);
     }
 }
