@@ -16,15 +16,7 @@
     "nbt": "{MainGene:\"playful\"}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 228,
-      "green": 228,
-      "blue": 228
-    }
+    "base": "#606060",
+    "accent": "#E4E4E4"
   }
 }

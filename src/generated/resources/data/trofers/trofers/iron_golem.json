@@ -15,15 +15,7 @@
     "type": "minecraft:iron_golem"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 205,
-      "green": 178,
-      "blue": 151
-    }
+    "base": "#606060",
+    "accent": "#CDB297"
   }
 }

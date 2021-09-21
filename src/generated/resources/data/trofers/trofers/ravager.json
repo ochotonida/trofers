@@ -15,15 +15,7 @@
     "type": "minecraft:ravager"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 145,
-      "green": 172,
-      "blue": 171
-    }
+    "base": "#606060",
+    "accent": "#91ACAB"
   }
 }

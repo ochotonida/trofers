@@ -16,15 +16,7 @@
     "nbt": "{HandItems:[{Count:1b,id:\"minecraft:stone_sword\",tag:{Damage:0}},{}]}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 98,
-      "green": 101,
-      "blue": 101
-    }
+    "base": "#606060",
+    "accent": "#626565"
   }
 }

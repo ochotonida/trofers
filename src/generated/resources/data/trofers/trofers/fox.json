@@ -23,15 +23,7 @@
     "nbt": "{Sleeping:1b,Type:\"red\"}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 227,
-      "green": 124,
-      "blue": 33
-    }
+    "base": "#606060",
+    "accent": "#E37C21"
   }
 }

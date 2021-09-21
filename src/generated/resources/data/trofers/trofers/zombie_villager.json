@@ -16,15 +16,7 @@
     "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 118,
-      "green": 160,
-      "blue": 69
-    }
+    "base": "#606060",
+    "accent": "#76A045"
   }
 }

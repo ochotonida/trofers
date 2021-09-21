@@ -16,15 +16,7 @@
     "nbt": "{Variant:257}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 146,
-      "green": 102,
-      "blue": 51
-    }
+    "base": "#606060",
+    "accent": "#926633"
   }
 }

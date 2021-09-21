@@ -15,15 +15,7 @@
     "type": "minecraft:husk"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 199,
-      "green": 171,
-      "blue": 111
-    }
+    "base": "#606060",
+    "accent": "#C7AB6F"
   }
 }

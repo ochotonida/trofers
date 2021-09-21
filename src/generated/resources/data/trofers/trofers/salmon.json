@@ -22,15 +22,7 @@
     "type": "minecraft:salmon"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 168,
-      "green": 55,
-      "blue": 53
-    }
+    "base": "#606060",
+    "accent": "#A83735"
   }
 }

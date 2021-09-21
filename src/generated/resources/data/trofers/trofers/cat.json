@@ -16,15 +16,7 @@
     "nbt": "{CatType:0,Sitting:1b}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 147,
-      "green": 113,
-      "blue": 85
-    }
+    "base": "#606060",
+    "accent": "#937155"
   }
 }

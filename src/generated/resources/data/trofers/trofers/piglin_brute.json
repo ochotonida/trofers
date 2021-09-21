@@ -16,15 +16,7 @@
     "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_axe\",tag:{Damage:0}},{}]}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 239,
-      "green": 185,
-      "blue": 135
-    }
+    "base": "#606060",
+    "accent": "#EFB987"
   }
 }

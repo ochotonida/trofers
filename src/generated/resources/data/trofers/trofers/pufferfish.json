@@ -16,15 +16,7 @@
     "nbt": "{PuffState:2}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 227,
-      "green": 151,
-      "blue": 11
-    }
+    "base": "#606060",
+    "accent": "#E3970B"
   }
 }

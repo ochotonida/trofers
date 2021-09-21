@@ -16,15 +16,7 @@
     "nbt": "{carriedBlockState:{Name:\"minecraft:tnt\"}}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 161,
-      "green": 79,
-      "blue": 182
-    }
+    "base": "#606060",
+    "accent": "#A14FB6"
   }
 }

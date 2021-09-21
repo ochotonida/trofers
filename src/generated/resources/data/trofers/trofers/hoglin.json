@@ -16,15 +16,7 @@
     "nbt": "{IsImmuneToZombification:1b}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 213,
-      "green": 149,
-      "blue": 123
-    }
+    "base": "#606060",
+    "accent": "#D5957B"
   }
 }

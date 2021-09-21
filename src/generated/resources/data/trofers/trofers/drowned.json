@@ -15,15 +15,7 @@
     "type": "minecraft:drowned"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 86,
-      "green": 132,
-      "blue": 126
-    }
+    "base": "#606060",
+    "accent": "#56847E"
   }
 }

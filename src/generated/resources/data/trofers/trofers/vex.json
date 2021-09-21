@@ -15,15 +15,7 @@
     "type": "minecraft:vex"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 137,
-      "green": 160,
-      "blue": 182
-    }
+    "base": "#606060",
+    "accent": "#89A0B6"
   }
 }

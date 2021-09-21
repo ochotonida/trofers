@@ -7,6 +7,7 @@ import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
@@ -289,15 +290,8 @@ public record Trophy(
             return result;
         }
 
-        private static JsonObject serializeColor(int color) {
-            int red = color >> 16 & 255;
-            int green = color >> 8 & 255;
-            int blue = color & 255;
-            JsonObject result = new JsonObject();
-            result.addProperty("red", red);
-            result.addProperty("green", green);
-            result.addProperty("blue", blue);
-            return result;
+        private static JsonElement serializeColor(int color) {
+            return new JsonPrimitive(String.format("#%06X", color));
         }
 
         public static ColorInfo fromJson(JsonObject object) {
@@ -320,10 +314,14 @@ public record Trophy(
                 int green = GsonHelper.getAsInt(object, "green");
                 int blue = GsonHelper.getAsInt(object, "blue");
                 return red << 16 | green << 8 | blue;
-            } else if (element.isJsonPrimitive()) {
-                return element.getAsInt();
+            } else if (GsonHelper.isStringValue(element)) {
+                TextColor color =  TextColor.parseColor(element.getAsString());
+                if (color == null) {
+                    throw new JsonParseException(String.format("Couldn't parse color string: %s", element.getAsString()));
+                }
+                return color.getValue();
             } else {
-                throw new JsonParseException(String.format("Expected color to be json object or integer, got %s", element));
+                throw new JsonParseException(String.format("Expected color to be json object or string, got %s", element));
             }
         }
     }

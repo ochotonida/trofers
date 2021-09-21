@@ -16,15 +16,7 @@
     "nbt": "{HandItems:[{Count:1b,id:\"minecraft:bow\",tag:{Damage:0}},{}]}"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 96,
-      "green": 117,
-      "blue": 118
-    }
+    "base": "#606060",
+    "accent": "#607576"
   }
 }

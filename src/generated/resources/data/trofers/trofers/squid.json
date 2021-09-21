@@ -18,15 +18,7 @@
     "type": "minecraft:squid"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 84,
-      "green": 109,
-      "blue": 128
-    }
+    "base": "#606060",
+    "accent": "#546D80"
   }
 }

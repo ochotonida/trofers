@@ -15,15 +15,7 @@
     "type": "minecraft:donkey"
   },
   "colors": {
-    "base": {
-      "red": 96,
-      "green": 96,
-      "blue": 96
-    },
-    "accent": {
-      "red": 129,
-      "green": 113,
-      "blue": 100
-    }
+    "base": "#606060",
+    "accent": "#817164"
   }
 }
