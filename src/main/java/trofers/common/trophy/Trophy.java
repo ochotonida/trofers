@@ -12,7 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.ResourceLocationException;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.Color;
-import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraft.world.World;
@@ -231,15 +230,15 @@ public final class Trophy {
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (Trophy) obj;
-        return Objects.equals(this.id, that.id) &&
-                Objects.equals(this.name, that.name) &&
-                Objects.equals(this.display, that.display) &&
-                Objects.equals(this.animation, that.animation) &&
-                Objects.equals(this.item, that.item) &&
-                Objects.equals(this.entity, that.entity) &&
-                Objects.equals(this.colors, that.colors) &&
-                this.isHidden == that.isHidden;
+        Trophy trophy = (Trophy) obj;
+        return Objects.equals(this.id, trophy.id) &&
+                Objects.equals(this.name, trophy.name) &&
+                Objects.equals(this.display, trophy.display) &&
+                Objects.equals(this.animation, trophy.animation) &&
+                Objects.equals(this.item, trophy.item) &&
+                Objects.equals(this.entity, trophy.entity) &&
+                Objects.equals(this.colors, trophy.colors) &&
+                this.isHidden == trophy.isHidden;
     }
 
     @Override
@@ -299,9 +298,9 @@ public final class Trophy {
         public boolean equals(Object obj) {
             if (obj == this) return true;
             if (obj == null || obj.getClass() != this.getClass()) return false;
-            var that = (Animation) obj;
-            return Objects.equals(this.type, that.type) &&
-                    Float.floatToIntBits(this.speed) == Float.floatToIntBits(that.speed);
+            Animation animation = (Animation) obj;
+            return Objects.equals(this.type, animation.type) &&
+                    Float.floatToIntBits(this.speed) == Float.floatToIntBits(animation.speed);
         }
 
         @Override
@@ -452,14 +451,14 @@ public final class Trophy {
         public boolean equals(Object obj) {
             if (obj == this) return true;
             if (obj == null || obj.getClass() != this.getClass()) return false;
-            var that = (DisplayInfo) obj;
-            return Float.floatToIntBits(this.xOffset) == Float.floatToIntBits(that.xOffset) &&
-                    Float.floatToIntBits(this.yOffset) == Float.floatToIntBits(that.yOffset) &&
-                    Float.floatToIntBits(this.zOffset) == Float.floatToIntBits(that.zOffset) &&
-                    Float.floatToIntBits(this.xRotation) == Float.floatToIntBits(that.xRotation) &&
-                    Float.floatToIntBits(this.yRotation) == Float.floatToIntBits(that.yRotation) &&
-                    Float.floatToIntBits(this.zRotation) == Float.floatToIntBits(that.zRotation) &&
-                    Float.floatToIntBits(this.scale) == Float.floatToIntBits(that.scale);
+            DisplayInfo displayInfo = (DisplayInfo) obj;
+            return Float.floatToIntBits(this.xOffset) == Float.floatToIntBits(displayInfo.xOffset) &&
+                    Float.floatToIntBits(this.yOffset) == Float.floatToIntBits(displayInfo.yOffset) &&
+                    Float.floatToIntBits(this.zOffset) == Float.floatToIntBits(displayInfo.zOffset) &&
+                    Float.floatToIntBits(this.xRotation) == Float.floatToIntBits(displayInfo.xRotation) &&
+                    Float.floatToIntBits(this.yRotation) == Float.floatToIntBits(displayInfo.yRotation) &&
+                    Float.floatToIntBits(this.zRotation) == Float.floatToIntBits(displayInfo.zRotation) &&
+                    Float.floatToIntBits(this.scale) == Float.floatToIntBits(displayInfo.scale);
         }
 
         @Override
@@ -550,9 +549,9 @@ public final class Trophy {
         public boolean equals(Object obj) {
             if (obj == this) return true;
             if (obj == null || obj.getClass() != this.getClass()) return false;
-            var that = (ColorInfo) obj;
-            return this.base == that.base &&
-                    this.accent == that.accent;
+            ColorInfo colorInfo = (ColorInfo) obj;
+            return this.base == colorInfo.base &&
+                    this.accent == colorInfo.accent;
         }
 
         @Override

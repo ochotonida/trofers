@@ -181,8 +181,9 @@ public class TrophyScreen extends Screen {
     private void setTrophy(Trophy trophy) {
         NetworkHandler.INSTANCE.sendToServer(new SetTrophyPacket(trophy, blockPos));
         if (Minecraft.getInstance().player != null) {
-            if (Minecraft.getInstance().player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
-                blockEntity.setTrophy(trophy);
+            if (Minecraft.getInstance().player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity) {
+                // noinspection ConstantConditions
+                ((TrophyBlockEntity) Minecraft.getInstance().player.level.getBlockEntity(blockPos)).setTrophy(trophy);
             }
         }
         onClose();

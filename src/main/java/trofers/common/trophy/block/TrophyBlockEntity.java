@@ -59,8 +59,8 @@ public class TrophyBlockEntity extends TileEntity {
 
     public int getTrophyHeight() {
         Block block = getBlockState().getBlock();
-        if (block instanceof TrophyBlock trophy) {
-            return trophy.getHeight();
+        if (block instanceof TrophyBlock) {
+            return ((TrophyBlock) block).getHeight();
         }
         return 0;
     }

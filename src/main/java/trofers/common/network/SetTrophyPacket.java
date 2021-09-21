@@ -38,9 +38,10 @@ public class SetTrophyPacket {
             context.get().enqueueWork(() -> {
                 if (player.isCreative()
                         && player.level.isLoaded(blockPos)
-                        && player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity
+                        && player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity
                 ) {
-                    blockEntity.setTrophy(trophy);
+                    // noinspection ConstantConditions
+                    ((TrophyBlockEntity) player.level.getBlockEntity(blockPos)).setTrophy(trophy);
                 }
             });
         }

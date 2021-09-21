@@ -103,7 +103,9 @@ public abstract class TrophyBlock extends Block {
     @Override
     public ItemStack getPickBlock(BlockState state, RayTraceResult target, IBlockReader world, BlockPos pos, PlayerEntity player) {
         ItemStack result = super.getPickBlock(state, target, world, pos, player);
-        if (world.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
+        if (world.getBlockEntity(pos) instanceof TrophyBlockEntity) {
+            TrophyBlockEntity blockEntity = ((TrophyBlockEntity) world.getBlockEntity(pos));
+            // noinspection ConstantConditions
             if (blockEntity.getTrophyID() != null) {
                 result.getOrCreateTagElement("BlockEntityTag").putString("Trophy", blockEntity.getTrophyID().toString());
             }
@@ -112,6 +114,7 @@ public abstract class TrophyBlock extends Block {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public ActionResultType use(BlockState state, World level, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hitResult) {
         if (player.isCreative()) {
             if (level.isClientSide()) {

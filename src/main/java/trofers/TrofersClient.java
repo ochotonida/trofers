@@ -40,8 +40,8 @@ public class TrofersClient {
         event.getBlockColors().register((state, level, pos, index) -> {
             if (index >= 0 && index < 3 && level != null && pos != null) {
                 TileEntity blockEntity = level.getBlockEntity(pos);
-                if (blockEntity instanceof TrophyBlockEntity trophyBlockEntity) {
-                    Trophy trophy = trophyBlockEntity.getTrophy();
+                if (blockEntity instanceof TrophyBlockEntity) {
+                    Trophy trophy = ((TrophyBlockEntity) blockEntity).getTrophy();
                     if (trophy == null) {
                         return 0xFFFFFF;
                     }

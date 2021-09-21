@@ -26,8 +26,8 @@ public class TrophyItem extends BlockItem {
         if (super.placeBlock(context, state)) {
             TileEntity blockEntity = context.getLevel().getBlockEntity(context.getClickedPos());
             CompoundNBT tag = context.getItemInHand().getTag();
-            if (blockEntity instanceof TrophyBlockEntity trophy && tag != null) {
-                trophy.loadTrophy(tag.getCompound("BlockEntityTag"));
+            if (blockEntity instanceof TrophyBlockEntity && tag != null) {
+                ((TrophyBlockEntity) blockEntity).loadTrophy(tag.getCompound("BlockEntityTag"));
             }
             return true;
         }
