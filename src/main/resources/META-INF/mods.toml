@@ -14,7 +14,7 @@ description = '''Adds customizable trophies'''
 [[dependencies.trofers]]
     modId="forge"
     mandatory=true
-    versionRange="[36,)"
+    versionRange="[36.2.4,)"
     ordering="NONE"
     side="BOTH"
 
