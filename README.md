@@ -19,7 +19,7 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
 * `entity`: An object describing the entity the trophy should display. Contains the following fields:
   * `type`: (_required_) The entity ID
   * `nbt`: The NBT of the entity, either as a JSON object or stringified NBT
-  * `animated` (_default = true_) Whether the entity's idle animation should be played. 
+  * `animated` (_default = false_) Whether the entity's idle animation should be played. 
     Note that some animations may not work because the entity is not being ticked.
 * `display`: An object containing information about how to display the item/entity
   * `offset`: An object describing the position of the item/entity
