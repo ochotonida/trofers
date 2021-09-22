@@ -2,9 +2,9 @@
 
 Trofers is a minecraft mod that adds customizable trophies. Trophies can be added using data packs.
 The mod's data pack includes a trophy for every non-boss mob, entities have a small chance to drop these when killed by a player.
-(This can be disabled in the config)
+(The drop rate can be changed in the config)
 
-![image](https://user-images.githubusercontent.com/37985539/134157534-8d5308a9-b96d-4f2f-afe1-9e44bb15bd29.png)
+![image](https://user-images.githubusercontent.com/37985539/134312406-ef1eb896-522f-4070-9ca9-f8b88f3d7424.png)
 ## Customizing Trophies
 
 Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following fields can be customized 
