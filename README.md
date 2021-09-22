@@ -2,11 +2,11 @@
 
 <sub>For information about Trofers 1.16.5-1.1.0 and below, click [here](https://github.com/ochotonida/trofers/blob/1.16-legacy/README.md).</sub>
 
-Trofers is a minecraft mod that adds customizable trophies. Trophies can be added using data packs.
-The mod's data pack includes a trophy for every non-boss mob, entities have a small chance to drop these when killed by a player.
+Trofers is a minecraft mod that adds customizable trophies, which can be added using data packs.
+The data pack that comes with the mod includes a trophy for every non-boss mob, entities have a small chance to drop these when killed by a player.
 (The drop rate can be changed in the config)
 
-![image](https://user-images.githubusercontent.com/37985539/134312406-ef1eb896-522f-4070-9ca9-f8b88f3d7424.png)
+![image](https://user-images.githubusercontent.com/37985539/134405190-2076a728-fb77-4232-9936-42a4a8307bdd.png)
 ## Customizing Trophies
 
 Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following fields can be customized 
