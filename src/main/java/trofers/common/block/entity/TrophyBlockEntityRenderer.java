@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.vector.Vector3f;
+import trofers.common.trophy.Animation;
 import trofers.common.trophy.Trophy;
 
 public class TrophyBlockEntityRenderer extends TileEntityRenderer<TrophyBlockEntity> {
@@ -97,9 +98,9 @@ public class TrophyBlockEntityRenderer extends TileEntityRenderer<TrophyBlockEnt
 
         poseStack.translate(0, (trophyHeight + trophy.display().yOffset()) / 16D, 0);
         poseStack.translate(0, yRotationOffset, 0);
-        if (trophy.animation().type() == Trophy.Animation.Type.SPINNING) {
+        if (trophy.animation().type() == Animation.Type.SPINNING) {
             poseStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress));
-        } else if (trophy.animation().type() == Trophy.Animation.Type.TUMBLING) {
+        } else if (trophy.animation().type() == Animation.Type.TUMBLING) {
             poseStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress));
             poseStack.mulPose(Vector3f.XP.rotationDegrees(animationProgress * 0.8F));
             poseStack.mulPose(Vector3f.ZP.rotationDegrees(animationProgress * 0.6F));
