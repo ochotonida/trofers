@@ -3,20 +3,15 @@ package trofers.common.trophy;
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.ResourceLocationException;
-import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.Constants;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
@@ -103,11 +98,11 @@ public record Trophy(
 
         result.add("name", Component.Serializer.toJsonTree(name()));
 
-        if (!display().equals(Trophy.DisplayInfo.NONE)) {
+        if (!display().equals(DisplayInfo.NONE)) {
             result.add("display", display().toJson());
         }
 
-        if (animation().type() != Trophy.Animation.Type.FIXED) {
+        if (animation().type() != Animation.Type.FIXED) {
             result.add("animation", animation().toJson());
         }
 
@@ -119,7 +114,7 @@ public record Trophy(
             result.add("entity", entity().toJson());
         }
 
-        if (!colors().equals(Trophy.ColorInfo.NONE)) {
+        if (!colors().equals(ColorInfo.NONE)) {
             result.add("colors", colors().toJson());
         }
 
@@ -194,7 +189,7 @@ public record Trophy(
         );
     }
 
-    private static CompoundTag readNBT(JsonElement element) {
+    protected static CompoundTag readNBT(JsonElement element) {
         try {
             if (element.isJsonObject())
                 return TagParser.parseTag(TrophyManager.GSON.toJson(element));
@@ -206,310 +201,11 @@ public record Trophy(
         }
     }
 
-    private static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
+    protected static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
         if (object.has(memberName)) {
             return GsonHelper.getAsFloat(object, memberName);
         }
         return defaultValue;
     }
 
-    public record Animation(Type type, float speed) {
-
-        public static final Animation STATIC = new Animation(Type.FIXED, 1);
-
-        public void toNetwork(FriendlyByteBuf buffer) {
-            buffer.writeByte(type.ordinal());
-            buffer.writeFloat(speed);
-        }
-
-        public static Animation fromNetwork(FriendlyByteBuf buffer) {
-            Type type = Type.values()[buffer.readByte()];
-            float speed = buffer.readFloat();
-            if (type == Type.FIXED) {
-                return STATIC;
-            }
-            return new Animation(type, speed);
-        }
-
-        public JsonObject toJson() {
-            JsonObject result = new JsonObject();
-            result.addProperty("type", type().name());
-            if (speed() != 1) {
-                result.addProperty("speed", speed());
-            }
-            return result;
-        }
-
-        private static Animation fromJson(JsonObject object) {
-            Type type = Type.fromJson(object.get("type"));
-            float speed = readOptionalFloat(object, "speed", 1);
-            return new Animation(type, speed);
-        }
-
-        public enum Type {
-            FIXED("fixed"),
-            SPINNING("spinning"),
-            TUMBLING("tumbling");
-
-            private final String name;
-
-            Type(String name) {
-                this.name = name;
-            }
-
-            public static Type fromJson(JsonElement element) {
-                String name = GsonHelper.convertToString(element, "animation");
-                for (Type animation : Type.values()) {
-                    if (animation.name.equals(name)) {
-                        return animation;
-                    }
-                }
-                throw new JsonParseException(String.format("Invalid trophy animation type: %s", name));
-            }
-        }
-    }
-
-    public record DisplayInfo(float xOffset, float yOffset, float zOffset, float xRotation, float yRotation,
-                              float zRotation, float scale) {
-
-        public static final DisplayInfo NONE = new DisplayInfo(0, 0, 0, 0, 0, 0, 1);
-
-        public DisplayInfo(float scale) {
-            this(0, 0, 0, scale);
-        }
-
-        public DisplayInfo(float xOffset, float yOffset, float zOffset, float scale) {
-            this(xOffset, yOffset, zOffset, 0, 0, 0, scale);
-        }
-
-        public void toNetwork(FriendlyByteBuf buffer) {
-            buffer.writeFloat(xOffset);
-            buffer.writeFloat(yOffset);
-            buffer.writeFloat(zOffset);
-            buffer.writeFloat(xRotation);
-            buffer.writeFloat(yRotation);
-            buffer.writeFloat(zRotation);
-            buffer.writeFloat(scale);
-        }
-
-        public static DisplayInfo fromNetwork(FriendlyByteBuf buffer) {
-            return new DisplayInfo(
-                    buffer.readFloat(),
-                    buffer.readFloat(),
-                    buffer.readFloat(),
-                    buffer.readFloat(),
-                    buffer.readFloat(),
-                    buffer.readFloat(),
-                    buffer.readFloat()
-            );
-        }
-
-        public JsonObject toJson() {
-            JsonObject result = new JsonObject();
-            if (xOffset() != 0 || yOffset() != 0 || zOffset() != 0) {
-                result.add("offset", serializeVector(
-                        xOffset(),
-                        yOffset(),
-                        zOffset()
-                ));
-            }
-            if (xRotation() != 0 || yRotation() != 0 || zRotation() != 0) {
-                result.add("rotation", serializeVector(xRotation(), yRotation(), zRotation()));
-            }
-            if (scale() != 0) {
-                result.addProperty("scale", scale());
-            }
-            return result;
-        }
-
-        private static JsonObject serializeVector(float x, float y, float z) {
-            JsonObject result = new JsonObject();
-            if (x != 0) result.addProperty("x", x);
-            if (y != 0) result.addProperty("y", y);
-            if (z != 0) result.addProperty("z", z);
-            return result;
-        }
-
-        private static DisplayInfo fromJson(JsonObject object) {
-            float xOffset, yOffset, zOffset;
-            xOffset = yOffset = zOffset = 0;
-            if (object.has("offset")) {
-                JsonObject offset = GsonHelper.getAsJsonObject(object, "offset");
-                xOffset = readOptionalFloat(offset, "x", 0);
-                yOffset = readOptionalFloat(offset, "y", 0);
-                zOffset = readOptionalFloat(offset, "z", 0);
-            }
-
-            float xRotation, yRotation, zRotation;
-            xRotation = yRotation = zRotation = 0;
-            if (object.has("rotation")) {
-                JsonObject rotation = GsonHelper.getAsJsonObject(object, "rotation");
-                xRotation = readOptionalFloat(rotation, "x", 0);
-                yRotation = readOptionalFloat(rotation, "y", 0);
-                zRotation = readOptionalFloat(rotation, "z", 0);
-            }
-
-            float scale = readOptionalFloat(object, "scale", 1);
-
-            return new DisplayInfo(xOffset, yOffset, zOffset, xRotation, yRotation, zRotation, scale);
-        }
-    }
-
-    public record ColorInfo(int base, int accent) {
-
-        public static final ColorInfo NONE = new ColorInfo(0xFFFFFF, 0xFFFFFF);
-
-        public void toNetwork(FriendlyByteBuf buffer) {
-            buffer.writeInt(base);
-            buffer.writeInt(accent);
-        }
-
-        public static ColorInfo fromNetwork(FriendlyByteBuf buffer) {
-            return new ColorInfo(buffer.readInt(), buffer.readInt());
-        }
-
-        public JsonObject toJson() {
-            JsonObject result = new JsonObject();
-            if (base() != 0xFFFFFF) {
-                result.add("base", serializeColor(base()));
-            }
-            if (accent() != base()) {
-                result.add("accent", serializeColor(accent()));
-            }
-            return result;
-        }
-
-        private static JsonElement serializeColor(int color) {
-            return new JsonPrimitive(String.format("#%06X", color));
-        }
-
-        public static ColorInfo fromJson(JsonObject object) {
-            int base, accent;
-            base = accent = 0xFFFFFF;
-            if (object.has("base")) {
-                base = accent = readColor(object.get("base"));
-            }
-            if (object.has("accent")) {
-                accent = readColor(object.get("accent"));
-            }
-
-            return new ColorInfo(base, accent);
-        }
-
-        private static int readColor(JsonElement element) {
-            if (element.isJsonObject()) {
-                JsonObject object = element.getAsJsonObject();
-                int red = GsonHelper.getAsInt(object, "red");
-                int green = GsonHelper.getAsInt(object, "green");
-                int blue = GsonHelper.getAsInt(object, "blue");
-                return red << 16 | green << 8 | blue;
-            } else if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
-                return parseColor(element.getAsString());
-            } else {
-                throw new JsonParseException(String.format("Expected color to be json object or string, got %s", element));
-            }
-        }
-
-        private static int parseColor(String string) {
-            if (string.startsWith("#")) {
-                return Integer.parseInt(string.substring(1), 16);
-            }
-            throw new JsonParseException(String.format("Couldn't parse color string: %s", string));
-        }
-    }
-
-    public static class EntityInfo {
-
-        private final EntityType<?> type;
-        private final CompoundTag nbt;
-        private final boolean isAnimated;
-
-        @Nullable
-        private Entity entity;
-
-        public EntityInfo(EntityType<?> type, CompoundTag nbt, boolean isAnimated) {
-            this.type = type;
-            this.nbt = nbt;
-            this.isAnimated = isAnimated;
-        }
-
-        @Nullable
-        public EntityType<?> getType() {
-            return type;
-        }
-
-        public CompoundTag getTag() {
-            return nbt;
-        }
-
-        public boolean isAnimated() {
-            return isAnimated;
-        }
-
-        @Nullable
-        public Entity getOrCreateEntity(Level level) {
-            if (entity == null || entity.level != level) {
-                createEntity(level);
-            }
-            return entity;
-        }
-
-        private void createEntity(Level level) {
-            if (type == null) {
-                return;
-            }
-
-            entity = type.create(level);
-            if (entity != null) {
-                entity.setId(0);
-                entity.load(nbt);
-                if (!nbt.hasUUID("UUID")) {
-                    entity.setUUID(Util.NIL_UUID);
-                }
-            }
-        }
-
-        public void toNetwork(FriendlyByteBuf buffer) {
-            // noinspection ConstantConditions
-            buffer.writeResourceLocation(type.getRegistryName());
-            buffer.writeNbt(nbt);
-            buffer.writeBoolean(isAnimated);
-        }
-
-        public static EntityInfo fromNetwork(FriendlyByteBuf buffer) {
-            EntityType<?> type = ForgeRegistries.ENTITIES.getValue(buffer.readResourceLocation());
-            return new EntityInfo(type, buffer.readNbt(), buffer.readBoolean());
-        }
-
-        public JsonObject toJson() {
-            JsonObject result = new JsonObject();
-            // noinspection ConstantConditions
-            result.addProperty("type", getType().getRegistryName().toString());
-            if (!getTag().isEmpty()) {
-                result.addProperty("nbt", getTag().toString());
-            }
-            if (isAnimated()) {
-                result.addProperty("animated", isAnimated());
-            }
-            return result;
-        }
-
-        public static EntityInfo fromJson(JsonObject object) {
-            ResourceLocation typeID = new ResourceLocation(GsonHelper.getAsString(object, "type"));
-            if (!ForgeRegistries.ENTITIES.containsKey(typeID)) {
-                throw new JsonParseException(String.format("Unknown entity type %s", typeID));
-            }
-            EntityType<?> type = ForgeRegistries.ENTITIES.getValue(typeID);
-            CompoundTag nbt = new CompoundTag();
-            if (object.has("nbt")) {
-                JsonElement nbtElement = object.get("nbt");
-                nbt = readNBT(nbtElement);
-            }
-            boolean isAnimated = false;
-            if (object.has("animated")) {
-                isAnimated = GsonHelper.getAsBoolean(object, "animated");
-            }
-            return new EntityInfo(type, nbt, isAnimated);
-        }
-    }
 }

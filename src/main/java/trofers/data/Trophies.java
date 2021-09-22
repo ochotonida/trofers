@@ -20,7 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.util.Constants;
 import trofers.Trofers;
-import trofers.common.trophy.Trophy;
+import trofers.common.trophy.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -42,7 +42,7 @@ public class Trophies implements DataProvider {
         trophies.clear();
 
         Map<EntityType<?>, Integer> entityColors = new HashMap<>();
-        Map<EntityType<?>, Trophy.DisplayInfo> displayInfos = new HashMap<>();
+        Map<EntityType<?>, DisplayInfo> displayInfos = new HashMap<>();
         Map<EntityType<?>, CompoundTag> entityData = new HashMap<>();
 
         entityColors.put(EntityType.AXOLOTL, 0xfbc1e2);
@@ -115,28 +115,28 @@ public class Trophies implements DataProvider {
         entityColors.put(EntityType.ZOMBIFIED_PIGLIN, 0xe59796);
 
         entityColors.keySet().forEach(type -> {
-            displayInfos.put(type, new Trophy.DisplayInfo(0, 0, 0, 0, 0, 0, 0.25F));
+            displayInfos.put(type, new DisplayInfo(0, 0, 0, 0, 0, 0, 0.25F));
             entityData.put(type, new CompoundTag());
         });
 
-        displayInfos.put(EntityType.GHAST, new Trophy.DisplayInfo(0, 5, 0, 0.075F));
-        displayInfos.put(EntityType.GLOW_SQUID, new Trophy.DisplayInfo(0, 5, 0, 0.25F));
-        displayInfos.put(EntityType.SQUID, new Trophy.DisplayInfo(0, 5, 0, 0.25F));
-        displayInfos.put(EntityType.PHANTOM, new Trophy.DisplayInfo(0, 1, 0, 0.25F));
+        displayInfos.put(EntityType.GHAST, new DisplayInfo(0, 5, 0, 0.075F));
+        displayInfos.put(EntityType.GLOW_SQUID, new DisplayInfo(0, 5, 0, 0.25F));
+        displayInfos.put(EntityType.SQUID, new DisplayInfo(0, 5, 0, 0.25F));
+        displayInfos.put(EntityType.PHANTOM, new DisplayInfo(0, 1, 0, 0.25F));
 
-        displayInfos.put(EntityType.ELDER_GUARDIAN, new Trophy.DisplayInfo(0.10625F));
-        displayInfos.put(EntityType.RAVAGER, new Trophy.DisplayInfo(0.175F));
+        displayInfos.put(EntityType.ELDER_GUARDIAN, new DisplayInfo(0.10625F));
+        displayInfos.put(EntityType.RAVAGER, new DisplayInfo(0.175F));
 
-        displayInfos.put(EntityType.FOX, new Trophy.DisplayInfo(
+        displayInfos.put(EntityType.FOX, new DisplayInfo(
                 0.75F, 0, 0.5F, 0, -90, 0, 0.25F
         ));
-        displayInfos.put(EntityType.COD, new Trophy.DisplayInfo(
+        displayInfos.put(EntityType.COD, new DisplayInfo(
                 -3/8F, 1, 0, 0, 0, -90, 0.25F
         ));
-        displayInfos.put(EntityType.SALMON, new Trophy.DisplayInfo(
+        displayInfos.put(EntityType.SALMON, new DisplayInfo(
                 -3/8F, 1, 0, 0, 0, -90, 0.25F
         ));
-        displayInfos.put(EntityType.TROPICAL_FISH, new Trophy.DisplayInfo(
+        displayInfos.put(EntityType.TROPICAL_FISH, new DisplayInfo(
                 -3/8F, 1, 0, 0, 0, -90, 0.25F
         ));
 
@@ -183,10 +183,10 @@ public class Trophies implements DataProvider {
                     new ResourceLocation(Trofers.MODID, type.getRegistryName().getPath()),
                     createName(type, entityColors.get(type)),
                     displayInfos.get(type),
-                    Trophy.Animation.STATIC,
+                    Animation.STATIC,
                     ItemStack.EMPTY,
-                    new Trophy.EntityInfo(type, entityData.get(type), false),
-                    new Trophy.ColorInfo(0x606060, entityColors.get(type)),
+                    new EntityInfo(type, entityData.get(type), false),
+                    new ColorInfo(0x606060, entityColors.get(type)),
                     false
             ));
         });
