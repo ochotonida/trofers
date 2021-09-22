@@ -11,12 +11,12 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import trofers.common.block.entity.TrophyBlockEntity;
+import trofers.common.block.entity.TrophyBlockEntityRenderer;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.init.ModBlocks;
 import trofers.common.init.ModItems;
 import trofers.common.trophy.Trophy;
-import trofers.common.trophy.block.TrophyBlockEntity;
-import trofers.common.trophy.block.TrophyBlockEntityRenderer;
 
 public class TrofersClient {
 

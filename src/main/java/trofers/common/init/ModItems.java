@@ -6,11 +6,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import trofers.Trofers;
-import trofers.common.trophy.block.TrophyBlock;
-import trofers.common.trophy.item.TrophyItem;
+import trofers.common.block.TrophyBlock;
+import trofers.common.item.TrophyItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import trofers.common.trophy.item.TrophyItemRenderer;
+import trofers.common.item.TrophyItemRenderer;
 
 import java.util.HashSet;
 import java.util.Set;

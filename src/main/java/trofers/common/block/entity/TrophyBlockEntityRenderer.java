@@ -1,4 +1,4 @@
-package trofers.common.trophy.block;
+package trofers.common.block.entity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;

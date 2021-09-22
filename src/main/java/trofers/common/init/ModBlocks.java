@@ -5,9 +5,9 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import trofers.Trofers;
-import trofers.common.trophy.block.PillarTrophyBlock;
-import trofers.common.trophy.block.PlateTrophyBlock;
-import trofers.common.trophy.block.TrophyBlock;
+import trofers.common.block.PillarTrophyBlock;
+import trofers.common.block.PlateTrophyBlock;
+import trofers.common.block.TrophyBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

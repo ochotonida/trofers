@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import trofers.Trofers;
-import trofers.common.trophy.block.TrophyBlockEntity;
+import trofers.common.block.entity.TrophyBlockEntity;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

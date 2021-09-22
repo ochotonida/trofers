@@ -1,4 +1,4 @@
-package trofers.common.trophy.item;
+package trofers.common.item;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;
@@ -10,8 +10,8 @@ import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import trofers.common.trophy.Trophy;
-import trofers.common.trophy.block.TrophyBlock;
-import trofers.common.trophy.block.TrophyBlockEntityRenderer;
+import trofers.common.block.TrophyBlock;
+import trofers.common.block.entity.TrophyBlockEntityRenderer;
 
 public class TrophyItemRenderer extends ItemStackTileEntityRenderer {
 

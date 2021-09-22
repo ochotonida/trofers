@@ -1,4 +1,4 @@
-package trofers.common.trophy.item;
+package trofers.common.item;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItem;
@@ -9,8 +9,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 import trofers.common.trophy.Trophy;
-import trofers.common.trophy.block.TrophyBlock;
-import trofers.common.trophy.block.TrophyBlockEntity;
+import trofers.common.block.TrophyBlock;
+import trofers.common.block.entity.TrophyBlockEntity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

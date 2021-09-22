@@ -1,4 +1,4 @@
-package trofers.common.trophy.block;
+package trofers.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

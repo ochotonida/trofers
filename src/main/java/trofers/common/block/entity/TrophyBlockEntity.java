@@ -1,4 +1,4 @@
-package trofers.common.trophy.block;
+package trofers.common.block.entity;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -14,6 +14,7 @@ import trofers.Trofers;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
+import trofers.common.block.TrophyBlock;
 
 import javax.annotation.Nullable;
 
