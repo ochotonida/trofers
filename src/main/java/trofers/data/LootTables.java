@@ -19,7 +19,7 @@ import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
 import trofers.common.init.ModItems;
 import trofers.common.loot.RandomTrophyChanceCondition;
-import trofers.common.trophy.block.TrophyBlock;
+import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package trofers.common.trophy.block;
+package trofers.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,6 +20,8 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import trofers.common.init.ModBlockEntityTypes;
+import trofers.common.block.entity.TrophyBlockEntity;
+import trofers.common.block.entity.TrophyScreen;
 
 import javax.annotation.Nullable;
 

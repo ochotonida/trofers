@@ -1,4 +1,4 @@
-package trofers.common.trophy.block;
+package trofers.common.block.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;

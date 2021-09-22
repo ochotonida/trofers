@@ -1,4 +1,4 @@
-package trofers.common.trophy.item;
+package trofers.common.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -11,8 +11,8 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import trofers.common.trophy.Trophy;
-import trofers.common.trophy.block.TrophyBlock;
-import trofers.common.trophy.block.TrophyBlockEntityRenderer;
+import trofers.common.block.TrophyBlock;
+import trofers.common.block.entity.TrophyBlockEntityRenderer;
 
 public class TrophyItemRenderer extends BlockEntityWithoutLevelRenderer {
 

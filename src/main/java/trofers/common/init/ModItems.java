@@ -6,8 +6,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
-import trofers.common.trophy.block.TrophyBlock;
-import trofers.common.trophy.item.TrophyItem;
+import trofers.common.block.TrophyBlock;
+import trofers.common.item.TrophyItem;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

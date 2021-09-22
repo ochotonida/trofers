@@ -1,4 +1,4 @@
-package trofers.common.trophy.block;
+package trofers.common.block.entity;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.InputConstants;

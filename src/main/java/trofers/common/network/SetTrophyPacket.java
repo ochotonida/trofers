@@ -6,7 +6,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.fmllegacy.network.NetworkEvent;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
-import trofers.common.trophy.block.TrophyBlockEntity;
+import trofers.common.block.entity.TrophyBlockEntity;
 
 import java.util.function.Supplier;
 

@@ -2,9 +2,9 @@ package trofers.data;
 
 import net.minecraft.core.Direction;
 import trofers.Trofers;
-import trofers.common.trophy.block.PillarTrophyBlock;
-import trofers.common.trophy.block.PlateTrophyBlock;
-import trofers.common.trophy.block.TrophyBlock;
+import trofers.common.block.PillarTrophyBlock;
+import trofers.common.block.PlateTrophyBlock;
+import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.*;

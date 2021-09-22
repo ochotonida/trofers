@@ -1,4 +1,4 @@
-package trofers.common.trophy.item;
+package trofers.common.item;
 
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
@@ -9,8 +9,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.IItemRenderProperties;
-import trofers.common.trophy.block.TrophyBlock;
-import trofers.common.trophy.block.TrophyBlockEntity;
+import trofers.common.block.TrophyBlock;
+import trofers.common.block.entity.TrophyBlockEntity;
 import trofers.common.trophy.Trophy;
 
 import javax.annotation.Nonnull;
