@@ -24,7 +24,11 @@
       "soundEvent": "minecraft:entity.villager.ambient"
     },
     "rewards": {
-      "potionEffect": "{Ambient:0b,Amplifier:4b,CurativeItems:[{Count:1b,id:\"minecraft:milk_bucket\"}],Duration:2400,Id:32b,ShowIcon:1b,ShowParticles:1b}",
+      "statusEffect": {
+        "effect": "minecraft:hero_of_the_village",
+        "duration": 2400,
+        "amplifier": 4
+      },
       "cooldown": 9600
     }
   }

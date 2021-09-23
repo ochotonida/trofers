@@ -27,7 +27,10 @@
       "soundEvent": "minecraft:entity.glow_squid.ambient"
     },
     "rewards": {
-      "potionEffect": "{Ambient:0b,Amplifier:0b,CurativeItems:[{Count:1b,id:\"minecraft:milk_bucket\"}],Duration:200,Id:24b,ShowIcon:1b,ShowParticles:1b}"
+      "statusEffect": {
+        "effect": "minecraft:glowing",
+        "duration": 200
+      }
     }
   }
 }

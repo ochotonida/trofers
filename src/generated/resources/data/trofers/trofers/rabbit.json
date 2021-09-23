@@ -24,7 +24,11 @@
       "soundEvent": "minecraft:entity.rabbit.ambient"
     },
     "rewards": {
-      "potionEffect": "{Ambient:0b,Amplifier:3b,CurativeItems:[{Count:1b,id:\"minecraft:milk_bucket\"}],Duration:160,Id:8b,ShowIcon:1b,ShowParticles:1b}"
+      "statusEffect": {
+        "effect": "minecraft:jump_boost",
+        "duration": 800,
+        "amplifier": 3
+      }
     }
   }
 }
