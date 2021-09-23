@@ -120,9 +120,13 @@ public abstract class TrophyBlock extends Block {
         if (player.isCreative()) {
             if (level.isClientSide()) {
                 TrophyScreen.open(state.getBlock().asItem(), pos);
-                return ActionResultType.SUCCESS;
-            } else {
-                return ActionResultType.CONSUME;
+            }
+            return ActionResultType.sidedSuccess(level.isClientSide());
+        }
+        if (level.getBlockEntity(pos) instanceof TrophyBlockEntity) {
+            // noinspection ConstantConditions
+            if (((TrophyBlockEntity) level.getBlockEntity(pos)).applyEffect(player, hand)) {
+                return ActionResultType.sidedSuccess(level.isClientSide());
             }
         }
         return ActionResultType.PASS;
