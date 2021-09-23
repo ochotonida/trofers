@@ -148,7 +148,7 @@ public class Trophies implements DataProvider {
         potionEffects.put(EntityType.IRON_GOLEM, new MobEffectInstance(MobEffects.ABSORPTION, 20 * 60 * 2, 2).save(new CompoundTag()));
         potionEffects.put(EntityType.OCELOT, new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 40, 3).save(new CompoundTag()));
         potionEffects.put(EntityType.PIGLIN_BRUTE, new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60 * 2, 1).save(new CompoundTag()));
-        potionEffects.put(EntityType.RABBIT, new MobEffectInstance(MobEffects.JUMP, 20 * 8, 3).save(new CompoundTag()));
+        potionEffects.put(EntityType.RABBIT, new MobEffectInstance(MobEffects.JUMP, 20 * 40, 3).save(new CompoundTag()));
         potionEffects.put(EntityType.SHULKER, new MobEffectInstance(MobEffects.LEVITATION, 20 * 5).save(new CompoundTag()));
         potionEffects.put(EntityType.STRIDER, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 40).save(new CompoundTag()));
         potionEffects.put(EntityType.TURTLE, new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3).save(new CompoundTag()));
