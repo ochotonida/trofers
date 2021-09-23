@@ -12,6 +12,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -121,11 +123,20 @@ public abstract class TrophyBlock extends BaseEntityBlock {
         if (player.isCreative()) {
             if (level.isClientSide()) {
                 TrophyScreen.open(state.getBlock().asItem(), pos);
-                return InteractionResult.SUCCESS;
-            } else {
-                return InteractionResult.CONSUME;
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide());
+        }
+        if (level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
+            if (blockEntity.applyEffect(player, hand)) {
+                return InteractionResult.sidedSuccess(level.isClientSide());
             }
         }
         return InteractionResult.PASS;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntityType) {
+        return level.isClientSide() ? null : createTickerHelper(blockEntityType, ModBlockEntityTypes.TROPHY.get(), TrophyBlockEntity.TICKER);
     }
 }

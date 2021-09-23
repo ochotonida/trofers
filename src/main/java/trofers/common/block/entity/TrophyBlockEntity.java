@@ -4,15 +4,32 @@ import net.minecraft.ResourceLocationException;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.util.Constants;
+import org.apache.logging.log4j.Level;
 import trofers.Trofers;
 import trofers.common.init.ModBlockEntityTypes;
+import trofers.common.trophy.EffectInfo;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
 import trofers.common.block.TrophyBlock;
@@ -21,10 +38,14 @@ import javax.annotation.Nullable;
 
 public class TrophyBlockEntity extends BlockEntity {
 
+    public static final BlockEntityTicker<TrophyBlockEntity> TICKER = (level, pos, state, blockEntity) -> blockEntity.tick();
+
     @Nullable
     private Trophy trophy;
     @Nullable
     private ResourceLocation trophyID;
+
+    private int rewardCooldown;
 
     private float animationOffset;
 
@@ -44,6 +65,7 @@ public class TrophyBlockEntity extends BlockEntity {
         } else {
             trophyID = null;
         }
+        restartRewardCooldown();
         onContentsChanged();
     }
 
@@ -72,6 +94,139 @@ public class TrophyBlockEntity extends BlockEntity {
         return new AABB(getBlockPos().offset(-1, 0, -1), getBlockPos().offset(1, 16, 1));
     }
 
+    public void restartRewardCooldown() {
+        if (trophy != null && trophy.effects().rewards().cooldown() > 0) {
+            rewardCooldown = trophy.effects().rewards().cooldown();
+        } else {
+            rewardCooldown = 0;
+        }
+    }
+
+    public void tick() {
+        if (rewardCooldown > 0) {
+            rewardCooldown--;
+            if (level != null) {
+                level.blockEntityChanged(getBlockPos());
+            }
+        }
+    }
+
+    public boolean applyEffect(Player player, InteractionHand hand) {
+        if (trophy == null || level == null) {
+            return false;
+        }
+        EffectInfo.RewardInfo rewards = trophy.effects().rewards();
+        EffectInfo.SoundInfo sound = trophy.effects().sound();
+
+        if (sound != null) {
+            player.level.playSound(
+                    player,
+                    getBlockPos(),
+                    sound.soundEvent(),
+                    SoundSource.BLOCKS,
+                    sound.volume(),
+                    sound.pitch()
+            );
+        }
+
+        giveRewards(rewards, player, hand);
+
+        return sound != null
+                || rewards.lootTable() != null
+                || !rewards.potionEffect().isEmpty();
+    }
+
+    private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
+        if (player.level.isClientSide()) {
+            return;
+        }
+        if (rewardCooldown > 0) {
+            player.displayClientMessage(
+                    new TranslatableComponent(
+                            String.format("message.%s.reward_cooldown", Trofers.MODID),
+                            getTime(rewardCooldown)
+                    ), true
+            );
+            return;
+        }
+
+        restartRewardCooldown();
+        rewardLoot(rewards, player, hand);
+        rewardPotionEffect(rewards, player);
+    }
+
+    private Component getTime(int ticks) {
+        int seconds = (ticks + 20) / 20;
+        if (seconds <= 1) {
+            return new TranslatableComponent("time.trofers.second");
+        } else if (seconds < 60) {
+            return new TranslatableComponent("time.trofers.seconds", seconds);
+        }
+
+        int minutes = seconds / 60;
+        if (minutes <= 1) {
+            return new TranslatableComponent("time.trofers.minute");
+        } else if (minutes < 60) {
+            return new TranslatableComponent("time.trofers.minutes", minutes);
+        }
+
+        int hours = minutes / 60;
+        if (hours <= 1) {
+            return new TranslatableComponent("time.trofers.hour");
+        } else {
+            return new TranslatableComponent("time.trofers.hours", hours);
+        }
+    }
+
+    private void rewardPotionEffect(EffectInfo.RewardInfo rewards, Player player) {
+        MobEffectInstance potionEffect = rewards.createPotionEffect();
+        if (potionEffect != null) {
+            player.addEffect(potionEffect);
+        }
+    }
+
+    private void rewardLoot(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
+        ResourceLocation lootTableLocation = rewards.lootTable();
+        if (lootTableLocation != null) {
+            // noinspection ConstantConditions
+            LootTable lootTable = level.getServer().getLootTables().get(lootTableLocation);
+            if (lootTable == LootTable.EMPTY) {
+                Trofers.LOGGER.log(Level.ERROR, "Invalid loot table: {}", lootTableLocation);
+                return;
+            }
+            LootContext.Builder builder = createLootContext(player, player.getItemInHand(hand));
+            LootContext context = builder.create(LootContextParamSets.EMPTY);
+            lootTable.getRandomItems(context).forEach(this::spawnAtLocation);
+        }
+    }
+
+    private LootContext.Builder createLootContext(Player player, ItemStack stack) {
+        // noinspection ConstantConditions
+        return (new LootContext.Builder((ServerLevel) level))
+                .withRandom(level.getRandom())
+                .withParameter(LootContextParams.BLOCK_ENTITY, this)
+                .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(getBlockPos()))
+                .withParameter(LootContextParams.THIS_ENTITY, player)
+                .withParameter(LootContextParams.BLOCK_STATE, getBlockState())
+                .withParameter(LootContextParams.TOOL, stack);
+    }
+
+    @Nullable
+    public void spawnAtLocation(ItemStack stack) {
+        if (!stack.isEmpty() && level != null && !level.isClientSide) {
+            ItemEntity item = new ItemEntity(
+                    level,
+                    getBlockPos().getX() + 0.5,
+                    getBlockPos().getY() + getTrophyHeight() / 16D + 0.2,
+                    getBlockPos().getZ() + 0.5,
+                    stack
+            );
+            item.setDefaultPickUpDelay();
+            level.addFreshEntity(item);
+        }
+    }
+
+
     private void onContentsChanged() {
         if (level != null) {
             if (!level.isClientSide()) {
@@ -85,12 +240,9 @@ public class TrophyBlockEntity extends BlockEntity {
 
     @Override
     public CompoundTag getUpdateTag() {
-        return save(new CompoundTag());
-    }
-
-    @Override
-    public void handleUpdateTag(CompoundTag tag) {
-        load(tag);
+        CompoundTag result = super.getUpdateTag();
+        saveTrophy(result);
+        return result;
     }
 
     @Nullable
@@ -101,15 +253,14 @@ public class TrophyBlockEntity extends BlockEntity {
 
     @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet) {
-        if (level != null) {
-            load(packet.getTag());
-        }
+        loadTrophy(packet.getTag());
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
         loadTrophy(tag);
+        rewardCooldown = tag.getInt("RewardCooldown");
     }
 
     public void loadTrophy(CompoundTag tag) {
@@ -137,6 +288,9 @@ public class TrophyBlockEntity extends BlockEntity {
     @Override
     public CompoundTag save(CompoundTag tag) {
         saveTrophy(tag);
+        if (rewardCooldown > 0) {
+            tag.putInt("RewardCooldown", rewardCooldown);
+        }
         return super.save(tag);
     }
 
