@@ -133,7 +133,7 @@ public class TrophyBlockEntity extends BlockEntity {
 
         return sound != null
                 || rewards.lootTable() != null
-                || !rewards.potionEffect().isEmpty();
+                || !rewards.statusEffect().isEmpty();
     }
 
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
@@ -179,7 +179,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     private void rewardPotionEffect(EffectInfo.RewardInfo rewards, Player player) {
-        MobEffectInstance potionEffect = rewards.createPotionEffect();
+        MobEffectInstance potionEffect = rewards.createStatusEffect();
         if (potionEffect != null) {
             player.addEffect(potionEffect);
         }

@@ -7,6 +7,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.GsonHelper;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -103,14 +104,14 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         }
     }
 
-    public static record RewardInfo(@Nullable ResourceLocation lootTable, CompoundTag potionEffect, int cooldown) {
+    public static record RewardInfo(@Nullable ResourceLocation lootTable, CompoundTag statusEffect, int cooldown) {
 
         public static RewardInfo NONE = new RewardInfo(null, new CompoundTag(), 0);
 
         @Nullable
-        public MobEffectInstance createPotionEffect() {
-            if (!potionEffect().isEmpty()) {
-                return MobEffectInstance.load(potionEffect());
+        public MobEffectInstance createStatusEffect() {
+            if (!statusEffect().isEmpty()) {
+                return MobEffectInstance.load(statusEffect());
             }
             return null;
         }
@@ -120,7 +121,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             if (lootTable() != null) {
                 buffer.writeResourceLocation(lootTable());
             }
-            buffer.writeNbt(potionEffect());
+            buffer.writeNbt(statusEffect());
             buffer.writeInt(cooldown());
         }
 
@@ -129,9 +130,9 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             if (buffer.readBoolean()) {
                 lootTable = buffer.readResourceLocation();
             }
-            CompoundTag potionEffect = buffer.readNbt();
+            CompoundTag statusEffect = buffer.readNbt();
             int cooldown = buffer.readInt();
-            return new RewardInfo(lootTable, potionEffect, cooldown);
+            return new RewardInfo(lootTable, statusEffect, cooldown);
         }
 
         protected JsonObject toJson() {
@@ -139,8 +140,18 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             if (lootTable() != null) {
                 result.addProperty("lootTable", lootTable().toString());
             }
-            if (!potionEffect().isEmpty()) {
-                result.addProperty("potionEffect", potionEffect().toString());
+            if (!statusEffect().isEmpty()) {
+                MobEffectInstance effect = MobEffectInstance.load(statusEffect());
+                if (effect != null) {
+                    JsonObject statusEffect = new JsonObject();
+                    result.add("statusEffect", statusEffect);
+                    // noinspection ConstantConditions
+                    statusEffect.addProperty("effect", effect.getEffect().getRegistryName().toString());
+                    statusEffect.addProperty("duration", effect.getDuration());
+                    if (effect.getAmplifier() != 0) {
+                        statusEffect.addProperty("amplifier", effect.getAmplifier());
+                    }
+                }
             }
             if (cooldown() != 0) {
                 result.addProperty("cooldown", cooldown());
@@ -153,18 +164,28 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             if (object.has("lootTable")) {
                 lootTable = new ResourceLocation(GsonHelper.getAsString(object, "lootTable"));
             }
-            CompoundTag potionEffect = new CompoundTag();
-            if (object.has("potionEffect")) {
-                potionEffect = Trophy.readNBT(object.get("potionEffect"));
-                if (MobEffectInstance.load(potionEffect) == null) {
-                    throw new JsonParseException(String.format("Could not read potion effect: %s", potionEffect));
+            CompoundTag statusEffect = new CompoundTag();
+            if (object.has("statusEffect")) {
+                JsonObject effectObject = GsonHelper.getAsJsonObject(object, "statusEffect");
+                ResourceLocation effectID = new ResourceLocation(GsonHelper.getAsString(effectObject, "effect"));
+                if (!ForgeRegistries.MOB_EFFECTS.containsKey(effectID)) {
+                    throw new JsonParseException(String.format("Unknown effect: %s", effectID));
                 }
+                MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectID);
+                int duration = GsonHelper.getAsInt(effectObject, "duration");
+                int amplifier = 0;
+                if (object.has("amplifier")) {
+                    amplifier = GsonHelper.getAsInt(effectObject, "amplifier");
+                }
+
+                // noinspection ConstantConditions
+                statusEffect = new MobEffectInstance(effect, duration, amplifier).save(new CompoundTag());
             }
             int cooldown = 0;
             if (object.has("cooldown")) {
                 cooldown = GsonHelper.getAsInt(object, "cooldown");
             }
-            return new RewardInfo(lootTable, potionEffect, cooldown);
+            return new RewardInfo(lootTable, statusEffect, cooldown);
         }
     }
 }
