@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -49,7 +50,7 @@ public final class EffectInfo {
         if (sound() != null) {
             object.add("sound", sound().toJson());
         }
-        if (!rewards().potionEffect().isEmpty() || rewards().lootTable() != null) {
+        if (!rewards().statusEffect().isEmpty() || rewards().lootTable() != null) {
             object.add("rewards", rewards().toJson());
         }
         return object;
@@ -146,19 +147,19 @@ public final class EffectInfo {
         public static RewardInfo NONE = new RewardInfo(null, new CompoundNBT(), 0);
         @Nullable
         private final ResourceLocation lootTable;
-        private final CompoundNBT potionEffect;
+        private final CompoundNBT statusEffect;
         private final int cooldown;
 
         public RewardInfo(@Nullable ResourceLocation lootTable, CompoundNBT potionEffect, int cooldown) {
             this.lootTable = lootTable;
-            this.potionEffect = potionEffect;
+            this.statusEffect = potionEffect;
             this.cooldown = cooldown;
         }
 
         @Nullable
-        public EffectInstance createPotionEffect() {
-            if (!potionEffect().isEmpty()) {
-                return EffectInstance.load(potionEffect());
+        public EffectInstance createStatusEffect() {
+            if (!statusEffect().isEmpty()) {
+                return EffectInstance.load(statusEffect());
             }
             return null;
         }
@@ -168,7 +169,7 @@ public final class EffectInfo {
             if (lootTable() != null) {
                 buffer.writeResourceLocation(lootTable());
             }
-            buffer.writeNbt(potionEffect());
+            buffer.writeNbt(statusEffect());
             buffer.writeInt(cooldown());
         }
 
@@ -177,9 +178,9 @@ public final class EffectInfo {
             if (buffer.readBoolean()) {
                 lootTable = buffer.readResourceLocation();
             }
-            CompoundNBT potionEffect = buffer.readNbt();
+            CompoundNBT statusEffect = buffer.readNbt();
             int cooldown = buffer.readInt();
-            return new RewardInfo(lootTable, potionEffect, cooldown);
+            return new RewardInfo(lootTable, statusEffect, cooldown);
         }
 
         protected JsonObject toJson() {
@@ -187,8 +188,19 @@ public final class EffectInfo {
             if (lootTable() != null) {
                 result.addProperty("lootTable", lootTable().toString());
             }
-            if (!potionEffect().isEmpty()) {
-                result.addProperty("potionEffect", potionEffect().toString());
+            if (!statusEffect().isEmpty()) {
+                EffectInstance effect = EffectInstance.load(statusEffect());
+                // noinspection ConstantConditions
+                if (effect != null) {
+                    JsonObject statusEffect = new JsonObject();
+                    result.add("statusEffect", statusEffect);
+                    // noinspection ConstantConditions
+                    statusEffect.addProperty("effect", effect.getEffect().getRegistryName().toString());
+                    statusEffect.addProperty("duration", effect.getDuration());
+                    if (effect.getAmplifier() != 0) {
+                        statusEffect.addProperty("amplifier", effect.getAmplifier());
+                    }
+                }
             }
             if (cooldown() != 0) {
                 result.addProperty("cooldown", cooldown());
@@ -201,18 +213,28 @@ public final class EffectInfo {
             if (object.has("lootTable")) {
                 lootTable = new ResourceLocation(JSONUtils.getAsString(object, "lootTable"));
             }
-            CompoundNBT potionEffect = new CompoundNBT();
-            if (object.has("potionEffect")) {
-                potionEffect = Trophy.readNBT(object.get("potionEffect"));
-                if (EffectInstance.load(potionEffect) == null) {
-                    throw new JsonParseException(String.format("Could not read potion effect: %s", potionEffect));
+            CompoundNBT statusEffect = new CompoundNBT();
+            if (object.has("statusEffect")) {
+                JsonObject effectObject = JSONUtils.getAsJsonObject(object, "statusEffect");
+                ResourceLocation effectID = new ResourceLocation(JSONUtils.getAsString(effectObject, "effect"));
+                if (!ForgeRegistries.POTIONS.containsKey(effectID)) {
+                    throw new JsonParseException(String.format("Unknown effect: %s", effectID));
                 }
+                Effect effect = ForgeRegistries.POTIONS.getValue(effectID);
+                int duration = JSONUtils.getAsInt(effectObject, "duration");
+                int amplifier = 0;
+                if (object.has("amplifier")) {
+                    amplifier = JSONUtils.getAsInt(effectObject, "amplifier");
+                }
+
+                // noinspection ConstantConditions
+                statusEffect = new EffectInstance(effect, duration, amplifier).save(new CompoundNBT());
             }
             int cooldown = 0;
             if (object.has("cooldown")) {
                 cooldown = JSONUtils.getAsInt(object, "cooldown");
             }
-            return new RewardInfo(lootTable, potionEffect, cooldown);
+            return new RewardInfo(lootTable, statusEffect, cooldown);
         }
 
         @Nullable
@@ -220,8 +242,8 @@ public final class EffectInfo {
             return lootTable;
         }
 
-        public CompoundNBT potionEffect() {
-            return potionEffect;
+        public CompoundNBT statusEffect() {
+            return statusEffect;
         }
 
         public int cooldown() {

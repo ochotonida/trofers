@@ -131,7 +131,7 @@ public class TrophyBlockEntity extends TileEntity implements ITickableTileEntity
 
         return sound != null
                 || rewards.lootTable() != null
-                || !rewards.potionEffect().isEmpty();
+                || !rewards.statusEffect().isEmpty();
     }
 
     private void giveRewards(EffectInfo.RewardInfo rewards, PlayerEntity player, Hand hand) {
@@ -177,7 +177,7 @@ public class TrophyBlockEntity extends TileEntity implements ITickableTileEntity
     }
 
     private void rewardPotionEffect(EffectInfo.RewardInfo rewards, PlayerEntity player) {
-        EffectInstance potionEffect = rewards.createPotionEffect();
+        EffectInstance potionEffect = rewards.createStatusEffect();
         if (potionEffect != null) {
             player.addEffect(potionEffect);
         }
