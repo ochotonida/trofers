@@ -23,7 +23,10 @@
       "soundEvent": "minecraft:entity.witch.ambient"
     },
     "rewards": {
-      "potionEffect": "{Ambient:0b,CurativeItems:[{id:\"minecraft:milk_bucket\",Count:1b}],ShowIcon:1b,ShowParticles:1b,Duration:600,Id:10b,Amplifier:0b}",
+      "statusEffect": {
+        "effect": "minecraft:regeneration",
+        "duration": 600
+      },
       "cooldown": 9600
     }
   }

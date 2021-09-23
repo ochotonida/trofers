@@ -23,7 +23,11 @@
       "soundEvent": "minecraft:entity.elder_guardian.ambient"
     },
     "rewards": {
-      "potionEffect": "{Ambient:0b,CurativeItems:[{id:\"minecraft:milk_bucket\",Count:1b}],ShowIcon:1b,ShowParticles:1b,Duration:800,Id:3b,Amplifier:2b}"
+      "statusEffect": {
+        "effect": "minecraft:haste",
+        "duration": 800,
+        "amplifier": 2
+      }
     }
   }
 }

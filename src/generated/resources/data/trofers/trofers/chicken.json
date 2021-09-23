@@ -23,7 +23,10 @@
       "soundEvent": "minecraft:entity.chicken.ambient"
     },
     "rewards": {
-      "potionEffect": "{Ambient:0b,CurativeItems:[{id:\"minecraft:milk_bucket\",Count:1b}],ShowIcon:1b,ShowParticles:1b,Duration:100,Id:28b,Amplifier:0b}"
+      "statusEffect": {
+        "effect": "minecraft:slow_falling",
+        "duration": 100
+      }
     }
   }
 }

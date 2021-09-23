@@ -23,7 +23,10 @@
       "soundEvent": "minecraft:entity.strider.ambient"
     },
     "rewards": {
-      "potionEffect": "{Ambient:0b,CurativeItems:[{id:\"minecraft:milk_bucket\",Count:1b}],ShowIcon:1b,ShowParticles:1b,Duration:800,Id:12b,Amplifier:0b}"
+      "statusEffect": {
+        "effect": "minecraft:fire_resistance",
+        "duration": 800
+      }
     }
   }
 }
