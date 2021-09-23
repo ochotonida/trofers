@@ -12,10 +12,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.util.text.*;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.common.trophy.*;
 
@@ -40,80 +45,143 @@ public class Trophies implements IDataProvider {
     protected void addTrophies() {
         trophies.clear();
 
-        Map<EntityType<?>, Integer> entityColors = new HashMap<>();
+        Map<EntityType<?>, Integer> colors = new HashMap<>();
         Map<EntityType<?>, DisplayInfo> displayInfos = new HashMap<>();
         Map<EntityType<?>, CompoundNBT> entityData = new HashMap<>();
+        Map<EntityType<?>, SoundEvent> soundEvents = new HashMap<>();
+        Map<EntityType<?>, CompoundNBT> potionEffects = new HashMap<>();
+        Map<EntityType<?>, Integer> cooldowns = new HashMap<>();
+        Map<EntityType<?>, ResourceLocation> lootTables = new HashMap<>();
 
-        entityColors.put(EntityType.BAT, 0x75653f);
-        entityColors.put(EntityType.BEE, 0xebc542);
-        entityColors.put(EntityType.BLAZE, 0xede746);
-        entityColors.put(EntityType.CAT, 0x937155);
-        entityColors.put(EntityType.CAVE_SPIDER, 0x147b6a);
-        entityColors.put(EntityType.CHICKEN, 0xffffff);
-        entityColors.put(EntityType.COD, 0xb6986c);
-        entityColors.put(EntityType.COW, 0x6c5234);
-        entityColors.put(EntityType.CREEPER, 0x48b23a);
-        entityColors.put(EntityType.DOLPHIN, 0xb0c4d8);
-        entityColors.put(EntityType.DONKEY, 0x817164);
-        entityColors.put(EntityType.DROWNED, 0x56847e);
-        entityColors.put(EntityType.ELDER_GUARDIAN, 0xbfbbaa);
-        entityColors.put(EntityType.ENDERMAN, 0xa14fb6);
-        entityColors.put(EntityType.ENDERMITE, 0x644b84);
-        entityColors.put(EntityType.EVOKER, 0x959c9c);
-        entityColors.put(EntityType.FOX, 0xe37c21);
-        entityColors.put(EntityType.GHAST, 0xf0f0f0);
-        entityColors.put(EntityType.GUARDIAN, 0x6a9087);
-        entityColors.put(EntityType.HOGLIN, 0xd5957b);
-        entityColors.put(EntityType.HORSE, 0x926633);
-        entityColors.put(EntityType.HUSK, 0xc7ab6f);
-        entityColors.put(EntityType.IRON_GOLEM, 0xcdb297);
-        entityColors.put(EntityType.LLAMA, 0xe3e4d4);
-        entityColors.put(EntityType.MAGMA_CUBE, 0xff4600);
-        entityColors.put(EntityType.MOOSHROOM, 0xa41012);
-        entityColors.put(EntityType.MULE, 0x89492c);
-        entityColors.put(EntityType.OCELOT, 0xedb262);
-        entityColors.put(EntityType.PANDA, 0xe4e4e4);
-        entityColors.put(EntityType.PARROT, 0xe60000);
-        entityColors.put(EntityType.PHANTOM, 0x5161a5);
-        entityColors.put(EntityType.PIG, 0xf1a3a4);
-        entityColors.put(EntityType.PIGLIN, 0xefb987);
-        entityColors.put(EntityType.PIGLIN_BRUTE, 0xefb987);
-        entityColors.put(EntityType.PILLAGER, 0x929c9c);
-        entityColors.put(EntityType.POLAR_BEAR, 0xf2f2f4);
-        entityColors.put(EntityType.PUFFERFISH, 0xe3970b);
-        entityColors.put(EntityType.RABBIT, 0xa28b72);
-        entityColors.put(EntityType.RAVAGER, 0x91acab);
-        entityColors.put(EntityType.SALMON, 0xa83735);
-        entityColors.put(EntityType.SHEEP, 0xffffff);
-        entityColors.put(EntityType.SHULKER, 0x986a97);
-        entityColors.put(EntityType.SILVERFISH, 0x778c99);
-        entityColors.put(EntityType.SKELETON, 0xbdbdbd);
-        entityColors.put(EntityType.SKELETON_HORSE, 0xd0d0d2);
-        entityColors.put(EntityType.SLIME, 0x77c264);
-        entityColors.put(EntityType.SNOW_GOLEM, 0xffffff);
-        entityColors.put(EntityType.SPIDER, 0x7a6755);
-        entityColors.put(EntityType.SQUID, 0x546d80);
-        entityColors.put(EntityType.STRAY, 0x607576);
-        entityColors.put(EntityType.STRIDER, 0xb44040);
-        entityColors.put(EntityType.TRADER_LLAMA, 0x425f90);
-        entityColors.put(EntityType.TROPICAL_FISH, 0xFF4040);
-        entityColors.put(EntityType.TURTLE, 0x3ea240);
-        entityColors.put(EntityType.VEX, 0x89a0b6);
-        entityColors.put(EntityType.VILLAGER, 0xbf886d);
-        entityColors.put(EntityType.VINDICATOR, 0x929c9c);
-        entityColors.put(EntityType.WANDERING_TRADER, 0x425f90);
-        entityColors.put(EntityType.WITCH, 0xa39482);
-        entityColors.put(EntityType.WITHER_SKELETON, 0x626565);
-        entityColors.put(EntityType.WOLF, 0xdcdadb);
-        entityColors.put(EntityType.ZOGLIN, 0xe59796);
-        entityColors.put(EntityType.ZOMBIE, 0x70955c);
-        entityColors.put(EntityType.ZOMBIE_VILLAGER, 0x76a045);
-        entityColors.put(EntityType.ZOMBIFIED_PIGLIN, 0xe59796);
+        colors.put(EntityType.BAT, 0x75653f);
+        colors.put(EntityType.BEE, 0xebc542);
+        colors.put(EntityType.BLAZE, 0xede746);
+        colors.put(EntityType.CAT, 0x937155);
+        colors.put(EntityType.CAVE_SPIDER, 0x147b6a);
+        colors.put(EntityType.CHICKEN, 0xffffff);
+        colors.put(EntityType.COD, 0xb6986c);
+        colors.put(EntityType.COW, 0x6c5234);
+        colors.put(EntityType.CREEPER, 0x48b23a);
+        colors.put(EntityType.DOLPHIN, 0xb0c4d8);
+        colors.put(EntityType.DONKEY, 0x817164);
+        colors.put(EntityType.DROWNED, 0x56847e);
+        colors.put(EntityType.ELDER_GUARDIAN, 0xbfbbaa);
+        colors.put(EntityType.ENDERMAN, 0xa14fb6);
+        colors.put(EntityType.ENDERMITE, 0x644b84);
+        colors.put(EntityType.EVOKER, 0x959c9c);
+        colors.put(EntityType.FOX, 0xe37c21);
+        colors.put(EntityType.GHAST, 0xf0f0f0);
+        colors.put(EntityType.GUARDIAN, 0x6a9087);
+        colors.put(EntityType.HOGLIN, 0xd5957b);
+        colors.put(EntityType.HORSE, 0x926633);
+        colors.put(EntityType.HUSK, 0xc7ab6f);
+        colors.put(EntityType.IRON_GOLEM, 0xcdb297);
+        colors.put(EntityType.LLAMA, 0xe3e4d4);
+        colors.put(EntityType.MAGMA_CUBE, 0xff4600);
+        colors.put(EntityType.MOOSHROOM, 0xa41012);
+        colors.put(EntityType.MULE, 0x89492c);
+        colors.put(EntityType.OCELOT, 0xedb262);
+        colors.put(EntityType.PANDA, 0xe4e4e4);
+        colors.put(EntityType.PARROT, 0xe60000);
+        colors.put(EntityType.PHANTOM, 0x5161a5);
+        colors.put(EntityType.PIG, 0xf1a3a4);
+        colors.put(EntityType.PIGLIN, 0xefb987);
+        colors.put(EntityType.PIGLIN_BRUTE, 0xefb987);
+        colors.put(EntityType.PILLAGER, 0x929c9c);
+        colors.put(EntityType.POLAR_BEAR, 0xf2f2f4);
+        colors.put(EntityType.PUFFERFISH, 0xe3970b);
+        colors.put(EntityType.RABBIT, 0xa28b72);
+        colors.put(EntityType.RAVAGER, 0x91acab);
+        colors.put(EntityType.SALMON, 0xa83735);
+        colors.put(EntityType.SHEEP, 0xffffff);
+        colors.put(EntityType.SHULKER, 0x986a97);
+        colors.put(EntityType.SILVERFISH, 0x778c99);
+        colors.put(EntityType.SKELETON, 0xbdbdbd);
+        colors.put(EntityType.SKELETON_HORSE, 0xd0d0d2);
+        colors.put(EntityType.SLIME, 0x77c264);
+        colors.put(EntityType.SNOW_GOLEM, 0xffffff);
+        colors.put(EntityType.SPIDER, 0x7a6755);
+        colors.put(EntityType.SQUID, 0x546d80);
+        colors.put(EntityType.STRAY, 0x607576);
+        colors.put(EntityType.STRIDER, 0xb44040);
+        colors.put(EntityType.TRADER_LLAMA, 0x425f90);
+        colors.put(EntityType.TROPICAL_FISH, 0xFF4040);
+        colors.put(EntityType.TURTLE, 0x3ea240);
+        colors.put(EntityType.VEX, 0x89a0b6);
+        colors.put(EntityType.VILLAGER, 0xbf886d);
+        colors.put(EntityType.VINDICATOR, 0x929c9c);
+        colors.put(EntityType.WANDERING_TRADER, 0x425f90);
+        colors.put(EntityType.WITCH, 0xa39482);
+        colors.put(EntityType.WITHER_SKELETON, 0x626565);
+        colors.put(EntityType.WOLF, 0xdcdadb);
+        colors.put(EntityType.ZOGLIN, 0xe59796);
+        colors.put(EntityType.ZOMBIE, 0x70955c);
+        colors.put(EntityType.ZOMBIE_VILLAGER, 0x76a045);
+        colors.put(EntityType.ZOMBIFIED_PIGLIN, 0xe59796);
 
-        entityColors.keySet().forEach(type -> {
+        colors.keySet().forEach(type -> {
             displayInfos.put(type, new DisplayInfo(0, 0, 0, 0, 0, 0, 0.25F));
             entityData.put(type, new CompoundNBT());
+            entityData.put(type, new CompoundNBT());
+            potionEffects.put(type, new CompoundNBT());
+            cooldowns.put(type, 20 * 60 * 8);
+            // noinspection ConstantConditions
+            lootTables.put(type, new ResourceLocation(Trofers.MODID, String.format("trophies/%s", type.getRegistryName().getPath())));
+
+            ResourceLocation soundLocation = new ResourceLocation(String.format("entity.%s.ambient", type.getRegistryName().getPath()));
+            if (ForgeRegistries.SOUND_EVENTS.containsKey(soundLocation)) {
+                soundEvents.put(type, ForgeRegistries.SOUND_EVENTS.getValue(soundLocation));
+            } else {
+                Trofers.LOGGER.error(String.format("no sound found for %s", type.getRegistryName()));
+            }
         });
+
+        potionEffects.put(EntityType.BAT, new EffectInstance(Effects.NIGHT_VISION, 20 * 40).save(new CompoundNBT()));
+        potionEffects.put(EntityType.CHICKEN, new EffectInstance(Effects.SLOW_FALLING, 20 * 5).save(new CompoundNBT()));
+        potionEffects.put(EntityType.DOLPHIN, new EffectInstance(Effects.DOLPHINS_GRACE, 20 * 40).save(new CompoundNBT()));
+        potionEffects.put(EntityType.DROWNED, new EffectInstance(Effects.WATER_BREATHING, 20 * 40).save(new CompoundNBT()));
+        potionEffects.put(EntityType.ELDER_GUARDIAN, new EffectInstance(Effects.DIG_SPEED, 20 * 40, 2).save(new CompoundNBT()));
+        potionEffects.put(EntityType.IRON_GOLEM, new EffectInstance(Effects.ABSORPTION, 20 * 60 * 2, 2).save(new CompoundNBT()));
+        potionEffects.put(EntityType.OCELOT, new EffectInstance(Effects.MOVEMENT_SPEED, 20 * 40, 3).save(new CompoundNBT()));
+        potionEffects.put(EntityType.PIGLIN_BRUTE, new EffectInstance(Effects.DAMAGE_BOOST, 20 * 60 * 2, 1).save(new CompoundNBT()));
+        potionEffects.put(EntityType.RABBIT, new EffectInstance(Effects.JUMP, 20 * 8, 3).save(new CompoundNBT()));
+        potionEffects.put(EntityType.SHULKER, new EffectInstance(Effects.LEVITATION, 20 * 5).save(new CompoundNBT()));
+        potionEffects.put(EntityType.STRIDER, new EffectInstance(Effects.FIRE_RESISTANCE, 20 * 40).save(new CompoundNBT()));
+        potionEffects.put(EntityType.TURTLE, new EffectInstance(Effects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3).save(new CompoundNBT()));
+        potionEffects.put(EntityType.VILLAGER, new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 20 * 60 * 2, 4).save(new CompoundNBT()));
+        potionEffects.put(EntityType.WANDERING_TRADER, new EffectInstance(Effects.INVISIBILITY, 20 * 40).save(new CompoundNBT()));
+        potionEffects.put(EntityType.WITCH, new EffectInstance(Effects.REGENERATION, 20 * 30).save(new CompoundNBT()));
+
+        lootTables.put(EntityType.CAT, new ResourceLocation("gameplay/cat_morning_gift"));
+        lootTables.put(EntityType.PIGLIN, new ResourceLocation("gameplay/piglin_bartering"));
+
+        cooldowns.put(EntityType.BAT, 0);
+        cooldowns.put(EntityType.CHICKEN, 0);
+        cooldowns.put(EntityType.DOLPHIN, 0);
+        cooldowns.put(EntityType.DROWNED, 0);
+        cooldowns.put(EntityType.ELDER_GUARDIAN, 0);
+        cooldowns.put(EntityType.EVOKER, 20 * 60 * 60 * 4);
+        cooldowns.put(EntityType.OCELOT, 0);
+        cooldowns.put(EntityType.RABBIT, 0);
+        cooldowns.put(EntityType.SHULKER, 0);
+        cooldowns.put(EntityType.STRIDER, 0);
+        cooldowns.put(EntityType.WANDERING_TRADER, 0);
+        cooldowns.put(EntityType.WITHER_SKELETON, 20 * 60 * 20);
+
+        soundEvents.put(EntityType.BEE, SoundEvents.BEE_POLLINATE);
+        soundEvents.put(EntityType.CAVE_SPIDER, SoundEvents.SPIDER_AMBIENT);
+        soundEvents.put(EntityType.CREEPER, SoundEvents.CREEPER_PRIMED);
+        soundEvents.put(EntityType.COD, SoundEvents.COD_FLOP);
+        soundEvents.put(EntityType.IRON_GOLEM, SoundEvents.IRON_GOLEM_REPAIR);
+        soundEvents.put(EntityType.MAGMA_CUBE, SoundEvents.MAGMA_CUBE_SQUISH);
+        soundEvents.put(EntityType.MOOSHROOM, SoundEvents.COW_AMBIENT);
+        soundEvents.put(EntityType.PUFFERFISH, SoundEvents.PUFFER_FISH_BLOW_UP);
+        soundEvents.put(EntityType.SALMON, SoundEvents.SALMON_FLOP);
+        soundEvents.put(EntityType.SLIME, SoundEvents.SLIME_SQUISH);
+        soundEvents.put(EntityType.SNOW_GOLEM, SoundEvents.SNOW_PLACE);
+        soundEvents.put(EntityType.TRADER_LLAMA, SoundEvents.LLAMA_AMBIENT);
+        soundEvents.put(EntityType.TROPICAL_FISH, SoundEvents.TROPICAL_FISH_FLOP);
+        soundEvents.put(EntityType.TURTLE, SoundEvents.TURTLE_AMBIENT_LAND);
 
         displayInfos.put(EntityType.GHAST, new DisplayInfo(0, 5, 0, 0.075F));
         displayInfos.put(EntityType.SQUID, new DisplayInfo(0, 5, 0, 0.25F));
@@ -171,16 +239,24 @@ public class Trophies implements IDataProvider {
         entityData.get(EntityType.ZOMBIE_VILLAGER).getCompound("VillagerData").putString("type", "minecraft:plains");
         putHandItem(entityData.get(EntityType.ZOMBIFIED_PIGLIN), Items.GOLDEN_SWORD);
 
-        entityColors.keySet().forEach(type -> {
+        colors.keySet().forEach(type -> {
             // noinspection ConstantConditions
             addTrophy(new Trophy(
                     new ResourceLocation(Trofers.MODID, type.getRegistryName().getPath()),
-                    createName(type, entityColors.get(type)),
+                    createName(type, colors.get(type)),
                     displayInfos.get(type),
                     Animation.STATIC,
                     ItemStack.EMPTY,
                     new EntityInfo(type, entityData.get(type), false),
-                    new ColorInfo(0x606060, entityColors.get(type)),
+                    new ColorInfo(0x606060, colors.get(type)),
+                    new EffectInfo(
+                            new EffectInfo.SoundInfo(soundEvents.get(type), 1, 1),
+                            new EffectInfo.RewardInfo(
+                                    potionEffects.get(type).isEmpty() ? lootTables.get(type) : null,
+                                    potionEffects.get(type),
+                                    cooldowns.get(type)
+                            )
+                    ),
                     false
             ));
         });
