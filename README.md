@@ -14,6 +14,7 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
 
 * `name`: The name of the trophy as a text component (can be a string). 
   Information on how to format these can be found [here](https://minecraft.fandom.com/wiki/Raw_JSON_text_format).
+* `tooltip`: A list of text components, one component per line
 * `item`: An object describing the item the trophy should display. Contains the following fields:
   * `item`: (_required_) The item ID
   * `count`: The size of the item stack
@@ -35,7 +36,21 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
 * `colors`: An object describing the colors of the trophy base
   * `base`/`accent`: A color, either in hexadecimal as a string (`"#RRGGBB"`), 
     or as an object with `red`/`green`/`blue` fields between 0 and 255.
+* `effects`: An object describing effects that should apply when the trophy is right-clicked
+  * `sound`: A sound to play when the trophy is right-clicked
+    * `soundEvent`: A sound event ID
+    * `volume`: (_default = 1_) the volume to play the sound event at
+    * `pitch`: (_default = 1_) the pitch to play the sound event at
+  * `rewards`: Rewards given to the player when the trophy is right-clicked
+    * `lootTable`: A loot table ID to generate loot from
+    * `statusEffect`: A potion effect to apply to the player
+      * `effect`: (_required_) The effect ID
+      * `duration`: (_required_) The amount of time in ticks the effect should last
+      * `amplifier`: (_default = 0_) The amplifier of the effect (effect level - 1)
+    * `cooldown`: The amount of time it takes in ticks before the reward(s) can be claimed again
 * `hidden`: (_default = false_) Whether the trophy should be hidden from trophy selection screen in creative mode
+
+For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/1.17/src/generated/resources/data/trofers/trofers).
 
 ## Adding a trophy to a trophy base
 Trofers currently adds 6 trophy bases. 
