@@ -197,7 +197,10 @@ public final class EffectInfo {
         }
 
         protected static RewardInfo fromJson(JsonObject object) {
-            ResourceLocation lootTable = new ResourceLocation(JSONUtils.getAsString(object, "lootTable"));
+            ResourceLocation lootTable = null;
+            if (object.has("lootTable")) {
+                lootTable = new ResourceLocation(JSONUtils.getAsString(object, "lootTable"));
+            }
             CompoundNBT potionEffect = new CompoundNBT();
             if (object.has("potionEffect")) {
                 potionEffect = Trophy.readNBT(object.get("potionEffect"));
