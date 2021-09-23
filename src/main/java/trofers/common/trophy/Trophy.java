@@ -1,5 +1,6 @@
 package trofers.common.trophy;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
@@ -17,11 +18,14 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Trophy {
     private final ResourceLocation id;
     @Nullable
     private final ITextComponent name;
+    private final List<ITextComponent> tooltip;
     private final DisplayInfo display;
     private final Animation animation;
     private final ItemStack item;
@@ -35,6 +39,7 @@ public final class Trophy {
             ResourceLocation id,
             @Nullable
             ITextComponent name,
+            List<ITextComponent> tooltip,
             DisplayInfo display,
             Animation animation,
             ItemStack item,
@@ -46,6 +51,7 @@ public final class Trophy {
     ) {
         this.id = id;
         this.name = name;
+        this.tooltip = tooltip;
         this.display = display;
         this.animation = animation;
         this.item = item;
@@ -62,6 +68,10 @@ public final class Trophy {
     @Nullable
     public ITextComponent name() {
         return name;
+    }
+
+    public List<ITextComponent> tooltip() {
+        return tooltip;
     }
 
     public DisplayInfo display() {
@@ -129,6 +139,11 @@ public final class Trophy {
         }
         colors.toNetwork(buffer);
         effects.toNetwork(buffer);
+        for (ITextComponent line : tooltip) {
+            buffer.writeBoolean(true);
+            buffer.writeComponent(line);
+        }
+        buffer.writeBoolean(false);
         buffer.writeBoolean(isHidden);
     }
 
@@ -147,10 +162,15 @@ public final class Trophy {
         }
         ColorInfo colors = ColorInfo.fromNetwork(buffer);
         EffectInfo effects = EffectInfo.fromNetwork(buffer);
+        List<ITextComponent> tooltip = new ArrayList<>();
+        while (buffer.readBoolean()) {
+            tooltip.add(buffer.readComponent());
+        }
         boolean isHidden = buffer.readBoolean();
         return new Trophy(
                 id,
                 name,
+                tooltip,
                 display,
                 animation,
                 item,
@@ -165,6 +185,14 @@ public final class Trophy {
         JsonObject result = new JsonObject();
 
         result.add("name", TextComponent.Serializer.toJsonTree(name()));
+
+        if (!tooltip().isEmpty()) {
+            JsonArray tooltip = new JsonArray();
+            result.add("tooltip", tooltip);
+            for (ITextComponent line : tooltip()) {
+                tooltip.add(ITextComponent.Serializer.toJsonTree(line));
+            }
+        }
 
         if (display() != DisplayInfo.NONE) {
             result.add("display", display().toJson());
@@ -230,6 +258,14 @@ public final class Trophy {
             name = TextComponent.Serializer.fromJson(object.get("name"));
         }
 
+        List<ITextComponent> tooltip = new ArrayList<>();
+        if (object.has("tooltip")) {
+            JsonArray lines = JSONUtils.getAsJsonArray(object, "tooltip");
+            for (JsonElement line : lines) {
+                tooltip.add(ITextComponent.Serializer.fromJson(line));
+            }
+        }
+
         EffectInfo effects = EffectInfo.NONE;
         if (object.has("effects")) {
             effects = EffectInfo.fromJson(JSONUtils.getAsJsonObject(object, "effects"));
@@ -243,6 +279,7 @@ public final class Trophy {
         return new Trophy(
                 id,
                 name,
+                tooltip,
                 display,
                 animation,
                 item,

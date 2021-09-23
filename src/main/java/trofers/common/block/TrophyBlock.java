@@ -2,6 +2,7 @@ package trofers.common.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -14,14 +15,17 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.block.entity.TrophyBlockEntity;
 import trofers.common.block.entity.TrophyScreen;
+import trofers.common.trophy.Trophy;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public abstract class TrophyBlock extends Block {
 
@@ -46,6 +50,15 @@ public abstract class TrophyBlock extends Block {
     @Override
     public String getDescriptionId() {
         return "block.trofers.trophy";
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader level, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        Trophy trophy = Trophy.getTrophy(stack);
+        if (trophy != null) {
+            tooltip.addAll(trophy.tooltip());
+        }
     }
 
     @Override
