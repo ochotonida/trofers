@@ -30,6 +30,9 @@ public class TrophyItem extends BlockItem {
             CompoundTag tag = context.getItemInHand().getTag();
             if (blockEntity instanceof TrophyBlockEntity trophy && tag != null) {
                 trophy.loadTrophy(tag.getCompound("BlockEntityTag"));
+                if (!context.getLevel().isClientSide()) {
+                    trophy.restartRewardCooldown();
+                }
             }
             return true;
         }
