@@ -149,7 +149,10 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         }
 
         protected static RewardInfo fromJson(JsonObject object) {
-            ResourceLocation lootTable = new ResourceLocation(GsonHelper.getAsString(object, "lootTable"));
+            ResourceLocation lootTable = null;
+            if (object.has("lootTable")) {
+                lootTable = new ResourceLocation(GsonHelper.getAsString(object, "lootTable"));
+            }
             CompoundTag potionEffect = new CompoundTag();
             if (object.has("potionEffect")) {
                 potionEffect = Trophy.readNBT(object.get("potionEffect"));
