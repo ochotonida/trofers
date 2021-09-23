@@ -28,6 +28,7 @@ public final class Trophy {
     @Nullable
     private final EntityInfo entity;
     private final ColorInfo colors;
+    private final EffectInfo effects;
     private final boolean isHidden;
 
     public Trophy(
@@ -40,6 +41,7 @@ public final class Trophy {
             @Nullable
             EntityInfo entity,
             ColorInfo colors,
+            EffectInfo effects,
             boolean isHidden
     ) {
         this.id = id;
@@ -49,6 +51,7 @@ public final class Trophy {
         this.item = item;
         this.entity = entity;
         this.colors = colors;
+        this.effects = effects;
         this.isHidden = isHidden;
     }
 
@@ -80,6 +83,10 @@ public final class Trophy {
 
     public ColorInfo colors() {
         return colors;
+    }
+
+    public EffectInfo effects() {
+        return effects;
     }
 
     public boolean isHidden() {
@@ -121,6 +128,7 @@ public final class Trophy {
             entity.toNetwork(buffer);
         }
         colors.toNetwork(buffer);
+        effects.toNetwork(buffer);
         buffer.writeBoolean(isHidden);
     }
 
@@ -138,6 +146,7 @@ public final class Trophy {
             entity = EntityInfo.fromNetwork(buffer);
         }
         ColorInfo colors = ColorInfo.fromNetwork(buffer);
+        EffectInfo effects = EffectInfo.fromNetwork(buffer);
         boolean isHidden = buffer.readBoolean();
         return new Trophy(
                 id,
@@ -147,6 +156,7 @@ public final class Trophy {
                 item,
                 entity,
                 colors,
+                effects,
                 isHidden
         );
     }
@@ -160,7 +170,7 @@ public final class Trophy {
             result.add("display", display().toJson());
         }
 
-        if (animation().type() != Animation.Type.FIXED) {
+        if (!animation().type().equals(Animation.Type.FIXED)) {
             result.add("animation", animation().toJson());
         }
 
@@ -176,24 +186,14 @@ public final class Trophy {
             result.add("colors", colors().toJson());
         }
 
+        if (!effects().equals(EffectInfo.NONE)) {
+            result.add("effects", effects().toJson());
+        }
+
         if (isHidden()) {
             result.addProperty("isHidden", true);
         }
 
-        return result;
-    }
-
-    private static JsonObject serializeItem(ItemStack item) {
-        JsonObject result = new JsonObject();
-        // noinspection ConstantConditions
-        result.addProperty("item", item.getItem().getRegistryName().toString());
-        if (item.getCount() != 1) {
-            result.addProperty("count", item.getCount());
-        }
-        if (item.hasTag()) {
-            // noinspection ConstantConditions
-            result.addProperty("nbt", item.getTag().toString());
-        }
         return result;
     }
 
@@ -230,6 +230,11 @@ public final class Trophy {
             name = TextComponent.Serializer.fromJson(object.get("name"));
         }
 
+        EffectInfo effects = EffectInfo.NONE;
+        if (object.has("effects")) {
+            effects = EffectInfo.fromJson(JSONUtils.getAsJsonObject(object, "effects"));
+        }
+
         boolean isHidden = false;
         if (object.has("isHidden")) {
             isHidden = JSONUtils.getAsBoolean(object, "isHidden");
@@ -243,8 +248,23 @@ public final class Trophy {
                 item,
                 entity,
                 colors,
+                effects,
                 isHidden
         );
+    }
+
+    protected static JsonObject serializeItem(ItemStack item) {
+        JsonObject result = new JsonObject();
+        // noinspection ConstantConditions
+        result.addProperty("item", item.getItem().getRegistryName().toString());
+        if (item.getCount() != 1) {
+            result.addProperty("count", item.getCount());
+        }
+        if (item.hasTag()) {
+            // noinspection ConstantConditions
+            result.addProperty("nbt", item.getTag().toString());
+        }
+        return result;
     }
 
     protected static CompoundNBT readNBT(JsonElement element) {
