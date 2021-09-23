@@ -142,7 +142,7 @@ public class Trophies implements IDataProvider {
         potionEffects.put(EntityType.IRON_GOLEM, new EffectInstance(Effects.ABSORPTION, 20 * 60 * 2, 2).save(new CompoundNBT()));
         potionEffects.put(EntityType.OCELOT, new EffectInstance(Effects.MOVEMENT_SPEED, 20 * 40, 3).save(new CompoundNBT()));
         potionEffects.put(EntityType.PIGLIN_BRUTE, new EffectInstance(Effects.DAMAGE_BOOST, 20 * 60 * 2, 1).save(new CompoundNBT()));
-        potionEffects.put(EntityType.RABBIT, new EffectInstance(Effects.JUMP, 20 * 8, 3).save(new CompoundNBT()));
+        potionEffects.put(EntityType.RABBIT, new EffectInstance(Effects.JUMP, 20 * 40, 3).save(new CompoundNBT()));
         potionEffects.put(EntityType.SHULKER, new EffectInstance(Effects.LEVITATION, 20 * 5).save(new CompoundNBT()));
         potionEffects.put(EntityType.STRIDER, new EffectInstance(Effects.FIRE_RESISTANCE, 20 * 40).save(new CompoundNBT()));
         potionEffects.put(EntityType.TURTLE, new EffectInstance(Effects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3).save(new CompoundNBT()));
