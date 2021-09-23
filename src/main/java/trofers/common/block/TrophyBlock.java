@@ -2,10 +2,12 @@ package trofers.common.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -24,8 +26,10 @@ import net.minecraft.world.phys.HitResult;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.block.entity.TrophyBlockEntity;
 import trofers.common.block.entity.TrophyScreen;
+import trofers.common.trophy.Trophy;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public abstract class TrophyBlock extends BaseEntityBlock {
 
@@ -50,6 +54,15 @@ public abstract class TrophyBlock extends BaseEntityBlock {
     @Override
     public String getDescriptionId() {
         return "block.trofers.trophy";
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        Trophy trophy = Trophy.getTrophy(stack);
+        if (trophy != null) {
+            tooltip.addAll(trophy.tooltip());
+        }
     }
 
     @Override

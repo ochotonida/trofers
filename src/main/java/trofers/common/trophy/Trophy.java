@@ -14,11 +14,14 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public record Trophy(
         ResourceLocation id,
         @Nullable
         Component name,
+        List<Component> tooltip,
         DisplayInfo display,
         Animation animation,
         ItemStack item,
@@ -65,6 +68,11 @@ public record Trophy(
         }
         colors.toNetwork(buffer);
         effects.toNetwork(buffer);
+        for (Component line : tooltip) {
+            buffer.writeBoolean(true);
+            buffer.writeComponent(line);
+        }
+        buffer.writeBoolean(false);
         buffer.writeBoolean(isHidden);
     }
 
@@ -83,10 +91,15 @@ public record Trophy(
         }
         ColorInfo colors = ColorInfo.fromNetwork(buffer);
         EffectInfo effects = EffectInfo.fromNetwork(buffer);
+        List<Component> tooltip = new ArrayList<>();
+        while (buffer.readBoolean()) {
+            tooltip.add(buffer.readComponent());
+        }
         boolean isHidden = buffer.readBoolean();
         return new Trophy(
                 id,
                 name,
+                tooltip,
                 display,
                 animation,
                 item,
@@ -101,6 +114,14 @@ public record Trophy(
         JsonObject result = new JsonObject();
 
         result.add("name", Component.Serializer.toJsonTree(name()));
+
+        if (!tooltip().isEmpty()) {
+            JsonArray tooltip = new JsonArray();
+            result.add("tooltip", tooltip);
+            for (Component line : tooltip()) {
+                tooltip.add(Component.Serializer.toJsonTree(line));
+            }
+        }
 
         if (!display().equals(DisplayInfo.NONE)) {
             result.add("display", display().toJson());
@@ -166,6 +187,14 @@ public record Trophy(
             name = Component.Serializer.fromJson(object.get("name"));
         }
 
+        List<Component> tooltip = new ArrayList<>();
+        if (object.has("tooltip")) {
+            JsonArray lines = GsonHelper.getAsJsonArray(object, "tooltip");
+            for (JsonElement line : lines) {
+                tooltip.add(Component.Serializer.fromJson(line));
+            }
+        }
+
         EffectInfo effects = EffectInfo.NONE;
         if (object.has("effects")) {
             effects = EffectInfo.fromJson(GsonHelper.getAsJsonObject(object, "effects"));
@@ -179,6 +208,7 @@ public record Trophy(
         return new Trophy(
                 id,
                 name,
+                tooltip,
                 display,
                 animation,
                 item,

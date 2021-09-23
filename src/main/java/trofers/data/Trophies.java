@@ -29,9 +29,7 @@ import trofers.common.trophy.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Consumer;
 
 public class Trophies implements DataProvider {
@@ -254,6 +252,7 @@ public class Trophies implements DataProvider {
             addTrophy(new Trophy(
                     new ResourceLocation(Trofers.MODID, type.getRegistryName().getPath()),
                     createName(type, colors.get(type)),
+                    Collections.emptyList(),
                     displayInfos.get(type),
                     Animation.STATIC,
                     ItemStack.EMPTY,
