@@ -7,9 +7,18 @@ import com.google.gson.JsonPrimitive;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 
-public record ColorInfo(int base, int accent) {
+import java.util.Objects;
+
+public final class ColorInfo {
 
     public static final ColorInfo NONE = new ColorInfo(0xFFFFFF, 0xFFFFFF);
+    private final int base;
+    private final int accent;
+
+    public ColorInfo(int base, int accent) {
+        this.base = base;
+        this.accent = accent;
+    }
 
     public void toNetwork(PacketBuffer buffer) {
         buffer.writeInt(base);
@@ -67,5 +76,13 @@ public record ColorInfo(int base, int accent) {
             return Integer.parseInt(string.substring(1), 16);
         }
         throw new JsonParseException(String.format("Couldn't parse color string: %s", string));
+    }
+
+    public int base() {
+        return base;
+    }
+
+    public int accent() {
+        return accent;
     }
 }

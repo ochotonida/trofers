@@ -12,9 +12,17 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
-public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
+public final class EffectInfo {
 
     public static final EffectInfo NONE = new EffectInfo(null, RewardInfo.NONE);
+    @Nullable
+    private final SoundInfo sound;
+    private final RewardInfo rewards;
+
+    public EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
+        this.sound = sound;
+        this.rewards = rewards;
+    }
 
     protected void toNetwork(PacketBuffer buffer) {
         buffer.writeBoolean(sound() != null);
@@ -41,7 +49,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         if (sound() != null) {
             object.add("sound", sound().toJson());
         }
-        if (!rewards().equals(RewardInfo.NONE)) {
+        if (!rewards().potionEffect().isEmpty() || rewards().lootTable() != null) {
             object.add("rewards", rewards().toJson());
         }
         return object;
@@ -59,7 +67,25 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         return new EffectInfo(sound, rewards);
     }
 
-    public static record SoundInfo(SoundEvent soundEvent, float volume, float pitch) {
+    @Nullable
+    public SoundInfo sound() {
+        return sound;
+    }
+
+    public RewardInfo rewards() {
+        return rewards;
+    }
+
+    public static final class SoundInfo {
+        private final SoundEvent soundEvent;
+        private final float volume;
+        private final float pitch;
+
+        public SoundInfo(SoundEvent soundEvent, float volume, float pitch) {
+            this.soundEvent = soundEvent;
+            this.volume = volume;
+            this.pitch = pitch;
+        }
 
         protected void toNetwork(PacketBuffer buffer) {
             // noinspection ConstantConditions
@@ -101,11 +127,33 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
 
             return new SoundInfo(soundEvent, volume, pitch);
         }
+
+        public SoundEvent soundEvent() {
+            return soundEvent;
+        }
+
+        public float volume() {
+            return volume;
+        }
+
+        public float pitch() {
+            return pitch;
+        }
     }
 
-    public static record RewardInfo(@Nullable ResourceLocation lootTable, CompoundNBT potionEffect, int cooldown) {
+    public static final class RewardInfo {
 
         public static RewardInfo NONE = new RewardInfo(null, new CompoundNBT(), 0);
+        @Nullable
+        private final ResourceLocation lootTable;
+        private final CompoundNBT potionEffect;
+        private final int cooldown;
+
+        public RewardInfo(@Nullable ResourceLocation lootTable, CompoundNBT potionEffect, int cooldown) {
+            this.lootTable = lootTable;
+            this.potionEffect = potionEffect;
+            this.cooldown = cooldown;
+        }
 
         @Nullable
         public EffectInstance createPotionEffect() {
@@ -162,6 +210,19 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
                 cooldown = JSONUtils.getAsInt(object, "cooldown");
             }
             return new RewardInfo(lootTable, potionEffect, cooldown);
+        }
+
+        @Nullable
+        public ResourceLocation lootTable() {
+            return lootTable;
+        }
+
+        public CompoundNBT potionEffect() {
+            return potionEffect;
+        }
+
+        public int cooldown() {
+            return cooldown;
         }
     }
 }

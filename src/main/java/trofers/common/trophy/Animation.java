@@ -6,9 +6,18 @@ import com.google.gson.JsonParseException;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 
-public record Animation(Type type, float speed) {
+import java.util.Objects;
+
+public final class Animation {
 
     public static final Animation STATIC = new Animation(Type.FIXED, 1);
+    private final Type type;
+    private final float speed;
+
+    public Animation(Type type, float speed) {
+        this.type = type;
+        this.speed = speed;
+    }
 
     public void toNetwork(PacketBuffer buffer) {
         buffer.writeByte(type.ordinal());
@@ -37,6 +46,14 @@ public record Animation(Type type, float speed) {
         Type type = Type.fromJson(object.get("type"));
         float speed = Trophy.readOptionalFloat(object, "speed", 1);
         return new Animation(type, speed);
+    }
+
+    public Type type() {
+        return type;
+    }
+
+    public float speed() {
+        return speed;
     }
 
     public enum Type {

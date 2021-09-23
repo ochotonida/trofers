@@ -4,10 +4,27 @@ import com.google.gson.JsonObject;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 
-public record DisplayInfo(float xOffset, float yOffset, float zOffset, float xRotation, float yRotation,
-                          float zRotation, float scale) {
+public final class DisplayInfo {
 
     public static final DisplayInfo NONE = new DisplayInfo(0, 0, 0, 0, 0, 0, 1);
+    private final float xOffset;
+    private final float yOffset;
+    private final float zOffset;
+    private final float xRotation;
+    private final float yRotation;
+    private final float zRotation;
+    private final float scale;
+
+    public DisplayInfo(float xOffset, float yOffset, float zOffset, float xRotation, float yRotation,
+                       float zRotation, float scale) {
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        this.zOffset = zOffset;
+        this.xRotation = xRotation;
+        this.yRotation = yRotation;
+        this.zRotation = zRotation;
+        this.scale = scale;
+    }
 
     public DisplayInfo(float scale) {
         this(0, 0, 0, scale);
@@ -87,5 +104,33 @@ public record DisplayInfo(float xOffset, float yOffset, float zOffset, float xRo
         float scale = Trophy.readOptionalFloat(object, "scale", 1);
 
         return new DisplayInfo(xOffset, yOffset, zOffset, xRotation, yRotation, zRotation, scale);
+    }
+
+    public float xOffset() {
+        return xOffset;
+    }
+
+    public float yOffset() {
+        return yOffset;
+    }
+
+    public float zOffset() {
+        return zOffset;
+    }
+
+    public float xRotation() {
+        return xRotation;
+    }
+
+    public float yRotation() {
+        return yRotation;
+    }
+
+    public float zRotation() {
+        return zRotation;
+    }
+
+    public float scale() {
+        return scale;
     }
 }

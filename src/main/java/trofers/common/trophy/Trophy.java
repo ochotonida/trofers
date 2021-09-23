@@ -166,7 +166,7 @@ public final class Trophy {
 
         result.add("name", TextComponent.Serializer.toJsonTree(name()));
 
-        if (!display().equals(DisplayInfo.NONE)) {
+        if (display() != DisplayInfo.NONE) {
             result.add("display", display().toJson());
         }
 
@@ -182,11 +182,11 @@ public final class Trophy {
             result.add("entity", entity().toJson());
         }
 
-        if (!colors().equals(ColorInfo.NONE)) {
+        if (colors() != ColorInfo.NONE) {
             result.add("colors", colors().toJson());
         }
 
-        if (!effects().equals(EffectInfo.NONE)) {
+        if (effects() != EffectInfo.NONE) {
             result.add("effects", effects().toJson());
         }
 
