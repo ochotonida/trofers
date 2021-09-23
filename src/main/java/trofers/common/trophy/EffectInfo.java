@@ -174,7 +174,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
                 MobEffect effect = ForgeRegistries.MOB_EFFECTS.getValue(effectID);
                 int duration = GsonHelper.getAsInt(effectObject, "duration");
                 int amplifier = 0;
-                if (object.has("amplifier")) {
+                if (effectObject.has("amplifier")) {
                     amplifier = GsonHelper.getAsInt(effectObject, "amplifier");
                 }
 
