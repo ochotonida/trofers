@@ -223,7 +223,7 @@ public final class EffectInfo {
                 Effect effect = ForgeRegistries.POTIONS.getValue(effectID);
                 int duration = JSONUtils.getAsInt(effectObject, "duration");
                 int amplifier = 0;
-                if (object.has("amplifier")) {
+                if (effectObject.has("amplifier")) {
                     amplifier = JSONUtils.getAsInt(effectObject, "amplifier");
                 }
 
