@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#EBC542"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.bee.pollinate"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/bee",
+      "cooldown": 9600
+    }
   }
 }

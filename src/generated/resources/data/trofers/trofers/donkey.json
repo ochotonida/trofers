@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#817164"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.donkey.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/donkey",
+      "cooldown": 9600
+    }
   }
 }

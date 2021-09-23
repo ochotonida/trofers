@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#91ACAB"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.ravager.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/ravager",
+      "cooldown": 9600
+    }
   }
 }

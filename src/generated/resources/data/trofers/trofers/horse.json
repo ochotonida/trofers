@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#926633"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.horse.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/horse",
+      "cooldown": 9600
+    }
   }
 }

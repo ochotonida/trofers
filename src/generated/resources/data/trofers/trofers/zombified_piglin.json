@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#E59796"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.zombified_piglin.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/zombified_piglin",
+      "cooldown": 9600
+    }
   }
 }

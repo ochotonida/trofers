@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#A14FB6"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.enderman.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/enderman",
+      "cooldown": 9600
+    }
   }
 }

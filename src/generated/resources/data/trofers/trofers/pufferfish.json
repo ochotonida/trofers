@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#E3970B"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.puffer_fish.blow_up"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/pufferfish",
+      "cooldown": 9600
+    }
   }
 }

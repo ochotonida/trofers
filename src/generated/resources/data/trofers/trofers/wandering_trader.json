@@ -17,5 +17,13 @@
   "colors": {
     "base": "#606060",
     "accent": "#425F90"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.wandering_trader.ambient"
+    },
+    "rewards": {
+      "potionEffect": "{Ambient:0b,CurativeItems:[{id:\"minecraft:milk_bucket\",Count:1b}],ShowIcon:1b,ShowParticles:1b,Duration:800,Id:14b,Amplifier:0b}"
+    }
   }
 }

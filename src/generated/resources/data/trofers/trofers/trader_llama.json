@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#425F90"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.llama.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/trader_llama",
+      "cooldown": 9600
+    }
   }
 }

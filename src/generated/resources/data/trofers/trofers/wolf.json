@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#DCDADB"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.wolf.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/wolf",
+      "cooldown": 9600
+    }
   }
 }

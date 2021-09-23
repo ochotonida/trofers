@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#929C9C"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.pillager.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/pillager",
+      "cooldown": 9600
+    }
   }
 }

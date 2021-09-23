@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#FFFFFF"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.sheep.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/sheep",
+      "cooldown": 9600
+    }
   }
 }

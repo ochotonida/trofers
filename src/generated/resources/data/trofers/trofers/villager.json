@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#BF886D"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.villager.ambient"
+    },
+    "rewards": {
+      "potionEffect": "{Ambient:0b,CurativeItems:[{id:\"minecraft:milk_bucket\",Count:1b}],ShowIcon:1b,ShowParticles:1b,Duration:2400,Id:32b,Amplifier:4b}",
+      "cooldown": 9600
+    }
   }
 }

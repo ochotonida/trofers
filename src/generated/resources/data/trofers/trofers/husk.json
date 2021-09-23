@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#C7AB6F"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.husk.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/husk",
+      "cooldown": 9600
+    }
   }
 }

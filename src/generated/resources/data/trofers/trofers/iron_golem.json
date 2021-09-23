@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#CDB297"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.iron_golem.repair"
+    },
+    "rewards": {
+      "potionEffect": "{Ambient:0b,CurativeItems:[{id:\"minecraft:milk_bucket\",Count:1b}],ShowIcon:1b,ShowParticles:1b,Duration:2400,Id:22b,Amplifier:2b}",
+      "cooldown": 9600
+    }
   }
 }

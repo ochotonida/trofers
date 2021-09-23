@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#F1A3A4"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.pig.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/pig",
+      "cooldown": 9600
+    }
   }
 }

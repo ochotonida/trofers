@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#EFB987"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.piglin.ambient"
+    },
+    "rewards": {
+      "lootTable": "minecraft:gameplay/piglin_bartering",
+      "cooldown": 9600
+    }
   }
 }

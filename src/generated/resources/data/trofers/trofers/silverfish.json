@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#778C99"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.silverfish.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/silverfish",
+      "cooldown": 9600
+    }
   }
 }
