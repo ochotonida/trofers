@@ -25,6 +25,7 @@ public record Trophy(
         @Nullable
         EntityInfo entity,
         ColorInfo colors,
+        EffectInfo effects,
         boolean isHidden
 ) {
 
@@ -63,6 +64,7 @@ public record Trophy(
             entity.toNetwork(buffer);
         }
         colors.toNetwork(buffer);
+        effects.toNetwork(buffer);
         buffer.writeBoolean(isHidden);
     }
 
@@ -80,6 +82,7 @@ public record Trophy(
             entity = EntityInfo.fromNetwork(buffer);
         }
         ColorInfo colors = ColorInfo.fromNetwork(buffer);
+        EffectInfo effects = EffectInfo.fromNetwork(buffer);
         boolean isHidden = buffer.readBoolean();
         return new Trophy(
                 id,
@@ -89,6 +92,7 @@ public record Trophy(
                 item,
                 entity,
                 colors,
+                effects,
                 isHidden
         );
     }
@@ -102,7 +106,7 @@ public record Trophy(
             result.add("display", display().toJson());
         }
 
-        if (animation().type() != Animation.Type.FIXED) {
+        if (!animation().type().equals(Animation.Type.FIXED)) {
             result.add("animation", animation().toJson());
         }
 
@@ -118,24 +122,14 @@ public record Trophy(
             result.add("colors", colors().toJson());
         }
 
+        if (!effects().equals(EffectInfo.NONE)) {
+            result.add("effects", effects().toJson());
+        }
+
         if (isHidden()) {
             result.addProperty("isHidden", true);
         }
 
-        return result;
-    }
-
-    private static JsonObject serializeItem(ItemStack item) {
-        JsonObject result = new JsonObject();
-        // noinspection ConstantConditions
-        result.addProperty("item", item.getItem().getRegistryName().toString());
-        if (item.getCount() != 1) {
-            result.addProperty("count", item.getCount());
-        }
-        if (item.hasTag()) {
-            // noinspection ConstantConditions
-            result.addProperty("nbt", item.getTag().toString());
-        }
         return result;
     }
 
@@ -172,6 +166,11 @@ public record Trophy(
             name = Component.Serializer.fromJson(object.get("name"));
         }
 
+        EffectInfo effects = EffectInfo.NONE;
+        if (object.has("effects")) {
+            effects = EffectInfo.fromJson(GsonHelper.getAsJsonObject(object, "effects"));
+        }
+
         boolean isHidden = false;
         if (object.has("isHidden")) {
             isHidden = GsonHelper.getAsBoolean(object, "isHidden");
@@ -185,8 +184,23 @@ public record Trophy(
                 item,
                 entity,
                 colors,
+                effects,
                 isHidden
         );
+    }
+
+    protected static JsonObject serializeItem(ItemStack item) {
+        JsonObject result = new JsonObject();
+        // noinspection ConstantConditions
+        result.addProperty("item", item.getItem().getRegistryName().toString());
+        if (item.getCount() != 1) {
+            result.addProperty("count", item.getCount());
+        }
+        if (item.hasTag()) {
+            // noinspection ConstantConditions
+            result.addProperty("nbt", item.getTag().toString());
+        }
+        return result;
     }
 
     protected static CompoundTag readNBT(JsonElement element) {
@@ -207,5 +221,4 @@ public record Trophy(
         }
         return defaultValue;
     }
-
 }
