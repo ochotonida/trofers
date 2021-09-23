@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#FFFFFF"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:block.snow.place"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/snow_golem",
+      "cooldown": 9600
+    }
   }
 }

@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#76A045"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.zombie_villager.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/zombie_villager",
+      "cooldown": 9600
+    }
   }
 }

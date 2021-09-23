@@ -21,5 +21,13 @@
   "colors": {
     "base": "#606060",
     "accent": "#32A1A1"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.glow_squid.ambient"
+    },
+    "rewards": {
+      "potionEffect": "{Ambient:0b,Amplifier:0b,CurativeItems:[{Count:1b,id:\"minecraft:milk_bucket\"}],Duration:200,Id:24b,ShowIcon:1b,ShowParticles:1b}"
+    }
   }
 }

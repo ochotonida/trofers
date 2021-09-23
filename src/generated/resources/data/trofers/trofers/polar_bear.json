@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#F2F2F4"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.polar_bear.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/polar_bear",
+      "cooldown": 9600
+    }
   }
 }

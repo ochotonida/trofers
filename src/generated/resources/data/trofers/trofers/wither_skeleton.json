@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#626565"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.wither_skeleton.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/wither_skeleton",
+      "cooldown": 24000
+    }
   }
 }

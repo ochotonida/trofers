@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#6A9087"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.guardian.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/guardian",
+      "cooldown": 9600
+    }
   }
 }

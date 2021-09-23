@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#937155"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.cat.ambient"
+    },
+    "rewards": {
+      "lootTable": "minecraft:gameplay/cat_morning_gift",
+      "cooldown": 9600
+    }
   }
 }

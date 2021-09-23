@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#E59796"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.zoglin.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/zoglin",
+      "cooldown": 9600
+    }
   }
 }

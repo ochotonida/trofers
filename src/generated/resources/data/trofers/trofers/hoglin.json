@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#D5957B"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.hoglin.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/hoglin",
+      "cooldown": 9600
+    }
   }
 }

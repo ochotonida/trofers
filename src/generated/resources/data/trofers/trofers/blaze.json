@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#EDE746"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.blaze.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/blaze",
+      "cooldown": 9600
+    }
   }
 }

@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#BDBDBD"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.skeleton.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/skeleton",
+      "cooldown": 9600
+    }
   }
 }

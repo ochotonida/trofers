@@ -20,5 +20,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#F0F0F0"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.ghast.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/ghast",
+      "cooldown": 9600
+    }
   }
 }

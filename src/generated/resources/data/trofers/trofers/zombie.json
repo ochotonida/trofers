@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#70955C"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.zombie.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/zombie",
+      "cooldown": 9600
+    }
   }
 }

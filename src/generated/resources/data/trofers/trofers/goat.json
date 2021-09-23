@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#C2AB8E"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.goat.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/goat",
+      "cooldown": 9600
+    }
   }
 }

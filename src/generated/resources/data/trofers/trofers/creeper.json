@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#48B23A"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.creeper.primed"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/creeper",
+      "cooldown": 9600
+    }
   }
 }

@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#959C9C"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.evoker.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/evoker",
+      "cooldown": 288000
+    }
   }
 }

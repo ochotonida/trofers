@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#77C264"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.slime.squish"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/slime",
+      "cooldown": 9600
+    }
   }
 }

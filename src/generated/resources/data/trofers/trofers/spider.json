@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#7A6755"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.spider.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/spider",
+      "cooldown": 9600
+    }
   }
 }

@@ -24,5 +24,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#A83735"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.salmon.flop"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/salmon",
+      "cooldown": 9600
+    }
   }
 }

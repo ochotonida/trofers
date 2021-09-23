@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#644B84"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.endermite.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/endermite",
+      "cooldown": 9600
+    }
   }
 }

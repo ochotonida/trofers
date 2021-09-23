@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#929C9C"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.vindicator.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/vindicator",
+      "cooldown": 9600
+    }
   }
 }

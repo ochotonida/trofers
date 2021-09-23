@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#89492C"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.mule.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/mule",
+      "cooldown": 9600
+    }
   }
 }

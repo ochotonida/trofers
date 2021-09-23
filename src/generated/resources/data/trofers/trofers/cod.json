@@ -24,5 +24,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#B6986C"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/cod",
+      "cooldown": 9600
+    }
   }
 }

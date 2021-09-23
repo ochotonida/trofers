@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#E60000"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.parrot.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/parrot",
+      "cooldown": 9600
+    }
   }
 }

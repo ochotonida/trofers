@@ -20,5 +20,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#546D80"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.squid.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/squid",
+      "cooldown": 9600
+    }
   }
 }

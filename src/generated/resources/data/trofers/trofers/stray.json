@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#607576"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.stray.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/stray",
+      "cooldown": 9600
+    }
   }
 }

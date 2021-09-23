@@ -17,5 +17,13 @@
   "colors": {
     "base": "#606060",
     "accent": "#B44040"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.strider.ambient"
+    },
+    "rewards": {
+      "potionEffect": "{Ambient:0b,Amplifier:0b,CurativeItems:[{Count:1b,id:\"minecraft:milk_bucket\"}],Duration:800,Id:12b,ShowIcon:1b,ShowParticles:1b}"
+    }
   }
 }

@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#FF4600"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.magma_cube.squish"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/magma_cube",
+      "cooldown": 9600
+    }
   }
 }

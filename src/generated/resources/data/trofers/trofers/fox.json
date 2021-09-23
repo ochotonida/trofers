@@ -25,5 +25,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#E37C21"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.fox.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/fox",
+      "cooldown": 9600
+    }
   }
 }

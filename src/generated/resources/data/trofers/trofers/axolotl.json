@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#FBC1E2"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.axolotl.idle_air"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/axolotl",
+      "cooldown": 9600
+    }
   }
 }

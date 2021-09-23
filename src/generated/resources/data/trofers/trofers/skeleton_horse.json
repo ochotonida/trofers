@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#D0D0D2"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.skeleton_horse.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/skeleton_horse",
+      "cooldown": 9600
+    }
   }
 }

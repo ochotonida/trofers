@@ -17,5 +17,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#6C5234"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.cow.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/cow",
+      "cooldown": 9600
+    }
   }
 }

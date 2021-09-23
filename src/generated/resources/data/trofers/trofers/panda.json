@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#E4E4E4"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.panda.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/panda",
+      "cooldown": 9600
+    }
   }
 }

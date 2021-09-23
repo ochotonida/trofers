@@ -18,5 +18,14 @@
   "colors": {
     "base": "#606060",
     "accent": "#EFB987"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.piglin_brute.ambient"
+    },
+    "rewards": {
+      "potionEffect": "{Ambient:0b,Amplifier:1b,CurativeItems:[{Count:1b,id:\"minecraft:milk_bucket\"}],Duration:2400,Id:5b,ShowIcon:1b,ShowParticles:1b}",
+      "cooldown": 9600
+    }
   }
 }
