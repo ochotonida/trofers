@@ -41,8 +41,6 @@ public class TrophyBlockEntity extends BlockEntity {
     public static final BlockEntityTicker<TrophyBlockEntity> TICKER = (level, pos, state, blockEntity) -> blockEntity.tick();
 
     @Nullable
-    private Trophy trophy;
-    @Nullable
     private ResourceLocation trophyID;
 
     private int rewardCooldown;
@@ -55,11 +53,10 @@ public class TrophyBlockEntity extends BlockEntity {
 
     @Nullable
     public Trophy getTrophy() {
-        return trophy;
+        return TrophyManager.get(trophyID);
     }
 
     public void setTrophy(@Nullable Trophy trophy) {
-        this.trophy = trophy;
         if (trophy != null) {
             trophyID = trophy.id();
         } else {
@@ -95,6 +92,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     public void restartRewardCooldown() {
+        Trophy trophy = getTrophy();
         if (trophy != null && trophy.effects().rewards().cooldown() > 0) {
             rewardCooldown = trophy.effects().rewards().cooldown();
         } else {
@@ -112,6 +110,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     public boolean applyEffect(Player player, InteractionHand hand) {
+        Trophy trophy = getTrophy();
         if (trophy == null || level == null) {
             return false;
         }
@@ -264,7 +263,6 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     public void loadTrophy(CompoundTag tag) {
-        trophy = null;
         trophyID = null;
 
         if (tag.contains("Trophy", Constants.NBT.TAG_STRING)) {
@@ -274,7 +272,7 @@ public class TrophyBlockEntity extends BlockEntity {
                 Trofers.LOGGER.error(String.format("Failed to load trophy for block entity at %s", getBlockPos()), exception);
             }
 
-            trophy = TrophyManager.get(trophyID);
+            Trophy trophy = TrophyManager.get(trophyID);
             if (trophy == null) {
                 Trofers.LOGGER.error(String.format("Invalid trophy id for block entity at %s: %s", getBlockPos(), trophyID));
             }
