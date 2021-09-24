@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.function.Function;
 
 public class EntityInfo {
 
@@ -56,14 +57,14 @@ public class EntityInfo {
             return;
         }
 
-        entity = type.create(level);
-        if (entity != null) {
-            entity.setId(0);
-            entity.load(nbt);
-            if (!nbt.hasUUID("UUID")) {
-                entity.setUUID(Util.NIL_UUID);
-            }
+        CompoundNBT entityTag = this.nbt.copy();
+        // noinspection ConstantConditions
+        entityTag.putString("id", type.getRegistryName().toString());
+        if (!entityTag.hasUUID("UUID")) {
+            entityTag.putUUID("UUID", Util.NIL_UUID);
         }
+
+        entity = EntityType.loadEntityRecursive(entityTag, level, Function.identity());
     }
 
     public void toNetwork(PacketBuffer buffer) {
