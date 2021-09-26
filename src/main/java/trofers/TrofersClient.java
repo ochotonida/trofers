@@ -7,12 +7,14 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.common.block.entity.TrophyBlockEntity;
 import trofers.common.block.entity.TrophyBlockEntityRenderer;
+import trofers.common.block.entity.TrophyScreen;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.init.ModBlocks;
 import trofers.common.init.ModItems;
@@ -26,6 +28,7 @@ public class TrofersClient {
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::onBlockColorHandler);
         modEventBus.addListener(this::onItemColorHandler);
+        modEventBus.addListener(this::onRegisterClientReloadListeners);
     }
 
     public void onClientSetup(FMLClientSetupEvent event) {
@@ -34,6 +37,10 @@ public class TrofersClient {
         ModBlocks.TROPHIES.forEach(
                 trophy -> ItemBlockRenderTypes.setRenderLayer(trophy.get(), RenderType.cutout())
         );
+    }
+
+    public void onRegisterClientReloadListeners(RegisterClientReloadListenersEvent event) {
+        event.registerReloadListener(new TrophyScreen.SearchTreeManager());
     }
 
     public void onBlockColorHandler(ColorHandlerEvent.Block event) {
