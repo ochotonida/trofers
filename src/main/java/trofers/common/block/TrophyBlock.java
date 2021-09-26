@@ -3,6 +3,7 @@ package trofers.common.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -58,6 +59,18 @@ public abstract class TrophyBlock extends Block {
         Trophy trophy = Trophy.getTrophy(stack);
         if (trophy != null) {
             tooltip.addAll(trophy.tooltip());
+        }
+    }
+
+    @Override
+    public void setPlacedBy(World level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        TileEntity blockEntity = level.getBlockEntity(pos);
+        if (level.getBlockEntity(pos) instanceof TrophyBlockEntity
+                && placer instanceof PlayerEntity
+                && !level.isClientSide()
+                && ((PlayerEntity) placer).isCreative()) {
+            // noinspection ConstantConditions
+            ((TrophyBlockEntity) blockEntity).removeCooldown();
         }
     }
 

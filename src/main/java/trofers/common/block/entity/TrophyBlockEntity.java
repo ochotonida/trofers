@@ -97,6 +97,10 @@ public class TrophyBlockEntity extends TileEntity implements ITickableTileEntity
         }
     }
 
+    public void removeCooldown() {
+        rewardCooldown = 0;
+    }
+
     @Override
     public void tick() {
         if (rewardCooldown > 0) {
