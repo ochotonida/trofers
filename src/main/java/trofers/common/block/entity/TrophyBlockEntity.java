@@ -100,6 +100,10 @@ public class TrophyBlockEntity extends BlockEntity {
         }
     }
 
+    public void removeCooldown() {
+        rewardCooldown = 0;
+    }
+
     public void tick() {
         if (rewardCooldown > 0) {
             rewardCooldown--;

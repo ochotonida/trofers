@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -62,6 +63,16 @@ public abstract class TrophyBlock extends BaseEntityBlock {
         Trophy trophy = Trophy.getTrophy(stack);
         if (trophy != null) {
             tooltip.addAll(trophy.tooltip());
+        }
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        if (level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity
+                && placer instanceof Player player
+                && !level.isClientSide()
+                && player.isCreative()) {
+            blockEntity.removeCooldown();
         }
     }
 
