@@ -3,6 +3,7 @@ package trofers.common.network;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkEvent;
+import trofers.common.block.entity.TrophyScreen;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
 
@@ -37,7 +38,10 @@ public class TrophySyncPacket {
     }
 
     void handle(Supplier<NetworkEvent.Context> context) {
-        context.get().enqueueWork(() -> TrophyManager.setTrophies(trophies));
+        context.get().enqueueWork(() -> {
+            TrophyManager.setTrophies(trophies);
+            TrophyScreen.SearchTreeManager.fillSearchTree();
+        });
         context.get().setPacketHandled(true);
     }
 }

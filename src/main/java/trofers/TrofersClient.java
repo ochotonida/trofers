@@ -1,9 +1,12 @@
 package trofers;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.Item;
+import net.minecraft.resources.IReloadableResourceManager;
+import net.minecraft.resources.IResourceManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,6 +16,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.common.block.entity.TrophyBlockEntity;
 import trofers.common.block.entity.TrophyBlockEntityRenderer;
+import trofers.common.block.entity.TrophyScreen;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.init.ModBlocks;
 import trofers.common.init.ModItems;
@@ -34,6 +38,11 @@ public class TrofersClient {
         ModBlocks.TROPHIES.forEach(
                 trophy -> RenderTypeLookup.setRenderLayer(trophy.get(), RenderType.cutout())
         );
+
+        IResourceManager manager = Minecraft.getInstance().getResourceManager();
+        if (manager instanceof IReloadableResourceManager) {
+            ((IReloadableResourceManager) manager).registerReloadListener(new TrophyScreen.SearchTreeManager());
+        }
     }
 
     public void onBlockColorHandler(ColorHandlerEvent.Block event) {

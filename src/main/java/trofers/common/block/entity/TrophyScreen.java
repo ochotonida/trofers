@@ -5,6 +5,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderHelper;
@@ -12,14 +13,19 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.util.IMutableSearchTree;
 import net.minecraft.client.util.InputMappings;
+import net.minecraft.client.util.SearchTree;
 import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.crash.ReportedException;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.resources.IResourceManager;
+import net.minecraft.resources.IResourceManagerReloadListener;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.client.gui.widget.ExtendedButton;
 import trofers.Trofers;
@@ -29,7 +35,7 @@ import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
 
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TrophyScreen extends Screen {
 
@@ -39,11 +45,16 @@ public class TrophyScreen extends Screen {
     private static final int BUTTON_SPACING = 8;
     private static final int CANCEL_BUTTON_WIDTH = 96;
     private static final int UPPER_BUTTON_SIZE = 20;
+    private static final int SEARCH_BAR_HEIGHT = 12;
+    private static final int SEARCH_BAR_SPACING = 4;
     private static final int MIN_ROWS = 2;
     private static final int MIN_COLUMNS = 2;
     private static final int MAX_COLUMNS = 16;
     private static final float ITEM_SCALE = 2;
 
+    private List<Trophy> trophies;
+
+    private TextFieldWidget searchBox;
     private Button previousButton;
     private Button nextButton;
     private final Set<Button> trophyButtons = new HashSet<>();
@@ -61,6 +72,9 @@ public class TrophyScreen extends Screen {
         super(StringTextComponent.EMPTY);
         this.trophyItem = trophyItem;
         this.blockPos = blockPos;
+        this.currentPage = -1;
+
+        trophies = SearchTreeManager.searchTree.search("");
     }
 
     public static void open(Item item, BlockPos pos) {
@@ -75,10 +89,14 @@ public class TrophyScreen extends Screen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
-        InputMappings.Input mouseKey = InputMappings.getKey(keyCode, scanCode);
+        InputMappings.Input key = InputMappings.getKey(keyCode, scanCode);
         if (super.keyPressed(keyCode, scanCode, modifiers)) {
             return true;
-        } else if (minecraft != null && minecraft.options.keyInventory.isActiveAndMatches(mouseKey)) {
+        } else if (
+                !searchBox.isFocused()
+                && minecraft != null
+                && minecraft.options.keyInventory.isActiveAndMatches(key)
+        ) {
             this.onClose();
             return true;
         }
@@ -87,24 +105,105 @@ public class TrophyScreen extends Screen {
 
     @Override
     protected void init() {
-        int previousRows = rows;
-        int previousColumns = columns;
-
         columns = (width - HORIZONTAL_PADDING * 2 - BUTTON_SIZE) / (BUTTON_SIZE + BUTTON_SPACING) + 1;
         columns = Math.max(columns, MIN_COLUMNS);
         columns = Math.min(columns, MAX_COLUMNS);
 
         columnStart = width / 2 - (BUTTON_SIZE * columns + BUTTON_SPACING * (columns - 1)) / 2;
-        rowStart = VERTICAL_PADDING + UPPER_BUTTON_SIZE + 16;
+        rowStart = VERTICAL_PADDING + UPPER_BUTTON_SIZE + SEARCH_BAR_HEIGHT + SEARCH_BAR_SPACING + 16;
 
         rows = (height - rowStart - VERTICAL_PADDING - BUTTON_SIZE) / (BUTTON_SIZE + BUTTON_SPACING) + 1;
         rows = Math.max(rows, MIN_ROWS);
 
         createUpperButtons();
 
+        setInitialFocus(searchBox);
+
+        if (currentPage == -1) {
+            setCurrentPage(0);
+        }
+    }
+
+    @Override
+    public void resize(Minecraft minecraft, int width, int height) {
+        int previousRows = rows;
+        int previousColumns = columns;
+
+        String search = searchBox.getValue();
+        List<Trophy> trophies = this.trophies;
+
+        super.resize(minecraft, width, height);
+
+        searchBox.setValue(search);
+        this.trophies = trophies;
+
         if (columns == previousColumns && rows == previousRows) {
             setCurrentPage(currentPage);
         } else {
+            setCurrentPage(0);
+        }
+    }
+
+    @Override
+    public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
+        boolean result = super.mouseClicked(pMouseX, pMouseY, pButton);
+        if (getFocused() != searchBox) {
+            searchBox.setFocus(false);
+        }
+        return result;
+    }
+
+    private void createUpperButtons() {
+        previousButton = addButton(new ExtendedButton(
+                width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - UPPER_BUTTON_SIZE,
+                VERTICAL_PADDING,
+                UPPER_BUTTON_SIZE,
+                UPPER_BUTTON_SIZE,
+                new StringTextComponent("<"),
+                button -> setCurrentPage(currentPage - 1)
+        ));
+
+        addButton(new ExtendedButton(
+                width / 2 - CANCEL_BUTTON_WIDTH / 2,
+                VERTICAL_PADDING,
+                CANCEL_BUTTON_WIDTH,
+                UPPER_BUTTON_SIZE,
+                new TranslationTextComponent(String.format("button.%s.cancel", Trofers.MODID)),
+                button -> onClose()
+        ));
+
+        nextButton = addButton(new ExtendedButton(
+                width / 2 + CANCEL_BUTTON_WIDTH / 2 + BUTTON_SPACING,
+                VERTICAL_PADDING,
+                UPPER_BUTTON_SIZE,
+                UPPER_BUTTON_SIZE,
+                new StringTextComponent(">"),
+                button -> setCurrentPage(currentPage + 1)
+        ));
+
+        searchBox = new TextFieldWidget(
+                font,
+                width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - UPPER_BUTTON_SIZE,
+                VERTICAL_PADDING + UPPER_BUTTON_SIZE + SEARCH_BAR_SPACING,
+                CANCEL_BUTTON_WIDTH + UPPER_BUTTON_SIZE * 2 + BUTTON_SPACING * 2,
+                SEARCH_BAR_HEIGHT,
+                new TranslationTextComponent("itemGroup.search")
+        );
+        searchBox.setBordered(true);
+        searchBox.setResponder(this::onEditSearchBox);
+        addButton(searchBox);
+    }
+
+    @Override
+    public void tick() {
+        searchBox.tick();
+    }
+
+    public void onEditSearchBox(String text) {
+        List<Trophy> searchResult = SearchTreeManager.searchTree.search(text);
+
+        if (!searchResult.equals(trophies)) {
+            trophies = searchResult;
             setCurrentPage(0);
         }
     }
@@ -115,12 +214,6 @@ public class TrophyScreen extends Screen {
             buttons.remove(button);
             children.remove(button);
         });
-
-        List<Trophy> trophies = TrophyManager.values()
-                .stream()
-                .filter(trophy -> !trophy.isHidden())
-                .sorted(Comparator.comparing(trophy -> trophy.id().toString()))
-                .collect(Collectors.toCollection(ArrayList::new));
 
         int index = currentPage * columns * rows;
 
@@ -147,34 +240,6 @@ public class TrophyScreen extends Screen {
         if (currentPage > 0) {
             previousButton.active = true;
         }
-    }
-
-    private void createUpperButtons() {
-        addButton(new ExtendedButton(
-                width / 2 - CANCEL_BUTTON_WIDTH / 2,
-                VERTICAL_PADDING,
-                CANCEL_BUTTON_WIDTH,
-                UPPER_BUTTON_SIZE,
-                new TranslationTextComponent(String.format("button.%s.cancel", Trofers.MODID)),
-                button -> onClose()
-        ));
-
-        previousButton = addButton(new ExtendedButton(
-                width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - UPPER_BUTTON_SIZE,
-                VERTICAL_PADDING,
-                UPPER_BUTTON_SIZE,
-                UPPER_BUTTON_SIZE,
-                new StringTextComponent("<"),
-                button -> setCurrentPage(currentPage - 1)
-        ));
-        nextButton = addButton(new ExtendedButton(
-                width / 2 + CANCEL_BUTTON_WIDTH / 2 + BUTTON_SPACING,
-                VERTICAL_PADDING,
-                UPPER_BUTTON_SIZE,
-                UPPER_BUTTON_SIZE,
-                new StringTextComponent(">"),
-                button -> setCurrentPage(currentPage + 1)
-        ));
     }
 
     @Override
@@ -278,6 +343,41 @@ public class TrophyScreen extends Screen {
             RenderSystem.disableAlphaTest();
             RenderSystem.disableRescaleNormal();
             RenderSystem.popMatrix();
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    public static class SearchTreeManager implements IResourceManagerReloadListener {
+
+        @SuppressWarnings("ConstantConditions")
+        private static final IMutableSearchTree<Trophy> searchTree = new SearchTree<>(
+                trophy -> Stream.of(
+                    TextFormatting.stripFormatting((
+                            trophy.name() == null
+                                    ? new TranslationTextComponent("block.trofers.trophy")
+                                    : trophy.name().getString()
+                            ).toString()
+                    ).trim()
+            ),
+                trophy -> Stream.of(trophy.id())
+        );
+
+        @Override
+        public void onResourceManagerReload(IResourceManager manager) {
+            searchTree.refresh();
+            searchTree.refresh();
+        }
+
+        public static void fillSearchTree() {
+            searchTree.clear();
+
+            TrophyManager.values()
+                    .stream()
+                    .filter(trophy -> !trophy.isHidden())
+                    .sorted(Comparator.comparing(trophy -> trophy.id().toString()))
+                    .forEach(searchTree::add);
+
+            searchTree.refresh();
         }
     }
 }
