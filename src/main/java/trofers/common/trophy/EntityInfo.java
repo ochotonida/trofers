@@ -9,11 +9,11 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Util;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 import java.util.function.Function;
 
 public class EntityInfo {
@@ -61,7 +61,7 @@ public class EntityInfo {
         // noinspection ConstantConditions
         entityTag.putString("id", type.getRegistryName().toString());
         if (!entityTag.hasUUID("UUID")) {
-            entityTag.putUUID("UUID", Util.NIL_UUID);
+            entityTag.putUUID("UUID", new UUID(1L, 1L));
         }
 
         entity = EntityType.loadEntityRecursive(entityTag, level, Function.identity());

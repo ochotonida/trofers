@@ -120,7 +120,6 @@ public class Trophies implements IDataProvider {
         colors.keySet().forEach(type -> {
             displayInfos.put(type, new DisplayInfo(0, 0, 0, 0, 0, 0, 0.25F));
             entityData.put(type, new CompoundNBT());
-            entityData.put(type, new CompoundNBT());
             potionEffects.put(type, new CompoundNBT());
             cooldowns.put(type, 20 * 60 * 8);
             // noinspection ConstantConditions
@@ -203,12 +202,14 @@ public class Trophies implements IDataProvider {
 
         entityData.get(EntityType.CAT).putInt("CatType", 0);
         entityData.get(EntityType.CAT).putBoolean("Sitting", true);
+        entityData.get(EntityType.COW).putUUID("UUID", Util.NIL_UUID);
         entityData.get(EntityType.ENDERMAN).put("carriedBlockState", new CompoundNBT());
         entityData.get(EntityType.ENDERMAN).getCompound("carriedBlockState").putString("Name", "minecraft:tnt");
         entityData.get(EntityType.FOX).putString("Type", "red");
         entityData.get(EntityType.FOX).putBoolean("Sleeping", true);
         entityData.get(EntityType.HOGLIN).putBoolean("IsImmuneToZombification", true);
         entityData.get(EntityType.HORSE).putInt("Variant", 1 | 1 << 8);
+        entityData.get(EntityType.IRON_GOLEM).putUUID("UUID", Util.NIL_UUID);
         entityData.get(EntityType.LLAMA).putInt("Variant", 3);
         entityData.get(EntityType.MAGMA_CUBE).putInt("Size", 1);
         entityData.get(EntityType.PANDA).putString("MainGene", "playful");
