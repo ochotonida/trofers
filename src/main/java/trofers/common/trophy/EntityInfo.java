@@ -3,7 +3,6 @@ package trofers.common.trophy;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.Util;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.util.UUID;
 import java.util.function.Function;
 
 public class EntityInfo {
@@ -61,7 +61,7 @@ public class EntityInfo {
         // noinspection ConstantConditions
         entityTag.putString("id", type.getRegistryName().toString());
         if (!entityTag.hasUUID("UUID")) {
-            entityTag.putUUID("UUID", Util.NIL_UUID);
+            entityTag.putUUID("UUID", new UUID(1L, 1L));
         }
 
         entity = EntityType.loadEntityRecursive(entityTag, level, Function.identity());

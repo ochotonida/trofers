@@ -213,6 +213,7 @@ public class Trophies implements DataProvider {
         entityData.get(EntityType.AXOLOTL).putInt("Variant", 0);
         entityData.get(EntityType.CAT).putInt("CatType", 0);
         entityData.get(EntityType.CAT).putBoolean("Sitting", true);
+        entityData.get(EntityType.COW).putUUID("UUID", Util.NIL_UUID);
         entityData.get(EntityType.ENDERMAN).put("carriedBlockState", new CompoundTag());
         entityData.get(EntityType.ENDERMAN).getCompound("carriedBlockState").putString("Name", "minecraft:tnt");
         entityData.get(EntityType.FOX).putString("Type", "red");
@@ -220,6 +221,7 @@ public class Trophies implements DataProvider {
         entityData.get(EntityType.GLOW_SQUID).putInt("DarkTicksRemaining", 1);
         entityData.get(EntityType.HOGLIN).putBoolean("IsImmuneToZombification", true);
         entityData.get(EntityType.HORSE).putInt("Variant", 1 | 1 << 8);
+        entityData.get(EntityType.IRON_GOLEM).putUUID("UUID", Util.NIL_UUID);
         entityData.get(EntityType.LLAMA).putInt("Variant", 3);
         entityData.get(EntityType.MAGMA_CUBE).putInt("Size", 1);
         entityData.get(EntityType.PANDA).putString("MainGene", "playful");
