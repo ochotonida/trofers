@@ -12,7 +12,8 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "minecraft:iron_golem"
+    "type": "minecraft:iron_golem",
+    "nbt": "{UUID:[I;0,0,0,0]}"
   },
   "colors": {
     "base": "#606060",

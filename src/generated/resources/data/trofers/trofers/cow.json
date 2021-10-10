@@ -12,7 +12,8 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "minecraft:cow"
+    "type": "minecraft:cow",
+    "nbt": "{UUID:[I;0,0,0,0]}"
   },
   "colors": {
     "base": "#606060",
