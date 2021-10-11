@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import trofers.Trofers;
+import trofers.data.trophies.Trophies;
 
 @Mod.EventBusSubscriber(modid = Trofers.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {

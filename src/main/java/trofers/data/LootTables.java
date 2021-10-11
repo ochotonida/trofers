@@ -15,10 +15,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Util;
 import net.minecraftforge.fml.RegistryObject;
 import trofers.Trofers;
-import trofers.common.init.ModItems;
-import trofers.common.loot.RandomTrophyChanceCondition;
 import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
+import trofers.common.init.ModItems;
+import trofers.common.loot.RandomTrophyChanceCondition;
+import trofers.data.trophies.Trophies;
 
 import java.util.ArrayList;
 import java.util.HashMap;
