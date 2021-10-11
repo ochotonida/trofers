@@ -24,10 +24,11 @@ import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import trofers.Trofers;
-import trofers.common.init.ModItems;
-import trofers.common.loot.RandomTrophyChanceCondition;
 import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
+import trofers.common.init.ModItems;
+import trofers.common.loot.RandomTrophyChanceCondition;
+import trofers.data.trophies.Trophies;
 
 import java.util.ArrayList;
 import java.util.HashMap;
