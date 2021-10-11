@@ -8,6 +8,7 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.fml.network.PacketDistributor;
 import trofers.Trofers;
@@ -45,13 +46,26 @@ public class TrophyManager extends JsonReloadListener {
     protected void apply(Map<ResourceLocation, JsonElement> resources, IResourceManager resourceManager, IProfiler profilerFiller) {
         Map<ResourceLocation, Trophy> trophies = new HashMap<>();
 
-        resources.forEach((id, element) -> {
+        int amountSkipped = 0;
+        for (Map.Entry<ResourceLocation, JsonElement> entry : resources.entrySet()) {
+            ResourceLocation id = entry.getKey();
+            JsonElement element = entry.getValue();
             try {
-                trophies.put(id, Trophy.fromJson(element, id));
+                if (element.isJsonObject() && !CraftingHelper.processConditions(element.getAsJsonObject(), "conditions")) {
+                    amountSkipped++;
+                } else {
+                    trophies.put(id, Trophy.fromJson(element, id));
+                }
+
             } catch (Exception exception) {
                 Trofers.LOGGER.error("Couldn't parse trophy {}", id, exception);
             }
-        });
+        }
+
+        if (amountSkipped > 0) {
+            Trofers.LOGGER.info("Skipping loading {} trophies as their conditions were not met", amountSkipped);
+        }
+
         setTrophies(trophies);
     }
 

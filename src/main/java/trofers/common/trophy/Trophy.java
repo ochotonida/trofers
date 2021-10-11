@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocationException;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponent;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
@@ -181,9 +182,24 @@ public final class Trophy {
         );
     }
 
-    public JsonObject toJson() {
+    public JsonObject toJson(ICondition... conditions) {
         JsonObject result = new JsonObject();
 
+        JsonArray array = new JsonArray();
+        for (ICondition condition : conditions) {
+            array.add(CraftingHelper.serialize(condition));
+        }
+
+        result.add("conditions", array);
+
+        return toJson(result);
+    }
+
+    public JsonObject toJson() {
+        return toJson(new JsonObject());
+    }
+
+    public JsonObject toJson(JsonObject result) {
         result.add("name", TextComponent.Serializer.toJsonTree(name()));
 
         if (!tooltip().isEmpty()) {
@@ -290,7 +306,7 @@ public final class Trophy {
         );
     }
 
-    protected static JsonObject serializeItem(ItemStack item) {
+    static JsonObject serializeItem(ItemStack item) {
         JsonObject result = new JsonObject();
         // noinspection ConstantConditions
         result.addProperty("item", item.getItem().getRegistryName().toString());
@@ -304,7 +320,7 @@ public final class Trophy {
         return result;
     }
 
-    protected static CompoundNBT readNBT(JsonElement element) {
+    static CompoundNBT readNBT(JsonElement element) {
         try {
             if (element.isJsonObject())
                 return JsonToNBT.parseTag(TrophyManager.GSON.toJson(element));
@@ -316,7 +332,7 @@ public final class Trophy {
         }
     }
 
-    protected static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
+    static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
         if (object.has(memberName)) {
             return JSONUtils.getAsFloat(object, memberName);
         }
