@@ -3,10 +3,12 @@ package trofers.data.trophies;
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
 
@@ -50,7 +52,15 @@ public class Trophies implements DataProvider {
             } else {
                 Path path = createPath(outputFolder, trophy);
                 try {
-                    DataProvider.save(GSON, cache, trophy.toJson(), path);
+                    JsonObject object;
+                    String s = trophy.id().getPath();
+                    if (s.contains("/")) {
+                        String modid = s.substring(0, s.indexOf('/'));
+                        object = trophy.toJson(new ModLoadedCondition(modid));
+                    } else {
+                        object = trophy.toJson();
+                    }
+                    DataProvider.save(GSON, cache, object, path);
                 } catch (IOException ioexception) {
                     Trofers.LOGGER.error("Couldn't save trophy {}", path, ioexception);
                 }

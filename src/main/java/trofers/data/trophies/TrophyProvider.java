@@ -36,10 +36,12 @@ public abstract class TrophyProvider {
         Map<EntityType<?>, Integer> cooldowns = getCooldowns();
         Map<EntityType<?>, ResourceLocation> lootTables = getLootTables();
 
+        String folder = Trofers.MODID.equals(getModId()) ? "" : getModId() + "/";
+
         // noinspection ConstantConditions
         return getEntities().stream().map(
                 type -> new Trophy(
-                        new ResourceLocation(Trofers.MODID, type.getRegistryName().getPath()),
+                        new ResourceLocation(Trofers.MODID, folder + type.getRegistryName().getPath()),
                         createTrophyName(type, colors.get(type)),
                         Collections.emptyList(),
                         displayInfos.get(type),
@@ -68,6 +70,10 @@ public abstract class TrophyProvider {
                 ),
                 Style.EMPTY.withColor(TextColor.fromRgb(color))
         );
+    }
+
+    protected String getModId() {
+        return Trofers.MODID;
     }
 
     protected Map<EntityType<?>, DisplayInfo> getDisplayInfos() {
