@@ -13,11 +13,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.common.trophy.*;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public abstract class TrophyProvider {
 
@@ -38,28 +34,29 @@ public abstract class TrophyProvider {
 
         String folder = Trofers.MODID.equals(getModId()) ? "" : getModId() + "/";
 
-        // noinspection ConstantConditions
-        return getEntities().stream().map(
-                type -> new Trophy(
-                        new ResourceLocation(Trofers.MODID, folder + type.getRegistryName().getPath()),
-                        createTrophyName(type, colors.get(type)),
-                        Collections.emptyList(),
-                        displayInfos.get(type),
-                        Animation.STATIC,
-                        ItemStack.EMPTY,
-                        new EntityInfo(type, entityData.get(type), false),
-                        new ColorInfo(0x606060, colors.get(type)),
-                        new EffectInfo(
-                                new EffectInfo.SoundInfo(soundEvents.get(type), 1, 1),
-                                new EffectInfo.RewardInfo(
-                                        potionEffects.get(type).isEmpty() ? lootTables.get(type) : null,
-                                        potionEffects.get(type),
-                                        cooldowns.get(type)
-                                )
-                        ),
-                        false
-                )
-        ).collect(Collectors.toList());
+        List<Trophy> trophies = new ArrayList<>();
+
+        for (EntityType<?> type : getEntities()) {
+            // noinspection ConstantConditions
+            ResourceLocation id = new ResourceLocation(Trofers.MODID, folder + type.getRegistryName().getPath());
+            ITextComponent name = createTrophyName(type, colors.get(type));
+            List<ITextComponent> tooltip = Collections.emptyList();
+            DisplayInfo displayInfo = displayInfos.get(type);
+            Animation animation = Animation.STATIC;
+            ItemStack item = ItemStack.EMPTY;
+            EntityInfo entityInfo = new EntityInfo(type, entityData.get(type), false);
+            ColorInfo colorInfo = new ColorInfo(0x606060, colors.get(type));
+            CompoundNBT potionEffect = potionEffects.get(type);
+            ResourceLocation lootTable = lootTables.get(type);
+            EffectInfo effectInfo = new EffectInfo(
+                    new EffectInfo.SoundInfo(soundEvents.get(type), 1, 1),
+                    new EffectInfo.RewardInfo(lootTable, potionEffect, cooldowns.get(type))
+            );
+
+            trophies.add(new Trophy(id, name, tooltip, displayInfo, animation, item, entityInfo, colorInfo, effectInfo, false));
+        }
+
+        return trophies;
     }
 
     private ITextComponent createTrophyName(EntityType<?> entityType, int color) {
@@ -72,7 +69,7 @@ public abstract class TrophyProvider {
         );
     }
 
-    protected String getModId() {
+    public String getModId() {
         return Trofers.MODID;
     }
 
@@ -100,8 +97,7 @@ public abstract class TrophyProvider {
         Map<EntityType<?>, SoundEvent> result = new HashMap<>();
 
         getEntities().forEach(type -> {
-            // noinspection ConstantConditions
-            ResourceLocation soundLocation = new ResourceLocation(type.getRegistryName().getNamespace(), String.format("entity.%s.ambient", type.getRegistryName().getPath()));
+            ResourceLocation soundLocation = getSoundEvent(type);
             if (ForgeRegistries.SOUND_EVENTS.containsKey(soundLocation)) {
                 result.put(type, ForgeRegistries.SOUND_EVENTS.getValue(soundLocation));
             } else {
@@ -110,6 +106,11 @@ public abstract class TrophyProvider {
         });
 
         return result;
+    }
+
+    protected ResourceLocation getSoundEvent(EntityType<?> type) {
+        // noinspection ConstantConditions
+        return new ResourceLocation(type.getRegistryName().getNamespace(), String.format("entity.%s.ambient", type.getRegistryName().getPath()));
     }
 
     protected Map<EntityType<?>, CompoundNBT> getPotionEffects() {
@@ -135,10 +136,12 @@ public abstract class TrophyProvider {
     protected Map<EntityType<?>, ResourceLocation> getLootTables() {
         Map<EntityType<?>, ResourceLocation> result = new HashMap<>();
 
-        // noinspection ConstantConditions
-        getEntities().forEach(
-                type -> result.put(type, new ResourceLocation(Trofers.MODID, String.format("trophies/%s", type.getRegistryName().getPath())))
-        );
+        getPotionEffects().forEach((type, compoundTag) -> {
+            if (compoundTag.isEmpty()) {
+                // noinspection ConstantConditions
+                result.put(type, new ResourceLocation(Trofers.MODID, String.format("trophies/%s", type.getRegistryName().getPath())));
+            }
+        });
 
         return result;
     }

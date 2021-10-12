@@ -1,9 +1,10 @@
-package trofers.data.trophies;
+package trofers.data;
 
 import com.google.common.collect.Sets;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
@@ -11,19 +12,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
+import trofers.data.trophies.TrophyProvider;
+import trofers.data.trophies.VanillaTrophies;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Consumer;
 
 public class Trophies implements IDataProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 
-    public final Map<ResourceLocation, Trophy> trophies = new HashMap<>();
+    public final Set<Pair<Trophy, String>> trophies = new HashSet<>();
     private final DataGenerator generator;
 
     public Trophies(DataGenerator dataGenerator) {
@@ -33,11 +34,17 @@ public class Trophies implements IDataProvider {
     protected void addTrophies() {
         trophies.clear();
 
-        new VanillaTrophies().createTrophies().forEach(this::addTrophy);
+        addTrophies(new VanillaTrophies());
     }
 
-    private void addTrophy(Trophy trophy) {
-        trophies.put(trophy.id(), trophy);
+    private void addTrophies(TrophyProvider trophyProvider) {
+        for (Trophy trophy : trophyProvider.createTrophies()) {
+            addTrophy(trophy, trophyProvider.getModId());
+        }
+    }
+
+    private void addTrophy(Trophy trophy, String modid) {
+        trophies.add(Pair.of(trophy, modid));
     }
 
     @Override
@@ -45,30 +52,29 @@ public class Trophies implements IDataProvider {
         addTrophies();
 
         Path outputFolder = generator.getOutputFolder();
-        Set<ResourceLocation> set = Sets.newHashSet();
-        Consumer<Trophy> consumer = (trophy) -> {
-            if (!set.add(trophy.id())) {
+        Set<ResourceLocation> resourceLocations = Sets.newHashSet();
+
+        for (Pair<Trophy, String> pair : trophies) {
+            Trophy trophy = pair.getFirst();
+            String modid = pair.getSecond();
+
+            if (!resourceLocations.add(trophy.id())) {
                 throw new IllegalStateException("Duplicate trophy " + trophy.id());
             } else {
                 Path path = createPath(outputFolder, trophy);
                 try {
                     JsonObject object;
-                    String s = trophy.id().getPath();
-                    if (s.contains("/")) {
-                        String modid = s.substring(0, s.indexOf('/'));
-                        object = trophy.toJson(new ModLoadedCondition(modid));
-                    } else {
+                    if (Trofers.MODID.equals(modid)) {
                         object = trophy.toJson();
+                    } else {
+                        object = trophy.toJson(new ModLoadedCondition(modid));
                     }
                     IDataProvider.save(GSON, cache, object, path);
                 } catch (IOException ioexception) {
                     Trofers.LOGGER.error("Couldn't save trophy {}", path, ioexception);
                 }
-
             }
-        };
-
-        trophies.forEach((resourceLocation, trophy) -> consumer.accept(trophy));
+        }
     }
 
     private static Path createPath(Path path, Trophy trophy) {
