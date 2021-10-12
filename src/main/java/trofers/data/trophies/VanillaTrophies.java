@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class VanillaTrophies extends TrophyProvider {
+public class VanillaTrophies extends TrophyBuilder {
 
     private static final List<EntityType<?>> ENTITIES = Arrays.asList(
             EntityType.BAT,

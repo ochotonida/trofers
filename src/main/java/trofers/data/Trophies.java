@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
-import trofers.data.trophies.TrophyProvider;
+import trofers.data.trophies.TrophyBuilder;
 import trofers.data.trophies.VanillaTrophies;
 
 import java.io.IOException;
@@ -37,9 +37,9 @@ public class Trophies implements IDataProvider {
         addTrophies(new VanillaTrophies());
     }
 
-    private void addTrophies(TrophyProvider trophyProvider) {
-        for (Trophy trophy : trophyProvider.createTrophies()) {
-            addTrophy(trophy, trophyProvider.getModId());
+    private void addTrophies(TrophyBuilder trophyBuilder) {
+        for (Trophy trophy : trophyBuilder.createTrophies()) {
+            addTrophy(trophy, trophyBuilder.getModId());
         }
     }
 
