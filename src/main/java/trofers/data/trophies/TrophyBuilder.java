@@ -5,6 +5,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.*;
@@ -121,6 +123,14 @@ public abstract class TrophyBuilder {
         );
 
         return result;
+    }
+
+    protected CompoundNBT createEffect(Effect effect, int time, int amplifier) {
+        return new EffectInstance(effect, time, amplifier).save(new CompoundNBT());
+    }
+
+    protected CompoundNBT createEffect(Effect effect, int time) {
+        return createEffect(effect, time, 0);
     }
 
     protected Map<EntityType<?>, Integer> getCooldowns() {

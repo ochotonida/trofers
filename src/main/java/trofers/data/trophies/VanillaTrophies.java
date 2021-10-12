@@ -3,7 +3,6 @@ package trofers.data.trophies;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -263,21 +262,21 @@ public class VanillaTrophies extends TrophyBuilder {
     public Map<EntityType<?>, CompoundNBT> getPotionEffects() {
         Map<EntityType<?>, CompoundNBT> result = super.getPotionEffects();
 
-        result.put(EntityType.BAT, new EffectInstance(Effects.NIGHT_VISION, 20 * 40).save(new CompoundNBT()));
-        result.put(EntityType.CHICKEN, new EffectInstance(Effects.SLOW_FALLING, 20 * 5).save(new CompoundNBT()));
-        result.put(EntityType.DOLPHIN, new EffectInstance(Effects.DOLPHINS_GRACE, 20 * 40).save(new CompoundNBT()));
-        result.put(EntityType.DROWNED, new EffectInstance(Effects.WATER_BREATHING, 20 * 40).save(new CompoundNBT()));
-        result.put(EntityType.ELDER_GUARDIAN, new EffectInstance(Effects.DIG_SPEED, 20 * 40, 2).save(new CompoundNBT()));
-        result.put(EntityType.IRON_GOLEM, new EffectInstance(Effects.ABSORPTION, 20 * 60 * 2, 2).save(new CompoundNBT()));
-        result.put(EntityType.OCELOT, new EffectInstance(Effects.MOVEMENT_SPEED, 20 * 40, 3).save(new CompoundNBT()));
-        result.put(EntityType.PIGLIN_BRUTE, new EffectInstance(Effects.DAMAGE_BOOST, 20 * 60 * 2, 1).save(new CompoundNBT()));
-        result.put(EntityType.RABBIT, new EffectInstance(Effects.JUMP, 20 * 40, 3).save(new CompoundNBT()));
-        result.put(EntityType.SHULKER, new EffectInstance(Effects.LEVITATION, 20 * 5).save(new CompoundNBT()));
-        result.put(EntityType.STRIDER, new EffectInstance(Effects.FIRE_RESISTANCE, 20 * 40).save(new CompoundNBT()));
-        result.put(EntityType.TURTLE, new EffectInstance(Effects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3).save(new CompoundNBT()));
-        result.put(EntityType.VILLAGER, new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 20 * 60 * 2, 4).save(new CompoundNBT()));
-        result.put(EntityType.WANDERING_TRADER, new EffectInstance(Effects.INVISIBILITY, 20 * 40).save(new CompoundNBT()));
-        result.put(EntityType.WITCH, new EffectInstance(Effects.REGENERATION, 20 * 30).save(new CompoundNBT()));
+        result.put(EntityType.BAT, createEffect(Effects.NIGHT_VISION, 20 * 40));
+        result.put(EntityType.CHICKEN, createEffect(Effects.SLOW_FALLING, 20 * 5));
+        result.put(EntityType.DOLPHIN, createEffect(Effects.DOLPHINS_GRACE, 20 * 40));
+        result.put(EntityType.DROWNED, createEffect(Effects.WATER_BREATHING, 20 * 40));
+        result.put(EntityType.ELDER_GUARDIAN, createEffect(Effects.DIG_SPEED, 20 * 40, 2));
+        result.put(EntityType.IRON_GOLEM, createEffect(Effects.ABSORPTION, 20 * 60 * 2, 2));
+        result.put(EntityType.OCELOT, createEffect(Effects.MOVEMENT_SPEED, 20 * 40, 3));
+        result.put(EntityType.PIGLIN_BRUTE, createEffect(Effects.DAMAGE_BOOST, 20 * 60 * 2, 1));
+        result.put(EntityType.RABBIT, createEffect(Effects.JUMP, 20 * 40, 3));
+        result.put(EntityType.SHULKER, createEffect(Effects.LEVITATION, 20 * 5));
+        result.put(EntityType.STRIDER, createEffect(Effects.FIRE_RESISTANCE, 20 * 40));
+        result.put(EntityType.TURTLE, createEffect(Effects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3));
+        result.put(EntityType.VILLAGER, createEffect(Effects.HERO_OF_THE_VILLAGE, 20 * 60 * 2, 4));
+        result.put(EntityType.WANDERING_TRADER, createEffect(Effects.INVISIBILITY, 20 * 40));
+        result.put(EntityType.WITCH, createEffect(Effects.REGENERATION, 20 * 30));
 
         return result;
     }
