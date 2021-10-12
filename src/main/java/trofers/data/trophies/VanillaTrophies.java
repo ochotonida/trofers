@@ -5,7 +5,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
@@ -272,22 +271,22 @@ public class VanillaTrophies extends TrophyBuilder {
     public Map<EntityType<?>, CompoundTag> getPotionEffects() {
         Map<EntityType<?>, CompoundTag> result = super.getPotionEffects();
 
-        result.put(EntityType.BAT, new MobEffectInstance(MobEffects.NIGHT_VISION, 20 * 40).save(new CompoundTag()));
-        result.put(EntityType.CHICKEN, new MobEffectInstance(MobEffects.SLOW_FALLING, 20 * 5).save(new CompoundTag()));
-        result.put(EntityType.DOLPHIN, new MobEffectInstance(MobEffects.DOLPHINS_GRACE, 20 * 40).save(new CompoundTag()));
-        result.put(EntityType.DROWNED, new MobEffectInstance(MobEffects.WATER_BREATHING, 20 * 40).save(new CompoundTag()));
-        result.put(EntityType.ELDER_GUARDIAN, new MobEffectInstance(MobEffects.DIG_SPEED, 20 * 40, 2).save(new CompoundTag()));
-        result.put(EntityType.GLOW_SQUID, new MobEffectInstance(MobEffects.GLOWING, 20 * 10).save(new CompoundTag()));
-        result.put(EntityType.IRON_GOLEM, new MobEffectInstance(MobEffects.ABSORPTION, 20 * 60 * 2, 2).save(new CompoundTag()));
-        result.put(EntityType.OCELOT, new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20 * 40, 3).save(new CompoundTag()));
-        result.put(EntityType.PIGLIN_BRUTE, new MobEffectInstance(MobEffects.DAMAGE_BOOST, 20 * 60 * 2, 1).save(new CompoundTag()));
-        result.put(EntityType.RABBIT, new MobEffectInstance(MobEffects.JUMP, 20 * 40, 3).save(new CompoundTag()));
-        result.put(EntityType.SHULKER, new MobEffectInstance(MobEffects.LEVITATION, 20 * 5).save(new CompoundTag()));
-        result.put(EntityType.STRIDER, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 20 * 40).save(new CompoundTag()));
-        result.put(EntityType.TURTLE, new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3).save(new CompoundTag()));
-        result.put(EntityType.VILLAGER, new MobEffectInstance(MobEffects.HERO_OF_THE_VILLAGE, 20 * 60 * 2, 4).save(new CompoundTag()));
-        result.put(EntityType.WANDERING_TRADER, new MobEffectInstance(MobEffects.INVISIBILITY, 20 * 40).save(new CompoundTag()));
-        result.put(EntityType.WITCH, new MobEffectInstance(MobEffects.REGENERATION, 20 * 30).save(new CompoundTag()));
+        result.put(EntityType.BAT, createEffect(MobEffects.NIGHT_VISION, 20 * 40));
+        result.put(EntityType.CHICKEN, createEffect(MobEffects.SLOW_FALLING, 20 * 5));
+        result.put(EntityType.DOLPHIN, createEffect(MobEffects.DOLPHINS_GRACE, 20 * 40));
+        result.put(EntityType.DROWNED, createEffect(MobEffects.WATER_BREATHING, 20 * 40));
+        result.put(EntityType.ELDER_GUARDIAN, createEffect(MobEffects.DIG_SPEED, 20 * 40, 2));
+        result.put(EntityType.GLOW_SQUID, createEffect(MobEffects.GLOWING, 20 * 10));
+        result.put(EntityType.IRON_GOLEM, createEffect(MobEffects.ABSORPTION, 20 * 60 * 2, 2));
+        result.put(EntityType.OCELOT, createEffect(MobEffects.MOVEMENT_SPEED, 20 * 40, 3));
+        result.put(EntityType.PIGLIN_BRUTE, createEffect(MobEffects.DAMAGE_BOOST, 20 * 60 * 2, 1));
+        result.put(EntityType.RABBIT, createEffect(MobEffects.JUMP, 20 * 40, 3));
+        result.put(EntityType.SHULKER, createEffect(MobEffects.LEVITATION, 20 * 5));
+        result.put(EntityType.STRIDER, createEffect(MobEffects.FIRE_RESISTANCE, 20 * 40));
+        result.put(EntityType.TURTLE, createEffect(MobEffects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3));
+        result.put(EntityType.VILLAGER, createEffect(MobEffects.HERO_OF_THE_VILLAGE, 20 * 60 * 2, 4));
+        result.put(EntityType.WANDERING_TRADER, createEffect(MobEffects.INVISIBILITY, 20 * 40));
+        result.put(EntityType.WITCH, createEffect(MobEffects.REGENERATION, 20 * 30));
 
         return result;
     }

@@ -5,6 +5,8 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -121,6 +123,14 @@ public abstract class TrophyBuilder {
         );
 
         return result;
+    }
+
+    protected CompoundTag createEffect(MobEffect effect, int time, int amplifier) {
+        return new MobEffectInstance(effect, time, amplifier).save(new CompoundTag());
+    }
+
+    protected CompoundTag createEffect(MobEffect effect, int time) {
+        return createEffect(effect, time, 0);
     }
 
     protected Map<EntityType<?>, Integer> getCooldowns() {
