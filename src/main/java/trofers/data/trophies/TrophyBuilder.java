@@ -15,7 +15,7 @@ import trofers.common.trophy.*;
 
 import java.util.*;
 
-public abstract class TrophyProvider {
+public abstract class TrophyBuilder {
 
     protected Map<EntityType<?>, Integer> getColors() {
         return new HashMap<>();
