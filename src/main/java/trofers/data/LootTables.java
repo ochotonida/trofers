@@ -28,7 +28,7 @@ import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
 import trofers.common.init.ModItems;
 import trofers.common.loot.RandomTrophyChanceCondition;
-import trofers.data.trophies.Trophies;
+import trofers.common.trophy.Trophy;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,10 +78,14 @@ public class LootTables extends LootTableProvider {
     }
 
     private void addEntityLootTables() {
-        trophies.trophies.forEach((id, trophy) -> {
+        for (Pair<Trophy, String> pair : trophies.trophies) {
+            Trophy trophy = pair.getFirst();
+            String modid = pair.getSecond();
+
             // noinspection ConstantConditions
             String entityName = trophy.entity().getType().getRegistryName().getPath();
-            ResourceLocation location = new ResourceLocation(Trofers.MODID, "inject/entities/" + entityName);
+            modid = Trofers.MODID.equals(modid) ? "" : modid + "/";
+            ResourceLocation location = new ResourceLocation(Trofers.MODID, "inject/entities/" + modid + entityName);
             CompoundTag nbt = new CompoundTag();
             nbt.put("BlockEntityTag", new CompoundTag());
             nbt.getCompound("BlockEntityTag").putString("Trophy", String.format("%s:%s", Trofers.MODID, entityName));
@@ -96,7 +100,7 @@ public class LootTables extends LootTableProvider {
                             .apply(SetNbtFunction.setTag(nbt))
             );
             lootTables.add(Pair.of(() -> builder -> builder.accept(location, lootTable), LootContextParamSets.ENTITY));
-        });
+        }
     }
 
     private void addTrophyLootTables() {
