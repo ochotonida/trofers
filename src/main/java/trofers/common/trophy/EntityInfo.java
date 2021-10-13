@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+import trofers.common.util.JsonHelper;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -101,7 +102,7 @@ public class EntityInfo {
         CompoundTag nbt = new CompoundTag();
         if (object.has("nbt")) {
             JsonElement nbtElement = object.get("nbt");
-            nbt = Trophy.readNBT(nbtElement);
+            nbt = JsonHelper.deserializeNBT(nbtElement);
         }
         boolean isAnimated = false;
         if (object.has("animated")) {
