@@ -1,6 +1,5 @@
 package trofers.data;
 
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -27,22 +26,25 @@ public class LootModifiers extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
-        HashMap<EntityType<?>, ResourceLocation> trophyMap = new HashMap<>();
+        for (String modid : trophies.trophies.keySet()) {
+            HashMap<EntityType<?>, ResourceLocation> trophyMap = new HashMap<>();
 
-        for (Pair<Trophy, String> pair : trophies.trophies) {
-            Trophy trophy = pair.getFirst();
-            // noinspection ConstantConditions
-            EntityType<?> entityType = trophy.entity().getType();
-            trophyMap.put(entityType, trophy.id());
+            for (Trophy trophy : trophies.trophies.get(modid)) {
+                // noinspection ConstantConditions
+                EntityType<?> entityType = trophy.entity().getType();
+                trophyMap.put(entityType, trophy.id());
+            }
+
+            LootItemCondition[] conditions = new LootItemCondition[]{
+                    LootItemKilledByPlayerCondition.killedByPlayer().build(),
+                    RandomTrophyChanceCondition.randomTrophyChance().build()
+            };
+
+            AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModItems.SMALL_PLATE.get(), trophyMap);
+
+            String name = Trofers.MODID.equals(modid) ? "vanilla" : modid;
+            name = name + "_trophies";
+            add(name, ModLootModifiers.ADD_ENTITY_TROPHY.get(), modifier);
         }
-
-        LootItemCondition[] conditions = new LootItemCondition[]{
-                LootItemKilledByPlayerCondition.killedByPlayer().build(),
-                RandomTrophyChanceCondition.randomTrophyChance().build()
-        };
-
-        AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModItems.SMALL_PLATE.get(), trophyMap);
-
-        add("add_entity_trophy", ModLootModifiers.ADD_ENTITY_TROPHY.get(), modifier);
     }
 }
