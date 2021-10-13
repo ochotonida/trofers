@@ -32,12 +32,12 @@ public class Trofers {
         ModItems.REGISTRY.register(modEventBus);
         ModBlocks.REGISTRY.register(modEventBus);
         ModBlockEntityTypes.REGISTRY.register(modEventBus);
+        ModLootModifiers.REGISTRY.register(modEventBus);
 
         modEventBus.addListener(this::onCommonSetup);
         modEventBus.addGenericListener(GlobalLootModifierSerializer.class, ModLootConditions::register);
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
-        MinecraftForge.EVENT_BUS.addListener(ModLootTables::onLootTableLoad);
         MinecraftForge.EVENT_BUS.addListener(TrophyManager::onDataPackReload);
     }
 

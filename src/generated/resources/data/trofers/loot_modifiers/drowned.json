@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "minecraft:entity_properties",
+      "predicate": {
+        "type": "minecraft:drowned"
+      },
+      "entity": "this"
+    },
+    {
+      "condition": "trofers:random_trophy_chance"
+    }
+  ],
+  "item": {
+    "item": "trofers:small_plate",
+    "nbt": "{BlockEntityTag:{Trophy:\"trofers:drowned\"}}"
+  },
+  "type": "trofers:add_item"
+}
