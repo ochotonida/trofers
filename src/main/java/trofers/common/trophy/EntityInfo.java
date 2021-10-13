@@ -11,6 +11,7 @@ import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
+import trofers.common.util.JsonHelper;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -101,7 +102,7 @@ public class EntityInfo {
         CompoundNBT nbt = new CompoundNBT();
         if (object.has("nbt")) {
             JsonElement nbtElement = object.get("nbt");
-            nbt = Trophy.readNBT(nbtElement);
+            nbt = JsonHelper.deserializeNBT(nbtElement);
         }
         boolean isAnimated = false;
         if (object.has("animated")) {

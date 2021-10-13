@@ -3,11 +3,8 @@ package trofers.common.trophy;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -17,6 +14,7 @@ import net.minecraft.util.text.TextComponent;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.util.Constants;
+import trofers.common.util.JsonHelper;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -219,7 +217,7 @@ public final class Trophy {
         }
 
         if (!item().isEmpty()) {
-            result.add("item", serializeItem(item()));
+            result.add("item", JsonHelper.serializeItem(item()));
         }
 
         if (entity() != null) {
@@ -251,7 +249,7 @@ public final class Trophy {
 
         ItemStack item = ItemStack.EMPTY;
         if (object.has("item")) {
-            item = CraftingHelper.getItemStack(JSONUtils.getAsJsonObject(object, "item"), true);
+            item = JsonHelper.deserializeItem(object, "item");
         }
 
         Animation animation = Animation.STATIC;
@@ -304,32 +302,6 @@ public final class Trophy {
                 effects,
                 isHidden
         );
-    }
-
-    static JsonObject serializeItem(ItemStack item) {
-        JsonObject result = new JsonObject();
-        // noinspection ConstantConditions
-        result.addProperty("item", item.getItem().getRegistryName().toString());
-        if (item.getCount() != 1) {
-            result.addProperty("count", item.getCount());
-        }
-        if (item.hasTag()) {
-            // noinspection ConstantConditions
-            result.addProperty("nbt", item.getTag().toString());
-        }
-        return result;
-    }
-
-    static CompoundNBT readNBT(JsonElement element) {
-        try {
-            if (element.isJsonObject())
-                return JsonToNBT.parseTag(TrophyManager.GSON.toJson(element));
-            else {
-                return JsonToNBT.parseTag(JSONUtils.convertToString(element, "nbt"));
-            }
-        } catch (CommandSyntaxException exception) {
-            throw new JsonSyntaxException(String.format("Invalid NBT Entry: %s", exception));
-        }
     }
 
     static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
