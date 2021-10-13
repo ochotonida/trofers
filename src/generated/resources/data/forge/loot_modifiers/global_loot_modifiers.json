@@ -1,6 +1,7 @@
 {
   "replace": false,
   "entries": [
-    "trofers:add_entity_trophy"
+    "trofers:vanilla_trophies",
+    "trofers:alexsmobs_trophies"
   ]
 }
