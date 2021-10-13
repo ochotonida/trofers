@@ -5,12 +5,12 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
-import trofers.common.loot.AddItemLootModifier;
+import trofers.common.loot.AddEntityTrophy;
 
 public class ModLootModifiers {
 
     public static final DeferredRegister<GlobalLootModifierSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.LOOT_MODIFIER_SERIALIZERS, Trofers.MODID);
 
-    public static final RegistryObject<GlobalLootModifierSerializer<AddItemLootModifier>> ADD_ITEM = REGISTRY.register("add_item", AddItemLootModifier.Serializer::new);
+    public static final RegistryObject<GlobalLootModifierSerializer<AddEntityTrophy>> ADD_ENTITY_TROPHY = REGISTRY.register("add_entity_trophy", AddEntityTrophy.Serializer::new);
 
 }

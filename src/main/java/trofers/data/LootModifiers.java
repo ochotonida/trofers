@@ -1,22 +1,20 @@
 package trofers.data;
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.advancements.criterion.EntityPredicate;
-import net.minecraft.advancements.criterion.EntityTypePredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootContext;
-import net.minecraft.loot.conditions.EntityHasProperty;
 import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.loot.conditions.KilledByPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 import trofers.Trofers;
 import trofers.common.init.ModItems;
 import trofers.common.init.ModLootModifiers;
-import trofers.common.loot.AddItemLootModifier;
+import trofers.common.loot.AddEntityTrophy;
 import trofers.common.loot.RandomTrophyChanceCondition;
 import trofers.common.trophy.Trophy;
+
+import java.util.HashMap;
 
 public class LootModifiers extends GlobalLootModifierProvider {
 
@@ -29,27 +27,22 @@ public class LootModifiers extends GlobalLootModifierProvider {
 
     @Override
     protected void start() {
+        HashMap<EntityType<?>, ResourceLocation> trophyMap = new HashMap<>();
+
         for (Pair<Trophy, String> pair : trophies.trophies) {
-            String modid = pair.getSecond();
-
+            Trophy trophy = pair.getFirst();
             // noinspection ConstantConditions
-            EntityType<?> entityType = pair.getFirst().entity().getType();
-            // noinspection ConstantConditions
-            String entityName = entityType.getRegistryName().getPath();
-            String path = (Trofers.MODID.equals(modid) ? "" : modid + "/") + entityName;
-
-            ItemStack item = new ItemStack(ModItems.SMALL_PLATE.get());
-            item.getOrCreateTagElement("BlockEntityTag").putString("Trophy", String.format("%s:%s", Trofers.MODID, path));
-
-            ILootCondition[] conditions = new ILootCondition[]{
-                    KilledByPlayer.killedByPlayer().build(),
-                    EntityHasProperty.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entityType))).build(),
-                    RandomTrophyChanceCondition.randomTrophyChance().build()
-            };
-
-            AddItemLootModifier modifier = new AddItemLootModifier(conditions, item);
-
-            add(path, ModLootModifiers.ADD_ITEM.get(), modifier);
+            EntityType<?> entityType = trophy.entity().getType();
+            trophyMap.put(entityType, trophy.id());
         }
+
+        ILootCondition[] conditions = new ILootCondition[]{
+                KilledByPlayer.killedByPlayer().build(),
+                RandomTrophyChanceCondition.randomTrophyChance().build()
+        };
+
+        AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModItems.SMALL_PLATE.get(), trophyMap);
+
+        add("add_entity_trophy", ModLootModifiers.ADD_ENTITY_TROPHY.get(), modifier);
     }
 }
