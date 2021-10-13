@@ -12,6 +12,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
+import trofers.data.trophies.AlexsMobsTrophies;
 import trofers.data.trophies.TrophyBuilder;
 import trofers.data.trophies.VanillaTrophies;
 
@@ -35,6 +36,7 @@ public class Trophies implements DataProvider {
         trophies.clear();
 
         addTrophies(new VanillaTrophies());
+        addTrophies(new AlexsMobsTrophies());
     }
 
     private void addTrophies(TrophyBuilder trophyBuilder) {

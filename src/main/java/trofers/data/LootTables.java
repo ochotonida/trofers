@@ -22,6 +22,7 @@ import trofers.common.init.ModBlocks;
 import trofers.common.init.ModItems;
 import trofers.common.loot.RandomTrophyChanceCondition;
 import trofers.common.trophy.Trophy;
+import trofers.data.loottables.AlexsMobsLootTables;
 import trofers.data.loottables.LootTableBuilder;
 import trofers.data.loottables.VanillaLootTables;
 
@@ -49,6 +50,7 @@ public class LootTables extends LootTableProvider {
         addBlockLootTables();
         addEntityLootTables();
         addTrophyLootTables(new VanillaLootTables());
+        addTrophyLootTables(new AlexsMobsLootTables());
 
         return lootTables;
     }
