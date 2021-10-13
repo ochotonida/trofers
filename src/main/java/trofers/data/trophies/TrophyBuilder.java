@@ -148,8 +148,9 @@ public abstract class TrophyBuilder {
 
         getPotionEffects().forEach((type, compoundTag) -> {
             if (compoundTag.isEmpty()) {
+                String modid = Trofers.MODID.equals(getModId()) ? "" : getModId() + "/";
                 // noinspection ConstantConditions
-                result.put(type, new ResourceLocation(Trofers.MODID, String.format("trophies/%s", type.getRegistryName().getPath())));
+                result.put(type, new ResourceLocation(Trofers.MODID, String.format("trophies/%s", modid + type.getRegistryName().getPath())));
             }
         });
 
