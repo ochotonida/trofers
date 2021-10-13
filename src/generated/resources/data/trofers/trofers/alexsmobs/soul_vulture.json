@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#3DD6E1",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.soul_vulture"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:soul_vulture"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#3DD6E1"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:soul_vulture_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/soul_vulture",
+      "cooldown": 9600
+    }
+  }
+}

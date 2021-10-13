@@ -1,0 +1,43 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#71777F",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.orca"
+      }
+    ]
+  },
+  "display": {
+    "offset": {
+      "y": 1.0,
+      "z": -1.0
+    },
+    "scale": 0.1
+  },
+  "entity": {
+    "type": "alexsmobs:orca"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#71777F"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:orca_idle"
+    },
+    "rewards": {
+      "statusEffect": {
+        "effect": "alexsmobs:orcas_might",
+        "duration": 2400
+      },
+      "cooldown": 4800
+    }
+  }
+}

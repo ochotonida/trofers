@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#8679AE",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.mungus"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:mungus"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#8679AE"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:mungus_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/mungus",
+      "cooldown": 9600
+    }
+  }
+}

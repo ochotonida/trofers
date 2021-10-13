@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#FCBEDA",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.crimson_mosquito"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.1666
+  },
+  "entity": {
+    "type": "alexsmobs:crimson_mosquito"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#FCBEDA"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:mosquito_loop"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/crimson_mosquito",
+      "cooldown": 9600
+    }
+  }
+}

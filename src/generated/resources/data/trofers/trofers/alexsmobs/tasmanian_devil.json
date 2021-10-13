@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#A6B2BD",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.tasmanian_devil"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:tasmanian_devil"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#A6B2BD"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:tasmanian_devil_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/tasmanian_devil",
+      "cooldown": 9600
+    }
+  }
+}

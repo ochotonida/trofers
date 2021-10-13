@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#C0C6FF",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.spectre"
+      }
+    ]
+  },
+  "display": {
+    "offset": {
+      "z": -1.5
+    },
+    "scale": 0.1
+  },
+  "entity": {
+    "type": "alexsmobs:spectre"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#C0C6FF"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:spectre_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/spectre",
+      "cooldown": 9600
+    }
+  }
+}

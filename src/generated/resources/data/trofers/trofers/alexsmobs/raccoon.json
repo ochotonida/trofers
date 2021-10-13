@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#83807D",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.raccoon"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:raccoon",
+    "nbt": "{Carpet:-1}"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#83807D"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:raccoon_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/raccoon",
+      "cooldown": 9600
+    }
+  }
+}

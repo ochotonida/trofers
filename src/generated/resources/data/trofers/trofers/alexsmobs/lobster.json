@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#DA5E37",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.lobster"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:lobster"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#DA5E37"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:lobster_hurt"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/lobster",
+      "cooldown": 9600
+    }
+  }
+}

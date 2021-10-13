@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#85435E",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.centipede_head"
+      }
+    ]
+  },
+  "display": {
+    "offset": {
+      "y": -1.0
+    },
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:centipede_head"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#85435E"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:centipede_attack"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/centipede_head",
+      "cooldown": 9600
+    }
+  }
+}

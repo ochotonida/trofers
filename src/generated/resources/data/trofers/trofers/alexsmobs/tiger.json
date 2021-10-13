@@ -1,0 +1,39 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#E2B653",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.tiger"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:tiger"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#E2B653"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:tiger_idle"
+    },
+    "rewards": {
+      "statusEffect": {
+        "effect": "alexsmobs:tigers_blessing",
+        "duration": 2400
+      },
+      "cooldown": 4800
+    }
+  }
+}
