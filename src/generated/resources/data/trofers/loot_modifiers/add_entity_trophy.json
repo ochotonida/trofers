@@ -10,6 +10,230 @@
   "trophyBase": "trofers:small_plate",
   "trophies": [
     {
+      "entity": "alexsmobs:alligator_snapping_turtle",
+      "trophy": "trofers:alexsmobs/alligator_snapping_turtle"
+    },
+    {
+      "entity": "alexsmobs:bald_eagle",
+      "trophy": "trofers:alexsmobs/bald_eagle"
+    },
+    {
+      "entity": "alexsmobs:blobfish",
+      "trophy": "trofers:alexsmobs/blobfish"
+    },
+    {
+      "entity": "alexsmobs:bone_serpent",
+      "trophy": "trofers:alexsmobs/bone_serpent"
+    },
+    {
+      "entity": "alexsmobs:cachalot_whale",
+      "trophy": "trofers:alexsmobs/cachalot_whale"
+    },
+    {
+      "entity": "alexsmobs:capuchin_monkey",
+      "trophy": "trofers:alexsmobs/capuchin_monkey"
+    },
+    {
+      "entity": "alexsmobs:centipede_head",
+      "trophy": "trofers:alexsmobs/centipede_head"
+    },
+    {
+      "entity": "alexsmobs:cockroach",
+      "trophy": "trofers:alexsmobs/cockroach"
+    },
+    {
+      "entity": "alexsmobs:cosmaw",
+      "trophy": "trofers:alexsmobs/cosmaw"
+    },
+    {
+      "entity": "alexsmobs:crimson_mosquito",
+      "trophy": "trofers:alexsmobs/crimson_mosquito"
+    },
+    {
+      "entity": "alexsmobs:crocodile",
+      "trophy": "trofers:alexsmobs/crocodile"
+    },
+    {
+      "entity": "alexsmobs:crow",
+      "trophy": "trofers:alexsmobs/crow"
+    },
+    {
+      "entity": "alexsmobs:dropbear",
+      "trophy": "trofers:alexsmobs/dropbear"
+    },
+    {
+      "entity": "alexsmobs:elephant",
+      "trophy": "trofers:alexsmobs/elephant"
+    },
+    {
+      "entity": "alexsmobs:emu",
+      "trophy": "trofers:alexsmobs/emu"
+    },
+    {
+      "entity": "alexsmobs:endergrade",
+      "trophy": "trofers:alexsmobs/endergrade"
+    },
+    {
+      "entity": "alexsmobs:enderiophage",
+      "trophy": "trofers:alexsmobs/enderiophage"
+    },
+    {
+      "entity": "alexsmobs:fly",
+      "trophy": "trofers:alexsmobs/fly"
+    },
+    {
+      "entity": "alexsmobs:frilled_shark",
+      "trophy": "trofers:alexsmobs/frilled_shark"
+    },
+    {
+      "entity": "alexsmobs:froststalker",
+      "trophy": "trofers:alexsmobs/froststalker"
+    },
+    {
+      "entity": "alexsmobs:gazelle",
+      "trophy": "trofers:alexsmobs/gazelle"
+    },
+    {
+      "entity": "alexsmobs:gorilla",
+      "trophy": "trofers:alexsmobs/gorilla"
+    },
+    {
+      "entity": "alexsmobs:grizzly_bear",
+      "trophy": "trofers:alexsmobs/grizzly_bear"
+    },
+    {
+      "entity": "alexsmobs:guster",
+      "trophy": "trofers:alexsmobs/guster"
+    },
+    {
+      "entity": "alexsmobs:hammerhead_shark",
+      "trophy": "trofers:alexsmobs/hammerhead_shark"
+    },
+    {
+      "entity": "alexsmobs:hummingbird",
+      "trophy": "trofers:alexsmobs/hummingbird"
+    },
+    {
+      "entity": "alexsmobs:kangaroo",
+      "trophy": "trofers:alexsmobs/kangaroo"
+    },
+    {
+      "entity": "alexsmobs:komodo_dragon",
+      "trophy": "trofers:alexsmobs/komodo_dragon"
+    },
+    {
+      "entity": "alexsmobs:laviathan",
+      "trophy": "trofers:alexsmobs/laviathan"
+    },
+    {
+      "entity": "alexsmobs:leafcutter_ant",
+      "trophy": "trofers:alexsmobs/leafcutter_ant"
+    },
+    {
+      "entity": "alexsmobs:lobster",
+      "trophy": "trofers:alexsmobs/lobster"
+    },
+    {
+      "entity": "alexsmobs:mantis_shrimp",
+      "trophy": "trofers:alexsmobs/mantis_shrimp"
+    },
+    {
+      "entity": "alexsmobs:mimic_octopus",
+      "trophy": "trofers:alexsmobs/mimic_octopus"
+    },
+    {
+      "entity": "alexsmobs:mimicube",
+      "trophy": "trofers:alexsmobs/mimicube"
+    },
+    {
+      "entity": "alexsmobs:moose",
+      "trophy": "trofers:alexsmobs/moose"
+    },
+    {
+      "entity": "alexsmobs:mungus",
+      "trophy": "trofers:alexsmobs/mungus"
+    },
+    {
+      "entity": "alexsmobs:orca",
+      "trophy": "trofers:alexsmobs/orca"
+    },
+    {
+      "entity": "alexsmobs:platypus",
+      "trophy": "trofers:alexsmobs/platypus"
+    },
+    {
+      "entity": "alexsmobs:raccoon",
+      "trophy": "trofers:alexsmobs/raccoon"
+    },
+    {
+      "entity": "alexsmobs:rattlesnake",
+      "trophy": "trofers:alexsmobs/rattlesnake"
+    },
+    {
+      "entity": "alexsmobs:roadrunner",
+      "trophy": "trofers:alexsmobs/roadrunner"
+    },
+    {
+      "entity": "alexsmobs:seagull",
+      "trophy": "trofers:alexsmobs/seagull"
+    },
+    {
+      "entity": "alexsmobs:seal",
+      "trophy": "trofers:alexsmobs/seal"
+    },
+    {
+      "entity": "alexsmobs:shoebill",
+      "trophy": "trofers:alexsmobs/shoebill"
+    },
+    {
+      "entity": "alexsmobs:snow_leopard",
+      "trophy": "trofers:alexsmobs/snow_leopard"
+    },
+    {
+      "entity": "alexsmobs:soul_vulture",
+      "trophy": "trofers:alexsmobs/soul_vulture"
+    },
+    {
+      "entity": "alexsmobs:spectre",
+      "trophy": "trofers:alexsmobs/spectre"
+    },
+    {
+      "entity": "alexsmobs:straddler",
+      "trophy": "trofers:alexsmobs/straddler"
+    },
+    {
+      "entity": "alexsmobs:stradpole",
+      "trophy": "trofers:alexsmobs/stradpole"
+    },
+    {
+      "entity": "alexsmobs:sunbird",
+      "trophy": "trofers:alexsmobs/sunbird"
+    },
+    {
+      "entity": "alexsmobs:tarantula_hawk",
+      "trophy": "trofers:alexsmobs/tarantula_hawk"
+    },
+    {
+      "entity": "alexsmobs:tasmanian_devil",
+      "trophy": "trofers:alexsmobs/tasmanian_devil"
+    },
+    {
+      "entity": "alexsmobs:tiger",
+      "trophy": "trofers:alexsmobs/tiger"
+    },
+    {
+      "entity": "alexsmobs:tusklin",
+      "trophy": "trofers:alexsmobs/tusklin"
+    },
+    {
+      "entity": "alexsmobs:warped_mosco",
+      "trophy": "trofers:alexsmobs/warped_mosco"
+    },
+    {
+      "entity": "alexsmobs:warped_toad",
+      "trophy": "trofers:alexsmobs/warped_toad"
+    },
+    {
       "entity": "minecraft:axolotl",
       "trophy": "trofers:axolotl"
     },
