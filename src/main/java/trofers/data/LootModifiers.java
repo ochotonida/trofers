@@ -1,6 +1,5 @@
 package trofers.data;
 
-import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.conditions.ILootCondition;
@@ -29,11 +28,12 @@ public class LootModifiers extends GlobalLootModifierProvider {
     protected void start() {
         HashMap<EntityType<?>, ResourceLocation> trophyMap = new HashMap<>();
 
-        for (Pair<Trophy, String> pair : trophies.trophies) {
-            Trophy trophy = pair.getFirst();
-            // noinspection ConstantConditions
-            EntityType<?> entityType = trophy.entity().getType();
-            trophyMap.put(entityType, trophy.id());
+        for (String modid : trophies.trophies.keySet()) {
+            for (Trophy trophy : trophies.trophies.get(modid)) {
+                // noinspection ConstantConditions
+                EntityType<?> entityType = trophy.entity().getType();
+                trophyMap.put(entityType, trophy.id());
+            }
         }
 
         ILootCondition[] conditions = new ILootCondition[]{
