@@ -1,0 +1,20 @@
+{
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "trofers:optional_item",
+          "when": [
+            {
+              "modid": "alexsmobs",
+              "type": "forge:mod_loaded"
+            }
+          ],
+          "name": "alexsmobs:fish_oil"
+        }
+      ]
+    }
+  ]
+}

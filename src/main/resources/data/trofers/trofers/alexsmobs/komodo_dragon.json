@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#736D4A",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.komodo_dragon"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:komodo_dragon"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#736D4A"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:komodo_dragon_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/komodo_dragon",
+      "cooldown": 9600
+    }
+  }
+}

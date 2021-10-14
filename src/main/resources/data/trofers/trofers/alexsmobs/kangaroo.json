@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#D6A771",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.kangaroo"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "alexsmobs:kangaroo"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#D6A771"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:kangaroo_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/kangaroo",
+      "cooldown": 9600
+    }
+  }
+}

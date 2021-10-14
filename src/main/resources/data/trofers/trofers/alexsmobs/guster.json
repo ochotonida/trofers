@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#F8E0A8",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.guster"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.1875
+  },
+  "entity": {
+    "type": "alexsmobs:guster"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#F8E0A8"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:guster_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/guster",
+      "cooldown": 9600
+    }
+  }
+}
