@@ -7,6 +7,10 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.util.JSONUtils;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class JsonHelper {
 
@@ -40,5 +44,26 @@ public abstract class JsonHelper {
         } catch (CommandSyntaxException exception) {
             throw new JsonSyntaxException(String.format("Invalid NBT Entry: %s", exception));
         }
+    }
+
+    public static List<ICondition> deserializeConditions(JsonObject object, String memberName) {
+        JsonArray conditions = JSONUtils.getAsJsonArray(object, memberName);
+        List<ICondition> result = new ArrayList<>();
+        for (JsonElement condition : conditions) {
+            if (!condition.isJsonObject()) {
+                throw new JsonSyntaxException("Conditions must be an array of JsonObjects");
+            }
+
+            result.add(CraftingHelper.getCondition(condition.getAsJsonObject()));
+        }
+        return result;
+    }
+
+    public static JsonElement serializeConditions(List<ICondition> conditions) {
+        JsonArray result = new JsonArray();
+        for (ICondition condition : conditions) {
+            result.add(CraftingHelper.serialize(condition));
+        }
+        return result;
     }
 }

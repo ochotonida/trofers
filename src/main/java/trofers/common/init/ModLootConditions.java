@@ -12,6 +12,7 @@ public class ModLootConditions {
 
     public static final LootConditionType RANDOM_TROPHY_CHANCE = new LootConditionType(new RandomTrophyChanceCondition.Serializer());
 
+    @SuppressWarnings("unused")
     public static void register(RegistryEvent<GlobalLootModifierSerializer<?>> event) {
         Registry.register(
                 Registry.LOOT_CONDITION_TYPE,

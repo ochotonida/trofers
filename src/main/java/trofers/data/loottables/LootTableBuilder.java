@@ -5,7 +5,9 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.loot.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
+import trofers.common.loot.OptionalLootItem;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -75,7 +77,13 @@ public abstract class LootTableBuilder {
     }
 
     public StandaloneLootEntry.Builder<?> entry(Item item) {
-        return ItemLootEntry.lootTableItem(item);
+        // noinspection ConstantConditions
+        String modid = item.getRegistryName().getNamespace();
+        if ("minecraft".equals(modid) || Trofers.MODID.equals(modid)) {
+            return ItemLootEntry.lootTableItem(item);
+        } else {
+            return OptionalLootItem.optionalLootItem(item, new ModLoadedCondition(modid));
+        }
     }
 
     public StandaloneLootEntry.Builder<?> entry(Item item, int weight) {
