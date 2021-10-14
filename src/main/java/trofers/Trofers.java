@@ -36,6 +36,7 @@ public class Trofers {
 
         modEventBus.addListener(this::onCommonSetup);
         modEventBus.addGenericListener(GlobalLootModifierSerializer.class, ModLootConditions::register);
+        modEventBus.addGenericListener(GlobalLootModifierSerializer.class, ModLootPoolEntries::register);
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(TrophyManager::onDataPackReload);

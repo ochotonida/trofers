@@ -14,7 +14,9 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
+import trofers.common.loot.OptionalLootItem;
 
 import java.util.*;
 import java.util.function.BiConsumer;
@@ -84,7 +86,13 @@ public abstract class LootTableBuilder {
     }
 
     public LootPoolSingletonContainer.Builder<?> entry(Item item) {
-        return LootItem.lootTableItem(item);
+        // noinspection ConstantConditions
+        String modid = item.getRegistryName().getNamespace();
+        if ("minecraft".equals(modid) || Trofers.MODID.equals(modid)) {
+            return LootItem.lootTableItem(item);
+        } else {
+            return OptionalLootItem.optionalLootItem(item, new ModLoadedCondition(modid));
+        }
     }
 
     public LootPoolEntryContainer.Builder<?> entry(Item item, int weight) {
