@@ -1,0 +1,274 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "trofers:random_trophy_chance"
+    }
+  ],
+  "trophyBase": "trofers:small_plate",
+  "trophies": [
+    {
+      "entity": "minecraft:bat",
+      "trophy": "trofers:bat"
+    },
+    {
+      "entity": "minecraft:bee",
+      "trophy": "trofers:bee"
+    },
+    {
+      "entity": "minecraft:blaze",
+      "trophy": "trofers:blaze"
+    },
+    {
+      "entity": "minecraft:cat",
+      "trophy": "trofers:cat"
+    },
+    {
+      "entity": "minecraft:cave_spider",
+      "trophy": "trofers:cave_spider"
+    },
+    {
+      "entity": "minecraft:chicken",
+      "trophy": "trofers:chicken"
+    },
+    {
+      "entity": "minecraft:cod",
+      "trophy": "trofers:cod"
+    },
+    {
+      "entity": "minecraft:cow",
+      "trophy": "trofers:cow"
+    },
+    {
+      "entity": "minecraft:creeper",
+      "trophy": "trofers:creeper"
+    },
+    {
+      "entity": "minecraft:dolphin",
+      "trophy": "trofers:dolphin"
+    },
+    {
+      "entity": "minecraft:donkey",
+      "trophy": "trofers:donkey"
+    },
+    {
+      "entity": "minecraft:drowned",
+      "trophy": "trofers:drowned"
+    },
+    {
+      "entity": "minecraft:elder_guardian",
+      "trophy": "trofers:elder_guardian"
+    },
+    {
+      "entity": "minecraft:enderman",
+      "trophy": "trofers:enderman"
+    },
+    {
+      "entity": "minecraft:endermite",
+      "trophy": "trofers:endermite"
+    },
+    {
+      "entity": "minecraft:evoker",
+      "trophy": "trofers:evoker"
+    },
+    {
+      "entity": "minecraft:fox",
+      "trophy": "trofers:fox"
+    },
+    {
+      "entity": "minecraft:ghast",
+      "trophy": "trofers:ghast"
+    },
+    {
+      "entity": "minecraft:guardian",
+      "trophy": "trofers:guardian"
+    },
+    {
+      "entity": "minecraft:hoglin",
+      "trophy": "trofers:hoglin"
+    },
+    {
+      "entity": "minecraft:horse",
+      "trophy": "trofers:horse"
+    },
+    {
+      "entity": "minecraft:husk",
+      "trophy": "trofers:husk"
+    },
+    {
+      "entity": "minecraft:iron_golem",
+      "trophy": "trofers:iron_golem"
+    },
+    {
+      "entity": "minecraft:llama",
+      "trophy": "trofers:llama"
+    },
+    {
+      "entity": "minecraft:magma_cube",
+      "trophy": "trofers:magma_cube"
+    },
+    {
+      "entity": "minecraft:mooshroom",
+      "trophy": "trofers:mooshroom"
+    },
+    {
+      "entity": "minecraft:mule",
+      "trophy": "trofers:mule"
+    },
+    {
+      "entity": "minecraft:ocelot",
+      "trophy": "trofers:ocelot"
+    },
+    {
+      "entity": "minecraft:panda",
+      "trophy": "trofers:panda"
+    },
+    {
+      "entity": "minecraft:parrot",
+      "trophy": "trofers:parrot"
+    },
+    {
+      "entity": "minecraft:phantom",
+      "trophy": "trofers:phantom"
+    },
+    {
+      "entity": "minecraft:pig",
+      "trophy": "trofers:pig"
+    },
+    {
+      "entity": "minecraft:piglin",
+      "trophy": "trofers:piglin"
+    },
+    {
+      "entity": "minecraft:piglin_brute",
+      "trophy": "trofers:piglin_brute"
+    },
+    {
+      "entity": "minecraft:pillager",
+      "trophy": "trofers:pillager"
+    },
+    {
+      "entity": "minecraft:polar_bear",
+      "trophy": "trofers:polar_bear"
+    },
+    {
+      "entity": "minecraft:pufferfish",
+      "trophy": "trofers:pufferfish"
+    },
+    {
+      "entity": "minecraft:rabbit",
+      "trophy": "trofers:rabbit"
+    },
+    {
+      "entity": "minecraft:ravager",
+      "trophy": "trofers:ravager"
+    },
+    {
+      "entity": "minecraft:salmon",
+      "trophy": "trofers:salmon"
+    },
+    {
+      "entity": "minecraft:sheep",
+      "trophy": "trofers:sheep"
+    },
+    {
+      "entity": "minecraft:shulker",
+      "trophy": "trofers:shulker"
+    },
+    {
+      "entity": "minecraft:silverfish",
+      "trophy": "trofers:silverfish"
+    },
+    {
+      "entity": "minecraft:skeleton",
+      "trophy": "trofers:skeleton"
+    },
+    {
+      "entity": "minecraft:skeleton_horse",
+      "trophy": "trofers:skeleton_horse"
+    },
+    {
+      "entity": "minecraft:slime",
+      "trophy": "trofers:slime"
+    },
+    {
+      "entity": "minecraft:snow_golem",
+      "trophy": "trofers:snow_golem"
+    },
+    {
+      "entity": "minecraft:spider",
+      "trophy": "trofers:spider"
+    },
+    {
+      "entity": "minecraft:squid",
+      "trophy": "trofers:squid"
+    },
+    {
+      "entity": "minecraft:stray",
+      "trophy": "trofers:stray"
+    },
+    {
+      "entity": "minecraft:strider",
+      "trophy": "trofers:strider"
+    },
+    {
+      "entity": "minecraft:trader_llama",
+      "trophy": "trofers:trader_llama"
+    },
+    {
+      "entity": "minecraft:tropical_fish",
+      "trophy": "trofers:tropical_fish"
+    },
+    {
+      "entity": "minecraft:turtle",
+      "trophy": "trofers:turtle"
+    },
+    {
+      "entity": "minecraft:vex",
+      "trophy": "trofers:vex"
+    },
+    {
+      "entity": "minecraft:villager",
+      "trophy": "trofers:villager"
+    },
+    {
+      "entity": "minecraft:vindicator",
+      "trophy": "trofers:vindicator"
+    },
+    {
+      "entity": "minecraft:wandering_trader",
+      "trophy": "trofers:wandering_trader"
+    },
+    {
+      "entity": "minecraft:witch",
+      "trophy": "trofers:witch"
+    },
+    {
+      "entity": "minecraft:wither_skeleton",
+      "trophy": "trofers:wither_skeleton"
+    },
+    {
+      "entity": "minecraft:wolf",
+      "trophy": "trofers:wolf"
+    },
+    {
+      "entity": "minecraft:zoglin",
+      "trophy": "trofers:zoglin"
+    },
+    {
+      "entity": "minecraft:zombie",
+      "trophy": "trofers:zombie"
+    },
+    {
+      "entity": "minecraft:zombie_villager",
+      "trophy": "trofers:zombie_villager"
+    },
+    {
+      "entity": "minecraft:zombified_piglin",
+      "trophy": "trofers:zombified_piglin"
+    }
+  ],
+  "type": "trofers:add_entity_trophy"
+}
