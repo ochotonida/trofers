@@ -5,7 +5,13 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "trofers:optional_item",
+          "when": [
+            {
+              "modid": "alexsmobs",
+              "type": "forge:mod_loaded"
+            }
+          ],
           "name": "alexsmobs:cosmic_cod"
         }
       ]
