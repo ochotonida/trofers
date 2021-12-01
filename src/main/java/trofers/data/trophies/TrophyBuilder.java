@@ -2,6 +2,7 @@ package trofers.data.trophies;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -10,7 +11,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.common.trophy.*;
@@ -159,7 +159,7 @@ public abstract class TrophyBuilder {
 
     protected void putHandItem(CompoundTag tag, Item item) {
         tag.put("HandItems", new ListTag());
-        tag.getList("HandItems", Constants.NBT.TAG_COMPOUND).add(new ItemStack(item).save(new CompoundTag()));
-        tag.getList("HandItems", Constants.NBT.TAG_COMPOUND).add(new CompoundTag());
+        tag.getList("HandItems", Tag.TAG_COMPOUND).add(new ItemStack(item).save(new CompoundTag()));
+        tag.getList("HandItems", Tag.TAG_COMPOUND).add(new CompoundTag());
     }
 }

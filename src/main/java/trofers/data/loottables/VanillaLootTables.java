@@ -49,6 +49,7 @@ public class VanillaLootTables extends LootTableBuilder {
         add(EntityType.SNOW_GOLEM, 2, 6, entry(Items.SNOW_BLOCK), entry(Items.SNOWBALL, 2));
         add(EntityType.SPIDER, 1, 3, Items.STRING);
         add(EntityType.SQUID, 1, 3, Items.INK_SAC);
+        // noinspection deprecation
         add(EntityType.STRAY, 2, 8, entry(Items.TIPPED_ARROW).apply(SetNbtFunction.setTag(Util.make(new CompoundTag(), (tag) -> tag.putString("Potion", "minecraft:slowness")))));
         add(EntityType.TRADER_LLAMA, Items.LEAD);
         add(EntityType.TROPICAL_FISH, Items.TROPICAL_FISH);

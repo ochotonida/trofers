@@ -24,9 +24,9 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
-import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.block.entity.TrophyBlockEntity;
 import trofers.common.block.entity.TrophyScreen;
+import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.trophy.Trophy;
 
 import javax.annotation.Nullable;
@@ -77,7 +77,6 @@ public abstract class TrophyBlock extends BaseEntityBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
@@ -114,7 +113,7 @@ public abstract class TrophyBlock extends BaseEntityBlock {
     @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos) {
         if (state.getValue(BlockStateProperties.WATERLOGGED)) {
-            level.getLiquidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
         return super.updateShape(state, facing, facingState, level, pos, facingPos);
     }
@@ -131,8 +130,8 @@ public abstract class TrophyBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemStack getPickBlock(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
-        ItemStack result = super.getPickBlock(state, target, world, pos, player);
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
+        ItemStack result = super.getCloneItemStack(state, target, world, pos, player);
         if (world.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
             if (blockEntity.getTrophyID() != null) {
                 result.getOrCreateTagElement("BlockEntityTag").putString("Trophy", blockEntity.getTrophyID().toString());

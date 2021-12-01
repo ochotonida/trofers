@@ -3,6 +3,7 @@ package trofers.common.block.entity;
 import net.minecraft.ResourceLocationException;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -25,14 +26,13 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.util.Constants;
 import org.apache.logging.log4j.Level;
 import trofers.Trofers;
+import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.trophy.EffectInfo;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
-import trofers.common.block.TrophyBlock;
 
 import javax.annotation.Nullable;
 
@@ -233,10 +233,10 @@ public class TrophyBlockEntity extends BlockEntity {
     private void onContentsChanged() {
         if (level != null) {
             if (!level.isClientSide()) {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.BLOCK_UPDATE);
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_ALL);
                 setChanged();
             } else {
-                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.RERENDER_MAIN_THREAD);
+                level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
             }
         }
     }
@@ -251,12 +251,14 @@ public class TrophyBlockEntity extends BlockEntity {
     @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
-        return new ClientboundBlockEntityDataPacket(getBlockPos(), 0, getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet) {
-        loadTrophy(packet.getTag());
+        if (packet.getTag() != null) {
+            loadTrophy(packet.getTag());
+        }
     }
 
     @Override
@@ -269,7 +271,7 @@ public class TrophyBlockEntity extends BlockEntity {
     public void loadTrophy(CompoundTag tag) {
         trophyID = null;
 
-        if (tag.contains("Trophy", Constants.NBT.TAG_STRING)) {
+        if (tag.contains("Trophy", Tag.TAG_STRING)) {
             try {
                 trophyID = new ResourceLocation(tag.getString("Trophy"));
             } catch (ResourceLocationException exception) {
@@ -283,17 +285,16 @@ public class TrophyBlockEntity extends BlockEntity {
         }
 
         if (getLevel() != null && getLevel().isClientSide()) {
-            getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Constants.BlockFlags.RERENDER_MAIN_THREAD);
+            getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
         }
     }
 
     @Override
-    public CompoundTag save(CompoundTag tag) {
+    public void saveAdditional(CompoundTag tag) {
         saveTrophy(tag);
         if (rewardCooldown > 0) {
             tag.putInt("RewardCooldown", rewardCooldown);
         }
-        return super.save(tag);
     }
 
     public void saveTrophy(CompoundTag tag) {

@@ -1,16 +1,18 @@
 package trofers.common.trophy;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import net.minecraft.ResourceLocationException;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
-import net.minecraftforge.common.util.Constants;
 import trofers.common.util.JsonHelper;
 
 import javax.annotation.Nullable;
@@ -41,7 +43,7 @@ public record Trophy(
 
         CompoundTag blockEntityTag = tag.getCompound("BlockEntityTag");
 
-        if (!blockEntityTag.contains("Trophy", Constants.NBT.TAG_STRING)) {
+        if (!blockEntityTag.contains("Trophy", Tag.TAG_STRING)) {
             return null;
         }
 

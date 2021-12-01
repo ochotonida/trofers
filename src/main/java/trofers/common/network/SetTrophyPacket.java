@@ -3,10 +3,10 @@ package trofers.common.network;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
+import trofers.common.block.entity.TrophyBlockEntity;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
-import trofers.common.block.entity.TrophyBlockEntity;
 
 import java.util.function.Supplier;
 

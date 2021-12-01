@@ -2,11 +2,11 @@ package trofers.common.init;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import trofers.Trofers;
-import trofers.common.block.entity.TrophyBlockEntity;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+import trofers.Trofers;
+import trofers.common.block.entity.TrophyBlockEntity;
 
 @SuppressWarnings("ConstantConditions")
 public class ModBlockEntityTypes {

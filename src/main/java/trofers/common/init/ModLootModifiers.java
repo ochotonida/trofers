@@ -1,9 +1,9 @@
 package trofers.common.init;
 
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.loot.AddEntityTrophy;
 

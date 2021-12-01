@@ -27,17 +27,17 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fmlclient.gui.widget.ExtendedButton;
-import net.minecraftforge.resource.IResourceType;
-import net.minecraftforge.resource.VanillaResourceType;
+import net.minecraftforge.client.gui.widget.ExtendedButton;
 import trofers.Trofers;
 import trofers.common.network.NetworkHandler;
 import trofers.common.network.SetTrophyPacket;
 import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
 
-import javax.annotation.Nullable;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class TrophyScreen extends Screen {
@@ -277,7 +277,7 @@ public class TrophyScreen extends Screen {
                     ITEM_SCALE
             );
 
-            if (isHovered()) {
+            if (isHovered) {
                 renderToolTip(poseStack, mouseX, mouseY);
             }
         }
@@ -342,7 +342,6 @@ public class TrophyScreen extends Screen {
         }
     }
 
-    @SuppressWarnings("deprecation")
     public static class SearchTreeManager implements ResourceManagerReloadListener {
 
         @SuppressWarnings("ConstantConditions")
@@ -361,12 +360,6 @@ public class TrophyScreen extends Screen {
         @Override
         public void onResourceManagerReload(ResourceManager manager) {
             searchTree.refresh();
-        }
-
-        @Nullable
-        @Override
-        public IResourceType getResourceType() {
-            return VanillaResourceType.LANGUAGES;
         }
 
         public static void fillSearchTree() {

@@ -15,15 +15,15 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.17.1-2.4.0'
+version = '1.18-2.4.0'
 group = 'trofers'
 archivesBaseName = 'trofers'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'parchment', version: '2021.09.05-1.17.1'
+    mappings channel: 'official', version: '1.18'
 
     runs {
         client {
@@ -77,10 +77,10 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.17.1-37.0.84'
+    minecraft 'net.minecraftforge:forge:1.18-38.0.5'
 
-    implementation fg.deobf("curse.maven:citadel-331936:3478179")
-    implementation fg.deobf("curse.maven:alexsmobs-426558:3478567")
+    // implementation fg.deobf("curse.maven:citadel-331936:3478179")
+    // implementation fg.deobf("curse.maven:alexsmobs-426558:3478567")
 }
 
 jar {

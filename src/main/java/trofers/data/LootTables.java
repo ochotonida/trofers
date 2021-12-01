@@ -12,11 +12,10 @@ import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
-import trofers.data.loottables.AlexsMobsLootTables;
 import trofers.data.loottables.LootTableBuilder;
 import trofers.data.loottables.VanillaLootTables;
 
@@ -41,7 +40,7 @@ public class LootTables extends LootTableProvider {
 
         addBlockLootTables();
         addTrophyLootTables(new VanillaLootTables());
-        addTrophyLootTables(new AlexsMobsLootTables());
+        // addTrophyLootTables(new AlexsMobsLootTables());
 
         return lootTables;
     }

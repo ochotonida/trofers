@@ -1,5 +1,5 @@
 package trofers.data.loottables;
-
+/*
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
@@ -69,3 +69,4 @@ public class AlexsMobsLootTables extends LootTableBuilder {
         add(AMEntityRegistry.COSMAW, AMItemRegistry.COSMIC_COD);
     }
 }
+*/

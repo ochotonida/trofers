@@ -1,5 +1,5 @@
 package trofers.data.trophies;
-
+/*
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
 import com.github.alexthe666.alexsmobs.entity.*;
@@ -248,3 +248,4 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         return result;
     }
 }
+*/

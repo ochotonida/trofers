@@ -10,7 +10,7 @@ import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.OnDatapackSyncEvent;
-import net.minecraftforge.fmllegacy.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
 import trofers.Trofers;
 import trofers.common.network.NetworkHandler;
 import trofers.common.network.TrophySyncPacket;
