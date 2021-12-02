@@ -10,7 +10,7 @@ public class CommonConfig {
     protected CommonConfig(ForgeConfigSpec.Builder builder) {
         trophyChance = builder
                 .comment(
-                        "The chance a non-boss vanilla entity drops a trophy when killed by a player",
+                        "The chance a non-boss entity from a supported mod drops a trophy when killed by a player",
                         "No trophies will drop from entities when this value is set to 0"
                 )
                 .translation(String.format("config.%s.trophy_chance", Trofers.MODID))
