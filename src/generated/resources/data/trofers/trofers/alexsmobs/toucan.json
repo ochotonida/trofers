@@ -6,31 +6,30 @@
     }
   ],
   "name": {
-    "color": "#7A7572",
+    "color": "#F28D32",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.elephant"
+        "translate": "entity.alexsmobs.toucan"
       }
     ]
   },
   "display": {
-    "scale": 0.1666
+    "scale": 0.25
   },
   "entity": {
-    "type": "alexsmobs:elephant",
-    "nbt": "{Carpet:-1}"
+    "type": "alexsmobs:toucan"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7A7572"
+    "accent": "#F28D32"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:elephant_idle"
+      "soundEvent": "alexsmobs:toucan_idle"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/elephant",
+      "lootTable": "trofers:trophies/alexsmobs/toucan",
       "cooldown": 9600
     }
   }

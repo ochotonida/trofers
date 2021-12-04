@@ -6,31 +6,30 @@
     }
   ],
   "name": {
-    "color": "#7A7572",
+    "color": "#C88748",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.elephant"
+        "translate": "entity.alexsmobs.maned_wolf"
       }
     ]
   },
   "display": {
-    "scale": 0.1666
+    "scale": 0.25
   },
   "entity": {
-    "type": "alexsmobs:elephant",
-    "nbt": "{Carpet:-1}"
+    "type": "alexsmobs:maned_wolf"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7A7572"
+    "accent": "#C88748"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:elephant_idle"
+      "soundEvent": "alexsmobs:maned_wolf_idle"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/elephant",
+      "lootTable": "trofers:trophies/alexsmobs/maned_wolf",
       "cooldown": 9600
     }
   }

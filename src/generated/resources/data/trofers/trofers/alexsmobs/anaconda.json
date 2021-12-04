@@ -6,31 +6,33 @@
     }
   ],
   "name": {
-    "color": "#7A7572",
+    "color": "#6C7239",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.elephant"
+        "translate": "entity.alexsmobs.anaconda"
       }
     ]
   },
   "display": {
-    "scale": 0.1666
+    "offset": {
+      "z": 1.625
+    },
+    "scale": 0.375
   },
   "entity": {
-    "type": "alexsmobs:elephant",
-    "nbt": "{Carpet:-1}"
+    "type": "alexsmobs:anaconda"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7A7572"
+    "accent": "#6C7239"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:elephant_idle"
+      "soundEvent": "alexsmobs:anaconda_attack"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/elephant",
+      "lootTable": "trofers:trophies/alexsmobs/anaconda",
       "cooldown": 9600
     }
   }
