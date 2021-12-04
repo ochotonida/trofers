@@ -88,6 +88,10 @@ public class TrophyScreen extends Screen {
     public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(poseStack);
         super.render(poseStack, mouseX, mouseY, partialTicks);
+
+        for (Button button : trophyButtons) {
+            button.renderToolTip(poseStack, mouseX, mouseY);
+        }
     }
 
     @Override
@@ -276,15 +280,13 @@ public class TrophyScreen extends Screen {
                     y + (int) (height - 16 * ITEM_SCALE) / 2,
                     ITEM_SCALE
             );
-
-            if (isHovered) {
-                renderToolTip(poseStack, mouseX, mouseY);
-            }
         }
 
         @Override
         public void renderToolTip(PoseStack poseStack, int mouseX, int mouseY) {
-            renderTooltip(poseStack, item, mouseX, mouseY);
+            if (isHovered) {
+                renderTooltip(poseStack, item, mouseX, mouseY);
+            }
         }
 
         @SuppressWarnings("SameParameterValue")
