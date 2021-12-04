@@ -79,8 +79,8 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18-38.0.5'
 
-    // implementation fg.deobf("curse.maven:citadel-331936:3478179")
-    // implementation fg.deobf("curse.maven:alexsmobs-426558:3478567")
+    implementation fg.deobf("curse.maven:citadel-331936:3548548")
+    implementation fg.deobf("curse.maven:alexsmobs-426558:3548558")
 }
 
 jar {

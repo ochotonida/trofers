@@ -1,5 +1,5 @@
 package trofers.data.loottables;
-/*
+
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
@@ -67,6 +67,9 @@ public class AlexsMobsLootTables extends LootTableBuilder {
         add(AMEntityRegistry.TUSKLIN, 1, 3, Items.BROWN_MUSHROOM);
         add(AMEntityRegistry.LAVIATHAN, 2, 6, Items.MAGMA_BLOCK);
         add(AMEntityRegistry.COSMAW, AMItemRegistry.COSMIC_COD);
+        add(AMEntityRegistry.TOUCAN, Items.GOLDEN_APPLE);
+        add(AMEntityRegistry.MANED_WOLF, 1, 3, Items.APPLE);
+        add(AMEntityRegistry.ANACONDA, AMItemRegistry.SHED_SNAKE_SKIN);
+        add(AMEntityRegistry.ANTEATER, AMItemRegistry.LEAFCUTTER_ANT_PUPA);
     }
 }
-*/

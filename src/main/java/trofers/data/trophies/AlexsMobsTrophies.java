@@ -1,8 +1,8 @@
 package trofers.data.trophies;
-/*
+
 import com.github.alexthe666.alexsmobs.AlexsMobs;
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
-import com.github.alexthe666.alexsmobs.entity.*;
+import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -75,7 +75,11 @@ public class AlexsMobsTrophies extends TrophyBuilder {
             AMEntityRegistry.FROSTSTALKER,
             AMEntityRegistry.TUSKLIN,
             AMEntityRegistry.LAVIATHAN,
-            AMEntityRegistry.COSMAW
+            AMEntityRegistry.COSMAW,
+            AMEntityRegistry.ANACONDA,
+            AMEntityRegistry.ANTEATER,
+            AMEntityRegistry.MANED_WOLF,
+            AMEntityRegistry.TOUCAN
     );
 
     @Override
@@ -93,6 +97,8 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         var result = super.getColors();
 
         result.put(AMEntityRegistry.ALLIGATOR_SNAPPING_TURTLE, 0x6a5747);
+        result.put(AMEntityRegistry.ANACONDA, 0x6c7239);
+        result.put(AMEntityRegistry.ANTEATER, 0x5a4c47);
         result.put(AMEntityRegistry.BALD_EAGLE, 0xc48e2f);
         result.put(AMEntityRegistry.BLOBFISH, 0x7e7d7c);
         result.put(AMEntityRegistry.BONE_SERPENT, 0xd1c4ac);
@@ -123,6 +129,7 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         result.put(AMEntityRegistry.LAVIATHAN, 0xffdb9b);
         result.put(AMEntityRegistry.LEAFCUTTER_ANT, 0xa4582f);
         result.put(AMEntityRegistry.LOBSTER, 0xda5e37);
+        result.put(AMEntityRegistry.MANED_WOLF, 0xc88748);
         result.put(AMEntityRegistry.MANTIS_SHRIMP, 0x15971e);
         result.put(AMEntityRegistry.MIMIC_OCTOPUS, 0xfcede2);
         result.put(AMEntityRegistry.MIMICUBE, 0x5e5882);
@@ -145,6 +152,7 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         result.put(AMEntityRegistry.TARANTULA_HAWK, 0xba4c2d);
         result.put(AMEntityRegistry.TASMANIAN_DEVIL, 0xa6b2bd);
         result.put(AMEntityRegistry.TIGER, 0xe2b653);
+        result.put(AMEntityRegistry.TOUCAN, 0xf28d32);
         result.put(AMEntityRegistry.TUSKLIN, 0x7c6445);
         result.put(AMEntityRegistry.WARPED_MOSCO, 0x20fcce);
         result.put(AMEntityRegistry.WARPED_TOAD, 0x179896);
@@ -157,6 +165,7 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         Map<EntityType<?>, DisplayInfo> result = super.getDisplayInfos();
 
         result.put(AMEntityRegistry.CENTIPEDE_HEAD, new DisplayInfo(0, -4 / 4F, 0, 0.25F));
+        result.put(AMEntityRegistry.ANACONDA, new DisplayInfo(0, 0, 2 - 0.375F, 0.375F));
 
         result.put(AMEntityRegistry.BONE_SERPENT, new DisplayInfo(0, 0, 2, 0.25F));
         result.put(AMEntityRegistry.CACHALOT_WHALE, new DisplayInfo(0, 0, -1, 0.05F));
@@ -168,7 +177,7 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         result.put(AMEntityRegistry.SPECTRE, new DisplayInfo(0, 0, -1.5F, 0.10F));
 
         result.put(AMEntityRegistry.CRIMSON_MOSQUITO, new DisplayInfo(0.1666F));
-        result.put(AMEntityRegistry.ELEPHANT, new DisplayInfo(0.1875F));
+        result.put(AMEntityRegistry.ELEPHANT, new DisplayInfo(0.1666F));
         result.put(AMEntityRegistry.GUSTER, new DisplayInfo(0.1875F));
         result.put(AMEntityRegistry.MOOSE, new DisplayInfo(0.1666F));
         result.put(AMEntityRegistry.STRADDLER, new DisplayInfo(0.1666F));
@@ -191,7 +200,6 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         result.get(AMEntityRegistry.MOOSE).putBoolean("Antlered", true);
         result.get(AMEntityRegistry.PLATYPUS).putString("CustomName", Component.Serializer.toJson(new TextComponent("perry")));
         result.get(AMEntityRegistry.RACCOON).putInt("Carpet", -1);
-
 
         return result;
     }
@@ -216,6 +224,8 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         result.put(AMEntityRegistry.ENDERIOPHAGE, AMSoundRegistry.ENDERIOPHAGE_SQUISH);
         result.put(AMEntityRegistry.TARANTULA_HAWK, AMSoundRegistry.TARANTULA_HAWK_WING);
         result.put(AMEntityRegistry.FRILLED_SHARK, SoundEvents.COD_FLOP);
+        result.put(AMEntityRegistry.ANACONDA, AMSoundRegistry.ANACONDA_ATTACK);
+        result.put(AMEntityRegistry.ANTEATER, AMSoundRegistry.ANTEATER_HURT);
 
         return result;
     }
@@ -248,4 +258,3 @@ public class AlexsMobsTrophies extends TrophyBuilder {
         return result;
     }
 }
-*/

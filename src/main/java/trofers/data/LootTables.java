@@ -16,6 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
+import trofers.data.loottables.AlexsMobsLootTables;
 import trofers.data.loottables.LootTableBuilder;
 import trofers.data.loottables.VanillaLootTables;
 
@@ -40,7 +41,7 @@ public class LootTables extends LootTableProvider {
 
         addBlockLootTables();
         addTrophyLootTables(new VanillaLootTables());
-        // addTrophyLootTables(new AlexsMobsLootTables());
+        addTrophyLootTables(new AlexsMobsLootTables());
 
         return lootTables;
     }
