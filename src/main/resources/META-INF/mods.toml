@@ -5,7 +5,7 @@ license="MIT"
 
 [[mods]]
 modId = "trofers"
-version = "1.18-2.4.0"
+version = "1.18-2.5.0"
 displayName = "Trofers"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/trofers"
 logoFile = "logo.png"
