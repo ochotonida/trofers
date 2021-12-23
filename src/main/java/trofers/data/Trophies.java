@@ -12,21 +12,19 @@ import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
 import trofers.data.trophies.AlexsMobsTrophies;
-import trofers.data.trophies.TrophyBuilder;
 import trofers.data.trophies.VanillaTrophies;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Trophies implements DataProvider {
 
     private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
 
-    public final Map<String, Set<Trophy>> trophies = new HashMap<>();
+    public final List<Trophy> trophies = new ArrayList<>();
     private final DataGenerator generator;
 
     public Trophies(DataGenerator dataGenerator) {
@@ -34,23 +32,8 @@ public class Trophies implements DataProvider {
     }
 
     protected void addTrophies() {
-        trophies.clear();
-
-        addTrophies(new VanillaTrophies());
-        addTrophies(new AlexsMobsTrophies());
-    }
-
-    private void addTrophies(TrophyBuilder trophyBuilder) {
-        for (Trophy trophy : trophyBuilder.createTrophies()) {
-            addTrophy(trophy, trophyBuilder.getModId());
-        }
-    }
-
-    private void addTrophy(Trophy trophy, String modid) {
-        if (!trophies.containsKey(modid)) {
-            trophies.put(modid, new HashSet<>());
-        }
-        trophies.get(modid).add(trophy);
+        trophies.addAll(VanillaTrophies.createTrophies());
+        trophies.addAll(AlexsMobsTrophies.createTrophies());
     }
 
     @Override
@@ -60,23 +43,23 @@ public class Trophies implements DataProvider {
         Path outputFolder = generator.getOutputFolder();
         Set<ResourceLocation> resourceLocations = Sets.newHashSet();
 
-        for (String modid : trophies.keySet()) {
-            for (Trophy trophy : trophies.get(modid)) {
-                if (!resourceLocations.add(trophy.id())) {
-                    throw new IllegalStateException("Duplicate trophy " + trophy.id());
-                } else {
-                    Path path = createPath(outputFolder, trophy);
-                    try {
-                        JsonObject object;
-                        if (Trofers.MODID.equals(modid)) {
-                            object = trophy.toJson();
-                        } else {
-                            object = trophy.toJson(new ModLoadedCondition(modid));
-                        }
-                        DataProvider.save(GSON, cache, object, path);
-                    } catch (IOException ioexception) {
-                        Trofers.LOGGER.error("Couldn't save trophy {}", path, ioexception);
+        for (Trophy trophy : trophies) {
+            // noinspection ConstantConditions
+            String modId = trophy.entity().getType().getRegistryName().getNamespace();
+            if (!resourceLocations.add(trophy.id())) {
+                throw new IllegalStateException("Duplicate trophy " + trophy.id());
+            } else {
+                Path path = createPath(outputFolder, trophy);
+                try {
+                    JsonObject object;
+                    if (modId.equals("minecraft")) {
+                        object = trophy.toJson();
+                    } else {
+                        object = trophy.toJson(new ModLoadedCondition(modId));
                     }
+                    DataProvider.save(GSON, cache, object, path);
+                } catch (IOException ioexception) {
+                    Trofers.LOGGER.error("Couldn't save trophy {}", path, ioexception);
                 }
             }
         }

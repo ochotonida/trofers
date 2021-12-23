@@ -5,7 +5,7 @@ import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import net.minecraft.world.item.Items;
 
-public class AlexsMobsLootTables extends LootTableBuilder {
+public class AlexsMobsLootTables extends LootTableProvider {
 
     @Override
     public String getModId() {

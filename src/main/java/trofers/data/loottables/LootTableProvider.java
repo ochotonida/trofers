@@ -23,7 +23,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class LootTableBuilder {
+public abstract class LootTableProvider {
 
     private final Map<EntityType<?>, LootTable.Builder> lootTables = new HashMap<>();
 

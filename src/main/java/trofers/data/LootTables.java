@@ -2,7 +2,6 @@ package trofers.data;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -17,7 +16,7 @@ import trofers.Trofers;
 import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
 import trofers.data.loottables.AlexsMobsLootTables;
-import trofers.data.loottables.LootTableBuilder;
+import trofers.data.loottables.LootTableProvider;
 import trofers.data.loottables.VanillaLootTables;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class LootTables extends LootTableProvider {
+public class LootTables extends net.minecraft.data.loot.LootTableProvider {
 
     private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = new ArrayList<>();
 
@@ -46,7 +45,7 @@ public class LootTables extends LootTableProvider {
         return lootTables;
     }
 
-    private void addTrophyLootTables(LootTableBuilder builder) {
+    private void addTrophyLootTables(LootTableProvider builder) {
         lootTables.addAll(builder.getLootTables());
     }
 

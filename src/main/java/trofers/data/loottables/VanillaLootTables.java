@@ -6,7 +6,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.functions.SetNbtFunction;
 
-public class VanillaLootTables extends LootTableBuilder {
+public class VanillaLootTables extends LootTableProvider {
 
     @Override
     protected void addLootTables() {

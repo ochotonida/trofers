@@ -14,6 +14,8 @@ import trofers.common.loot.RandomTrophyChanceCondition;
 import trofers.common.trophy.Trophy;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LootModifiers extends GlobalLootModifierProvider {
 
@@ -24,25 +26,30 @@ public class LootModifiers extends GlobalLootModifierProvider {
         this.trophies = trophies;
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void start() {
-        for (String modid : trophies.trophies.keySet()) {
-            HashMap<EntityType<?>, ResourceLocation> trophyMap = new HashMap<>();
+        Map<String, Map<EntityType<?>, Trophy>> trophies = new HashMap<>();
+        for (Trophy trophy : this.trophies.trophies) {
+            EntityType<?> entityType = trophy.entity().getType();
+            String modid = trophy.entity().getType().getRegistryName().getNamespace();
 
-            for (Trophy trophy : trophies.trophies.get(modid)) {
-                // noinspection ConstantConditions
-                EntityType<?> entityType = trophy.entity().getType();
-                trophyMap.put(entityType, trophy.id());
+            if (!trophies.containsKey(modid)) {
+                trophies.put(modid, new HashMap<>());
             }
+            trophies.get(modid).put(entityType, trophy);
+        }
 
+        for (String modId : trophies.keySet()) {
             LootItemCondition[] conditions = new LootItemCondition[]{
                     LootItemKilledByPlayerCondition.killedByPlayer().build(),
                     RandomTrophyChanceCondition.randomTrophyChance().build()
             };
 
-            AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModItems.SMALL_PLATE.get(), trophyMap);
+            Map<EntityType<?>, ResourceLocation> trophyIds = trophies.get(modId).entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().id()));
+            AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModItems.SMALL_PLATE.get(), trophyIds);
 
-            String name = Trofers.MODID.equals(modid) ? "vanilla" : modid;
+            String name = modId.equals("minecraft") ? "vanilla" : modId;
             name = name + "_trophies";
             add(name, ModLootModifiers.ADD_ENTITY_TROPHY.get(), modifier);
         }
