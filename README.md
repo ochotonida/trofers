@@ -50,7 +50,7 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
     * `cooldown`: The amount of time it takes in ticks before the reward(s) can be claimed again
 * `hidden`: (_default = false_) Whether the trophy should be hidden from trophy selection screen in creative mode
 
-For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/1.17/src/generated/resources/data/trofers/trofers).
+For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/1.18/src/generated/resources/data/trofers/trofers).
 
 ## Adding a trophy to a trophy base
 Trofers currently adds 6 trophy bases. 
