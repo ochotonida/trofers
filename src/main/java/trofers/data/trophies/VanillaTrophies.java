@@ -9,6 +9,7 @@ import trofers.common.trophy.Trophy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class VanillaTrophies {
 
@@ -105,7 +106,8 @@ public class VanillaTrophies {
                 .getTag().putInt("Variant", 0);
         builder(EntityType.PHANTOM, 0x5161a5)
                 .offset(0, 1, 0);
-        builder(EntityType.PIG, 0xf1a3a4);
+        builder(EntityType.PIG, 0xf1a3a4)
+                .getTag().putUUID("UUID", new UUID(2, 0));
         builder(EntityType.PIGLIN, 0xefb987).lootTable("gameplay/piglin_bartering")
                 .getTag().putBoolean("IsImmuneToZombification", true);
         builder(EntityType.PIGLIN_BRUTE, 0xefb987)
