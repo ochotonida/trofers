@@ -12,7 +12,8 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "minecraft:pig"
+    "type": "minecraft:pig",
+    "nbt": "{UUID:[I;0,2,0,0]}"
   },
   "colors": {
     "base": "#606060",
