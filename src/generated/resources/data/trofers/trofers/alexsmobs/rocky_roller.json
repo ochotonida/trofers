@@ -6,11 +6,11 @@
     }
   ],
   "name": {
-    "color": "#7FBBE8",
+    "color": "#AEA58F",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.endergrade"
+        "translate": "entity.alexsmobs.rocky_roller"
       }
     ]
   },
@@ -18,18 +18,18 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "alexsmobs:endergrade"
+    "type": "alexsmobs:rocky_roller"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7FBBE8"
+    "accent": "#AEA58F"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:endergrade_idle"
+      "soundEvent": "alexsmobs:rocky_roller_idle"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/endergrade",
+      "lootTable": "trofers:trophies/alexsmobs/rocky_roller",
       "cooldown": 9600
     }
   }

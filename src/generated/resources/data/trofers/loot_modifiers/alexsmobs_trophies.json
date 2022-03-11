@@ -26,12 +26,20 @@
       "trophy": "trofers:alexsmobs/bald_eagle"
     },
     {
+      "entity": "alexsmobs:bison",
+      "trophy": "trofers:alexsmobs/bison"
+    },
+    {
       "entity": "alexsmobs:blobfish",
       "trophy": "trofers:alexsmobs/blobfish"
     },
     {
       "entity": "alexsmobs:bone_serpent",
       "trophy": "trofers:alexsmobs/bone_serpent"
+    },
+    {
+      "entity": "alexsmobs:bunfungus",
+      "trophy": "trofers:alexsmobs/bunfungus"
     },
     {
       "entity": "alexsmobs:cachalot_whale",
@@ -50,8 +58,16 @@
       "trophy": "trofers:alexsmobs/cockroach"
     },
     {
+      "entity": "alexsmobs:comb_jelly",
+      "trophy": "trofers:alexsmobs/comb_jelly"
+    },
+    {
       "entity": "alexsmobs:cosmaw",
       "trophy": "trofers:alexsmobs/cosmaw"
+    },
+    {
+      "entity": "alexsmobs:cosmic_cod",
+      "trophy": "trofers:alexsmobs/cosmic_cod"
     },
     {
       "entity": "alexsmobs:crimson_mosquito",
@@ -86,6 +102,10 @@
       "trophy": "trofers:alexsmobs/enderiophage"
     },
     {
+      "entity": "alexsmobs:flutter",
+      "trophy": "trofers:alexsmobs/flutter"
+    },
+    {
       "entity": "alexsmobs:fly",
       "trophy": "trofers:alexsmobs/fly"
     },
@@ -100,6 +120,14 @@
     {
       "entity": "alexsmobs:gazelle",
       "trophy": "trofers:alexsmobs/gazelle"
+    },
+    {
+      "entity": "alexsmobs:gelada_monkey",
+      "trophy": "trofers:alexsmobs/gelada_monkey"
+    },
+    {
+      "entity": "alexsmobs:giant_squid",
+      "trophy": "trofers:alexsmobs/giant_squid"
     },
     {
       "entity": "alexsmobs:gorilla",
@@ -120,6 +148,10 @@
     {
       "entity": "alexsmobs:hummingbird",
       "trophy": "trofers:alexsmobs/hummingbird"
+    },
+    {
+      "entity": "alexsmobs:jerboa",
+      "trophy": "trofers:alexsmobs/jerboa"
     },
     {
       "entity": "alexsmobs:kangaroo",
@@ -186,6 +218,10 @@
       "trophy": "trofers:alexsmobs/roadrunner"
     },
     {
+      "entity": "alexsmobs:rocky_roller",
+      "trophy": "trofers:alexsmobs/rocky_roller"
+    },
+    {
       "entity": "alexsmobs:seagull",
       "trophy": "trofers:alexsmobs/seagull"
     },
@@ -228,6 +264,10 @@
     {
       "entity": "alexsmobs:tasmanian_devil",
       "trophy": "trofers:alexsmobs/tasmanian_devil"
+    },
+    {
+      "entity": "alexsmobs:terrapin",
+      "trophy": "trofers:alexsmobs/terrapin"
     },
     {
       "entity": "alexsmobs:tiger",

@@ -6,11 +6,11 @@
     }
   ],
   "name": {
-    "color": "#7FBBE8",
+    "color": "#CDE6FB",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.endergrade"
+        "translate": "entity.alexsmobs.comb_jelly"
       }
     ]
   },
@@ -18,18 +18,19 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "alexsmobs:endergrade"
+    "type": "alexsmobs:comb_jelly",
+    "nbt": "{JellyScale:1.0f}"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7FBBE8"
+    "accent": "#CDE6FB"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:endergrade_idle"
+      "soundEvent": "alexsmobs:comb_jelly_hurt"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/endergrade",
+      "lootTable": "trofers:trophies/alexsmobs/comb_jelly",
       "cooldown": 9600
     }
   }

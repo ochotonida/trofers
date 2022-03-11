@@ -6,11 +6,11 @@
     }
   ],
   "name": {
-    "color": "#7FBBE8",
+    "color": "#DBC388",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.endergrade"
+        "translate": "entity.alexsmobs.jerboa"
       }
     ]
   },
@@ -18,18 +18,21 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "alexsmobs:endergrade"
+    "type": "alexsmobs:jerboa"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7FBBE8"
+    "accent": "#DBC388"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:endergrade_idle"
+      "soundEvent": "alexsmobs:jerboa_idle"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/endergrade",
+      "statusEffect": {
+        "effect": "alexsmobs:fleet_footed",
+        "duration": 2400
+      },
       "cooldown": 9600
     }
   }

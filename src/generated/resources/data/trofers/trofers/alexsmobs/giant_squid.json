@@ -6,30 +6,37 @@
     }
   ],
   "name": {
-    "color": "#7FBBE8",
+    "color": "#BD6157",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.endergrade"
+        "translate": "entity.alexsmobs.giant_squid"
       }
     ]
   },
   "display": {
-    "scale": 0.25
+    "offset": {
+      "y": 1.0,
+      "z": -4.0
+    },
+    "rotation": {
+      "x": 180.0
+    },
+    "scale": 0.1
   },
   "entity": {
-    "type": "alexsmobs:endergrade"
+    "type": "alexsmobs:giant_squid"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7FBBE8"
+    "accent": "#BD6157"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:endergrade_idle"
+      "soundEvent": "alexsmobs:giant_squid_games"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/endergrade",
+      "lootTable": "trofers:trophies/alexsmobs/giant_squid",
       "cooldown": 9600
     }
   }

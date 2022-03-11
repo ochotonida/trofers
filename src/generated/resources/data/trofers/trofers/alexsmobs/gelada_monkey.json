@@ -6,11 +6,11 @@
     }
   ],
   "name": {
-    "color": "#7FBBE8",
+    "color": "#AE8A63",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.endergrade"
+        "translate": "entity.alexsmobs.gelada_monkey"
       }
     ]
   },
@@ -18,18 +18,18 @@
     "scale": 0.25
   },
   "entity": {
-    "type": "alexsmobs:endergrade"
+    "type": "alexsmobs:gelada_monkey"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7FBBE8"
+    "accent": "#AE8A63"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:endergrade_idle"
+      "soundEvent": "alexsmobs:gelada_monkey_idle"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/endergrade",
+      "lootTable": "trofers:trophies/alexsmobs/gelada_monkey",
       "cooldown": 9600
     }
   }

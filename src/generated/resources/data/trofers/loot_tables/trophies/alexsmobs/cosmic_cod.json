@@ -1,7 +1,11 @@
 {
   "pools": [
     {
-      "rolls": 1.0,
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 3.0
+      },
       "bonus_rolls": 0.0,
       "entries": [
         {
@@ -12,7 +16,7 @@
               "type": "forge:mod_loaded"
             }
           ],
-          "name": "alexsmobs:mungal_spores"
+          "name": "alexsmobs:cosmic_cod"
         }
       ]
     }

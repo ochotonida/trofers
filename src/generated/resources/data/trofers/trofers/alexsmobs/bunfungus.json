@@ -6,30 +6,30 @@
     }
   ],
   "name": {
-    "color": "#7FBBE8",
+    "color": "#D13636",
     "translate": "trophy.trofers.composed",
     "with": [
       {
-        "translate": "entity.alexsmobs.endergrade"
+        "translate": "entity.alexsmobs.bunfungus"
       }
     ]
   },
   "display": {
-    "scale": 0.25
+    "scale": 0.1875
   },
   "entity": {
-    "type": "alexsmobs:endergrade"
+    "type": "alexsmobs:bunfungus"
   },
   "colors": {
     "base": "#606060",
-    "accent": "#7FBBE8"
+    "accent": "#D13636"
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:endergrade_idle"
+      "soundEvent": "alexsmobs:bunfungus_idle"
     },
     "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/endergrade",
+      "lootTable": "trofers:trophies/alexsmobs/bunfungus",
       "cooldown": 9600
     }
   }
