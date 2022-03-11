@@ -218,6 +218,7 @@ public class TrophyScreen extends Screen {
     private void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
         trophyButtons.forEach(this::removeWidget);
+        trophyButtons.clear();
 
         int index = currentPage * columns * rows;
 
