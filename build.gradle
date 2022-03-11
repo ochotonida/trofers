@@ -1,16 +1,15 @@
 buildscript {
     repositories {
         maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://maven.parchmentmc.org' }
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.parchmentmc:librarian:1.+'
+        classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'org.spongepowered.mixin'
 
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
@@ -79,8 +78,8 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.1-39.0.8'
 
-    implementation fg.deobf("curse.maven:citadel-331936:3548548")
-    implementation fg.deobf("curse.maven:alexsmobs-426558:3548558")
+    implementation fg.deobf("curse.maven:citadel-331936:3642713")
+    implementation fg.deobf("curse.maven:alexsmobs-426558:3650308")
 }
 
 jar {
