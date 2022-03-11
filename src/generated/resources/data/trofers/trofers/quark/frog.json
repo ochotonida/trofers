@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "quark",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#FCE3AB",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.quark.frog"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "quark:frog"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#FCE3AB"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "quark:entity.frog.wednesday"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/quark/frog",
+      "cooldown": 9600
+    }
+  }
+}

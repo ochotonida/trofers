@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "modid": "quark",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#E32008",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.quark.toretoise"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "quark:toretoise",
+    "nbt": "{oreType:3b}"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#E32008"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "quark:entity.toretoise.idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/quark/toretoise",
+      "cooldown": 9600
+    }
+  }
+}

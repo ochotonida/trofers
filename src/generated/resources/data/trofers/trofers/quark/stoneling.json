@@ -1,0 +1,37 @@
+{
+  "conditions": [
+    {
+      "modid": "quark",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#AEB2B2",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.quark.stoneling"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "quark:stoneling",
+    "nbt": "{carryingItem:{Count:1b,id:\"minecraft:diamond\"}}"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#AEB2B2"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "quark:entity.stoneling.meep"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/quark/stoneling",
+      "cooldown": 9600
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "trofers:random_trophy_chance"
+    }
+  ],
+  "trophyBase": "trofers:small_plate",
+  "trophies": [
+    {
+      "entity": "quark:crab",
+      "trophy": "trofers:quark/crab"
+    },
+    {
+      "entity": "quark:forgotten",
+      "trophy": "trofers:quark/forgotten"
+    },
+    {
+      "entity": "quark:foxhound",
+      "trophy": "trofers:quark/foxhound"
+    },
+    {
+      "entity": "quark:frog",
+      "trophy": "trofers:quark/frog"
+    },
+    {
+      "entity": "quark:shiba",
+      "trophy": "trofers:quark/shiba"
+    },
+    {
+      "entity": "quark:stoneling",
+      "trophy": "trofers:quark/stoneling"
+    },
+    {
+      "entity": "quark:toretoise",
+      "trophy": "trofers:quark/toretoise"
+    },
+    {
+      "entity": "quark:wraith",
+      "trophy": "trofers:quark/wraith"
+    }
+  ],
+  "type": "trofers:add_entity_trophy"
+}
