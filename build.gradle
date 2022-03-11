@@ -71,7 +71,10 @@ sourceSets.main.resources {
 
 repositories {
     maven {
-        url = "https://www.cursemaven.com"
+        url "https://www.cursemaven.com"
+    }
+    maven {
+        url "https://maven.blamejared.com/"
     }
 }
 
@@ -80,6 +83,9 @@ dependencies {
 
     implementation fg.deobf("curse.maven:citadel-331936:3642713")
     implementation fg.deobf("curse.maven:alexsmobs-426558:3650308")
+
+    implementation fg.deobf("vazkii.autoreglib:AutoRegLib:1.7-53.110")
+    implementation fg.deobf("vazkii.quark:Quark:3.1-340.2124")
 }
 
 jar {

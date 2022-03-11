@@ -63,10 +63,39 @@ public class EntityTrophyBuilder {
         return entityTag.getCompound(id);
     }
 
+    public EntityTrophyBuilder putItem(String tag, Item item) {
+        return putItem(tag, new ItemStack(item));
+    }
+
+    public EntityTrophyBuilder putItem(String tag, ItemStack stack) {
+        getTag().put(tag, stack.save(new CompoundTag()));
+        return this;
+    }
+
     public EntityTrophyBuilder putHandItem(Item item) {
         getTag().put("HandItems", new ListTag());
         getTag().getList("HandItems", Tag.TAG_COMPOUND).add(new ItemStack(item).save(new CompoundTag()));
         getTag().getList("HandItems", Tag.TAG_COMPOUND).add(new CompoundTag());
+        return this;
+    }
+
+    public EntityTrophyBuilder putHelmet(Item helmet) {
+        return putArmor(new ItemStack(helmet), 3);
+    }
+
+    public EntityTrophyBuilder putArmor(ItemStack item, int slot) {
+        ListTag armor;
+        if (!getTag().contains("ArmorItems", Tag.TAG_LIST)) {
+            armor = new ListTag();
+            CompoundTag empty = ItemStack.EMPTY.save(new CompoundTag());
+            for (int i = 0; i <= 4; i++) {
+                armor.add(empty);
+            }
+            getTag().put("ArmorItems", armor);
+        } else {
+            armor = getTag().getList("ArmorItems", Tag.TAG_COMPOUND);
+        }
+        armor.set(slot, item.save(new CompoundTag()));
         return this;
     }
 

@@ -12,6 +12,7 @@ import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
 import trofers.data.trophies.AlexsMobsTrophies;
+import trofers.data.trophies.QuarkTrophies;
 import trofers.data.trophies.VanillaTrophies;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class Trophies implements DataProvider {
     protected void addTrophies() {
         trophies.addAll(VanillaTrophies.createTrophies());
         trophies.addAll(AlexsMobsTrophies.createTrophies());
+        trophies.addAll(QuarkTrophies.createTrophies());
     }
 
     @Override
