@@ -31,143 +31,143 @@ public class AlexsMobsTrophies {
 
     public static List<Trophy> createTrophies() {
         TROPHIES.clear();
-        builder(AMEntityRegistry.ALLIGATOR_SNAPPING_TURTLE, 0x6a5747);
-        builder(AMEntityRegistry.ANACONDA, 0x6c7239)
+        builder(AMEntityRegistry.ALLIGATOR_SNAPPING_TURTLE.get(), 0x6a5747);
+        builder(AMEntityRegistry.ANACONDA.get(), 0x6c7239)
                 .offset(0, 0, 2 - 0.375F)
                 .scale(0.375F)
                 .sound(AMSoundRegistry.ANACONDA_ATTACK);
-        builder(AMEntityRegistry.ANTEATER, 0x5a4c47)
+        builder(AMEntityRegistry.ANTEATER.get(), 0x5a4c47)
                 .sound( AMSoundRegistry.ANTEATER_HURT);
-        builder(AMEntityRegistry.BALD_EAGLE, 0xc48e2f);
-        builder(AMEntityRegistry.BLOBFISH, 0x7e7d7c)
+        builder(AMEntityRegistry.BALD_EAGLE.get(), 0xc48e2f);
+        builder(AMEntityRegistry.BLOBFISH.get(), 0x7e7d7c)
                 .sound(SoundEvents.COD_FLOP)
                 .getTag().putFloat("BlobfishScale", 1);
-        builder(AMEntityRegistry.BISON, 0x796445)
+        builder(AMEntityRegistry.BISON.get(), 0x796445)
                 .scale(0.1666);
-        builder(AMEntityRegistry.BONE_SERPENT, 0xd1c4ac)
+        builder(AMEntityRegistry.BONE_SERPENT.get(), 0xd1c4ac)
                 .offset(0, 0, 2);
-        builder(AMEntityRegistry.BUNFUNGUS, 0xd13636)
+        builder(AMEntityRegistry.BUNFUNGUS.get(), 0xd13636)
                 .scale(0.1875);
-        builder(AMEntityRegistry.CACHALOT_WHALE, 0xbababa)
+        builder(AMEntityRegistry.CACHALOT_WHALE.get(), 0xbababa)
                 .offset(0, 0, -1)
                 .scale(0.05);
-        builder(AMEntityRegistry.CAPUCHIN_MONKEY, 0xeed7b1);
-        builder(AMEntityRegistry.CENTIPEDE_HEAD, 0x85435e)
+        builder(AMEntityRegistry.CAPUCHIN_MONKEY.get(), 0xeed7b1);
+        builder(AMEntityRegistry.CENTIPEDE_HEAD.get(), 0x85435e)
                 .offset(0, -4 / 4F, 0)
                 .sound(AMSoundRegistry.CENTIPEDE_ATTACK);
-        builder(AMEntityRegistry.COCKROACH, 0x835b55)
+        builder(AMEntityRegistry.COCKROACH.get(), 0x835b55)
                 .sound(AMSoundRegistry.COCKROACH_HURT);
-        builder(AMEntityRegistry.COMB_JELLY, 0xcde6fb)
+        builder(AMEntityRegistry.COMB_JELLY.get(), 0xcde6fb)
                 .sound(AMSoundRegistry.COMB_JELLY_HURT)
                 .getTag().putFloat("JellyScale", 1);
-        builder(AMEntityRegistry.COSMAW, 0x8592dd)
+        builder(AMEntityRegistry.COSMAW.get(), 0x8592dd)
                 .offset(0, 0, 1)
                 .scale(0.1666);
-        builder(AMEntityRegistry.COSMIC_COD, 0x6e9ddb)
+        builder(AMEntityRegistry.COSMIC_COD.get(), 0x6e9ddb)
                 .sound(AMSoundRegistry.COSMIC_COD_HURT);
-        builder(AMEntityRegistry.CRIMSON_MOSQUITO, 0xfcbeda)
+        builder(AMEntityRegistry.CRIMSON_MOSQUITO.get(), 0xfcbeda)
                 .scale(0.1666)
                 .sound(AMSoundRegistry.MOSQUITO_LOOP);
-        builder(AMEntityRegistry.CROCODILE, 0x676d4c)
+        builder(AMEntityRegistry.CROCODILE.get(), 0x676d4c)
                 .offset(0, 0, -1.5)
                 .scale(0.1666);
-        builder(AMEntityRegistry.CROW, 0x43485b);
-        builder(AMEntityRegistry.DROPBEAR, 0xbb4a4a);
-        builder(AMEntityRegistry.ELEPHANT, 0x7a7572)
+        builder(AMEntityRegistry.CROW.get(), 0x43485b);
+        builder(AMEntityRegistry.DROPBEAR.get(), 0xbb4a4a);
+        builder(AMEntityRegistry.ELEPHANT.get(), 0x7a7572)
                 .scale(0.1666)
                 .getTag().putInt("Carpet", -1);
-        builder(AMEntityRegistry.EMU, 0x746457);
-        builder(AMEntityRegistry.ENDERGRADE, 0x7fbbe8);
-        builder(AMEntityRegistry.ENDERIOPHAGE, 0xa55ca8)
+        builder(AMEntityRegistry.EMU.get(), 0x746457);
+        builder(AMEntityRegistry.ENDERGRADE.get(), 0x7fbbe8);
+        builder(AMEntityRegistry.ENDERIOPHAGE.get(), 0xa55ca8)
                 .sound(AMSoundRegistry.ENDERIOPHAGE_SQUISH);
-        builder(AMEntityRegistry.FLUTTER, 0xd885e5);
-        builder(AMEntityRegistry.FLY, 0xc19288);
-        builder(AMEntityRegistry.FRILLED_SHARK, 0x675c60)
+        builder(AMEntityRegistry.FLUTTER.get(), 0xd885e5);
+        builder(AMEntityRegistry.FLY.get(), 0xc19288);
+        builder(AMEntityRegistry.FRILLED_SHARK.get(), 0x675c60)
                 .sound(SoundEvents.COD_FLOP);
-        builder(AMEntityRegistry.FROSTSTALKER, 0x9fc1fc)
+        builder(AMEntityRegistry.FROSTSTALKER.get(), 0x9fc1fc)
                 .getTag().putBoolean("Spiked", true);
-        builder(AMEntityRegistry.GAZELLE, 0xe4b57e)
+        builder(AMEntityRegistry.GAZELLE.get(), 0xe4b57e)
                 .sound(AMSoundRegistry.GAZELLE_HURT);
-        builder(AMEntityRegistry.GELADA_MONKEY, 0xae8a63);
-        builder(AMEntityRegistry.GIANT_SQUID, 0xbd6157)
+        builder(AMEntityRegistry.GELADA_MONKEY.get(), 0xae8a63);
+        builder(AMEntityRegistry.GIANT_SQUID.get(), 0xbd6157)
                 .sound(AMSoundRegistry.GIANT_SQUID_GAMES)
                 .rotate(180, 0, 0)
                 .offset(0, 1, -4)
                 .scale(0.1);
-        builder(AMEntityRegistry.GORILLA, 0x53595d);
-        builder(AMEntityRegistry.GRIZZLY_BEAR, 0x825e3e)
+        builder(AMEntityRegistry.GORILLA.get(), 0x53595d);
+        builder(AMEntityRegistry.GRIZZLY_BEAR.get(), 0x825e3e)
                 .getTag().putBoolean("Honeyed", true);
-        builder(AMEntityRegistry.GUSTER, 0xf8e0a8)
+        builder(AMEntityRegistry.GUSTER.get(), 0xf8e0a8)
                 .scale(0.1875);
-        builder(AMEntityRegistry.HAMMERHEAD_SHARK, 0x898e9d)
+        builder(AMEntityRegistry.HAMMERHEAD_SHARK.get(), 0x898e9d)
                 .offset(0, 0.5, 0)
                 .scale(0.2)
                 .sound(SoundEvents.COD_FLOP);
-        builder(AMEntityRegistry.HUMMINGBIRD, 0x3d966c);
-        builder(AMEntityRegistry.JERBOA, 0xdbc388)
+        builder(AMEntityRegistry.HUMMINGBIRD.get(), 0x3d966c);
+        builder(AMEntityRegistry.JERBOA.get(), 0xdbc388)
                 .effect(AMEffectRegistry.FLEET_FOOTED, 2 * 60 * 20, 4 * 60 * 20);
-        builder(AMEntityRegistry.KANGAROO, 0xd6a771);
-        builder(AMEntityRegistry.KOMODO_DRAGON, 0x736d4a);
-        builder(AMEntityRegistry.LAVIATHAN, 0xffdb9b)
+        builder(AMEntityRegistry.KANGAROO.get(), 0xd6a771);
+        builder(AMEntityRegistry.KOMODO_DRAGON.get(), 0x736d4a);
+        builder(AMEntityRegistry.LAVIATHAN.get(), 0xffdb9b)
                 .offset(0, 0, 1)
                 .scale(0.075);
-        builder(AMEntityRegistry.LEAFCUTTER_ANT, 0xa4582f)
+        builder(AMEntityRegistry.LEAFCUTTER_ANT.get(), 0xa4582f)
                 .sound(AMSoundRegistry.LEAFCUTTER_ANT_HURT);
-        builder(AMEntityRegistry.LOBSTER, 0xda5e37)
+        builder(AMEntityRegistry.LOBSTER.get(), 0xda5e37)
                 .sound(AMSoundRegistry.LOBSTER_HURT);
-        builder(AMEntityRegistry.MANED_WOLF, 0xc88748);
-        builder(AMEntityRegistry.MANTIS_SHRIMP, 0x15971e)
+        builder(AMEntityRegistry.MANED_WOLF.get(), 0xc88748);
+        builder(AMEntityRegistry.MANTIS_SHRIMP.get(), 0x15971e)
                 .sound(AMSoundRegistry.MANTIS_SHRIMP_SNAP);
-        builder(AMEntityRegistry.MIMIC_OCTOPUS, 0xfcede2);
-        builder(AMEntityRegistry.MIMICUBE, 0x5e5882)
+        builder(AMEntityRegistry.MIMIC_OCTOPUS.get(), 0xfcede2);
+        builder(AMEntityRegistry.MIMICUBE.get(), 0x5e5882)
                 .sound(AMSoundRegistry.MIMICUBE_JUMP);
-        builder(AMEntityRegistry.MOOSE, 0xc89e74)
+        builder(AMEntityRegistry.MOOSE.get(), 0xc89e74)
                 .scale(0.1666)
                 .getTag().putBoolean("Antlered", true);
-        builder(AMEntityRegistry.MUNGUS, 0x8679ae);
-        builder(AMEntityRegistry.ORCA, 0x71777f)
+        builder(AMEntityRegistry.MUNGUS.get(), 0x8679ae);
+        builder(AMEntityRegistry.ORCA.get(), 0x71777f)
                 .offset(0, 1, -1)
                 .scale(0.1)
                 .effect(AMEffectRegistry.ORCAS_MIGHT, 2 * 60 * 20)
                 .cooldown(4 * 60 * 20);
-        builder(AMEntityRegistry.PLATYPUS, 0x62bdba)
+        builder(AMEntityRegistry.PLATYPUS.get(), 0x62bdba)
                 .getTag().putString("CustomName", Component.Serializer.toJson(new TextComponent("perry")));
-        builder(AMEntityRegistry.RACCOON, 0x83807d)
+        builder(AMEntityRegistry.RACCOON.get(), 0x83807d)
                 .getTag().putInt("Carpet", -1);
-        builder(AMEntityRegistry.RATTLESNAKE, 0xccb792)
+        builder(AMEntityRegistry.RATTLESNAKE.get(), 0xccb792)
                 .sound(AMSoundRegistry.RATTLESNAKE_LOOP);
-        builder(AMEntityRegistry.ROADRUNNER, 0x4d696f);
-        builder(AMEntityRegistry.ROCKY_ROLLER, 0xaea58f);
-        builder(AMEntityRegistry.SEAGULL, 0xf8c444);
-        builder(AMEntityRegistry.SEAL, 0x65584b);
-        builder(AMEntityRegistry.SHOEBILL, 0x8f8f8f)
+        builder(AMEntityRegistry.ROADRUNNER.get(), 0x4d696f);
+        builder(AMEntityRegistry.ROCKY_ROLLER.get(), 0xaea58f);
+        builder(AMEntityRegistry.SEAGULL.get(), 0xf8c444);
+        builder(AMEntityRegistry.SEAL.get(), 0x65584b);
+        builder(AMEntityRegistry.SHOEBILL.get(), 0x8f8f8f)
                 .sound(AMSoundRegistry.SHOEBILL_HURT);
-        builder(AMEntityRegistry.SNOW_LEOPARD, 0x948a80);
-        builder(AMEntityRegistry.SOUL_VULTURE, 0x3dd6e1);
-        builder(AMEntityRegistry.SPECTRE, 0xc0c6ff)
+        builder(AMEntityRegistry.SNOW_LEOPARD.get(), 0x948a80);
+        builder(AMEntityRegistry.SOUL_VULTURE.get(), 0x3dd6e1);
+        builder(AMEntityRegistry.SPECTRE.get(), 0xc0c6ff)
                 .offset(0, 0, -1.5).scale(0.1);
-        builder(AMEntityRegistry.STRADDLER, 0x596980)
+        builder(AMEntityRegistry.STRADDLER.get(), 0x596980)
                 .scale(0.1666);
-        builder(AMEntityRegistry.STRADPOLE, 0x596980)
+        builder(AMEntityRegistry.STRADPOLE.get(), 0x596980)
                 .sound(AMSoundRegistry.STRADDLER_IDLE);
-        builder(AMEntityRegistry.SUNBIRD, 0xfc8865)
+        builder(AMEntityRegistry.SUNBIRD.get(), 0xfc8865)
                 .scale(0.1875)
                 .effect(AMEffectRegistry.SUNBIRD_CURSE, 10 * 20)
                 .cooldown(0);
-        builder(AMEntityRegistry.TARANTULA_HAWK, 0xba4c2d)
+        builder(AMEntityRegistry.TARANTULA_HAWK.get(), 0xba4c2d)
                 .scale(0.1875).sound(AMSoundRegistry.TARANTULA_HAWK_WING);
-        builder(AMEntityRegistry.TASMANIAN_DEVIL, 0xa6b2bd);
-        builder(AMEntityRegistry.TERRAPIN, 0x6d6d2f)
+        builder(AMEntityRegistry.TASMANIAN_DEVIL.get(), 0xa6b2bd);
+        builder(AMEntityRegistry.TERRAPIN.get(), 0x6d6d2f)
                 .sound(AMSoundRegistry.TERRAPIN_HURT);
-        builder(AMEntityRegistry.TIGER, 0xe2b653)
+        builder(AMEntityRegistry.TIGER.get(), 0xe2b653)
                 .effect(AMEffectRegistry.TIGERS_BLESSING, 2 * 60 * 20)
                 .cooldown(4 * 60 * 20);
-        builder(AMEntityRegistry.TOUCAN, 0xf28d32);
-        builder(AMEntityRegistry.TUSKLIN, 0x7c6445)
+        builder(AMEntityRegistry.TOUCAN.get(), 0xf28d32);
+        builder(AMEntityRegistry.TUSKLIN.get(), 0x7c6445)
                 .scale(0.2);
-        builder(AMEntityRegistry.WARPED_MOSCO, 0x20fcce)
+        builder(AMEntityRegistry.WARPED_MOSCO.get(), 0x20fcce)
                 .scale(0.1666);
-        builder(AMEntityRegistry.WARPED_TOAD, 0x179896);
+        builder(AMEntityRegistry.WARPED_TOAD.get(), 0x179896);
 
         return TROPHIES.stream().map(EntityTrophyBuilder::createTrophy).toList();
     }
