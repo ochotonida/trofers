@@ -1,10 +1,10 @@
 package trofers.common.init;
 
+import net.minecraft.core.Registry;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.block.PillarTrophyBlock;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
 
-    public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, Trofers.MODID);
+    public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(Registry.BLOCK_REGISTRY, Trofers.MODID);
 
     public static final Set<RegistryObject<TrophyBlock>> TROPHIES = new HashSet<>();
 

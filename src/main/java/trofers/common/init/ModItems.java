@@ -1,11 +1,11 @@
 package trofers.common.init;
 
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.block.TrophyBlock;
@@ -17,7 +17,7 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public class ModItems {
 
-    public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(ForgeRegistries.ITEMS, Trofers.MODID);
+    public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(Registry.ITEM_REGISTRY, Trofers.MODID);
 
     public static final CreativeModeTab CREATIVE_TAB = new CreativeModeTab(Trofers.MODID) {
         @Override
