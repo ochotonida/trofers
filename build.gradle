@@ -22,7 +22,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.1'
+    mappings channel: 'official', version: '1.18.2'
 
     runs {
         client {
@@ -79,13 +79,13 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.1-39.0.8'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.0.19'
 
-    implementation fg.deobf("curse.maven:citadel-331936:3642713")
-    implementation fg.deobf("curse.maven:alexsmobs-426558:3650308")
+    implementation fg.deobf("curse.maven:citadel-331936:3683007")
+    implementation fg.deobf("curse.maven:alexsmobs-426558:3694555")
 
     implementation fg.deobf("vazkii.autoreglib:AutoRegLib:1.7-53.110")
-    implementation fg.deobf("vazkii.quark:Quark:3.1-340.2124")
+    implementation fg.deobf("vazkii.quark:Quark:3.1-341.2144")
 }
 
 jar {
