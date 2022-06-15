@@ -45,7 +45,7 @@ public class VanillaLootTables extends LootTableProvider {
         add(EntityType.SILVERFISH, 1, 3, Items.ENDER_EYE);
         add(EntityType.SKELETON, 1, 4, Items.BONE);
         add(EntityType.SKELETON_HORSE, 1, 4, Items.BONE_BLOCK);
-        add(EntityType.SLIME, 1, 3, Items.SLIME_BLOCK);
+        add(EntityType.SLIME, 1, 3, Items.SLIME_BALL);
         add(EntityType.SNOW_GOLEM, 2, 6, entry(Items.SNOW_BLOCK), entry(Items.SNOWBALL, 2));
         add(EntityType.SPIDER, 1, 3, Items.STRING);
         add(EntityType.SQUID, 1, 3, Items.INK_SAC);

@@ -15,10 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.block.TrophyBlock;
 import trofers.common.init.ModBlocks;
-import trofers.data.loottables.AlexsMobsLootTables;
-import trofers.data.loottables.LootTableProvider;
-import trofers.data.loottables.QuarkLootTables;
-import trofers.data.loottables.VanillaLootTables;
+import trofers.data.loottables.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +40,8 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
         addTrophyLootTables(new VanillaLootTables());
         addTrophyLootTables(new AlexsMobsLootTables());
         addTrophyLootTables(new QuarkLootTables());
+        addTrophyLootTables(new ThermalLootTables());
+        addTrophyLootTables(new TinkersConstructLootTables());
 
         return lootTables;
     }

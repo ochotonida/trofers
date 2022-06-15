@@ -11,9 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
-import trofers.data.trophies.AlexsMobsTrophies;
-import trofers.data.trophies.QuarkTrophies;
-import trofers.data.trophies.VanillaTrophies;
+import trofers.data.trophies.*;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -36,6 +34,8 @@ public class Trophies implements DataProvider {
         trophies.addAll(VanillaTrophies.createTrophies());
         trophies.addAll(AlexsMobsTrophies.createTrophies());
         trophies.addAll(QuarkTrophies.createTrophies());
+        trophies.addAll(ThermalTrophies.createTrophies());
+        trophies.addAll(TinkersConstructTrophies.createTrophies());
     }
 
     @Override

@@ -136,7 +136,8 @@ public class VanillaTrophies {
         builder(EntityType.SKELETON, 0xbdbdbd)
                 .putHandItem(Items.BOW);
         builder(EntityType.SKELETON_HORSE, 0xd0d0d2);
-        builder(EntityType.SLIME, 0x77c264).sound(SoundEvents.SLIME_SQUISH)
+        builder(EntityType.SLIME, 0x77c264)
+                .sound(SoundEvents.SLIME_SQUISH)
                 .getTag().putInt("Size", 1);
         builder(EntityType.SNOW_GOLEM, 0xffffff)
                 .sound(SoundEvents.SNOW_PLACE);

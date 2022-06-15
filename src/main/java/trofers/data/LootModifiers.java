@@ -6,6 +6,8 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
+import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.world.TinkerWorld;
 import trofers.Trofers;
 import trofers.common.init.ModItems;
 import trofers.common.init.ModLootModifiers;
@@ -26,6 +28,11 @@ public class LootModifiers extends GlobalLootModifierProvider {
         this.trophies = trophies;
     }
 
+    private void addExtraTrophies(Map<String, Map<EntityType<?>, Trophy>> trophies) {
+        Trophy slimeTrophy = trophies.get("minecraft").get(EntityType.SLIME);
+        trophies.get(TConstruct.MOD_ID).put(TinkerWorld.earthSlimeEntity.get(), slimeTrophy);
+    }
+
     @SuppressWarnings("ConstantConditions")
     @Override
     protected void start() {
@@ -39,6 +46,8 @@ public class LootModifiers extends GlobalLootModifierProvider {
             }
             trophies.get(modid).put(entityType, trophy);
         }
+
+        addExtraTrophies(trophies);
 
         for (String modId : trophies.keySet()) {
             LootItemCondition[] conditions = new LootItemCondition[]{

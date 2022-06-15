@@ -76,13 +76,25 @@ repositories {
     maven {
         url "https://maven.blamejared.com/"
     }
+    maven {
+        url 'https://maven.covers1624.net/'
+    }
+    maven {
+        url 'https://dvs1.progwml6.com/files/maven'
+    }
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.0.19'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.21'
 
     implementation fg.deobf("curse.maven:citadel-331936:3783096")
     implementation fg.deobf("curse.maven:alexsmobs-426558:3829342")
+
+    implementation fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
+    implementation fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
+
+    implementation fg.deobf("slimeknights.mantle:Mantle:1.18.2-1.9.27")
+    implementation fg.deobf("slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.32")
 
     implementation fg.deobf("vazkii.autoreglib:AutoRegLib:1.7-53.110")
     implementation fg.deobf("vazkii.quark:Quark:3.1-341.2144")
