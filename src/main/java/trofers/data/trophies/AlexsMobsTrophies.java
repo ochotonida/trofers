@@ -164,7 +164,7 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.STRADPOLE.get(), 0x596980)
                 .sound(AMSoundRegistry.STRADDLER_IDLE);
         builder(AMEntityRegistry.SUNBIRD.get(), 0xfc8865)
-                .scale(0.1875)
+                .scale(0.1)
                 .effect(AMEffectRegistry.SUNBIRD_CURSE, 10 * 20)
                 .cooldown(0);
         builder(AMEntityRegistry.TARANTULA_HAWK.get(), 0xba4c2d)
