@@ -16,7 +16,6 @@ import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
-import trofers.common.trophy.Trophy;
 import trofers.common.trophy.TrophyManager;
 
 import java.util.Comparator;
@@ -40,8 +39,7 @@ public class AddEntityTrophy extends LootModifier {
         if (context.hasParam(LootContextParams.THIS_ENTITY)) {
             ResourceLocation trophyId = trophies.get(context.getParam(LootContextParams.THIS_ENTITY).getType());
             if (trophyId != null) {
-                Trophy trophy = TrophyManager.get(trophyId);
-                if (trophy == null) {
+                if (TrophyManager.get(trophyId) == null) {
                     Trofers.LOGGER.error("Failed to find trophy with invalid id '{}'", trophyId);
                 } else {
                     ItemStack stack = new ItemStack(trophyItem);

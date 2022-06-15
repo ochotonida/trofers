@@ -6,11 +6,14 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.loot.AddEntityTrophy;
+import trofers.common.loot.AddTrophy;
 
+@SuppressWarnings("unused")
 public class ModLootModifiers {
 
     public static final DeferredRegister<GlobalLootModifierSerializer<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.Keys.LOOT_MODIFIER_SERIALIZERS, Trofers.MODID);
 
     public static final RegistryObject<GlobalLootModifierSerializer<AddEntityTrophy>> ADD_ENTITY_TROPHY = REGISTRY.register("add_entity_trophy", AddEntityTrophy.Serializer::new);
+    public static final RegistryObject<GlobalLootModifierSerializer<AddTrophy>> ADD_TROPHY = REGISTRY.register("add_trophy", AddTrophy.Serializer::new);
 
 }
