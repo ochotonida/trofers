@@ -1,0 +1,40 @@
+{
+  "conditions": [
+    {
+      "modid": "alexsmobs",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#D6F9AF",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.skelewag"
+      }
+    ]
+  },
+  "display": {
+    "offset": {
+      "y": 1.0,
+      "z": 2.0
+    },
+    "scale": 0.1666
+  },
+  "entity": {
+    "type": "alexsmobs:skelewag"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#D6F9AF"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:skelewag_idle"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/alexsmobs/skelewag",
+      "cooldown": 9600
+    }
+  }
+}

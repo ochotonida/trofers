@@ -18,7 +18,7 @@ d4ae5c58868d36d4e944307e6b982e406f9faaa4 assets/trofers/models/block/medium_pill
 7f7332550ccb41ae8161add25d4b3a8e29f22a02 assets/trofers/models/item/small_plate.json
 8c5e094f7887aeeeac7608a8d921c08ffc096d5e data/forge/loot_modifiers/global_loot_modifiers.json
 f9f3f9ccc42919488238f9e37d6541bf7ae0f85a data/minecraft/tags/blocks/mineable/pickaxe.json
-3fe83153e1ca35fd8d52caa1e94e2724ef0db03a data/trofers/loot_modifiers/alexsmobs_trophies.json
+107ca7f33c255807ee50a11688a009d890b923a9 data/trofers/loot_modifiers/alexsmobs_trophies.json
 26bb5db980eaba27a3fdb1b0a0907dfa94ab8e9a data/trofers/loot_modifiers/quark_trophies.json
 889ba56ec5de21397c28c325a4c7c844ddfa6d02 data/trofers/loot_modifiers/vanilla_trophies.json
 650970a8ae9c13873ae17bf393d1acb90e2ea154 data/trofers/loot_tables/blocks/large_pillar.json
@@ -37,6 +37,7 @@ c890e965d0a9fd31806d7a22efb87c8694a4e9da data/trofers/loot_tables/trophies/alexs
 c2ffa590f6307d515c33b6adf78db911db9b6ff8 data/trofers/loot_tables/trophies/alexsmobs/bunfungus.json
 6c18151a244c48d690ed40997a81914805d83a0a data/trofers/loot_tables/trophies/alexsmobs/cachalot_whale.json
 dfa3c0fa62a0d3d275a2a460763493edf2ad706e data/trofers/loot_tables/trophies/alexsmobs/capuchin_monkey.json
+9911685cd1e7a5386941941d5e4f1b2e444c01c0 data/trofers/loot_tables/trophies/alexsmobs/catfish.json
 4d3259e39bbd4e364f6c98b0dbe6a764f8fb34de data/trofers/loot_tables/trophies/alexsmobs/centipede_head.json
 1ea711ac76dbbf8cb23f29980bee7d4f2530963a data/trofers/loot_tables/trophies/alexsmobs/cockroach.json
 07a30d1663aa5de76ce4161df08c830ba42ae225 data/trofers/loot_tables/trophies/alexsmobs/comb_jelly.json
@@ -45,6 +46,7 @@ ef6d833a1448752ef1c93add6c580ca47424c20b data/trofers/loot_tables/trophies/alexs
 821a1bfc41fc964d709cf81a6719df5c1c9bbbdb data/trofers/loot_tables/trophies/alexsmobs/crimson_mosquito.json
 061ee7492d172b476a62d6e161b71762fbefe79f data/trofers/loot_tables/trophies/alexsmobs/crocodile.json
 38187b451f9590d0d66e3d886c6bb1043ae1b0b2 data/trofers/loot_tables/trophies/alexsmobs/crow.json
+49fe2a612ecb669f5ce87b1e3adcc9e5b8b81a0c data/trofers/loot_tables/trophies/alexsmobs/devils_hole_pupfish.json
 050a92af96de0e367c00af137bfe7174cd951935 data/trofers/loot_tables/trophies/alexsmobs/dropbear.json
 e7b85d7b415c346c22ce66a16a5275d40cba991c data/trofers/loot_tables/trophies/alexsmobs/elephant.json
 4f032a7acedddb4ddcee66f2f10b7664a4221bc9 data/trofers/loot_tables/trophies/alexsmobs/emu.json
@@ -52,6 +54,7 @@ e7b85d7b415c346c22ce66a16a5275d40cba991c data/trofers/loot_tables/trophies/alexs
 7e5c97ac14000675f80f821fb4d8f1b3f83bf86e data/trofers/loot_tables/trophies/alexsmobs/enderiophage.json
 477340e7be7a57cebb49bdd98c1099810b5c8a1a data/trofers/loot_tables/trophies/alexsmobs/flutter.json
 14e2ee7a878bb48d04266d0dff066eae0cd92d3a data/trofers/loot_tables/trophies/alexsmobs/fly.json
+a303da0f85c141e77a69041a39b49fde7c4f3c97 data/trofers/loot_tables/trophies/alexsmobs/flying_fish.json
 b7539db47ba2f2a65229f6056ae5bdf6b46a7f36 data/trofers/loot_tables/trophies/alexsmobs/frilled_shark.json
 ab1a86e8039eb2bc48566fdbe3be70a3ac54f396 data/trofers/loot_tables/trophies/alexsmobs/froststalker.json
 3c389b52af3568377528e8041b92b5ada8b14c81 data/trofers/loot_tables/trophies/alexsmobs/gazelle.json
@@ -81,6 +84,7 @@ bfbece33a794c61c6ff1e59407ed6775c041def6 data/trofers/loot_tables/trophies/alexs
 4e3177f6634e349ad0a8787588e1c5c92e310fcc data/trofers/loot_tables/trophies/alexsmobs/seagull.json
 00d60674289264daa79077f90d8576eee759e246 data/trofers/loot_tables/trophies/alexsmobs/seal.json
 0f0a5e9eaaa3c09c47c78d270d0c0fb4baefe7a5 data/trofers/loot_tables/trophies/alexsmobs/shoebill.json
+49ddfd2da86e1d5122de6901bd528160c14279b4 data/trofers/loot_tables/trophies/alexsmobs/skelewag.json
 35ab30be7b9dcd53d710ccfb75f8103165624e61 data/trofers/loot_tables/trophies/alexsmobs/snow_leopard.json
 830979952ceee5c44375f965b0ed91e13288d1f9 data/trofers/loot_tables/trophies/alexsmobs/soul_vulture.json
 6ddd99e7ac1314e6fefd4be409c9a0ab653ec56c data/trofers/loot_tables/trophies/alexsmobs/spectre.json
@@ -161,6 +165,7 @@ ddba1f7d515d3d58c3a72292d579faca6e20a762 data/trofers/trofers/alexsmobs/bald_eag
 79fdbf1655cdf608dda20255254a7e0013b4283b data/trofers/trofers/alexsmobs/bunfungus.json
 1e01691bf6609f7ca99520823cf2e86f9758a0a0 data/trofers/trofers/alexsmobs/cachalot_whale.json
 5364a04036c178512a1f5de371805f328b5639d9 data/trofers/trofers/alexsmobs/capuchin_monkey.json
+2d44aec72e3a71d08aa4cd0392c149b5ffda4c9b data/trofers/trofers/alexsmobs/catfish.json
 0a25ac5944c23e5171ea9a90bed31a700300c1fc data/trofers/trofers/alexsmobs/centipede_head.json
 5480d983eea800500114bdeecdcd5d8c3ff6dfb5 data/trofers/trofers/alexsmobs/cockroach.json
 3cbf38b21e093e20c588aa7363b1c761bb0a10de data/trofers/trofers/alexsmobs/comb_jelly.json
@@ -169,6 +174,7 @@ d9b96230a75eb025fc4152cde20e20020995f207 data/trofers/trofers/alexsmobs/cosmic_c
 3504a23d85c86e8b1d320266a70eb9ff2c36f2f7 data/trofers/trofers/alexsmobs/crimson_mosquito.json
 778dfa661b4efd4f4b98d8bec40d74faa37c34de data/trofers/trofers/alexsmobs/crocodile.json
 cbd3aab807946f37c10c9663f29f797a78a65033 data/trofers/trofers/alexsmobs/crow.json
+981ce7d282b7f9a74d9dd9a889c0f018fb87ab50 data/trofers/trofers/alexsmobs/devils_hole_pupfish.json
 be734f7a879c71dd71f0cb1f30a525c37d60354d data/trofers/trofers/alexsmobs/dropbear.json
 8a6a59e3ebc8acb3a16852b056bc637fd0cbd452 data/trofers/trofers/alexsmobs/elephant.json
 be039248378c44171ef12e6c1dc39a6dae2ed864 data/trofers/trofers/alexsmobs/emu.json
@@ -176,6 +182,7 @@ be039248378c44171ef12e6c1dc39a6dae2ed864 data/trofers/trofers/alexsmobs/emu.json
 1ef6a0aa2c4c3f2dfed0c6f8cc7f6496416b18e6 data/trofers/trofers/alexsmobs/enderiophage.json
 48016783c00574172ecb1e60a72be8e73c9c1a61 data/trofers/trofers/alexsmobs/flutter.json
 d838b90f1f69a065921e23fb9bd3d54850157b6f data/trofers/trofers/alexsmobs/fly.json
+a82e7ad5a5f38ad06022e4b22ee632e653264bb2 data/trofers/trofers/alexsmobs/flying_fish.json
 ffc611dec46aced0f92089b2727ec51448938a42 data/trofers/trofers/alexsmobs/frilled_shark.json
 10762ff33541548e543335971529e2b43ab19c81 data/trofers/trofers/alexsmobs/froststalker.json
 5ebae44ae6124b711342e82f4b08432d5d0caf76 data/trofers/trofers/alexsmobs/gazelle.json
@@ -207,6 +214,7 @@ bc15bc7a71254549727d5a720419e7edc8177462 data/trofers/trofers/alexsmobs/mungus.j
 0363f4e5af6827af41d3b3f007eb0126dde53b62 data/trofers/trofers/alexsmobs/seagull.json
 01dfc302d36ec022b51d7712903a4bc749a05cc3 data/trofers/trofers/alexsmobs/seal.json
 4cc4bfb46b37c984777bb3f78298cae3a73158d1 data/trofers/trofers/alexsmobs/shoebill.json
+2ca39948d6d16281167841d169ef4cd83ae4db81 data/trofers/trofers/alexsmobs/skelewag.json
 e69a8672a8d2b838b3539900f5843cfb16ad2ce4 data/trofers/trofers/alexsmobs/snow_leopard.json
 56a0a56277aab7d061fcc34194f401b13bbbe33a data/trofers/trofers/alexsmobs/soul_vulture.json
 3c52ab8f68a3e788f6c68b6c19770122e64ae667 data/trofers/trofers/alexsmobs/spectre.json
