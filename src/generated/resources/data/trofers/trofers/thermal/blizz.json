@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "thermal",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#E0F3F0",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.thermal.blizz"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "thermal:blizz"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#E0F3F0"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "thermal:entity.blizz.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/thermal/blizz",
+      "cooldown": 9600
+    }
+  }
+}

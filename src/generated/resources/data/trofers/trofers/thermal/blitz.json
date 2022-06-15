@@ -1,0 +1,36 @@
+{
+  "conditions": [
+    {
+      "modid": "thermal",
+      "type": "forge:mod_loaded"
+    }
+  ],
+  "name": {
+    "color": "#CEEAF1",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.thermal.blitz"
+      }
+    ]
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "entity": {
+    "type": "thermal:blitz"
+  },
+  "colors": {
+    "base": "#606060",
+    "accent": "#CEEAF1"
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "thermal:entity.blitz.ambient"
+    },
+    "rewards": {
+      "lootTable": "trofers:trophies/thermal/blitz",
+      "cooldown": 9600
+    }
+  }
+}

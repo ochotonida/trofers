@@ -2,6 +2,8 @@
   "replace": false,
   "entries": [
     "trofers:vanilla_trophies",
+    "trofers:thermal_trophies",
+    "trofers:tconstruct_trophies",
     "trofers:quark_trophies",
     "trofers:alexsmobs_trophies"
   ]

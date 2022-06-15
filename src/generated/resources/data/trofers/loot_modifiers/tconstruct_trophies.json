@@ -1,0 +1,30 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "trofers:random_trophy_chance"
+    }
+  ],
+  "trophyBase": "trofers:small_plate",
+  "trophies": [
+    {
+      "entity": "tconstruct:earth_slime",
+      "trophy": "trofers:slime"
+    },
+    {
+      "entity": "tconstruct:ender_slime",
+      "trophy": "trofers:tconstruct/ender_slime"
+    },
+    {
+      "entity": "tconstruct:sky_slime",
+      "trophy": "trofers:tconstruct/sky_slime"
+    },
+    {
+      "entity": "tconstruct:terracube",
+      "trophy": "trofers:tconstruct/terracube"
+    }
+  ],
+  "type": "trofers:add_entity_trophy"
+}
