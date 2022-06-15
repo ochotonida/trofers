@@ -87,6 +87,9 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.21'
 
+    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.196:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.196")
+
     implementation fg.deobf("curse.maven:citadel-331936:3783096")
     implementation fg.deobf("curse.maven:alexsmobs-426558:3829342")
 
