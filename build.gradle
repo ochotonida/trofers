@@ -81,8 +81,8 @@ repositories {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.0.19'
 
-    implementation fg.deobf("curse.maven:citadel-331936:3683007")
-    implementation fg.deobf("curse.maven:alexsmobs-426558:3694555")
+    implementation fg.deobf("curse.maven:citadel-331936:3783096")
+    implementation fg.deobf("curse.maven:alexsmobs-426558:3829342")
 
     implementation fg.deobf("vazkii.autoreglib:AutoRegLib:1.7-53.110")
     implementation fg.deobf("vazkii.quark:Quark:3.1-341.2144")
