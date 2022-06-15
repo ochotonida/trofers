@@ -24,6 +24,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.BUNFUNGUS.get(), 2, 6, Items.MYCELIUM);
         add(AMEntityRegistry.CACHALOT_WHALE.get(), AMItemRegistry.AMBERGRIS.get());
         add(AMEntityRegistry.CAPUCHIN_MONKEY.get(), AMItemRegistry.BANANA.get());
+        add(AMEntityRegistry.CATFISH.get(), 1, 3, AMItemRegistry.RAW_CATFISH.get());
         add(AMEntityRegistry.CENTIPEDE_HEAD.get(), AMItemRegistry.CENTIPEDE_LEG.get());
         add(AMEntityRegistry.COCKROACH.get(), AMItemRegistry.MARACA.get());
         add(AMEntityRegistry.COMB_JELLY.get(), AMItemRegistry.RAINBOW_JELLY.get());
@@ -32,6 +33,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.CRIMSON_MOSQUITO.get(), 1, 3, AMItemRegistry.BLOOD_SAC.get());
         add(AMEntityRegistry.CROCODILE.get(), AMItemRegistry.CROCODILE_SCUTE.get());
         add(AMEntityRegistry.CROW.get(), 1, 3, Items.PUMPKIN_SEEDS);
+        add(AMEntityRegistry.DEVILS_HOLE_PUPFISH.get(), Items.SLIME_BALL);
         add(AMEntityRegistry.DROPBEAR.get(), AMItemRegistry.DROPBEAR_CLAW.get());
         add(AMEntityRegistry.ELEPHANT.get(), 1, 3, AMItemRegistry.ACACIA_BLOSSOM.get());
         add(AMEntityRegistry.EMU.get(), AMItemRegistry.EMU_EGG.get());
@@ -39,6 +41,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.ENDERIOPHAGE.get(), 2, 6, AMItemRegistry.ENDERIOPHAGE_ROCKET.get());
         add(AMEntityRegistry.FLUTTER.get(), 1, 3, Items.SPORE_BLOSSOM);
         add(AMEntityRegistry.FLY.get(), AMItemRegistry.MAGGOT.get());
+        add(AMEntityRegistry.FLYING_FISH.get(), AMItemRegistry.FLYING_FISH.get());
         add(AMEntityRegistry.FRILLED_SHARK.get(), AMItemRegistry.SERRATED_SHARK_TOOTH.get());
         add(AMEntityRegistry.FROSTSTALKER.get(), AMItemRegistry.FROSTSTALKER_HORN.get());
         add(AMEntityRegistry.GAZELLE.get(), AMItemRegistry.GAZELLE_HORN.get());
@@ -68,6 +71,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.SEAGULL.get(), 2, 6, Items.SAND);
         add(AMEntityRegistry.SEAL.get(), 1, 3, Items.COD, Items.SALMON);
         add(AMEntityRegistry.SHOEBILL.get(), 1, 3, Items.FEATHER);
+        add(AMEntityRegistry.SKELEWAG.get(), AMItemRegistry.FISH_BONES.get());
         add(AMEntityRegistry.SNOW_LEOPARD.get(), 1, 3, AMItemRegistry.MOOSE_RIBS.get());
         add(AMEntityRegistry.SOUL_VULTURE.get(), AMItemRegistry.SOUL_HEART.get());
         add(AMEntityRegistry.SPECTRE.get(), Items.PHANTOM_MEMBRANE);

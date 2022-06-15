@@ -52,6 +52,9 @@ public class AlexsMobsTrophies {
                 .offset(0, 0, -1)
                 .scale(0.05);
         builder(AMEntityRegistry.CAPUCHIN_MONKEY.get(), 0xeed7b1);
+        builder(AMEntityRegistry.CATFISH.get(), 0xc1c282)
+                .offset(0, 1, 0)
+                .sound(SoundEvents.COD_FLOP);
         builder(AMEntityRegistry.CENTIPEDE_HEAD.get(), 0x85435e)
                 .offset(0, -4 / 4F, 0)
                 .sound(AMSoundRegistry.CENTIPEDE_ATTACK);
@@ -72,6 +75,10 @@ public class AlexsMobsTrophies {
                 .offset(0, 0, -1.5)
                 .scale(0.1666);
         builder(AMEntityRegistry.CROW.get(), 0x43485b);
+        builder(AMEntityRegistry.DEVILS_HOLE_PUPFISH.get(), 0x557ac2)
+                .sound(SoundEvents.COD_FLOP)
+                .offset(0, 1, 0)
+                .getTag().putFloat("PupfishScale", 1);
         builder(AMEntityRegistry.DROPBEAR.get(), 0xbb4a4a);
         builder(AMEntityRegistry.ELEPHANT.get(), 0x7a7572)
                 .scale(0.1666)
@@ -82,6 +89,9 @@ public class AlexsMobsTrophies {
                 .sound(AMSoundRegistry.ENDERIOPHAGE_SQUISH);
         builder(AMEntityRegistry.FLUTTER.get(), 0xd885e5);
         builder(AMEntityRegistry.FLY.get(), 0xc19288);
+        builder(AMEntityRegistry.FLYING_FISH.get(), 0x7abaea)
+                .offset(0, 1, 0)
+                .sound(SoundEvents.COD_FLOP);
         builder(AMEntityRegistry.FRILLED_SHARK.get(), 0x675c60)
                 .sound(SoundEvents.COD_FLOP);
         builder(AMEntityRegistry.FROSTSTALKER.get(), 0x9fc1fc)
@@ -142,6 +152,9 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.SEAL.get(), 0x65584b);
         builder(AMEntityRegistry.SHOEBILL.get(), 0x8f8f8f)
                 .sound(AMSoundRegistry.SHOEBILL_HURT);
+        builder(AMEntityRegistry.SKELEWAG.get(), 0xd6f9af)
+                .offset(0, 1, 2)
+                .scale(0.1666);
         builder(AMEntityRegistry.SNOW_LEOPARD.get(), 0x948a80);
         builder(AMEntityRegistry.SOUL_VULTURE.get(), 0x3dd6e1);
         builder(AMEntityRegistry.SPECTRE.get(), 0xc0c6ff)
