@@ -14,7 +14,7 @@ description = '''Adds trophies that can be customized through data packs'''
 [[dependencies.trofers]]
     modId="forge"
     mandatory=true
-    versionRange="[40.0.18,)"
+    versionRange="[40.1.21,)"
     ordering="NONE"
     side="BOTH"
 
