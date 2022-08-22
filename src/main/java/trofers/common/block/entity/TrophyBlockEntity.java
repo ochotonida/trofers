@@ -29,6 +29,7 @@ import net.minecraft.world.phys.Vec3;
 import org.apache.logging.log4j.Level;
 import trofers.Trofers;
 import trofers.common.block.TrophyBlock;
+import trofers.common.config.ModConfig;
 import trofers.common.init.ModBlockEntityTypes;
 import trofers.common.trophy.EffectInfo;
 import trofers.common.trophy.Trophy;
@@ -135,14 +136,18 @@ public class TrophyBlockEntity extends BlockEntity {
         giveRewards(rewards, player, hand);
 
         return sound != null
-                || rewards.lootTable() != null
-                || !rewards.statusEffect().isEmpty();
+                || rewards.lootTable() != null && ModConfig.common.enableTrophyLoot.get()
+                || !rewards.statusEffect().isEmpty() && ModConfig.common.enableTrophyEffects.get();
     }
 
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
         if (player.level.isClientSide()) {
             return;
+        } else if ((!ModConfig.common.enableTrophyLoot.get() || rewards.lootTable() == null)
+                && (!ModConfig.common.enableTrophyEffects.get() || rewards.statusEffect().isEmpty())) {
+            return;
         }
+
         if (rewardCooldown > 0) {
             player.displayClientMessage(
                     new TranslatableComponent(
@@ -182,24 +187,28 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     private void rewardPotionEffect(EffectInfo.RewardInfo rewards, Player player) {
-        MobEffectInstance potionEffect = rewards.createStatusEffect();
-        if (potionEffect != null) {
-            player.addEffect(potionEffect);
+        if (ModConfig.common.enableTrophyEffects.get()) {
+            MobEffectInstance potionEffect = rewards.createStatusEffect();
+            if (potionEffect != null) {
+                player.addEffect(potionEffect);
+            }
         }
     }
 
     private void rewardLoot(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
-        ResourceLocation lootTableLocation = rewards.lootTable();
-        if (lootTableLocation != null) {
-            // noinspection ConstantConditions
-            LootTable lootTable = level.getServer().getLootTables().get(lootTableLocation);
-            if (lootTable == LootTable.EMPTY) {
-                Trofers.LOGGER.log(Level.ERROR, "Invalid loot table: {}", lootTableLocation);
-                return;
+        if (ModConfig.common.enableTrophyLoot.get()) {
+            ResourceLocation lootTableLocation = rewards.lootTable();
+            if (lootTableLocation != null) {
+                // noinspection ConstantConditions
+                LootTable lootTable = level.getServer().getLootTables().get(lootTableLocation);
+                if (lootTable == LootTable.EMPTY) {
+                    Trofers.LOGGER.log(Level.ERROR, "Invalid loot table: {}", lootTableLocation);
+                    return;
+                }
+                LootContext.Builder builder = createLootContext(player, player.getItemInHand(hand));
+                LootContext context = builder.create(LootContextParamSets.EMPTY);
+                lootTable.getRandomItems(context).forEach(this::spawnAtLocation);
             }
-            LootContext.Builder builder = createLootContext(player, player.getItemInHand(hand));
-            LootContext context = builder.create(LootContextParamSets.EMPTY);
-            lootTable.getRandomItems(context).forEach(this::spawnAtLocation);
         }
     }
 
