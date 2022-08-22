@@ -50,10 +50,30 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
     * `cooldown`: The amount of time it takes in ticks before the reward(s) can be claimed again
 * `hidden`: (_default = false_) Whether the trophy should be hidden from trophy selection screen in creative mode
 
-For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/1.18/src/generated/resources/data/trofers/trofers).
+For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/HEAD/src/generated/resources/data/trofers/trofers).
 
 ## Adding a trophy to a trophy base
 Trofers currently adds 6 trophy bases. 
 Placing one down and right-clicking it while in creative will open a menu that allows you to pick any existing trophy.
 You can also set the trophy by changing the item's NBT: `{BlockEntityTag:{Trophy:"namespace:path"}}`.
 Changes made to your data pack will apply to any existing trophies.
+
+## Making entities drop trophies
+Because overriding loot tables can be annoying, Trofers adds a loot modifier which can be used to make entities drop trophies.
+
+The loot modifier should be placed in the `data/<namespace>/loot_modifiers` folder and uses the following structure:
+
+* `"type": "trofers:add_entity_trophy"`: required, this tells forge which loot modifier type to use
+* `conditions`: A list of loot conditions that determine when to apply the loot modifier. Trofers uses a `minecraft:killed_by_player` and a `trofers:random_trophy_chance` condition here. The `random_trophy_chance` condition ensures the loot modifier is applied with the trophy chance value specified in the config.
+* `trophyBase`: The ID of an item to use as a trophy base (e.g. "trofers:small_plate")
+* `trophies`: A list of objects. When loot is generated for an entity and the entity matches one of the entries in this list, the corresponding trophy will be added to the generated loot. (Note: duplicate entity types are not allowed, for entities that can drop multiple trophies you will need multiple loot modifier files)
+  * `trophy`: A trophy ID
+  * `entity`: An entity type ID
+
+If all trophies have the same drop conditions, you only need a single file.
+
+[Example loot modifiers](https://github.com/ochotonida/trofers/tree/HEAD/src/generated/resources/data/trofers/loot_modifiers)
+
+After creating your loot modifier you need to register it to forge, more information on how to register a loot modifier (and loot modifiers in general) found [here](https://forge.gemwire.uk/wiki/Dynamic_Loot_Modification). (The wiki page is mostly aimed at mod developers, you can ignore the last section)
+
+[Example registration](https://github.com/ochotonida/trofers/blob/HEAD/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json)
