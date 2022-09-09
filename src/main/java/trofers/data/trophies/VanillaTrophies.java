@@ -1,9 +1,11 @@
 package trofers.data.trophies;
 
 import net.minecraft.Util;
+import net.minecraft.core.Registry;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.Items;
 import trofers.common.trophy.Trophy;
 
@@ -23,6 +25,8 @@ public class VanillaTrophies {
 
     public static List<Trophy> createTrophies() {
         TROPHIES.clear();
+        builder(EntityType.ALLAY, 0x68ffff)
+                .sound(SoundEvents.ALLAY_ITEM_GIVEN);
         builder(EntityType.AXOLOTL, 0xfbc1e2)
                 .sound(SoundEvents.AXOLOTL_IDLE_AIR)
                 .getTag().putInt("Variant", 0);
@@ -70,6 +74,9 @@ public class VanillaTrophies {
                 .rotate(0, -90, 0);
         fox.getTag().putBoolean("Sleeping", true);
         fox.getTag().putString("Type", "red");
+        //noinspection ConstantConditions
+        builder(EntityType.FROG, 0x669530)
+                .getTag().putString("variant", Registry.FROG_VARIANT.getKey(FrogVariant.COLD).toString());
         builder(EntityType.GHAST, 0xf0f0f0)
                 .offset(0, 5, 0)
                 .scale(0.075);
@@ -149,6 +156,8 @@ public class VanillaTrophies {
         builder(EntityType.STRIDER, 0xb44040)
                 .effect(MobEffects.FIRE_RESISTANCE, 20 * 40)
                 .cooldown(0);
+        builder(EntityType.TADPOLE, 0x71563f)
+                .sound(SoundEvents.TADPOLE_FLOP);
         builder(EntityType.TRADER_LLAMA, 0x425f90)
                 .sound(SoundEvents.LLAMA_AMBIENT)
                 .getTag().putInt("Variant", 2);

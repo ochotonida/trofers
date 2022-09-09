@@ -10,7 +10,8 @@ public class VanillaLootTables extends LootTableProvider {
 
     @Override
     protected void addLootTables() {
-        add(EntityType.AXOLOTL, Items.AMETHYST_SHARD);
+        add(EntityType.ALLAY, Items.AMETHYST_SHARD);
+        add(EntityType.AXOLOTL, Items.GLOW_BERRIES);
         add(EntityType.BEE, entry(Items.HONEY_BOTTLE), entry(Items.HONEYCOMB, 2));
         add(EntityType.BLAZE, 1, 3, entry(Items.BLAZE_ROD), entry(Items.BLAZE_POWDER, 2));
         add(EntityType.CAVE_SPIDER, Items.COBWEB);
@@ -22,6 +23,7 @@ public class VanillaLootTables extends LootTableProvider {
         add(EntityType.ENDERMITE, 3, 12, Items.END_STONE);
         add(EntityType.EVOKER, Items.TOTEM_OF_UNDYING);
         add(EntityType.FOX, 1, 3, entry(Items.SWEET_BERRIES, 2), entry(Items.GLOW_BERRIES));
+        add(EntityType.FROG, 1, 3, entry(Items.OCHRE_FROGLIGHT), entry(Items.PEARLESCENT_FROGLIGHT), entry(Items.VERDANT_FROGLIGHT));
         add(EntityType.GHAST, Items.GHAST_TEAR);
         add(EntityType.GOAT, Items.POWDER_SNOW_BUCKET);
         add(EntityType.GUARDIAN, 1, 6, entry(Items.PRISMARINE_SHARD, 2), entry(Items.PRISMARINE_CRYSTALS));
@@ -51,6 +53,7 @@ public class VanillaLootTables extends LootTableProvider {
         add(EntityType.SQUID, 1, 3, Items.INK_SAC);
         // noinspection deprecation
         add(EntityType.STRAY, 2, 8, entry(Items.TIPPED_ARROW).apply(SetNbtFunction.setTag(Util.make(new CompoundTag(), (tag) -> tag.putString("Potion", "minecraft:slowness")))));
+        add(EntityType.TADPOLE, Items.SLIME_BALL);
         add(EntityType.TRADER_LLAMA, Items.LEAD);
         add(EntityType.TROPICAL_FISH, Items.TROPICAL_FISH);
         add(EntityType.VEX, Items.EMERALD);
