@@ -14,7 +14,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.common.loot.OptionalLootItem;
 
@@ -36,7 +36,7 @@ public abstract class LootTableProvider {
         lootTables.forEach((type, lootTable) -> {
             String modid = Trofers.MODID.equals(getModId()) ? "" : getModId() + "/";
             // noinspection ConstantConditions
-            ResourceLocation location = new ResourceLocation(Trofers.MODID, String.format("trophies/%s", modid + type.getRegistryName().getPath()));
+            ResourceLocation location = new ResourceLocation(Trofers.MODID, String.format("trophies/%s", modid + ForgeRegistries.ENTITY_TYPES.getKey(type).getPath()));
             result.add(Pair.of(() -> builder -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS));
 
         });
@@ -87,11 +87,11 @@ public abstract class LootTableProvider {
 
     public LootPoolSingletonContainer.Builder<?> entry(Item item) {
         // noinspection ConstantConditions
-        String modid = item.getRegistryName().getNamespace();
+        String modid = ForgeRegistries.ITEMS.getKey(item).getNamespace();
         if ("minecraft".equals(modid) || Trofers.MODID.equals(modid)) {
             return LootItem.lootTableItem(item);
         } else {
-            return OptionalLootItem.optionalLootItem(item, new ModLoadedCondition(modid));
+            return OptionalLootItem.whenLoaded(item);
         }
     }
 

@@ -19,7 +19,6 @@ public class QuarkLootTables extends LootTableProvider {
         add(CrabsModule.crabType, item("crab_shell"));
         add(ForgottenModule.forgottenType, ForgottenModule.forgotten_hat);
         add(FoxhoundModule.foxhoundType, 1, 3, Items.COAL);
-        add(FrogsModule.frogType, item("frog_leg"));
         add(ShibaModule.shibaType, Items.BONE);
         add(StonelingsModule.stonelingType, StonelingsModule.diamondHeart);
         add(ToretoiseModule.toretoiseType, 2, 6, Items.COAL, Items.RAW_COPPER, Items.RAW_IRON, Items.REDSTONE, Items.LAPIS_LAZULI);

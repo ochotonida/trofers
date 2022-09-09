@@ -7,8 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
+import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.network.PacketDistributor;
 import trofers.Trofers;
@@ -50,7 +52,7 @@ public class TrophyManager extends SimpleJsonResourceReloadListener {
             ResourceLocation id = entry.getKey();
             JsonElement element = entry.getValue();
             try {
-                if (element.isJsonObject() && !CraftingHelper.processConditions(element.getAsJsonObject(), "conditions")) {
+                if (element.isJsonObject() && element.getAsJsonObject().has("conditions") && !CraftingHelper.processConditions(GsonHelper.getAsJsonArray(element.getAsJsonObject(), "conditions"), ICondition.IContext.EMPTY)) {
                     amountSkipped++;
                 } else {
                     trophies.put(id, Trophy.fromJson(element, id));

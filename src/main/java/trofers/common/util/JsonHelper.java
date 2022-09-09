@@ -8,6 +8,7 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ICondition;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public abstract class JsonHelper {
     public static JsonObject serializeItem(ItemStack item) {
         JsonObject result = new JsonObject();
         // noinspection ConstantConditions
-        result.addProperty("item", item.getItem().getRegistryName().toString());
+        result.addProperty("item", ForgeRegistries.ITEMS.getKey(item.getItem()).toString());
         if (item.getCount() != 1) {
             result.addProperty("count", item.getCount());
         }

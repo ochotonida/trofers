@@ -11,6 +11,7 @@ import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.block.TrophyBlock;
@@ -38,10 +39,14 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
 
         addBlockLootTables();
         addTrophyLootTables(new VanillaLootTables());
-        addTrophyLootTables(new AlexsMobsLootTables());
-        addTrophyLootTables(new QuarkLootTables());
-        addTrophyLootTables(new ThermalLootTables());
-        addTrophyLootTables(new TinkersConstructLootTables());
+        if (ModList.get().isLoaded("alexsmobs"))
+            addTrophyLootTables(new AlexsMobsLootTables());
+        if (ModList.get().isLoaded("quark"))
+            addTrophyLootTables(new QuarkLootTables());
+        if (ModList.get().isLoaded("thermal"))
+            addTrophyLootTables(new ThermalLootTables());
+        if (ModList.get().isLoaded("tinkers_construct"))
+            addTrophyLootTables(new TinkersConstructLootTables());
 
         return lootTables;
     }

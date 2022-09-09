@@ -60,7 +60,7 @@ public class EntityInfo {
 
         CompoundTag entityTag = this.nbt.copy();
         // noinspection ConstantConditions
-        entityTag.putString("id", type.getRegistryName().toString());
+        entityTag.putString("id", ForgeRegistries.ENTITY_TYPES.getKey(getType()).toString());
         if (!entityTag.hasUUID("UUID")) {
             entityTag.putUUID("UUID", new UUID(1L, 1L));
         }
@@ -70,20 +70,20 @@ public class EntityInfo {
 
     public void toNetwork(FriendlyByteBuf buffer) {
         // noinspection ConstantConditions
-        buffer.writeResourceLocation(type.getRegistryName());
+        buffer.writeResourceLocation(ForgeRegistries.ENTITY_TYPES.getKey(getType()));
         buffer.writeNbt(nbt);
         buffer.writeBoolean(isAnimated);
     }
 
     public static EntityInfo fromNetwork(FriendlyByteBuf buffer) {
-        EntityType<?> type = ForgeRegistries.ENTITIES.getValue(buffer.readResourceLocation());
+        EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(buffer.readResourceLocation());
         return new EntityInfo(type, buffer.readNbt(), buffer.readBoolean());
     }
 
     public JsonObject toJson() {
         JsonObject result = new JsonObject();
         // noinspection ConstantConditions
-        result.addProperty("type", getType().getRegistryName().toString());
+        result.addProperty("type", ForgeRegistries.ENTITY_TYPES.getKey(getType()).toString());
         if (!getTag().isEmpty()) {
             result.addProperty("nbt", getTag().toString());
         }
@@ -95,10 +95,10 @@ public class EntityInfo {
 
     public static EntityInfo fromJson(JsonObject object) {
         ResourceLocation typeID = new ResourceLocation(GsonHelper.getAsString(object, "type"));
-        if (!ForgeRegistries.ENTITIES.containsKey(typeID)) {
+        if (!ForgeRegistries.ENTITY_TYPES.containsKey(typeID)) {
             throw new JsonParseException(String.format("Unknown entity type %s", typeID));
         }
-        EntityType<?> type = ForgeRegistries.ENTITIES.getValue(typeID);
+        EntityType<?> type = ForgeRegistries.ENTITY_TYPES.getValue(typeID);
         CompoundTag nbt = new CompoundTag();
         if (object.has("nbt")) {
             JsonElement nbtElement = object.get("nbt");

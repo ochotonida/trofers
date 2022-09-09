@@ -2,7 +2,6 @@ package trofers;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
@@ -29,14 +28,14 @@ public class Trofers {
         ModConfig.registerCommon();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModItems.REGISTRY.register(modEventBus);
-        ModBlocks.REGISTRY.register(modEventBus);
-        ModBlockEntityTypes.REGISTRY.register(modEventBus);
-        ModLootModifiers.REGISTRY.register(modEventBus);
+        ModItems.ITEMS.register(modEventBus);
+        ModBlocks.BLOCKS.register(modEventBus);
+        ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
+        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus);
+        ModLootConditions.LOOT_CONDITION_TYPES.register(modEventBus);
+        ModLootPoolEntries.LOOT_POOL_ENTRY_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::onCommonSetup);
-        modEventBus.addGenericListener(GlobalLootModifierSerializer.class, ModLootConditions::register);
-        modEventBus.addGenericListener(GlobalLootModifierSerializer.class, ModLootPoolEntries::register);
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(TrophyManager::onDataPackReload);

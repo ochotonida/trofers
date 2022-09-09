@@ -11,9 +11,9 @@ import trofers.common.block.entity.TrophyBlockEntity;
 @SuppressWarnings("ConstantConditions")
 public class ModBlockEntityTypes {
 
-    public static final DeferredRegister<BlockEntityType<?>> REGISTRY = DeferredRegister.create(Registry.BLOCK_ENTITY_TYPE_REGISTRY, Trofers.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registry.BLOCK_ENTITY_TYPE_REGISTRY, Trofers.MODID);
 
-    public static final RegistryObject<BlockEntityType<TrophyBlockEntity>> TROPHY = REGISTRY.register("trophy",
+    public static final RegistryObject<BlockEntityType<TrophyBlockEntity>> TROPHY = BLOCK_ENTITY_TYPES.register("trophy",
             () -> BlockEntityType.Builder.of(
                     TrophyBlockEntity::new,
                     ModBlocks.TROPHIES.stream()

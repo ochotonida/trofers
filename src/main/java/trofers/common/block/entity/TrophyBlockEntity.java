@@ -6,7 +6,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -150,7 +149,7 @@ public class TrophyBlockEntity extends BlockEntity {
 
         if (rewardCooldown > 0) {
             player.displayClientMessage(
-                    new TranslatableComponent(
+                    Component.translatable(
                             String.format("message.%s.reward_cooldown", Trofers.MODID),
                             getTime(rewardCooldown)
                     ), true
@@ -166,23 +165,23 @@ public class TrophyBlockEntity extends BlockEntity {
     private Component getTime(int ticks) {
         int seconds = (ticks + 20) / 20;
         if (seconds <= 1) {
-            return new TranslatableComponent("time.trofers.second");
+            return Component.translatable("time.trofers.second");
         } else if (seconds < 60) {
-            return new TranslatableComponent("time.trofers.seconds", seconds);
+            return Component.translatable("time.trofers.seconds", seconds);
         }
 
         int minutes = seconds / 60;
         if (minutes <= 1) {
-            return new TranslatableComponent("time.trofers.minute");
+            return Component.translatable("time.trofers.minute");
         } else if (minutes < 60) {
-            return new TranslatableComponent("time.trofers.minutes", minutes);
+            return Component.translatable("time.trofers.minutes", minutes);
         }
 
         int hours = minutes / 60;
         if (hours <= 1) {
-            return new TranslatableComponent("time.trofers.hour");
+            return Component.translatable("time.trofers.hour");
         } else {
-            return new TranslatableComponent("time.trofers.hours", hours);
+            return Component.translatable("time.trofers.hours", hours);
         }
     }
 

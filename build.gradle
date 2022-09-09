@@ -22,7 +22,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
 minecraft {
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'official', version: '1.19.2'
 
     runs {
         client {
@@ -85,22 +85,23 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.21'
+    minecraft 'net.minecraftforge:forge:1.19.2-43.1.24'
 
-    compileOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.196:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-1.18.2:9.7.0.196")
+    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
-    implementation fg.deobf("curse.maven:citadel-331936:3783096")
-    implementation fg.deobf("curse.maven:alexsmobs-426558:3829342")
+    implementation fg.deobf("curse.maven:citadel-331936:3902870")
+    implementation fg.deobf("curse.maven:alexsmobs-426558:3904520")
 
-    implementation fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
-    implementation fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
+    compileOnly fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
+    compileOnly fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
 
-    implementation fg.deobf("slimeknights.mantle:Mantle:1.18.2-1.9.27")
-    implementation fg.deobf("slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.32")
+    // compileOnly fg.deobf("slimeknights.mantle:Mantle:1.18.2-1.9.27")
+    // compileOnly fg.deobf("slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.32")
 
-    implementation fg.deobf("vazkii.autoreglib:AutoRegLib:1.7-53.110")
-    implementation fg.deobf("vazkii.quark:Quark:3.1-341.2144")
+    implementation fg.deobf("vazkii.autoreglib:AutoRegLib:1.8-54.115")
+    implementation fg.deobf("vazkii.quark:Quark:3.3-372.2483")
 }
 
 jar {

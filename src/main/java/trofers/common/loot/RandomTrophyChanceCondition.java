@@ -16,7 +16,7 @@ public class RandomTrophyChanceCondition implements LootItemCondition {
     private RandomTrophyChanceCondition() { }
 
     public LootItemConditionType getType() {
-        return ModLootConditions.RANDOM_TROPHY_CHANCE;
+        return ModLootConditions.RANDOM_TROPHY_CHANCE.get();
     }
 
     public boolean test(LootContext context) {

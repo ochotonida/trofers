@@ -1,13 +1,11 @@
 package trofers;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -33,18 +31,14 @@ public class TrofersClient {
 
     public void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> BlockEntityRenderers.register(ModBlockEntityTypes.TROPHY.get(), TrophyBlockEntityRenderer::new));
-
-        ModBlocks.TROPHIES.forEach(
-                trophy -> ItemBlockRenderTypes.setRenderLayer(trophy.get(), RenderType.cutout())
-        );
     }
 
     public void onRegisterClientReloadListeners(RegisterClientReloadListenersEvent event) {
         event.registerReloadListener(new TrophyScreen.SearchTreeManager());
     }
 
-    public void onBlockColorHandler(ColorHandlerEvent.Block event) {
-        event.getBlockColors().register((state, level, pos, index) -> {
+    public void onBlockColorHandler(RegisterColorHandlersEvent.Block event) {
+        event.register((state, level, pos, index) -> {
             if (index >= 0 && index < 3 && level != null && pos != null) {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
                 if (blockEntity instanceof TrophyBlockEntity trophyBlockEntity) {
@@ -64,8 +58,8 @@ public class TrofersClient {
         }, ModBlocks.TROPHIES.stream().map(RegistryObject::get).toArray(Block[]::new));
     }
 
-    public void onItemColorHandler(ColorHandlerEvent.Item event) {
-        event.getItemColors().register((stack, index) -> {
+    public void onItemColorHandler(RegisterColorHandlersEvent.Item event) {
+        event.register((stack, index) -> {
             Trophy trophy = Trophy.getTrophy(stack);
             if (trophy != null) {
                 if (index == 0) {

@@ -6,14 +6,14 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerCondition;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
-import slimeknights.tconstruct.TConstruct;
-import slimeknights.tconstruct.world.TinkerWorld;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.common.init.ModItems;
-import trofers.common.init.ModLootModifiers;
 import trofers.common.loot.AddEntityTrophy;
 import trofers.common.loot.RandomTrophyChanceCondition;
 import trofers.common.trophy.Trophy;
+import trofers.data.trophies.TinkersConstructTrophies;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,18 +28,13 @@ public class LootModifiers extends GlobalLootModifierProvider {
         this.trophies = trophies;
     }
 
-    private void addExtraTrophies(Map<String, Map<EntityType<?>, Trophy>> trophies) {
-        Trophy slimeTrophy = trophies.get("minecraft").get(EntityType.SLIME);
-        trophies.get(TConstruct.MOD_ID).put(TinkerWorld.earthSlimeEntity.get(), slimeTrophy);
-    }
-
     @SuppressWarnings("ConstantConditions")
     @Override
     protected void start() {
         Map<String, Map<EntityType<?>, Trophy>> trophies = new HashMap<>();
         for (Trophy trophy : this.trophies.trophies) {
             EntityType<?> entityType = trophy.entity().getType();
-            String modid = trophy.entity().getType().getRegistryName().getNamespace();
+            String modid = ForgeRegistries.ENTITY_TYPES.getKey(trophy.entity().getType()).getNamespace();
 
             if (!trophies.containsKey(modid)) {
                 trophies.put(modid, new HashMap<>());
@@ -47,7 +42,8 @@ public class LootModifiers extends GlobalLootModifierProvider {
             trophies.get(modid).put(entityType, trophy);
         }
 
-        addExtraTrophies(trophies);
+        if (ModList.get().isLoaded("tinkers_construct"))
+            TinkersConstructTrophies.addExtraTrophies(trophies);
 
         for (String modId : trophies.keySet()) {
             LootItemCondition[] conditions = new LootItemCondition[]{
@@ -55,12 +51,12 @@ public class LootModifiers extends GlobalLootModifierProvider {
                     RandomTrophyChanceCondition.randomTrophyChance().build()
             };
 
-            Map<EntityType<?>, ResourceLocation> trophyIds = trophies.get(modId).entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().id()));
+            Map<ResourceLocation, ResourceLocation> trophyIds = trophies.get(modId).entrySet().stream().collect(Collectors.toMap(entry -> ForgeRegistries.ENTITY_TYPES.getKey(entry.getKey()), entry -> entry.getValue().id()));
             AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModItems.SMALL_PLATE.get(), trophyIds);
 
             String name = modId.equals("minecraft") ? "vanilla" : modId;
             name = name + "_trophies";
-            add(name, ModLootModifiers.ADD_ENTITY_TROPHY.get(), modifier);
+            add(name, modifier);
         }
     }
 }

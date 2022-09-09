@@ -18,16 +18,16 @@ import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.searchtree.MutableSearchTree;
-import net.minecraft.client.searchtree.ReloadableSearchTree;
+import net.minecraft.client.searchtree.FullTextSearchTree;
+import net.minecraft.client.searchtree.RefreshableSearchTree;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
+import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.common.network.NetworkHandler;
 import trofers.common.network.SetTrophyPacket;
@@ -38,6 +38,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TrophyScreen extends Screen {
@@ -72,7 +73,7 @@ public class TrophyScreen extends Screen {
     private final BlockPos blockPos;
 
     public TrophyScreen(Item trophyItem, BlockPos blockPos) {
-        super(TextComponent.EMPTY);
+        super(Component.empty());
         this.trophyItem = trophyItem;
         this.blockPos = blockPos;
         this.currentPage = -1;
@@ -166,7 +167,7 @@ public class TrophyScreen extends Screen {
                 VERTICAL_PADDING,
                 UPPER_BUTTON_SIZE,
                 UPPER_BUTTON_SIZE,
-                new TextComponent("<"),
+                Component.literal("<"),
                 button -> setCurrentPage(currentPage - 1)
         ));
 
@@ -175,7 +176,7 @@ public class TrophyScreen extends Screen {
                 VERTICAL_PADDING,
                 CANCEL_BUTTON_WIDTH,
                 UPPER_BUTTON_SIZE,
-                new TranslatableComponent(String.format("button.%s.cancel", Trofers.MODID)),
+                Component.translatable(String.format("button.%s.cancel", Trofers.MODID)),
                 button -> onClose()
         ));
 
@@ -184,7 +185,7 @@ public class TrophyScreen extends Screen {
                 VERTICAL_PADDING,
                 UPPER_BUTTON_SIZE,
                 UPPER_BUTTON_SIZE,
-                new TextComponent(">"),
+                Component.literal(">"),
                 button -> setCurrentPage(currentPage + 1)
         ));
 
@@ -194,7 +195,7 @@ public class TrophyScreen extends Screen {
                 VERTICAL_PADDING + UPPER_BUTTON_SIZE + SEARCH_BAR_SPACING,
                 CANCEL_BUTTON_WIDTH + UPPER_BUTTON_SIZE * 2 + BUTTON_SPACING * 2,
                 SEARCH_BAR_HEIGHT,
-                new TranslatableComponent("itemGroup.search")
+                Component.translatable("itemGroup.search")
         );
         searchBox.setBordered(true);
         searchBox.setResponder(this::onEditSearchBox);
@@ -267,7 +268,7 @@ public class TrophyScreen extends Screen {
         private final ItemStack item;
 
         public ItemButton(int xPos, int yPos, int size, ItemStack item, OnPress handler) {
-            super(xPos, yPos, size, size, TextComponent.EMPTY, handler);
+            super(xPos, yPos, size, size, Component.empty(), handler);
             this.item = item;
         }
 
@@ -301,7 +302,7 @@ public class TrophyScreen extends Screen {
                     CrashReport crashReport = CrashReport.forThrowable(exception, "Rendering item");
                     CrashReportCategory category = crashReport.addCategory("Item being rendered");
                     category.setDetail("Item Type", () -> String.valueOf(item.getItem()));
-                    category.setDetail("Registry Name", () -> String.valueOf(item.getItem().getRegistryName()));
+                    category.setDetail("Registry Name", () -> String.valueOf(ForgeRegistries.ITEMS.getKey(item.getItem())));
                     category.setDetail("Item Damage", () -> String.valueOf(item.getDamageValue()));
                     category.setDetail("Item NBT", () -> String.valueOf(item.getTag()));
                     category.setDetail("Item Foil", () -> String.valueOf(item.hasFoil()));
@@ -347,32 +348,31 @@ public class TrophyScreen extends Screen {
 
     public static class SearchTreeManager implements ResourceManagerReloadListener {
 
-        @SuppressWarnings("ConstantConditions")
-        private static final MutableSearchTree<Trophy> searchTree = new ReloadableSearchTree<>(
-                trophy -> Stream.of(
-                        ChatFormatting.stripFormatting((
-                                trophy.name() == null
-                                        ? new TranslatableComponent("block.trofers.trophy")
-                                        : trophy.name().getString()
-                                ).toString()
-                        ).trim()
-                ),
-                trophy -> Stream.of(trophy.id())
-        );
+        private static RefreshableSearchTree<Trophy> searchTree;
 
         @Override
         public void onResourceManagerReload(ResourceManager manager) {
-            searchTree.refresh();
+            createSearchTree();
         }
 
-        public static void fillSearchTree() {
-            searchTree.clear();
-
-            TrophyManager.values()
-                    .stream()
-                    .filter(trophy -> !trophy.isHidden())
-                    .sorted(Comparator.comparing(trophy -> trophy.id().toString()))
-                    .forEach(searchTree::add);
+        @SuppressWarnings("ConstantConditions")
+        public static void createSearchTree() {
+            searchTree = new FullTextSearchTree<>(
+                    trophy -> Stream.of(
+                            ChatFormatting.stripFormatting((
+                                            trophy.name() == null
+                                                    ? Component.translatable("block.trofers.trophy")
+                                                    : trophy.name().getString()
+                                    ).toString()
+                            ).trim()
+                    ),
+                    trophy -> Stream.of(trophy.id()),
+                    TrophyManager.values()
+                            .stream()
+                            .filter(trophy -> !trophy.isHidden())
+                            .sorted(Comparator.comparing(trophy -> trophy.id().toString()))
+                            .collect(Collectors.toList())
+            );
 
             searchTree.refresh();
         }

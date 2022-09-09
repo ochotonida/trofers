@@ -1,0 +1,17 @@
+{
+  "type": "trofers:add_entity_trophy",
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "trofers:random_trophy_chance"
+    }
+  ],
+  "trophyBase": "trofers:small_plate",
+  "trophies": {
+    "thermal:basalz": "trofers:thermal/basalz",
+    "thermal:blitz": "trofers:thermal/blitz",
+    "thermal:blizz": "trofers:thermal/blizz"
+  }
+}

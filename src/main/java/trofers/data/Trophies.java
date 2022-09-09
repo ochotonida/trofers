@@ -1,14 +1,14 @@
 package trofers.data;
 
 import com.google.common.collect.Sets;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.common.trophy.Trophy;
 import trofers.data.trophies.*;
@@ -21,8 +21,6 @@ import java.util.Set;
 
 public class Trophies implements DataProvider {
 
-    private static final Gson GSON = (new GsonBuilder()).setPrettyPrinting().create();
-
     public final List<Trophy> trophies = new ArrayList<>();
     private final DataGenerator generator;
 
@@ -32,14 +30,18 @@ public class Trophies implements DataProvider {
 
     protected void addTrophies() {
         trophies.addAll(VanillaTrophies.createTrophies());
-        trophies.addAll(AlexsMobsTrophies.createTrophies());
-        trophies.addAll(QuarkTrophies.createTrophies());
-        trophies.addAll(ThermalTrophies.createTrophies());
-        trophies.addAll(TinkersConstructTrophies.createTrophies());
+        if (ModList.get().isLoaded("alexsmobs"))
+            trophies.addAll(AlexsMobsTrophies.createTrophies());
+        if (ModList.get().isLoaded("quark"))
+            trophies.addAll(QuarkTrophies.createTrophies());
+        if (ModList.get().isLoaded("thermal"))
+            trophies.addAll(ThermalTrophies.createTrophies());
+        if (ModList.get().isLoaded("tinkers_construct"))
+            trophies.addAll(TinkersConstructTrophies.createTrophies());
     }
 
     @Override
-    public void run(HashCache cache) {
+    public void run(CachedOutput cache) {
         addTrophies();
 
         Path outputFolder = generator.getOutputFolder();
@@ -47,23 +49,27 @@ public class Trophies implements DataProvider {
 
         for (Trophy trophy : trophies) {
             // noinspection ConstantConditions
-            String modId = trophy.entity().getType().getRegistryName().getNamespace();
+            String modId = ForgeRegistries.ENTITY_TYPES.getKey(trophy.entity().getType()).getNamespace();
             if (!resourceLocations.add(trophy.id())) {
                 throw new IllegalStateException("Duplicate trophy " + trophy.id());
             } else {
                 Path path = createPath(outputFolder, trophy);
-                try {
-                    JsonObject object;
-                    if (modId.equals("minecraft")) {
-                        object = trophy.toJson();
-                    } else {
-                        object = trophy.toJson(new ModLoadedCondition(modId));
-                    }
-                    DataProvider.save(GSON, cache, object, path);
-                } catch (IOException ioexception) {
-                    Trofers.LOGGER.error("Couldn't save trophy {}", path, ioexception);
+                JsonObject object;
+                if (modId.equals("minecraft")) {
+                    object = trophy.toJson();
+                } else {
+                    object = trophy.toJson(new ModLoadedCondition(modId));
                 }
+                saveTrophy(cache, object, path);
             }
+        }
+    }
+
+    private static void saveTrophy(CachedOutput cache, JsonObject object, Path path) {
+        try {
+            DataProvider.saveStable(cache, object, path);
+        } catch (IOException exception) {
+            Trofers.LOGGER.error("Couldn't save trophy {}", path, exception);
         }
     }
 

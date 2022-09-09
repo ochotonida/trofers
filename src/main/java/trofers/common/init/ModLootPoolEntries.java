@@ -1,23 +1,16 @@
 package trofers.common.init;
 
 import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryType;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
 import trofers.common.loot.OptionalLootItem;
 
 public class ModLootPoolEntries {
 
-    public static final LootPoolEntryType OPTIONAL_ITEM = new LootPoolEntryType(new OptionalLootItem.Serializer());
+    public static final DeferredRegister<LootPoolEntryType> LOOT_POOL_ENTRY_TYPES = DeferredRegister.create(Registry.LOOT_ENTRY_REGISTRY, Trofers.MODID);
 
-    @SuppressWarnings("unused")
-    public static void register(RegistryEvent<GlobalLootModifierSerializer<?>> event) {
-        Registry.register(
-                Registry.LOOT_POOL_ENTRY_TYPE,
-                new ResourceLocation(Trofers.MODID, "optional_item"),
-                OPTIONAL_ITEM
-        );
-    }
+    public static final RegistryObject<LootPoolEntryType> OPTIONAL_ITEM = LOOT_POOL_ENTRY_TYPES.register("optional_item", () -> new LootPoolEntryType(new OptionalLootItem.Serializer()));
+
 }

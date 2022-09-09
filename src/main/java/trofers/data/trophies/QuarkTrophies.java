@@ -4,6 +4,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.registries.ForgeRegistries;
 import trofers.common.trophy.Trophy;
 import vazkii.quark.base.handler.QuarkSounds;
 import vazkii.quark.content.mobs.module.*;
@@ -20,7 +21,7 @@ public class QuarkTrophies {
             @SuppressWarnings("ConstantConditions")
             @Override
             protected ResourceLocation getDefaultSoundEventId() {
-                return new ResourceLocation(entityType.getRegistryName().getNamespace(), "entity.%s.idle".formatted(entityType.getRegistryName().getPath()));
+                return new ResourceLocation(ForgeRegistries.ENTITY_TYPES.getKey(entityType).getNamespace(), "entity.%s.idle".formatted(ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath()));
             }
         };
         TROPHIES.add(builder);
@@ -39,8 +40,6 @@ public class QuarkTrophies {
                 .sound(SoundEvents.SKELETON_AMBIENT);
         builder(FoxhoundModule.foxhoundType, 0x8f3e44)
                 .sound(QuarkSounds.ENTITY_FOXHOUND_IDLE);
-        builder(FrogsModule.frogType, 0xfce3ab)
-                .sound(QuarkSounds.ENTITY_FROG_WEDNESDAY);
         builder(ShibaModule.shibaType, 0xc98955)
                 .sound(SoundEvents.WOLF_AMBIENT);
         builder(StonelingsModule.stonelingType, 0xaeb2b2)

@@ -40,7 +40,7 @@ public class TrophySyncPacket {
     void handle(Supplier<NetworkEvent.Context> context) {
         context.get().enqueueWork(() -> {
             TrophyManager.setTrophies(trophies);
-            TrophyScreen.SearchTreeManager.fillSearchTree();
+            TrophyScreen.SearchTreeManager.createSearchTree();
         });
         context.get().setPacketHandled(true);
     }

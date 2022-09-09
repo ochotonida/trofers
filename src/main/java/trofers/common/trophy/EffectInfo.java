@@ -17,7 +17,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
 
     public static final EffectInfo NONE = new EffectInfo(null, RewardInfo.NONE);
 
-    protected void toNetwork(FriendlyByteBuf buffer) {
+    void toNetwork(FriendlyByteBuf buffer) {
         buffer.writeBoolean(sound() != null);
         if (sound() != null) {
             sound().toNetwork(buffer);
@@ -25,7 +25,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         rewards().toNetwork(buffer);
     }
 
-    protected static EffectInfo fromNetwork(FriendlyByteBuf buffer) {
+    static EffectInfo fromNetwork(FriendlyByteBuf buffer) {
         SoundInfo sound = null;
         if (buffer.readBoolean()) {
             sound = SoundInfo.fromNetwork(buffer);
@@ -37,7 +37,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         );
     }
 
-    protected JsonObject toJson() {
+    JsonObject toJson() {
         JsonObject object = new JsonObject();
         if (sound() != null) {
             object.add("sound", sound().toJson());
@@ -48,7 +48,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         return object;
     }
 
-    protected static EffectInfo fromJson(JsonObject object) {
+    static EffectInfo fromJson(JsonObject object) {
         SoundInfo sound = null;
         if (object.has("sound")) {
             sound = SoundInfo.fromJson(GsonHelper.getAsJsonObject(object, "sound"));
@@ -60,16 +60,16 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         return new EffectInfo(sound, rewards);
     }
 
-    public static record SoundInfo(SoundEvent soundEvent, float volume, float pitch) {
+    public record SoundInfo(SoundEvent soundEvent, float volume, float pitch) {
 
-        protected void toNetwork(FriendlyByteBuf buffer) {
+        private void toNetwork(FriendlyByteBuf buffer) {
             // noinspection ConstantConditions
-            buffer.writeResourceLocation(soundEvent.getRegistryName());
+            buffer.writeResourceLocation(ForgeRegistries.SOUND_EVENTS.getKey(soundEvent()));
             buffer.writeFloat(volume());
             buffer.writeFloat(pitch());
         }
 
-        protected static SoundInfo fromNetwork(FriendlyByteBuf buffer) {
+        private static SoundInfo fromNetwork(FriendlyByteBuf buffer) {
             return new SoundInfo(
                     ForgeRegistries.SOUND_EVENTS.getValue(buffer.readResourceLocation()),
                     buffer.readFloat(),
@@ -77,10 +77,10 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             );
         }
 
-        protected JsonObject toJson() {
+        private JsonObject toJson() {
             JsonObject result = new JsonObject();
             // noinspection ConstantConditions
-            result.addProperty("soundEvent", soundEvent().getRegistryName().toString());
+            result.addProperty("soundEvent", ForgeRegistries.SOUND_EVENTS.getKey(soundEvent()).toString());
             if (volume() != 1) {
                 result.addProperty("volume", volume());
             }
@@ -90,7 +90,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             return result;
         }
 
-        protected static SoundInfo fromJson(JsonObject object) {
+        private static SoundInfo fromJson(JsonObject object) {
             ResourceLocation soundEventID = new ResourceLocation(GsonHelper.getAsString(object, "soundEvent"));
             if (!ForgeRegistries.SOUND_EVENTS.containsKey(soundEventID)) {
                 throw new JsonParseException(String.format("Unknown sound event: %s", soundEventID));
@@ -104,7 +104,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         }
     }
 
-    public static record RewardInfo(@Nullable ResourceLocation lootTable, CompoundTag statusEffect, int cooldown) {
+    public record RewardInfo(@Nullable ResourceLocation lootTable, CompoundTag statusEffect, int cooldown) {
 
         public static RewardInfo NONE = new RewardInfo(null, new CompoundTag(), 0);
 
@@ -116,7 +116,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             return null;
         }
 
-        protected void toNetwork(FriendlyByteBuf buffer) {
+        private void toNetwork(FriendlyByteBuf buffer) {
             buffer.writeBoolean(lootTable() != null);
             if (lootTable() != null) {
                 buffer.writeResourceLocation(lootTable());
@@ -125,7 +125,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             buffer.writeInt(cooldown());
         }
 
-        protected static RewardInfo fromNetwork(FriendlyByteBuf buffer) {
+        private static RewardInfo fromNetwork(FriendlyByteBuf buffer) {
             ResourceLocation lootTable = null;
             if (buffer.readBoolean()) {
                 lootTable = buffer.readResourceLocation();
@@ -135,7 +135,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             return new RewardInfo(lootTable, statusEffect, cooldown);
         }
 
-        protected JsonObject toJson() {
+        private JsonObject toJson() {
             JsonObject result = new JsonObject();
             if (lootTable() != null) {
                 result.addProperty("lootTable", lootTable().toString());
@@ -146,7 +146,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
                     JsonObject statusEffect = new JsonObject();
                     result.add("statusEffect", statusEffect);
                     // noinspection ConstantConditions
-                    statusEffect.addProperty("effect", effect.getEffect().getRegistryName().toString());
+                    statusEffect.addProperty("effect", ForgeRegistries.MOB_EFFECTS.getKey(effect.getEffect()).toString());
                     statusEffect.addProperty("duration", effect.getDuration());
                     if (effect.getAmplifier() != 0) {
                         statusEffect.addProperty("amplifier", effect.getAmplifier());
@@ -159,7 +159,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             return result;
         }
 
-        protected static RewardInfo fromJson(JsonObject object) {
+        private static RewardInfo fromJson(JsonObject object) {
             ResourceLocation lootTable = null;
             if (object.has("lootTable")) {
                 lootTable = new ResourceLocation(GsonHelper.getAsString(object, "lootTable"));

@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class ModBlocks {
 
-    public static final DeferredRegister<Block> REGISTRY = DeferredRegister.create(Registry.BLOCK_REGISTRY, Trofers.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(Registry.BLOCK_REGISTRY, Trofers.MODID);
 
     public static final Set<RegistryObject<TrophyBlock>> TROPHIES = new HashSet<>();
 
@@ -37,7 +37,7 @@ public class ModBlocks {
     }
 
     private static RegistryObject<TrophyBlock> addTrophy(String name, Supplier<TrophyBlock> block) {
-        RegistryObject<TrophyBlock> trophy = REGISTRY.register(name, block);
+        RegistryObject<TrophyBlock> trophy = BLOCKS.register(name, block);
         TROPHIES.add(trophy);
         return trophy;
     }

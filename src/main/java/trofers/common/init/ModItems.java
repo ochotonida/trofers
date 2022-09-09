@@ -17,7 +17,7 @@ import java.util.Set;
 @SuppressWarnings("unused")
 public class ModItems {
 
-    public static final DeferredRegister<Item> REGISTRY = DeferredRegister.create(Registry.ITEM_REGISTRY, Trofers.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Registry.ITEM_REGISTRY, Trofers.MODID);
 
     public static final CreativeModeTab CREATIVE_TAB = new CreativeModeTab(Trofers.MODID) {
         @Override
@@ -39,7 +39,7 @@ public class ModItems {
     public static final RegistryObject<TrophyItem> LARGE_PLATE = addTrophy(ModBlocks.LARGE_PLATE);
 
     private static RegistryObject<TrophyItem> addTrophy(RegistryObject<TrophyBlock> block) {
-        RegistryObject<TrophyItem> trophy = REGISTRY.register(block.getId().getPath(), () ->
+        RegistryObject<TrophyItem> trophy = ITEMS.register(block.getId().getPath(), () ->
                 new TrophyItem(
                         block.get(),
                         new Item.Properties()
