@@ -62,10 +62,14 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.MIMIC_OCTOPUS.get(), Items.TROPICAL_FISH);
         add(AMEntityRegistry.MIMICUBE.get(), AMItemRegistry.MIMICREAM.get());
         add(AMEntityRegistry.MOOSE.get(), AMItemRegistry.MOOSE_ANTLER.get());
+        add(AMEntityRegistry.MUDSKIPPER.get(), Items.MUD);
         add(AMEntityRegistry.MUNGUS.get(), AMItemRegistry.MUNGAL_SPORES.get());
         add(AMEntityRegistry.PLATYPUS.get(), 1, 3, Items.REDSTONE_BLOCK);
+        add(AMEntityRegistry.POTOO.get(), 1, 3, Items.FEATHER);
         add(AMEntityRegistry.RACCOON.get(), AMItemRegistry.RACCOON_TAIL.get());
+        add(AMEntityRegistry.RAIN_FROG.get(), 8, 24, Items.SAND);
         add(AMEntityRegistry.RATTLESNAKE.get(), AMItemRegistry.RATTLESNAKE_RATTLE.get());
+        add(AMEntityRegistry.RHINOCEROS.get(), Items.WHEAT);
         add(AMEntityRegistry.ROADRUNNER.get(), AMItemRegistry.ROADRUNNER_FEATHER.get());
         add(AMEntityRegistry.ROCKY_ROLLER.get(), AMItemRegistry.ROCKY_SHELL.get());
         add(AMEntityRegistry.SEAGULL.get(), 2, 6, Items.SAND);
@@ -77,6 +81,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.SPECTRE.get(), Items.PHANTOM_MEMBRANE);
         add(AMEntityRegistry.STRADDLER.get(), AMItemRegistry.STRADDLITE.get());
         add(AMEntityRegistry.STRADPOLE.get(), 2, 6, Items.BASALT);
+        add(AMEntityRegistry.SUGAR_GLIDER.get(), Items.HONEYCOMB);
         add(AMEntityRegistry.TARANTULA_HAWK.get(), AMItemRegistry.TARANTULA_HAWK_WING_FRAGMENT.get());
         add(AMEntityRegistry.TASMANIAN_DEVIL.get(), 1, 3, Items.ROTTEN_FLESH);
         add(AMEntityRegistry.TERRAPIN.get(), 1, 3, Items.SEAGRASS);

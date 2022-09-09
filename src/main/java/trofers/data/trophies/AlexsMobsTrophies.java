@@ -134,7 +134,11 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.MOOSE.get(), 0xc89e74)
                 .scale(0.1666)
                 .getTag().putBoolean("Antlered", true);
+        builder(AMEntityRegistry.MUDSKIPPER.get(), 0x5f6f49)
+                .sound(AMSoundRegistry.MUDSKIPPER_HURT.get());
         builder(AMEntityRegistry.MUNGUS.get(), 0x8679ae);
+        builder(AMEntityRegistry.POTOO.get(), 0xa18a63)
+                .sound(AMSoundRegistry.POTOO_CALL.get());
         builder(AMEntityRegistry.ORCA.get(), 0x71777f)
                 .offset(0, 1, -1)
                 .scale(0.1)
@@ -144,8 +148,12 @@ public class AlexsMobsTrophies {
                 .getTag().putString("CustomName", Component.Serializer.toJson(Component.literal("perry")));
         builder(AMEntityRegistry.RACCOON.get(), 0x83807d)
                 .getTag().putInt("Carpet", -1);
+        builder(AMEntityRegistry.RAIN_FROG.get(), 0x988863)
+                .getTag().putInt("Variant", 2);
         builder(AMEntityRegistry.RATTLESNAKE.get(), 0xccb792)
                 .sound(AMSoundRegistry.RATTLESNAKE_LOOP.get());
+        builder(AMEntityRegistry.RHINOCEROS.get(), 0x9f9392)
+                .scale(0.1666);
         builder(AMEntityRegistry.ROADRUNNER.get(), 0x4d696f);
         builder(AMEntityRegistry.ROCKY_ROLLER.get(), 0xaea58f);
         builder(AMEntityRegistry.SEAGULL.get(), 0xf8c444);
@@ -163,6 +171,7 @@ public class AlexsMobsTrophies {
                 .scale(0.1666);
         builder(AMEntityRegistry.STRADPOLE.get(), 0x596980)
                 .sound(AMSoundRegistry.STRADDLER_IDLE.get());
+        builder(AMEntityRegistry.SUGAR_GLIDER.get(), 0xdbd9cc);
         builder(AMEntityRegistry.SUNBIRD.get(), 0xfc8865)
                 .scale(0.1)
                 .effect(AMEffectRegistry.SUNBIRD_CURSE.get(), 10 * 20)
