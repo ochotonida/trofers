@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-09T21:12:06.3167576	LootTables
+// 1.19.2	2022-09-09T21:53:50.473758	LootTables
 4876e39a5995f8aa5bc3bc4ed6ebb80319d70d1a data/trofers/loot_tables/blocks/large_pillar.json
 3b05fe9345acfc44ed650d02531f0b2bdbb815ac data/trofers/loot_tables/blocks/large_plate.json
 245fefed32df411cb00a74fbe03efb5516c7f28f data/trofers/loot_tables/blocks/medium_pillar.json
@@ -53,10 +53,14 @@ dce380276e0814fbbbe141ee1430854cf72119b9 data/trofers/loot_tables/trophies/alexs
 1e0bd1ac324d4d1b5ba43e7c4958dbf434f8a500 data/trofers/loot_tables/trophies/alexsmobs/mimicube.json
 a81e304027b056a227fd0b4caf7d34832f49854d data/trofers/loot_tables/trophies/alexsmobs/mimic_octopus.json
 20b0cee5e11ba9c417edb077361b29da5effafd8 data/trofers/loot_tables/trophies/alexsmobs/moose.json
+29607f42bfbc613f44a6d2a4dd600804895fd5b0 data/trofers/loot_tables/trophies/alexsmobs/mudskipper.json
 e4aa156da837fe5072f0f75edcc7e1bae7a126e1 data/trofers/loot_tables/trophies/alexsmobs/mungus.json
 e54660817e6b1aef17f623c75662ef1068adffe8 data/trofers/loot_tables/trophies/alexsmobs/platypus.json
+b4eb77bfe2ad56218e905f961d1ed865ec5a0983 data/trofers/loot_tables/trophies/alexsmobs/potoo.json
 af35af1fc8e5c894e33267372eb48060688ccc49 data/trofers/loot_tables/trophies/alexsmobs/raccoon.json
+8f5c340023a8ccf7d3425f5a7afeecca960fc348 data/trofers/loot_tables/trophies/alexsmobs/rain_frog.json
 c4fda4ee6cfdadc0f4cb327bddd13e8e3dbcff7a data/trofers/loot_tables/trophies/alexsmobs/rattlesnake.json
+d8e0d7de466f277850ac259dab647d1e0f057cc2 data/trofers/loot_tables/trophies/alexsmobs/rhinoceros.json
 43964e59c5eef86f3af978539a5f01c4f154bb0f data/trofers/loot_tables/trophies/alexsmobs/roadrunner.json
 b9fbdb9e02ba21540860192880448ee8f081dbea data/trofers/loot_tables/trophies/alexsmobs/rocky_roller.json
 8cf699fefff56565d5e39573fb1ed09c83a93704 data/trofers/loot_tables/trophies/alexsmobs/seagull.json
@@ -68,6 +72,7 @@ c3057cd45e09cf55ec386d387572f0aef006eebc data/trofers/loot_tables/trophies/alexs
 742cc525d7b1390a1bef5b4ab9cd5044b4adeed8 data/trofers/loot_tables/trophies/alexsmobs/spectre.json
 2634e40b7afb94ae261edee63f3ebbdd648e9427 data/trofers/loot_tables/trophies/alexsmobs/straddler.json
 04ad77b0440a81039f33fac82444d8058f52fb67 data/trofers/loot_tables/trophies/alexsmobs/stradpole.json
+2682257cd71ec453ad11de1ea33de7d4b0bae6bd data/trofers/loot_tables/trophies/alexsmobs/sugar_glider.json
 96427d78aa8f3e395c8678623cb34d605574d719 data/trofers/loot_tables/trophies/alexsmobs/tarantula_hawk.json
 e5022af8ed7a69c3e1a9b381494c02b5701f8301 data/trofers/loot_tables/trophies/alexsmobs/tasmanian_devil.json
 5cba35c8a9984bfba698db455385f512e6d54f2b data/trofers/loot_tables/trophies/alexsmobs/terrapin.json

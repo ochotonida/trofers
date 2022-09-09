@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-09T21:14:17.7795005	Trophies
+// 1.19.2	2022-09-09T21:57:35.7638411	Trophies
 aa8a8990fbf59476f14fd60d78d9cda174c13a9d data/trofers/trofers/alexsmobs/alligator_snapping_turtle.json
 b9ec97781f2412c716bdabc700e75ea9450cdb64 data/trofers/trofers/alexsmobs/anaconda.json
 06d29c8bbe1617f4e3f3644a0a3acf0cabc888a1 data/trofers/trofers/alexsmobs/anteater.json
@@ -48,11 +48,15 @@ dfca77c3120470162ad068ab6015e536c7227712 data/trofers/trofers/alexsmobs/lobster.
 9ba859d489ac44a7a5683b68ff2407c57ec25a79 data/trofers/trofers/alexsmobs/mimicube.json
 c2f8d1f935849645e5542365d620dd1a1824d13a data/trofers/trofers/alexsmobs/mimic_octopus.json
 8ea294aa1f42279a15ca70e348fee82e447052e3 data/trofers/trofers/alexsmobs/moose.json
+47ecc2f02b468fc884e3d048204be677f642037e data/trofers/trofers/alexsmobs/mudskipper.json
 64d0eda69da8795e57584dd59a83b5cb42d2fc46 data/trofers/trofers/alexsmobs/mungus.json
 6bace823798164d0c485ed9b45caff8c4078def7 data/trofers/trofers/alexsmobs/orca.json
 bf2e23cfdfd3e9e1b32d33dbbb22d4754fd629ef data/trofers/trofers/alexsmobs/platypus.json
+c1fb4111b5a2516f14e5edd1593be6453dbac609 data/trofers/trofers/alexsmobs/potoo.json
 6e5af9eb609f0960f49c30d54c31476d4a036889 data/trofers/trofers/alexsmobs/raccoon.json
+e97dd2d7ff92919a8a766729827d3dc9911c6df5 data/trofers/trofers/alexsmobs/rain_frog.json
 124e93ce687cdbaa38fb1eeff1173d9b17518ef4 data/trofers/trofers/alexsmobs/rattlesnake.json
+fb61ff767ad7b66c0d244841faa2fc8eb6d2e522 data/trofers/trofers/alexsmobs/rhinoceros.json
 7a237c7aa041acd2bf66aa2b04ab3b792b4adcf7 data/trofers/trofers/alexsmobs/roadrunner.json
 f3cf904df812159816220e498c90a263fe45994b data/trofers/trofers/alexsmobs/rocky_roller.json
 365ff30b6fb69d96650b916ccf6c5731734b41d6 data/trofers/trofers/alexsmobs/seagull.json
@@ -64,6 +68,7 @@ f9d6fba5f76302f2b1e6df76207922510e4de6f0 data/trofers/trofers/alexsmobs/snow_leo
 e06913533b2705dc5c78ca41b942a67dc719b84c data/trofers/trofers/alexsmobs/spectre.json
 7acd53c6e79495cd666d26051f7ebf4ac22610d8 data/trofers/trofers/alexsmobs/straddler.json
 049144ddf76d08317e7566001155946b1cbd8df3 data/trofers/trofers/alexsmobs/stradpole.json
+904db9840c7ce23b1f94b9b4f3dc0560d8667a0c data/trofers/trofers/alexsmobs/sugar_glider.json
 1fcd20ec075744f16c770fefb354dfe3cc939025 data/trofers/trofers/alexsmobs/sunbird.json
 1574e47a1ae7ae0a050534338231759a10e85aa3 data/trofers/trofers/alexsmobs/tarantula_hawk.json
 e3c1c77e36c2b901587adc65fe78026866b0ddee data/trofers/trofers/alexsmobs/tasmanian_devil.json

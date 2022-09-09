@@ -1,0 +1,36 @@
+{
+  "colors": {
+    "accent": "#A18A63",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/potoo"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:potoo_call"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:potoo"
+  },
+  "name": {
+    "color": "#A18A63",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.potoo"
+      }
+    ]
+  }
+}

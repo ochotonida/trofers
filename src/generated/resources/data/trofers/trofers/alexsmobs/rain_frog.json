@@ -1,0 +1,37 @@
+{
+  "colors": {
+    "accent": "#988863",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/rain_frog"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:rain_frog_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:rain_frog",
+    "nbt": "{Variant:2}"
+  },
+  "name": {
+    "color": "#988863",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.rain_frog"
+      }
+    ]
+  }
+}
