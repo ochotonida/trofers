@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#959C9C",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 288000,
+      "lootTable": "trofers:trophies/evoker"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.evoker.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:evoker"
+  },
   "name": {
     "color": "#959C9C",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.evoker"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:evoker"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#959C9C"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.evoker.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/evoker",
-      "cooldown": 288000
-    }
   }
 }

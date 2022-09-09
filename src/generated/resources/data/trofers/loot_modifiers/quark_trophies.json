@@ -1,4 +1,5 @@
 {
+  "type": "trofers:add_entity_trophy",
   "conditions": [
     {
       "condition": "minecraft:killed_by_player"
@@ -7,40 +8,14 @@
       "condition": "trofers:random_trophy_chance"
     }
   ],
-  "trophyBase": "trofers:small_plate",
-  "trophies": [
-    {
-      "entity": "quark:crab",
-      "trophy": "trofers:quark/crab"
-    },
-    {
-      "entity": "quark:forgotten",
-      "trophy": "trofers:quark/forgotten"
-    },
-    {
-      "entity": "quark:foxhound",
-      "trophy": "trofers:quark/foxhound"
-    },
-    {
-      "entity": "quark:frog",
-      "trophy": "trofers:quark/frog"
-    },
-    {
-      "entity": "quark:shiba",
-      "trophy": "trofers:quark/shiba"
-    },
-    {
-      "entity": "quark:stoneling",
-      "trophy": "trofers:quark/stoneling"
-    },
-    {
-      "entity": "quark:toretoise",
-      "trophy": "trofers:quark/toretoise"
-    },
-    {
-      "entity": "quark:wraith",
-      "trophy": "trofers:quark/wraith"
-    }
-  ],
-  "type": "trofers:add_entity_trophy"
+  "trophies": {
+    "quark:crab": "trofers:quark/crab",
+    "quark:forgotten": "trofers:quark/forgotten",
+    "quark:foxhound": "trofers:quark/foxhound",
+    "quark:shiba": "trofers:quark/shiba",
+    "quark:stoneling": "trofers:quark/stoneling",
+    "quark:toretoise": "trofers:quark/toretoise",
+    "quark:wraith": "trofers:quark/wraith"
+  },
+  "trophyBase": "trofers:small_plate"
 }

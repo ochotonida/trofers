@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#7A6755",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/spider"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.spider.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:spider"
+  },
   "name": {
     "color": "#7A6755",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.spider"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:spider"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#7A6755"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.spider.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/spider",
-      "cooldown": 9600
-    }
   }
 }

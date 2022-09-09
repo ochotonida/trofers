@@ -1,4 +1,28 @@
 {
+  "colors": {
+    "accent": "#BF886D",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "statusEffect": {
+        "amplifier": 4,
+        "duration": 2400,
+        "effect": "minecraft:hero_of_the_village"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.villager.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:villager",
+    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
+  },
   "name": {
     "color": "#BF886D",
     "translate": "trophy.trofers.composed",
@@ -7,29 +31,5 @@
         "translate": "entity.minecraft.villager"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:villager",
-    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#BF886D"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.villager.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:hero_of_the_village",
-        "duration": 2400,
-        "amplifier": 4
-      },
-      "cooldown": 9600
-    }
   }
 }

@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#6C5234",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/cow"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cow.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:cow",
+    "nbt": "{UUID:[I;0,0,0,0]}"
+  },
   "name": {
     "color": "#6C5234",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.cow"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:cow",
-    "nbt": "{UUID:[I;0,0,0,0]}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#6C5234"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cow.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/cow",
-      "cooldown": 9600
-    }
   }
 }

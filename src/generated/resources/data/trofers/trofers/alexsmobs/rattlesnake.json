@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#CCB792",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/rattlesnake"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:rattlesnake_loop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:rattlesnake"
+  },
   "name": {
     "color": "#CCB792",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.rattlesnake"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:rattlesnake"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#CCB792"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:rattlesnake_loop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/rattlesnake",
-      "cooldown": 9600
-    }
   }
 }

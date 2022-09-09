@@ -1,10 +1,32 @@
 {
+  "colors": {
+    "accent": "#7ABAEA",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "offset": {
+      "y": 1.0
+    },
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/flying_fish"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:flying_fish"
+  },
   "name": {
     "color": "#7ABAEA",
     "translate": "trophy.trofers.composed",
@@ -13,27 +35,5 @@
         "translate": "entity.alexsmobs.flying_fish"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "y": 1.0
-    },
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:flying_fish"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#7ABAEA"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cod.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/flying_fish",
-      "cooldown": 9600
-    }
   }
 }

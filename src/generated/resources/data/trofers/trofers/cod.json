@@ -1,12 +1,7 @@
 {
-  "name": {
-    "color": "#B6986C",
-    "translate": "trophy.trofers.composed",
-    "with": [
-      {
-        "translate": "entity.minecraft.cod"
-      }
-    ]
+  "colors": {
+    "accent": "#B6986C",
+    "base": "#606060"
   },
   "display": {
     "offset": {
@@ -18,20 +13,25 @@
     },
     "scale": 0.25
   },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/cod"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    }
+  },
   "entity": {
     "type": "minecraft:cod"
   },
-  "colors": {
-    "base": "#606060",
-    "accent": "#B6986C"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cod.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/cod",
-      "cooldown": 9600
-    }
+  "name": {
+    "color": "#B6986C",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.minecraft.cod"
+      }
+    ]
   }
 }

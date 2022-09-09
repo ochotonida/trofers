@@ -1,10 +1,32 @@
 {
+  "colors": {
+    "accent": "#C1C282",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "offset": {
+      "y": 1.0
+    },
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/catfish"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:catfish"
+  },
   "name": {
     "color": "#C1C282",
     "translate": "trophy.trofers.composed",
@@ -13,27 +35,5 @@
         "translate": "entity.alexsmobs.catfish"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "y": 1.0
-    },
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:catfish"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#C1C282"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cod.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/catfish",
-      "cooldown": 9600
-    }
   }
 }

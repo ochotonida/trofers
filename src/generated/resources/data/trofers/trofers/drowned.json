@@ -1,4 +1,25 @@
 {
+  "colors": {
+    "accent": "#56847E",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 800,
+        "effect": "minecraft:water_breathing"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.drowned.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:drowned"
+  },
   "name": {
     "color": "#56847E",
     "translate": "trophy.trofers.composed",
@@ -7,26 +28,5 @@
         "translate": "entity.minecraft.drowned"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:drowned"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#56847E"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.drowned.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:water_breathing",
-        "duration": 800
-      }
-    }
   }
 }

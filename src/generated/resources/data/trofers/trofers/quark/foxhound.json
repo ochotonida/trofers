@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#8F3E44",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "quark",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "quark"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/quark/foxhound"
+    },
+    "sound": {
+      "soundEvent": "quark:entity.foxhound.ambient"
+    }
+  },
+  "entity": {
+    "type": "quark:foxhound"
+  },
   "name": {
     "color": "#8F3E44",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.quark.foxhound"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "quark:foxhound"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#8F3E44"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "quark:entity.foxhound.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/quark/foxhound",
-      "cooldown": 9600
-    }
   }
 }

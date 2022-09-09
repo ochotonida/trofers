@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#675C60",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/frilled_shark"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:frilled_shark"
+  },
   "name": {
     "color": "#675C60",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.frilled_shark"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:frilled_shark"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#675C60"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cod.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/frilled_shark",
-      "cooldown": 9600
-    }
   }
 }

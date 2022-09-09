@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#C98955",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "quark",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "quark"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/quark/shiba"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.wolf.ambient"
+    }
+  },
+  "entity": {
+    "type": "quark:shiba"
+  },
   "name": {
     "color": "#C98955",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.quark.shiba"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "quark:shiba"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#C98955"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.wolf.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/quark/shiba",
-      "cooldown": 9600
-    }
   }
 }

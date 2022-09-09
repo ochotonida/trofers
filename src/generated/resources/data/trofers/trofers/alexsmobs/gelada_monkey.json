@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#AE8A63",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/gelada_monkey"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:gelada_monkey_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:gelada_monkey"
+  },
   "name": {
     "color": "#AE8A63",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.gelada_monkey"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:gelada_monkey"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#AE8A63"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:gelada_monkey_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/gelada_monkey",
-      "cooldown": 9600
-    }
   }
 }

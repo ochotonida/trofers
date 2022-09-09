@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#BA4C2D",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.1875
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/tarantula_hawk"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:tarantula_hawk_wing"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:tarantula_hawk"
+  },
   "name": {
     "color": "#BA4C2D",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.tarantula_hawk"
       }
     ]
-  },
-  "display": {
-    "scale": 0.1875
-  },
-  "entity": {
-    "type": "alexsmobs:tarantula_hawk"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#BA4C2D"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:tarantula_hawk_wing"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/tarantula_hawk",
-      "cooldown": 9600
-    }
   }
 }

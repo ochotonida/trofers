@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#926633",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/horse"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.horse.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:horse",
+    "nbt": "{Variant:257}"
+  },
   "name": {
     "color": "#926633",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.horse"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:horse",
-    "nbt": "{Variant:257}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#926633"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.horse.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/horse",
-      "cooldown": 9600
-    }
   }
 }

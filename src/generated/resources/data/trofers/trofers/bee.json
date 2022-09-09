@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#EBC542",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/bee"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.bee.pollinate"
+    }
+  },
+  "entity": {
+    "type": "minecraft:bee"
+  },
   "name": {
     "color": "#EBC542",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.bee"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:bee"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#EBC542"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.bee.pollinate"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/bee",
-      "cooldown": 9600
-    }
   }
 }

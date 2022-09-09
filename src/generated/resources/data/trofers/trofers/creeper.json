@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#48B23A",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/creeper"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.creeper.primed"
+    }
+  },
+  "entity": {
+    "type": "minecraft:creeper"
+  },
   "name": {
     "color": "#48B23A",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.creeper"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:creeper"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#48B23A"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.creeper.primed"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/creeper",
-      "cooldown": 9600
-    }
   }
 }

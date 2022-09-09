@@ -1,4 +1,27 @@
 {
+  "colors": {
+    "accent": "#A28B72",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "amplifier": 3,
+        "duration": 800,
+        "effect": "minecraft:jump_boost"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.rabbit.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:rabbit",
+    "nbt": "{RabbitType:0}"
+  },
   "name": {
     "color": "#A28B72",
     "translate": "trophy.trofers.composed",
@@ -7,28 +30,5 @@
         "translate": "entity.minecraft.rabbit"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:rabbit",
-    "nbt": "{RabbitType:0}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#A28B72"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.rabbit.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:jump_boost",
-        "duration": 800,
-        "amplifier": 3
-      }
-    }
   }
 }

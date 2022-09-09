@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#70955C",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/zombie"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.zombie.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:zombie"
+  },
   "name": {
     "color": "#70955C",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.zombie"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:zombie"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#70955C"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.zombie.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/zombie",
-      "cooldown": 9600
-    }
   }
 }

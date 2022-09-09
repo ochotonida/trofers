@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#81969B",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "quark",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "quark"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/quark/wraith"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.skeleton.ambient"
+    }
+  },
+  "entity": {
+    "type": "quark:wraith"
+  },
   "name": {
     "color": "#81969B",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.quark.wraith"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "quark:wraith"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#81969B"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.skeleton.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/quark/wraith",
-      "cooldown": 9600
-    }
   }
 }

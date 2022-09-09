@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#DCDADB",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/wolf"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.wolf.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:wolf",
+    "nbt": "{Owner:[I;0,0,0,0],Sitting:1b}"
+  },
   "name": {
     "color": "#DCDADB",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.wolf"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:wolf",
-    "nbt": "{Owner:[I;0,0,0,0],Sitting:1b}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#DCDADB"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.wolf.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/wolf",
-      "cooldown": 9600
-    }
   }
 }

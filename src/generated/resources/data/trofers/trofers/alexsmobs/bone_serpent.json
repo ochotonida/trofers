@@ -1,10 +1,32 @@
 {
+  "colors": {
+    "accent": "#D1C4AC",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "offset": {
+      "z": 2.0
+    },
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/bone_serpent"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:bone_serpent_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:bone_serpent"
+  },
   "name": {
     "color": "#D1C4AC",
     "translate": "trophy.trofers.composed",
@@ -13,27 +35,5 @@
         "translate": "entity.alexsmobs.bone_serpent"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "z": 2.0
-    },
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:bone_serpent"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#D1C4AC"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:bone_serpent_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/bone_serpent",
-      "cooldown": 9600
-    }
   }
 }

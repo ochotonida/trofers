@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#644B84",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/endermite"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.endermite.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:endermite"
+  },
   "name": {
     "color": "#644B84",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.endermite"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:endermite"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#644B84"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.endermite.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/endermite",
-      "cooldown": 9600
-    }
   }
 }

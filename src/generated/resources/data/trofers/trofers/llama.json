@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#E3E4D4",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/llama"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.llama.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:llama",
+    "nbt": "{Variant:3}"
+  },
   "name": {
     "color": "#E3E4D4",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.llama"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:llama",
-    "nbt": "{Variant:3}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#E3E4D4"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.llama.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/llama",
-      "cooldown": 9600
-    }
   }
 }

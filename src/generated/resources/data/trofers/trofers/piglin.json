@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#EFB987",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "minecraft:gameplay/piglin_bartering"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.piglin.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:piglin",
+    "nbt": "{IsImmuneToZombification:1b}"
+  },
   "name": {
     "color": "#EFB987",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.piglin"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:piglin",
-    "nbt": "{IsImmuneToZombification:1b}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#EFB987"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.piglin.ambient"
-    },
-    "rewards": {
-      "lootTable": "minecraft:gameplay/piglin_bartering",
-      "cooldown": 9600
-    }
   }
 }

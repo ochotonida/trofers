@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#EDE746",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/blaze"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.blaze.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:blaze"
+  },
   "name": {
     "color": "#EDE746",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.blaze"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:blaze"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#EDE746"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.blaze.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/blaze",
-      "cooldown": 9600
-    }
   }
 }

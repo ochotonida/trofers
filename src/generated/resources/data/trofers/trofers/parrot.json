@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#E60000",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/parrot"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.parrot.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:parrot",
+    "nbt": "{Variant:0}"
+  },
   "name": {
     "color": "#E60000",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.parrot"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:parrot",
-    "nbt": "{Variant:0}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#E60000"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.parrot.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/parrot",
-      "cooldown": 9600
-    }
   }
 }

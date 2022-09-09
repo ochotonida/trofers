@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#5A4C47",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/anteater"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:anteater_hurt"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:anteater"
+  },
   "name": {
     "color": "#5A4C47",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.anteater"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:anteater"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#5A4C47"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:anteater_hurt"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/anteater",
-      "cooldown": 9600
-    }
   }
 }

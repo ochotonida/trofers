@@ -1,12 +1,7 @@
 {
-  "name": {
-    "color": "#FF4040",
-    "translate": "trophy.trofers.composed",
-    "with": [
-      {
-        "translate": "entity.minecraft.tropical_fish"
-      }
-    ]
+  "colors": {
+    "accent": "#FF4040",
+    "base": "#606060"
   },
   "display": {
     "offset": {
@@ -18,21 +13,26 @@
     },
     "scale": 0.25
   },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/tropical_fish"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.tropical_fish.flop"
+    }
+  },
   "entity": {
     "type": "minecraft:tropical_fish",
     "nbt": "{Variant:235798785}"
   },
-  "colors": {
-    "base": "#606060",
-    "accent": "#FF4040"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.tropical_fish.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/tropical_fish",
-      "cooldown": 9600
-    }
+  "name": {
+    "color": "#FF4040",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.minecraft.tropical_fish"
+      }
+    ]
   }
 }

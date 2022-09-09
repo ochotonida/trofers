@@ -1,10 +1,32 @@
 {
+  "colors": {
+    "accent": "#FFDB9B",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "offset": {
+      "z": 1.0
+    },
+    "scale": 0.075
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/laviathan"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:laviathan_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:laviathan"
+  },
   "name": {
     "color": "#FFDB9B",
     "translate": "trophy.trofers.composed",
@@ -13,27 +35,5 @@
         "translate": "entity.alexsmobs.laviathan"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "z": 1.0
-    },
-    "scale": 0.075
-  },
-  "entity": {
-    "type": "alexsmobs:laviathan"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#FFDB9B"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:laviathan_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/laviathan",
-      "cooldown": 9600
-    }
   }
 }

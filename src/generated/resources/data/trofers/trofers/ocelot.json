@@ -1,4 +1,26 @@
 {
+  "colors": {
+    "accent": "#EDB262",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "amplifier": 3,
+        "duration": 800,
+        "effect": "minecraft:speed"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.ocelot.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:ocelot"
+  },
   "name": {
     "color": "#EDB262",
     "translate": "trophy.trofers.composed",
@@ -7,27 +29,5 @@
         "translate": "entity.minecraft.ocelot"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:ocelot"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#EDB262"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.ocelot.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:speed",
-        "duration": 800,
-        "amplifier": 3
-      }
-    }
   }
 }

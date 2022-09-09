@@ -1,10 +1,32 @@
 {
+  "colors": {
+    "accent": "#DBC388",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "statusEffect": {
+        "duration": 2400,
+        "effect": "alexsmobs:fleet_footed"
+      }
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:jerboa_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:jerboa"
+  },
   "name": {
     "color": "#DBC388",
     "translate": "trophy.trofers.composed",
@@ -13,27 +35,5 @@
         "translate": "entity.alexsmobs.jerboa"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:jerboa"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#DBC388"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:jerboa_idle"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "alexsmobs:fleet_footed",
-        "duration": 2400
-      },
-      "cooldown": 9600
-    }
   }
 }

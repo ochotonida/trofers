@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#D5957B",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/hoglin"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.hoglin.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:hoglin",
+    "nbt": "{IsImmuneToZombification:1b}"
+  },
   "name": {
     "color": "#D5957B",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.hoglin"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:hoglin",
-    "nbt": "{IsImmuneToZombification:1b}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#D5957B"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.hoglin.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/hoglin",
-      "cooldown": 9600
-    }
   }
 }

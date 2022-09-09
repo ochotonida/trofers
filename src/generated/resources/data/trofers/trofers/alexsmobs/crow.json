@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#43485B",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/crow"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:crow_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:crow"
+  },
   "name": {
     "color": "#43485B",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.crow"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:crow"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#43485B"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:crow_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/crow",
-      "cooldown": 9600
-    }
   }
 }

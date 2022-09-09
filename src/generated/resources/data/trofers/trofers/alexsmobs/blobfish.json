@@ -1,10 +1,30 @@
 {
+  "colors": {
+    "accent": "#7E7D7C",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/blobfish"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:blobfish",
+    "nbt": "{BlobfishScale:1.0f}"
+  },
   "name": {
     "color": "#7E7D7C",
     "translate": "trophy.trofers.composed",
@@ -13,25 +33,5 @@
         "translate": "entity.alexsmobs.blobfish"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:blobfish",
-    "nbt": "{BlobfishScale:1.0f}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#7E7D7C"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cod.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/blobfish",
-      "cooldown": 9600
-    }
   }
 }

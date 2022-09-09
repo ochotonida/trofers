@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#C19288",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/fly"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:fly_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:fly"
+  },
   "name": {
     "color": "#C19288",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.fly"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:fly"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#C19288"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:fly_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/fly",
-      "cooldown": 9600
-    }
   }
 }

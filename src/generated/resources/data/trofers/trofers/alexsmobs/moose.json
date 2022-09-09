@@ -1,10 +1,30 @@
 {
+  "colors": {
+    "accent": "#C89E74",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.1666
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/moose"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:moose_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:moose",
+    "nbt": "{Antlered:1b}"
+  },
   "name": {
     "color": "#C89E74",
     "translate": "trophy.trofers.composed",
@@ -13,25 +33,5 @@
         "translate": "entity.alexsmobs.moose"
       }
     ]
-  },
-  "display": {
-    "scale": 0.1666
-  },
-  "entity": {
-    "type": "alexsmobs:moose",
-    "nbt": "{Antlered:1b}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#C89E74"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:moose_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/moose",
-      "cooldown": 9600
-    }
   }
 }

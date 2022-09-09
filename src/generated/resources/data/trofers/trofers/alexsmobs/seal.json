@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#65584B",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/seal"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:seal_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:seal"
+  },
   "name": {
     "color": "#65584B",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.seal"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:seal"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#65584B"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:seal_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/seal",
-      "cooldown": 9600
-    }
   }
 }

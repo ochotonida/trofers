@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#817164",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/donkey"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.donkey.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:donkey"
+  },
   "name": {
     "color": "#817164",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.donkey"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:donkey"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#817164"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.donkey.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/donkey",
-      "cooldown": 9600
-    }
   }
 }

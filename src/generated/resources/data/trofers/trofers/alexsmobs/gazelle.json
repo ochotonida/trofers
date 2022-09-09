@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#E4B57E",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/gazelle"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:gazelle_hurt"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:gazelle"
+  },
   "name": {
     "color": "#E4B57E",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.gazelle"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:gazelle"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#E4B57E"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:gazelle_hurt"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/gazelle",
-      "cooldown": 9600
-    }
   }
 }

@@ -1,10 +1,30 @@
 {
+  "colors": {
+    "accent": "#9FC1FC",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/froststalker"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:froststalker_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:froststalker",
+    "nbt": "{Spiked:1b}"
+  },
   "name": {
     "color": "#9FC1FC",
     "translate": "trophy.trofers.composed",
@@ -13,25 +33,5 @@
         "translate": "entity.alexsmobs.froststalker"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:froststalker",
-    "nbt": "{Spiked:1b}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#9FC1FC"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:froststalker_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/froststalker",
-      "cooldown": 9600
-    }
   }
 }

@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#A14FB6",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/enderman"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.enderman.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:enderman",
+    "nbt": "{carriedBlockState:{Name:\"minecraft:tnt\"}}"
+  },
   "name": {
     "color": "#A14FB6",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.enderman"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:enderman",
-    "nbt": "{carriedBlockState:{Name:\"minecraft:tnt\"}}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#A14FB6"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.enderman.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/enderman",
-      "cooldown": 9600
-    }
   }
 }

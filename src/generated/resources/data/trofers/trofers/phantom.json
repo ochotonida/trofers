@@ -1,4 +1,26 @@
 {
+  "colors": {
+    "accent": "#5161A5",
+    "base": "#606060"
+  },
+  "display": {
+    "offset": {
+      "y": 1.0
+    },
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/phantom"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.phantom.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:phantom"
+  },
   "name": {
     "color": "#5161A5",
     "translate": "trophy.trofers.composed",
@@ -7,27 +29,5 @@
         "translate": "entity.minecraft.phantom"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "y": 1.0
-    },
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:phantom"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#5161A5"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.phantom.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/phantom",
-      "cooldown": 9600
-    }
   }
 }

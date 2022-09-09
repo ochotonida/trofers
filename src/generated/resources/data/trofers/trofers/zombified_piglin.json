@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#E59796",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/zombified_piglin"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.zombified_piglin.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:zombified_piglin",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_sword\",tag:{Damage:0}},{}]}"
+  },
   "name": {
     "color": "#E59796",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.zombified_piglin"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:zombified_piglin",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_sword\",tag:{Damage:0}},{}]}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#E59796"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.zombified_piglin.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/zombified_piglin",
-      "cooldown": 9600
-    }
   }
 }

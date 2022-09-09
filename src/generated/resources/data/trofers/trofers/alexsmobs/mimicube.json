@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#5E5882",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/mimicube"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:mimicube_jump"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:mimicube"
+  },
   "name": {
     "color": "#5E5882",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.mimicube"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:mimicube"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#5E5882"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:mimicube_jump"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/mimicube",
-      "cooldown": 9600
-    }
   }
 }

@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#7FBBE8",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/endergrade"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:endergrade_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:endergrade"
+  },
   "name": {
     "color": "#7FBBE8",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.endergrade"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:endergrade"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#7FBBE8"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:endergrade_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/endergrade",
-      "cooldown": 9600
-    }
   }
 }

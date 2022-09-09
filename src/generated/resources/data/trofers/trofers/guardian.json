@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#6A9087",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/guardian"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.guardian.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:guardian"
+  },
   "name": {
     "color": "#6A9087",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.guardian"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:guardian"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#6A9087"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.guardian.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/guardian",
-      "cooldown": 9600
-    }
   }
 }

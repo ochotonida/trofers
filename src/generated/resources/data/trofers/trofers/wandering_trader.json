@@ -1,4 +1,25 @@
 {
+  "colors": {
+    "accent": "#425F90",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 800,
+        "effect": "minecraft:invisibility"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.wandering_trader.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:wandering_trader"
+  },
   "name": {
     "color": "#425F90",
     "translate": "trophy.trofers.composed",
@@ -7,26 +28,5 @@
         "translate": "entity.minecraft.wandering_trader"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:wandering_trader"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#425F90"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.wandering_trader.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:invisibility",
-        "duration": 800
-      }
-    }
   }
 }

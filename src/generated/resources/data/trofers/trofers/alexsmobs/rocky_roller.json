@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#AEA58F",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/rocky_roller"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:rocky_roller_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:rocky_roller"
+  },
   "name": {
     "color": "#AEA58F",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.rocky_roller"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:rocky_roller"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#AEA58F"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:rocky_roller_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/rocky_roller",
-      "cooldown": 9600
-    }
   }
 }

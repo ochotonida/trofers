@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#6E9DDB",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/cosmic_cod"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:cosmic_cod_hurt"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:cosmic_cod"
+  },
   "name": {
     "color": "#6E9DDB",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.cosmic_cod"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:cosmic_cod"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#6E9DDB"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:cosmic_cod_hurt"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/cosmic_cod",
-      "cooldown": 9600
-    }
   }
 }

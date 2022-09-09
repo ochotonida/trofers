@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#FFFFFF",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/snow_golem"
+    },
+    "sound": {
+      "soundEvent": "minecraft:block.snow.place"
+    }
+  },
+  "entity": {
+    "type": "minecraft:snow_golem"
+  },
   "name": {
     "color": "#FFFFFF",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.snow_golem"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:snow_golem"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#FFFFFF"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:block.snow.place"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/snow_golem",
-      "cooldown": 9600
-    }
   }
 }

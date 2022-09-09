@@ -1,20 +1,20 @@
 {
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "trofers:optional_item",
+          "name": "quark:soul_bead",
           "when": [
             {
-              "modid": "quark",
-              "type": "forge:mod_loaded"
+              "type": "forge:mod_loaded",
+              "modid": "quark"
             }
-          ],
-          "name": "quark:soul_bead"
+          ]
         }
-      ]
+      ],
+      "rolls": 1.0
     }
   ]
 }

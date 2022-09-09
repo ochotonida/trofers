@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#76A045",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/zombie_villager"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.zombie_villager.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:zombie_villager",
+    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
+  },
   "name": {
     "color": "#76A045",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.zombie_villager"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:zombie_villager",
-    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#76A045"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.zombie_villager.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/zombie_villager",
-      "cooldown": 9600
-    }
   }
 }

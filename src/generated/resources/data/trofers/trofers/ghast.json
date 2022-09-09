@@ -1,4 +1,26 @@
 {
+  "colors": {
+    "accent": "#F0F0F0",
+    "base": "#606060"
+  },
+  "display": {
+    "offset": {
+      "y": 5.0
+    },
+    "scale": 0.075
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/ghast"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.ghast.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:ghast"
+  },
   "name": {
     "color": "#F0F0F0",
     "translate": "trophy.trofers.composed",
@@ -7,27 +29,5 @@
         "translate": "entity.minecraft.ghast"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "y": 5.0
-    },
-    "scale": 0.075
-  },
-  "entity": {
-    "type": "minecraft:ghast"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#F0F0F0"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.ghast.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/ghast",
-      "cooldown": 9600
-    }
   }
 }

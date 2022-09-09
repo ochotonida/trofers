@@ -1,12 +1,7 @@
 {
-  "name": {
-    "color": "#E37C21",
-    "translate": "trophy.trofers.composed",
-    "with": [
-      {
-        "translate": "entity.minecraft.fox"
-      }
-    ]
+  "colors": {
+    "accent": "#E37C21",
+    "base": "#606060"
   },
   "display": {
     "offset": {
@@ -18,21 +13,26 @@
     },
     "scale": 0.25
   },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/fox"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.fox.ambient"
+    }
+  },
   "entity": {
     "type": "minecraft:fox",
     "nbt": "{Sleeping:1b,Type:\"red\"}"
   },
-  "colors": {
-    "base": "#606060",
-    "accent": "#E37C21"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.fox.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/fox",
-      "cooldown": 9600
-    }
+  "name": {
+    "color": "#E37C21",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.minecraft.fox"
+      }
+    ]
   }
 }

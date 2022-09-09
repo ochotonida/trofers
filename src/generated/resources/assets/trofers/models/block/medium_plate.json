@@ -1,30 +1,14 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "#top",
-    "top": "trofers:block/medium_pillar_top",
-    "side": "trofers:block/medium_pillar_side",
-    "overlay": "trofers:block/medium_plate_overlay"
-  },
   "elements": [
     {
-      "from": [
-        3,
-        0,
-        3
-      ],
-      "to": [
-        13,
-        2,
-        13
-      ],
       "faces": {
         "down": {
           "texture": "#top",
           "tintindex": 0
         },
-        "up": {
-          "texture": "#top",
+        "east": {
+          "texture": "#side",
           "tintindex": 0
         },
         "north": {
@@ -35,17 +19,15 @@
           "texture": "#side",
           "tintindex": 0
         },
+        "up": {
+          "texture": "#top",
+          "tintindex": 0
+        },
         "west": {
           "texture": "#side",
           "tintindex": 0
-        },
-        "east": {
-          "texture": "#side",
-          "tintindex": 0
         }
-      }
-    },
-    {
+      },
       "from": [
         3,
         0,
@@ -55,13 +37,32 @@
         13,
         2,
         13
-      ],
+      ]
+    },
+    {
       "faces": {
         "up": {
           "texture": "#overlay",
           "tintindex": 1
         }
-      }
+      },
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        13,
+        2,
+        13
+      ]
     }
-  ]
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "overlay": "trofers:block/medium_plate_overlay",
+    "particle": "#top",
+    "side": "trofers:block/medium_pillar_side",
+    "top": "trofers:block/medium_pillar_top"
+  }
 }

@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#929C9C",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/vindicator"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.vindicator.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:vindicator"
+  },
   "name": {
     "color": "#929C9C",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.vindicator"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:vindicator"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#929C9C"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.vindicator.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/vindicator",
-      "cooldown": 9600
-    }
   }
 }

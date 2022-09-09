@@ -1,11 +1,6 @@
 {
   "pools": [
     {
-      "rolls": {
-        "type": "minecraft:uniform",
-        "min": 2.0,
-        "max": 6.0
-      },
       "bonus_rolls": 0.0,
       "entries": [
         {
@@ -28,7 +23,12 @@
           "type": "minecraft:item",
           "name": "minecraft:lapis_lazuli"
         }
-      ]
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 2.0
+      }
     }
   ]
 }

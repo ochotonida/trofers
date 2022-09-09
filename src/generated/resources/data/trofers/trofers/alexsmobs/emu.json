@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#746457",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/emu"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:emu_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:emu"
+  },
   "name": {
     "color": "#746457",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.emu"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:emu"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#746457"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:emu_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/emu",
-      "cooldown": 9600
-    }
   }
 }

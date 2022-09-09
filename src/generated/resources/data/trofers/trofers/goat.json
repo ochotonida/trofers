@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#C2AB8E",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/goat"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.goat.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:goat"
+  },
   "name": {
     "color": "#C2AB8E",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.goat"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:goat"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#C2AB8E"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.goat.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/goat",
-      "cooldown": 9600
-    }
   }
 }

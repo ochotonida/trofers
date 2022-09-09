@@ -1,20 +1,20 @@
 {
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "trofers:optional_item",
+          "name": "alexsmobs:lost_tentacle",
           "when": [
             {
-              "modid": "alexsmobs",
-              "type": "forge:mod_loaded"
+              "type": "forge:mod_loaded",
+              "modid": "alexsmobs"
             }
-          ],
-          "name": "alexsmobs:lost_tentacle"
+          ]
         }
-      ]
+      ],
+      "rolls": 1.0
     }
   ]
 }

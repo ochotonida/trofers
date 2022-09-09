@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#A55CA8",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/enderiophage"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:enderiophage_squish"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:enderiophage"
+  },
   "name": {
     "color": "#A55CA8",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.enderiophage"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:enderiophage"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#A55CA8"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:enderiophage_squish"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/enderiophage",
-      "cooldown": 9600
-    }
   }
 }

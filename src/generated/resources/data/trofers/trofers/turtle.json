@@ -1,4 +1,27 @@
 {
+  "colors": {
+    "accent": "#3EA240",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "statusEffect": {
+        "amplifier": 3,
+        "duration": 2400,
+        "effect": "minecraft:resistance"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.turtle.ambient_land"
+    }
+  },
+  "entity": {
+    "type": "minecraft:turtle"
+  },
   "name": {
     "color": "#3EA240",
     "translate": "trophy.trofers.composed",
@@ -7,28 +30,5 @@
         "translate": "entity.minecraft.turtle"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:turtle"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#3EA240"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.turtle.ambient_land"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:resistance",
-        "duration": 2400,
-        "amplifier": 3
-      },
-      "cooldown": 9600
-    }
   }
 }

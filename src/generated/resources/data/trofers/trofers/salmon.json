@@ -1,12 +1,7 @@
 {
-  "name": {
-    "color": "#A83735",
-    "translate": "trophy.trofers.composed",
-    "with": [
-      {
-        "translate": "entity.minecraft.salmon"
-      }
-    ]
+  "colors": {
+    "accent": "#A83735",
+    "base": "#606060"
   },
   "display": {
     "offset": {
@@ -18,20 +13,25 @@
     },
     "scale": 0.25
   },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/salmon"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.salmon.flop"
+    }
+  },
   "entity": {
     "type": "minecraft:salmon"
   },
-  "colors": {
-    "base": "#606060",
-    "accent": "#A83735"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.salmon.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/salmon",
-      "cooldown": 9600
-    }
+  "name": {
+    "color": "#A83735",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.minecraft.salmon"
+      }
+    ]
   }
 }

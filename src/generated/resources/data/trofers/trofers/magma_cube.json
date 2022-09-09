@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#FF4600",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/magma_cube"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.magma_cube.squish"
+    }
+  },
+  "entity": {
+    "type": "minecraft:magma_cube",
+    "nbt": "{Size:1}"
+  },
   "name": {
     "color": "#FF4600",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.magma_cube"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:magma_cube",
-    "nbt": "{Size:1}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#FF4600"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.magma_cube.squish"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/magma_cube",
-      "cooldown": 9600
-    }
   }
 }

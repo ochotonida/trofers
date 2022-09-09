@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#91ACAB",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.175
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/ravager"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.ravager.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:ravager"
+  },
   "name": {
     "color": "#91ACAB",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.ravager"
       }
     ]
-  },
-  "display": {
-    "scale": 0.175
-  },
-  "entity": {
-    "type": "minecraft:ravager"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#91ACAB"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.ravager.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/ravager",
-      "cooldown": 9600
-    }
   }
 }

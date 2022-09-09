@@ -1,4 +1,28 @@
 {
+  "colors": {
+    "accent": "#EFB987",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "statusEffect": {
+        "amplifier": 1,
+        "duration": 2400,
+        "effect": "minecraft:strength"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.piglin_brute.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:piglin_brute",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_axe\",tag:{Damage:0}},{}]}"
+  },
   "name": {
     "color": "#EFB987",
     "translate": "trophy.trofers.composed",
@@ -7,29 +31,5 @@
         "translate": "entity.minecraft.piglin_brute"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:piglin_brute",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_axe\",tag:{Damage:0}},{}]}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#EFB987"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.piglin_brute.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:strength",
-        "duration": 2400,
-        "amplifier": 1
-      },
-      "cooldown": 9600
-    }
   }
 }

@@ -1,4 +1,28 @@
 {
+  "colors": {
+    "accent": "#CDB297",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "statusEffect": {
+        "amplifier": 2,
+        "duration": 2400,
+        "effect": "minecraft:absorption"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.iron_golem.repair"
+    }
+  },
+  "entity": {
+    "type": "minecraft:iron_golem",
+    "nbt": "{UUID:[I;0,0,0,0]}"
+  },
   "name": {
     "color": "#CDB297",
     "translate": "trophy.trofers.composed",
@@ -7,29 +31,5 @@
         "translate": "entity.minecraft.iron_golem"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:iron_golem",
-    "nbt": "{UUID:[I;0,0,0,0]}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#CDB297"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.iron_golem.repair"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:absorption",
-        "duration": 2400,
-        "amplifier": 2
-      },
-      "cooldown": 9600
-    }
   }
 }

@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#948A80",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/snow_leopard"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:snow_leopard_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:snow_leopard"
+  },
   "name": {
     "color": "#948A80",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.snow_leopard"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:snow_leopard"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#948A80"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:snow_leopard_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/snow_leopard",
-      "cooldown": 9600
-    }
   }
 }

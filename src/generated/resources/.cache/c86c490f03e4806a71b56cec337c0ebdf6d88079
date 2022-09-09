@@ -1,0 +1,13 @@
+// 1.19.2	2022-09-09T20:51:18.4934073	Block States: trofers
+f627a5aac4c4056bf979f732815793c531bfa19d assets/trofers/blockstates/large_pillar.json
+a74e65974711eea0a79d3a70d53f5d4ab7ab93c6 assets/trofers/blockstates/large_plate.json
+e7e5dbb935f45b60af685ad6aaa22e0c636f4206 assets/trofers/blockstates/medium_pillar.json
+f121f25bf4b88dcb7237660aa058eb9b0f6eb65c assets/trofers/blockstates/medium_plate.json
+151a23f4c31b431a720e0be2261d65a13a55da29 assets/trofers/blockstates/small_pillar.json
+c25199762898371d6e84c85c5d5d712e998121dd assets/trofers/blockstates/small_plate.json
+413acb37365881aadad7b262e7bd082ca6c3a6be assets/trofers/models/block/large_pillar.json
+21c359cdc9d61c91c7fb0eee6106392c98e59ca1 assets/trofers/models/block/large_plate.json
+7daf3d585789c6601d63cb9a51d486a8b1b0c788 assets/trofers/models/block/medium_pillar.json
+0ba52f39292a6758b60c13ada8705b98f657cd7b assets/trofers/models/block/medium_plate.json
+473f850567d2dd26b54d957120a63b35749b415d assets/trofers/models/block/small_pillar.json
+a041b21153138d5db3a73955c590689bb4040fb7 assets/trofers/models/block/small_plate.json

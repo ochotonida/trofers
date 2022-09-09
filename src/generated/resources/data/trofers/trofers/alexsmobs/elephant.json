@@ -1,10 +1,30 @@
 {
+  "colors": {
+    "accent": "#7A7572",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.1666
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/elephant"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:elephant_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:elephant",
+    "nbt": "{Carpet:-1}"
+  },
   "name": {
     "color": "#7A7572",
     "translate": "trophy.trofers.composed",
@@ -13,25 +33,5 @@
         "translate": "entity.alexsmobs.elephant"
       }
     ]
-  },
-  "display": {
-    "scale": 0.1666
-  },
-  "entity": {
-    "type": "alexsmobs:elephant",
-    "nbt": "{Carpet:-1}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#7A7572"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:elephant_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/elephant",
-      "cooldown": 9600
-    }
   }
 }

@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#778C99",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/silverfish"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.silverfish.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:silverfish"
+  },
   "name": {
     "color": "#778C99",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.silverfish"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:silverfish"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#778C99"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.silverfish.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/silverfish",
-      "cooldown": 9600
-    }
   }
 }

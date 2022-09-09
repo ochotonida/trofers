@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#F28D32",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/toucan"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:toucan_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:toucan"
+  },
   "name": {
     "color": "#F28D32",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.toucan"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:toucan"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#F28D32"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:toucan_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/toucan",
-      "cooldown": 9600
-    }
   }
 }

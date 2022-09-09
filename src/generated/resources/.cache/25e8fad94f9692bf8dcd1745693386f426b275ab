@@ -1,0 +1,5 @@
+// 1.19.2	2022-09-09T19:46:05.2370956	Global Loot Modifiers : trofers
+0219c449bdf993e85882798b95d98efd16262bfa data/forge/loot_modifiers/global_loot_modifiers.json
+3fb88346258b396b6b1f4a6e81258c252e1de213 data/trofers/loot_modifiers/alexsmobs_trophies.json
+0b854ed59629bdea667e21b479aa9ddf1b718dd1 data/trofers/loot_modifiers/quark_trophies.json
+c75070a1cfe8b19724545e13c41998efec447878 data/trofers/loot_modifiers/vanilla_trophies.json

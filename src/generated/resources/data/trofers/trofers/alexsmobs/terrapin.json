@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#6D6D2F",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/terrapin"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:terrapin_hurt"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:terrapin"
+  },
   "name": {
     "color": "#6D6D2F",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.terrapin"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:terrapin"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#6D6D2F"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:terrapin_hurt"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/terrapin",
-      "cooldown": 9600
-    }
   }
 }

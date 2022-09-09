@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#E59796",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/zoglin"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.zoglin.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:zoglin"
+  },
   "name": {
     "color": "#E59796",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.zoglin"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:zoglin"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#E59796"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.zoglin.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/zoglin",
-      "cooldown": 9600
-    }
   }
 }

@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#937155",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "minecraft:gameplay/cat_morning_gift"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cat.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:cat",
+    "nbt": "{CatType:0,Sitting:1b}"
+  },
   "name": {
     "color": "#937155",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.cat"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:cat",
-    "nbt": "{CatType:0,Sitting:1b}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#937155"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cat.ambient"
-    },
-    "rewards": {
-      "lootTable": "minecraft:gameplay/cat_morning_gift",
-      "cooldown": 9600
-    }
   }
 }

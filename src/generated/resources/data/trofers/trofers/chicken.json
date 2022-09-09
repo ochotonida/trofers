@@ -1,4 +1,25 @@
 {
+  "colors": {
+    "accent": "#FFFFFF",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 100,
+        "effect": "minecraft:slow_falling"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.chicken.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:chicken"
+  },
   "name": {
     "color": "#FFFFFF",
     "translate": "trophy.trofers.composed",
@@ -7,26 +28,5 @@
         "translate": "entity.minecraft.chicken"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:chicken"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#FFFFFF"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.chicken.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:slow_falling",
-        "duration": 100
-      }
-    }
   }
 }

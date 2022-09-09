@@ -1,20 +1,20 @@
 {
   "pools": [
     {
-      "rolls": 1.0,
       "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "trofers:optional_item",
+          "name": "alexsmobs:lobster_tail",
           "when": [
             {
-              "modid": "alexsmobs",
-              "type": "forge:mod_loaded"
+              "type": "forge:mod_loaded",
+              "modid": "alexsmobs"
             }
-          ],
-          "name": "alexsmobs:lobster_tail"
+          ]
         }
-      ]
+      ],
+      "rolls": 1.0
     }
   ]
 }

@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#89A0B6",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/vex"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.vex.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:vex"
+  },
   "name": {
     "color": "#89A0B6",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.vex"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:vex"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#89A0B6"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.vex.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/vex",
-      "cooldown": 9600
-    }
   }
 }

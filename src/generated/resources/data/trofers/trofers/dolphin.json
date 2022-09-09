@@ -1,4 +1,25 @@
 {
+  "colors": {
+    "accent": "#B0C4D8",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 800,
+        "effect": "minecraft:dolphins_grace"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.dolphin.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:dolphin"
+  },
   "name": {
     "color": "#B0C4D8",
     "translate": "trophy.trofers.composed",
@@ -7,26 +28,5 @@
         "translate": "entity.minecraft.dolphin"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:dolphin"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#B0C4D8"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.dolphin.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:dolphins_grace",
-        "duration": 800
-      }
-    }
   }
 }

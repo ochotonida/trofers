@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#796445",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.1666
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/bison"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:bison_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:bison"
+  },
   "name": {
     "color": "#796445",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.bison"
       }
     ]
-  },
-  "display": {
-    "scale": 0.1666
-  },
-  "entity": {
-    "type": "alexsmobs:bison"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#796445"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:bison_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/bison",
-      "cooldown": 9600
-    }
   }
 }

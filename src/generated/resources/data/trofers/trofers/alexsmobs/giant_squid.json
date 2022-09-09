@@ -1,19 +1,14 @@
 {
+  "colors": {
+    "accent": "#BD6157",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
-  "name": {
-    "color": "#BD6157",
-    "translate": "trophy.trofers.composed",
-    "with": [
-      {
-        "translate": "entity.alexsmobs.giant_squid"
-      }
-    ]
-  },
   "display": {
     "offset": {
       "y": 1.0,
@@ -24,20 +19,25 @@
     },
     "scale": 0.1
   },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/giant_squid"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:giant_squid_games"
+    }
+  },
   "entity": {
     "type": "alexsmobs:giant_squid"
   },
-  "colors": {
-    "base": "#606060",
-    "accent": "#BD6157"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:giant_squid_games"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/giant_squid",
-      "cooldown": 9600
-    }
+  "name": {
+    "color": "#BD6157",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.giant_squid"
+      }
+    ]
   }
 }

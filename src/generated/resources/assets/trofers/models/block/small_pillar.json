@@ -1,12 +1,33 @@
 {
   "parent": "minecraft:block/block",
-  "textures": {
-    "particle": "#top",
-    "top": "trofers:block/small_pillar_top",
-    "side": "trofers:block/small_pillar_side"
-  },
   "elements": [
     {
+      "faces": {
+        "down": {
+          "texture": "#top",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#top",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      },
       "from": [
         4,
         0,
@@ -16,35 +37,35 @@
         12,
         2,
         12
-      ],
+      ]
+    },
+    {
       "faces": {
         "down": {
           "texture": "#top",
-          "tintindex": 0
-        },
-        "up": {
-          "texture": "#top",
-          "tintindex": 0
-        },
-        "north": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "south": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "west": {
-          "texture": "#side",
-          "tintindex": 0
+          "tintindex": 1
         },
         "east": {
           "texture": "#side",
-          "tintindex": 0
+          "tintindex": 1
+        },
+        "north": {
+          "texture": "#side",
+          "tintindex": 1
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 1
+        },
+        "up": {
+          "texture": "#top",
+          "tintindex": 1
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 1
         }
-      }
-    },
-    {
+      },
       "from": [
         5,
         2,
@@ -54,35 +75,35 @@
         11,
         4,
         11
-      ],
+      ]
+    },
+    {
       "faces": {
         "down": {
           "texture": "#top",
-          "tintindex": 1
-        },
-        "up": {
-          "texture": "#top",
-          "tintindex": 1
-        },
-        "north": {
-          "texture": "#side",
-          "tintindex": 1
-        },
-        "south": {
-          "texture": "#side",
-          "tintindex": 1
-        },
-        "west": {
-          "texture": "#side",
-          "tintindex": 1
+          "tintindex": 0
         },
         "east": {
           "texture": "#side",
-          "tintindex": 1
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#top",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
         }
-      }
-    },
-    {
+      },
       "from": [
         4,
         4,
@@ -92,33 +113,12 @@
         12,
         6,
         12
-      ],
-      "faces": {
-        "down": {
-          "texture": "#top",
-          "tintindex": 0
-        },
-        "up": {
-          "texture": "#top",
-          "tintindex": 0
-        },
-        "north": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "south": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "west": {
-          "texture": "#side",
-          "tintindex": 0
-        },
-        "east": {
-          "texture": "#side",
-          "tintindex": 0
-        }
-      }
+      ]
     }
-  ]
+  ],
+  "textures": {
+    "particle": "#top",
+    "side": "trofers:block/small_pillar_side",
+    "top": "trofers:block/small_pillar_top"
+  }
 }

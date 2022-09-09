@@ -1,4 +1,26 @@
 {
+  "colors": {
+    "accent": "#A39482",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "statusEffect": {
+        "duration": 600,
+        "effect": "minecraft:regeneration"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.witch.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:witch"
+  },
   "name": {
     "color": "#A39482",
     "translate": "trophy.trofers.composed",
@@ -7,27 +29,5 @@
         "translate": "entity.minecraft.witch"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:witch"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#A39482"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.witch.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:regeneration",
-        "duration": 600
-      },
-      "cooldown": 9600
-    }
   }
 }

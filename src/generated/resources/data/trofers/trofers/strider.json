@@ -1,4 +1,25 @@
 {
+  "colors": {
+    "accent": "#B44040",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 800,
+        "effect": "minecraft:fire_resistance"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.strider.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:strider"
+  },
   "name": {
     "color": "#B44040",
     "translate": "trophy.trofers.composed",
@@ -7,26 +28,5 @@
         "translate": "entity.minecraft.strider"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:strider"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#B44040"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.strider.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:fire_resistance",
-        "duration": 800
-      }
-    }
   }
 }

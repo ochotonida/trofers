@@ -1,10 +1,33 @@
 {
+  "colors": {
+    "accent": "#557AC2",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "offset": {
+      "y": 1.0
+    },
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/devils_hole_pupfish"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:devils_hole_pupfish",
+    "nbt": "{PupfishScale:1.0f}"
+  },
   "name": {
     "color": "#557AC2",
     "translate": "trophy.trofers.composed",
@@ -13,28 +36,5 @@
         "translate": "entity.alexsmobs.devils_hole_pupfish"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "y": 1.0
-    },
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:devils_hole_pupfish",
-    "nbt": "{PupfishScale:1.0f}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#557AC2"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.cod.flop"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/devils_hole_pupfish",
-      "cooldown": 9600
-    }
   }
 }

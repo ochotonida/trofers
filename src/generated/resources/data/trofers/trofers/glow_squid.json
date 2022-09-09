@@ -1,4 +1,29 @@
 {
+  "colors": {
+    "accent": "#32A1A1",
+    "base": "#606060"
+  },
+  "display": {
+    "offset": {
+      "y": 5.0
+    },
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 200,
+        "effect": "minecraft:glowing"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.glow_squid.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:glow_squid",
+    "nbt": "{DarkTicksRemaining:1}"
+  },
   "name": {
     "color": "#32A1A1",
     "translate": "trophy.trofers.composed",
@@ -7,30 +32,5 @@
         "translate": "entity.minecraft.glow_squid"
       }
     ]
-  },
-  "display": {
-    "offset": {
-      "y": 5.0
-    },
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:glow_squid",
-    "nbt": "{DarkTicksRemaining:1}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#32A1A1"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.glow_squid.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:glowing",
-        "duration": 200
-      }
-    }
   }
 }

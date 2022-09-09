@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#D0D0D2",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/skeleton_horse"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.skeleton_horse.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:skeleton_horse"
+  },
   "name": {
     "color": "#D0D0D2",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.skeleton_horse"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:skeleton_horse"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#D0D0D2"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.skeleton_horse.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/skeleton_horse",
-      "cooldown": 9600
-    }
   }
 }

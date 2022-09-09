@@ -1,4 +1,25 @@
 {
+  "colors": {
+    "accent": "#986A97",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 100,
+        "effect": "minecraft:levitation"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.shulker.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:shulker"
+  },
   "name": {
     "color": "#986A97",
     "translate": "trophy.trofers.composed",
@@ -7,26 +28,5 @@
         "translate": "entity.minecraft.shulker"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:shulker"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#986A97"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.shulker.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:levitation",
-        "duration": 100
-      }
-    }
   }
 }

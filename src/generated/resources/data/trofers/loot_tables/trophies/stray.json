@@ -1,11 +1,6 @@
 {
   "pools": [
     {
-      "rolls": {
-        "type": "minecraft:uniform",
-        "min": 2.0,
-        "max": 8.0
-      },
       "bonus_rolls": 0.0,
       "entries": [
         {
@@ -18,7 +13,12 @@
           ],
           "name": "minecraft:tipped_arrow"
         }
-      ]
+      ],
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 8.0,
+        "min": 2.0
+      }
     }
   ]
 }

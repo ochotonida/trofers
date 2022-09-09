@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#6A5747",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/alligator_snapping_turtle"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:alligator_snapping_turtle_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:alligator_snapping_turtle"
+  },
   "name": {
     "color": "#6A5747",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.alligator_snapping_turtle"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:alligator_snapping_turtle"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#6A5747"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:alligator_snapping_turtle_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/alligator_snapping_turtle",
-      "cooldown": 9600
-    }
   }
 }

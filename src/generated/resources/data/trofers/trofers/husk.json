@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#C7AB6F",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/husk"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.husk.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:husk"
+  },
   "name": {
     "color": "#C7AB6F",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.husk"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:husk"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#C7AB6F"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.husk.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/husk",
-      "cooldown": 9600
-    }
   }
 }

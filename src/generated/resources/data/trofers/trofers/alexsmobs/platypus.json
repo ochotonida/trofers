@@ -1,10 +1,30 @@
 {
+  "colors": {
+    "accent": "#62BDBA",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/platypus"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:platypus_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:platypus",
+    "nbt": "{CustomName:'{\"text\":\"perry\"}'}"
+  },
   "name": {
     "color": "#62BDBA",
     "translate": "trophy.trofers.composed",
@@ -13,25 +33,5 @@
         "translate": "entity.alexsmobs.platypus"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:platypus",
-    "nbt": "{CustomName:\u0027{\"text\":\"perry\"}\u0027}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#62BDBA"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:platypus_idle"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/platypus",
-      "cooldown": 9600
-    }
   }
 }

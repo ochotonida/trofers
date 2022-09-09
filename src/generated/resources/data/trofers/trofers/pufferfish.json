@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#E3970B",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/pufferfish"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.puffer_fish.blow_up"
+    }
+  },
+  "entity": {
+    "type": "minecraft:pufferfish",
+    "nbt": "{PuffState:2}"
+  },
   "name": {
     "color": "#E3970B",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.pufferfish"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:pufferfish",
-    "nbt": "{PuffState:2}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#E3970B"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.puffer_fish.blow_up"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/pufferfish",
-      "cooldown": 9600
-    }
   }
 }

@@ -1,4 +1,25 @@
 {
+  "colors": {
+    "accent": "#75653F",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 800,
+        "effect": "minecraft:night_vision"
+      }
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.bat.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:bat"
+  },
   "name": {
     "color": "#75653F",
     "translate": "trophy.trofers.composed",
@@ -7,26 +28,5 @@
         "translate": "entity.minecraft.bat"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:bat"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#75653F"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.bat.ambient"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "minecraft:night_vision",
-        "duration": 800
-      }
-    }
   }
 }

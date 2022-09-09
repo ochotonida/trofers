@@ -1,4 +1,24 @@
 {
+  "colors": {
+    "accent": "#425F90",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/trader_llama"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.llama.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:trader_llama",
+    "nbt": "{Variant:2}"
+  },
   "name": {
     "color": "#425F90",
     "translate": "trophy.trofers.composed",
@@ -7,25 +27,5 @@
         "translate": "entity.minecraft.trader_llama"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:trader_llama",
-    "nbt": "{Variant:2}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#425F90"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.llama.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/trader_llama",
-      "cooldown": 9600
-    }
   }
 }

@@ -1,4 +1,23 @@
 {
+  "colors": {
+    "accent": "#FFFFFF",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/sheep"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.sheep.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:sheep"
+  },
   "name": {
     "color": "#FFFFFF",
     "translate": "trophy.trofers.composed",
@@ -7,24 +26,5 @@
         "translate": "entity.minecraft.sheep"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "minecraft:sheep"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#FFFFFF"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "minecraft:entity.sheep.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/sheep",
-      "cooldown": 9600
-    }
   }
 }

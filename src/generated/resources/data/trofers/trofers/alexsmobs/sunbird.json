@@ -1,10 +1,31 @@
 {
+  "colors": {
+    "accent": "#FC8865",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.1
+  },
+  "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 200,
+        "effect": "alexsmobs:sunbird_curse"
+      }
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:sunbird_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:sunbird"
+  },
   "name": {
     "color": "#FC8865",
     "translate": "trophy.trofers.composed",
@@ -13,26 +34,5 @@
         "translate": "entity.alexsmobs.sunbird"
       }
     ]
-  },
-  "display": {
-    "scale": 0.1
-  },
-  "entity": {
-    "type": "alexsmobs:sunbird"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#FC8865"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:sunbird_idle"
-    },
-    "rewards": {
-      "statusEffect": {
-        "effect": "alexsmobs:sunbird_curse",
-        "duration": 200
-      }
-    }
   }
 }

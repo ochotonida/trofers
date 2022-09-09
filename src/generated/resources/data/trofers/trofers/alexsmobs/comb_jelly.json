@@ -1,10 +1,30 @@
 {
+  "colors": {
+    "accent": "#CDE6FB",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/comb_jelly"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:comb_jelly_hurt"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:comb_jelly",
+    "nbt": "{JellyScale:1.0f}"
+  },
   "name": {
     "color": "#CDE6FB",
     "translate": "trophy.trofers.composed",
@@ -13,25 +33,5 @@
         "translate": "entity.alexsmobs.comb_jelly"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:comb_jelly",
-    "nbt": "{JellyScale:1.0f}"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#CDE6FB"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:comb_jelly_hurt"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/comb_jelly",
-      "cooldown": 9600
-    }
   }
 }

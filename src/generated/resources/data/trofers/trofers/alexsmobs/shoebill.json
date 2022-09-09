@@ -1,10 +1,29 @@
 {
+  "colors": {
+    "accent": "#8F8F8F",
+    "base": "#606060"
+  },
   "conditions": [
     {
-      "modid": "alexsmobs",
-      "type": "forge:mod_loaded"
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
     }
   ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/shoebill"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:shoebill_hurt"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:shoebill"
+  },
   "name": {
     "color": "#8F8F8F",
     "translate": "trophy.trofers.composed",
@@ -13,24 +32,5 @@
         "translate": "entity.alexsmobs.shoebill"
       }
     ]
-  },
-  "display": {
-    "scale": 0.25
-  },
-  "entity": {
-    "type": "alexsmobs:shoebill"
-  },
-  "colors": {
-    "base": "#606060",
-    "accent": "#8F8F8F"
-  },
-  "effects": {
-    "sound": {
-      "soundEvent": "alexsmobs:shoebill_hurt"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/alexsmobs/shoebill",
-      "cooldown": 9600
-    }
   }
 }
