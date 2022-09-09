@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-09T19:36:05.1641946	LootTables
+// 1.19.2	2022-09-09T21:12:06.3167576	LootTables
 4876e39a5995f8aa5bc3bc4ed6ebb80319d70d1a data/trofers/loot_tables/blocks/large_pillar.json
 3b05fe9345acfc44ed650d02531f0b2bdbb815ac data/trofers/loot_tables/blocks/large_plate.json
 245fefed32df411cb00a74fbe03efb5516c7f28f data/trofers/loot_tables/blocks/medium_pillar.json
@@ -75,7 +75,8 @@ e5022af8ed7a69c3e1a9b381494c02b5701f8301 data/trofers/loot_tables/trophies/alexs
 b3f0c154a45d240007b90879f541f196b9d7714f data/trofers/loot_tables/trophies/alexsmobs/tusklin.json
 fb10169cc44aeb764c4233e2b0ff684d1c54d2e8 data/trofers/loot_tables/trophies/alexsmobs/warped_mosco.json
 beccb9391cdb31699f74be547395f59aa2df23b6 data/trofers/loot_tables/trophies/alexsmobs/warped_toad.json
-7fd3ab2e92bb34224271288e526f78465c9e3505 data/trofers/loot_tables/trophies/axolotl.json
+7fd3ab2e92bb34224271288e526f78465c9e3505 data/trofers/loot_tables/trophies/allay.json
+afd92b7548aad346e03f4ddf16a324f89a58eadb data/trofers/loot_tables/trophies/axolotl.json
 7131ff857fe578eb67db2bdb890498731b60cc6b data/trofers/loot_tables/trophies/bee.json
 ad66a19245ea597e4f606df7618d256bf5295377 data/trofers/loot_tables/trophies/blaze.json
 dfe907355d18fc6a7912bbb2842ca86b3a39038e data/trofers/loot_tables/trophies/cave_spider.json
@@ -87,6 +88,7 @@ dfe907355d18fc6a7912bbb2842ca86b3a39038e data/trofers/loot_tables/trophies/cave_
 706fafce7a6643e2eaf5c7199a66d95ecf9ba692 data/trofers/loot_tables/trophies/endermite.json
 588ef0bfb2f9d6c95567e91c7677226a15e9b740 data/trofers/loot_tables/trophies/evoker.json
 2bf7c6ab23ace613f25df99dcd53b4f820000a23 data/trofers/loot_tables/trophies/fox.json
+8c189645b989585a55533249656348244e74e11b data/trofers/loot_tables/trophies/frog.json
 88b10b2d351fcb87f040524e23c33167036d82bf data/trofers/loot_tables/trophies/ghast.json
 dcd591aca735b61c37152e82c8afda9ddde29242 data/trofers/loot_tables/trophies/goat.json
 a683c9b40df81c44391f675323e45413b31d5fbe data/trofers/loot_tables/trophies/guardian.json
@@ -122,6 +124,7 @@ a88143abe37672d0f921dca86a7f6c638b80a2f7 data/trofers/loot_tables/trophies/skele
 26979bea44ed78dc71f878855a59504a9c9a8037 data/trofers/loot_tables/trophies/spider.json
 21b507230850fb666c0a529ab7f70b5d1088d399 data/trofers/loot_tables/trophies/squid.json
 3a837b6868f24a84bec1aeabb7f458cd6daba757 data/trofers/loot_tables/trophies/stray.json
+ad514feaadfaee2f4db40acbfb1af6fa11a62527 data/trofers/loot_tables/trophies/tadpole.json
 c8acdcd0d164c38ca0e02d31022c743c876708f2 data/trofers/loot_tables/trophies/trader_llama.json
 a81e304027b056a227fd0b4caf7d34832f49854d data/trofers/loot_tables/trophies/tropical_fish.json
 0bc6e6f0261aa020eb33bff6bde09653647c654f data/trofers/loot_tables/trophies/vex.json

@@ -1,0 +1,30 @@
+{
+  "colors": {
+    "accent": "#71563F",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/tadpole"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.tadpole.flop"
+    }
+  },
+  "entity": {
+    "type": "minecraft:tadpole"
+  },
+  "name": {
+    "color": "#71563F",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.minecraft.tadpole"
+      }
+    ]
+  }
+}

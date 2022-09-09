@@ -1,0 +1,30 @@
+{
+  "colors": {
+    "accent": "#68FFFF",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/allay"
+    },
+    "sound": {
+      "soundEvent": "minecraft:entity.allay.item_given"
+    }
+  },
+  "entity": {
+    "type": "minecraft:allay"
+  },
+  "name": {
+    "color": "#68FFFF",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.minecraft.allay"
+      }
+    ]
+  }
+}

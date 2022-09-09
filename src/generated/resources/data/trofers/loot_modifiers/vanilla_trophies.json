@@ -9,6 +9,7 @@
     }
   ],
   "trophies": {
+    "minecraft:allay": "trofers:allay",
     "minecraft:axolotl": "trofers:axolotl",
     "minecraft:bat": "trofers:bat",
     "minecraft:bee": "trofers:bee",
@@ -27,6 +28,7 @@
     "minecraft:endermite": "trofers:endermite",
     "minecraft:evoker": "trofers:evoker",
     "minecraft:fox": "trofers:fox",
+    "minecraft:frog": "trofers:frog",
     "minecraft:ghast": "trofers:ghast",
     "minecraft:glow_squid": "trofers:glow_squid",
     "minecraft:goat": "trofers:goat",
@@ -63,6 +65,7 @@
     "minecraft:squid": "trofers:squid",
     "minecraft:stray": "trofers:stray",
     "minecraft:strider": "trofers:strider",
+    "minecraft:tadpole": "trofers:tadpole",
     "minecraft:trader_llama": "trofers:trader_llama",
     "minecraft:tropical_fish": "trofers:tropical_fish",
     "minecraft:turtle": "trofers:turtle",

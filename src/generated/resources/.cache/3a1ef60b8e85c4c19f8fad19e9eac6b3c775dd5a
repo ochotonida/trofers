@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-09T19:36:05.1661952	Trophies
+// 1.19.2	2022-09-09T21:14:17.7795005	Trophies
 aa8a8990fbf59476f14fd60d78d9cda174c13a9d data/trofers/trofers/alexsmobs/alligator_snapping_turtle.json
 b9ec97781f2412c716bdabc700e75ea9450cdb64 data/trofers/trofers/alexsmobs/anaconda.json
 06d29c8bbe1617f4e3f3644a0a3acf0cabc888a1 data/trofers/trofers/alexsmobs/anteater.json
@@ -73,6 +73,7 @@ ed0f6782243aeab8cf13caf96aa935502ba56e28 data/trofers/trofers/alexsmobs/toucan.j
 87383e148d805c309a17f731647d90f29229b090 data/trofers/trofers/alexsmobs/tusklin.json
 a10d9a24a5b80b19505d912e017476194f8fd2b7 data/trofers/trofers/alexsmobs/warped_mosco.json
 b654d3b9c26e0e79ec4e55bf18e85abbe1370aa1 data/trofers/trofers/alexsmobs/warped_toad.json
+f870d5de543337ee8646e647235201e55efb7547 data/trofers/trofers/allay.json
 1006aac5a86bd452232d26a64c92640bc7b7ed26 data/trofers/trofers/axolotl.json
 0ddb11d7d07274f7cf779efbcffe835df251d486 data/trofers/trofers/bat.json
 4edd93e534294f834984de8732babaacc483f5d0 data/trofers/trofers/bee.json
@@ -91,6 +92,7 @@ f248b85445f41aea4ad8397d14905b813907ee87 data/trofers/trofers/enderman.json
 a78c57a46bef561d259631da3b1d88596ab0a0ef data/trofers/trofers/endermite.json
 146360bd7013bfcb600d1e272d685b579082244a data/trofers/trofers/evoker.json
 dd2f554d92d8a0f70f61cb77b19a57e680b24d1d data/trofers/trofers/fox.json
+5f02e6d867a627ece13161168ce57ceb92206d45 data/trofers/trofers/frog.json
 147c5c7ac8f0be015a891e65cab2d330eee79003 data/trofers/trofers/ghast.json
 4411cfac3835433771dda27177fbf5e97114749a data/trofers/trofers/glow_squid.json
 a4d5baaf165a30c6acf6fa50a8560c45fa0561f7 data/trofers/trofers/goat.json
@@ -134,6 +136,7 @@ a654b25fe6966c029b01b6c4e68b8e3b455b2854 data/trofers/trofers/skeleton_horse.jso
 0432d6e16405291f33e45982041506ef1fd0a41c data/trofers/trofers/squid.json
 b7960531c022b0dae0d960290c5ece293c8afc2b data/trofers/trofers/stray.json
 49f1f44109afca769281390bb82039be8d09acf0 data/trofers/trofers/strider.json
+d1442da75e0cb755e74e38400abaeee4b8dfad08 data/trofers/trofers/tadpole.json
 40ea4fe759287a045425897d95972f2b2d7a2fd6 data/trofers/trofers/trader_llama.json
 85fca0484907d6c9004fdccc9778cc4e61ea5af6 data/trofers/trofers/tropical_fish.json
 d9aaf61329c0cf5931fcb27238de9dbafef8cc08 data/trofers/trofers/turtle.json
