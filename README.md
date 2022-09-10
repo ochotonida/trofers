@@ -1,6 +1,6 @@
 # Trofers [![CurseForge](http://cf.way2muchnoise.eu/full_482265_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/trofers) [![](https://discordapp.com/api/guilds/298798089068609537/widget.png?style=shield)](https://discord.gg/87pXJadaRr)
 
-For information about Trofers 1.16.5-1.1.0 and below, click [here](https://github.com/ochotonida/trofers/blob/1.16-legacy/README.md).
+*For information about Trofers 1.16.5-1.1.0 and below, click [here](https://github.com/ochotonida/trofers/blob/1.16-legacy/README.md).*
 
 ---
 
@@ -61,7 +61,7 @@ Changes made to your data pack will apply to any existing trophies.
 ## Making entities drop trophies
 Because overriding loot tables can be annoying, Trofers adds a loot modifier which can be used to make entities drop trophies.
 
-*Note: the data pack format for this loot modifier has changed in update 3.0.0*
+*Note: the data pack format for this loot modifier has changed in update 3.0.0, the 1.18 README can be found [here](https://github.com/ochotonida/trofers/blob/1.18/README.md).*
 
 The loot modifier should be placed in the `data/<namespace>/loot_modifiers` folder and uses the following structure:
 
