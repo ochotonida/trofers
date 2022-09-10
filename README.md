@@ -61,14 +61,14 @@ Changes made to your data pack will apply to any existing trophies.
 ## Making entities drop trophies
 Because overriding loot tables can be annoying, Trofers adds a loot modifier which can be used to make entities drop trophies.
 
+*Note: the data pack format for this loot modifier has changed in update 3.0.0*
+
 The loot modifier should be placed in the `data/<namespace>/loot_modifiers` folder and uses the following structure:
 
 * `"type": "trofers:add_entity_trophy"`: required, this tells forge which loot modifier type to use
 * `conditions`: A list of loot conditions that determine when to apply the loot modifier. Trofers uses a `minecraft:killed_by_player` and a `trofers:random_trophy_chance` condition here. The `random_trophy_chance` condition ensures the loot modifier is applied with the trophy chance value specified in the config.
-* `trophyBase`: The ID of an item to use as a trophy base (e.g. "trofers:small_plate")
-* `trophies`: A list of objects. When loot is generated for an entity and the entity matches one of the entries in this list, the corresponding trophy will be added to the generated loot. (Note: duplicate entity types are not allowed, for entities that can drop multiple trophies you will need multiple loot modifier files)
-  * `trophy`: A trophy ID
-  * `entity`: An entity type ID
+* `trophyBase`: The ID of an item to use as the trophy base. (e.g. "trofers:small_plate")
+* `trophies`: An object with multiple key-value pairs. Each key should correspond with an entity type id, and its value the id of the trophy it should drop. (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
 
 If all trophies have the same drop conditions, you only need a single file.
 
