@@ -77,3 +77,32 @@ If all trophies have the same drop conditions, you only need a single file.
 After creating your loot modifier you need to register it to forge, more information on how to register a loot modifier (and loot modifiers in general) found [here](https://forge.gemwire.uk/wiki/Dynamic_Loot_Modification). (The wiki page is mostly aimed at mod developers, you can ignore the last section)
 
 [Example registration](https://github.com/ochotonida/trofers/blob/HEAD/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json)
+
+## Adding trophies to any loot table
+If you want to add trophies to chests rather than entities, you can use the `add_trophy` loot modifier.
+This loot modifier is a bit different from the `add_entity_trophy` loot modifier, as you will need a separate loot modifier file for every trophy.
+
+* `"type": "trofers:add_trophy"`: required.
+* `conditions`: A list of loot conditions that determine when to apply the loot modifier.
+  To prevent the trophy from being generated when any loot table is rolled, you likely want to use a `forge:loot_table_id` condition here.
+* `trophyBase`: The ID of an item to use as the trophy base.
+* `trophyId`: An object with multiple key-value pairs. Each key should correspond with an entity type id, and its value the id of the trophy it should drop. (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
+
+Example: The following loot modifier will add a creeper trophy to buried treasure chests with a 50% chance.
+```json5
+{
+  "type": "trofers:add_trophy",
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/buried_treasure"
+    },
+    {
+      "chance": 0.5,
+      "condition": "minecraft:random_chance"
+    }
+  ],
+  "trophyBase": "trofers:small_plate",
+  "trophyId": "trofers:creeper"
+}
+```
