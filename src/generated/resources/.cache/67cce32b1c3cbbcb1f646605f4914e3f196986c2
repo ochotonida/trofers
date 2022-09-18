@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-09T21:53:50.473758	LootTables
+// 1.19.2	2022-09-18T16:17:25.5378679	LootTables
 4876e39a5995f8aa5bc3bc4ed6ebb80319d70d1a data/trofers/loot_tables/blocks/large_pillar.json
 3b05fe9345acfc44ed650d02531f0b2bdbb815ac data/trofers/loot_tables/blocks/large_plate.json
 245fefed32df411cb00a74fbe03efb5516c7f28f data/trofers/loot_tables/blocks/medium_pillar.json
@@ -30,6 +30,7 @@ bf92978f89ddd8dec96260ae40c006fda7bf4027 data/trofers/loot_tables/trophies/alexs
 de91b060fba2fba79f4e0a5d281772da8ff8ded7 data/trofers/loot_tables/trophies/alexsmobs/emu.json
 e2cdf9198585dc11fb60d1ad7691beccd972c838 data/trofers/loot_tables/trophies/alexsmobs/endergrade.json
 388cb88742d0e325468cf7c125ddea4bf94aa8cc data/trofers/loot_tables/trophies/alexsmobs/enderiophage.json
+34f5224b722ace7ffff17a67203473514e094a17 data/trofers/loot_tables/trophies/alexsmobs/farseer.json
 dea984a96f3a1f020a620e71a4fd8ecee87f8a61 data/trofers/loot_tables/trophies/alexsmobs/flutter.json
 650677a9a2484b300b988642864ea96c8fd80775 data/trofers/loot_tables/trophies/alexsmobs/fly.json
 f1b0239868e1d6650f77df044297c046c156c0cd data/trofers/loot_tables/trophies/alexsmobs/flying_fish.json
@@ -55,6 +56,7 @@ a81e304027b056a227fd0b4caf7d34832f49854d data/trofers/loot_tables/trophies/alexs
 20b0cee5e11ba9c417edb077361b29da5effafd8 data/trofers/loot_tables/trophies/alexsmobs/moose.json
 29607f42bfbc613f44a6d2a4dd600804895fd5b0 data/trofers/loot_tables/trophies/alexsmobs/mudskipper.json
 e4aa156da837fe5072f0f75edcc7e1bae7a126e1 data/trofers/loot_tables/trophies/alexsmobs/mungus.json
+ae39ee1f3d499a4c7d392ad29230583d36285e27 data/trofers/loot_tables/trophies/alexsmobs/murmur_head.json
 e54660817e6b1aef17f623c75662ef1068adffe8 data/trofers/loot_tables/trophies/alexsmobs/platypus.json
 b4eb77bfe2ad56218e905f961d1ed865ec5a0983 data/trofers/loot_tables/trophies/alexsmobs/potoo.json
 af35af1fc8e5c894e33267372eb48060688ccc49 data/trofers/loot_tables/trophies/alexsmobs/raccoon.json
@@ -67,6 +69,7 @@ b9fbdb9e02ba21540860192880448ee8f081dbea data/trofers/loot_tables/trophies/alexs
 96d263876ebfa25bbf446963b786630dccb01bf9 data/trofers/loot_tables/trophies/alexsmobs/seal.json
 b4eb77bfe2ad56218e905f961d1ed865ec5a0983 data/trofers/loot_tables/trophies/alexsmobs/shoebill.json
 6f466ae16331cd7871b33fe04022bef81d945246 data/trofers/loot_tables/trophies/alexsmobs/skelewag.json
+0ce5c1d5fa0bbb0bbc7012e00d4842b5cfa449d8 data/trofers/loot_tables/trophies/alexsmobs/skreecher.json
 c3057cd45e09cf55ec386d387572f0aef006eebc data/trofers/loot_tables/trophies/alexsmobs/snow_leopard.json
 21036e463f358f8e1c333a47ba21a429faa9951d data/trofers/loot_tables/trophies/alexsmobs/soul_vulture.json
 742cc525d7b1390a1bef5b4ab9cd5044b4adeed8 data/trofers/loot_tables/trophies/alexsmobs/spectre.json
@@ -78,6 +81,7 @@ e5022af8ed7a69c3e1a9b381494c02b5701f8301 data/trofers/loot_tables/trophies/alexs
 5cba35c8a9984bfba698db455385f512e6d54f2b data/trofers/loot_tables/trophies/alexsmobs/terrapin.json
 8f0e5051fed836c6d46758ba366380774df73204 data/trofers/loot_tables/trophies/alexsmobs/toucan.json
 b3f0c154a45d240007b90879f541f196b9d7714f data/trofers/loot_tables/trophies/alexsmobs/tusklin.json
+39781938e4438a3a414ec65f60097b3f804bd488 data/trofers/loot_tables/trophies/alexsmobs/underminer.json
 fb10169cc44aeb764c4233e2b0ff684d1c54d2e8 data/trofers/loot_tables/trophies/alexsmobs/warped_mosco.json
 beccb9391cdb31699f74be547395f59aa2df23b6 data/trofers/loot_tables/trophies/alexsmobs/warped_toad.json
 7fd3ab2e92bb34224271288e526f78465c9e3505 data/trofers/loot_tables/trophies/allay.json

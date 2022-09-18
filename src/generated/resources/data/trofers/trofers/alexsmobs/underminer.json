@@ -1,0 +1,37 @@
+{
+  "colors": {
+    "accent": "#96BBC4",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/underminer"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:underminer_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:underminer",
+    "nbt": "{Dwarf:1b,HandItems:[{Count:1b,id:\"alexsmobs:ghostly_pickaxe\",tag:{Damage:0}},{}]}"
+  },
+  "name": {
+    "color": "#96BBC4",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.underminer"
+      }
+    ]
+  }
+}

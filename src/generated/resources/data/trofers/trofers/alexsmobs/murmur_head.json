@@ -1,0 +1,36 @@
+{
+  "colors": {
+    "accent": "#9A5069",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.5
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/murmur_head"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:murmur_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:murmur_head"
+  },
+  "name": {
+    "color": "#9A5069",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.murmur_head"
+      }
+    ]
+  }
+}

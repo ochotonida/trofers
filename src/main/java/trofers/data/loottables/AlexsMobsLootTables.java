@@ -39,6 +39,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.EMU.get(), AMItemRegistry.EMU_EGG.get());
         add(AMEntityRegistry.ENDERGRADE.get(), 1, 3, Items.CHORUS_FRUIT);
         add(AMEntityRegistry.ENDERIOPHAGE.get(), 2, 6, AMItemRegistry.ENDERIOPHAGE_ROCKET.get());
+        add(AMEntityRegistry.FARSEER.get(), AMItemRegistry.FARSEER_ARM.get());
         add(AMEntityRegistry.FLUTTER.get(), 1, 3, Items.SPORE_BLOSSOM);
         add(AMEntityRegistry.FLY.get(), AMItemRegistry.MAGGOT.get());
         add(AMEntityRegistry.FLYING_FISH.get(), AMItemRegistry.FLYING_FISH.get());
@@ -64,6 +65,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.MOOSE.get(), AMItemRegistry.MOOSE_ANTLER.get());
         add(AMEntityRegistry.MUDSKIPPER.get(), Items.MUD);
         add(AMEntityRegistry.MUNGUS.get(), AMItemRegistry.MUNGAL_SPORES.get());
+        add(AMEntityRegistry.MURMUR_HEAD.get(), AMItemRegistry.ELASTIC_TENDON.get());
         add(AMEntityRegistry.PLATYPUS.get(), 1, 3, Items.REDSTONE_BLOCK);
         add(AMEntityRegistry.POTOO.get(), 1, 3, Items.FEATHER);
         add(AMEntityRegistry.RACCOON.get(), AMItemRegistry.RACCOON_TAIL.get());
@@ -76,6 +78,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.SEAL.get(), 1, 3, Items.COD, Items.SALMON);
         add(AMEntityRegistry.SHOEBILL.get(), 1, 3, Items.FEATHER);
         add(AMEntityRegistry.SKELEWAG.get(), AMItemRegistry.FISH_BONES.get());
+        add(AMEntityRegistry.SKREECHER.get(), AMItemRegistry.SKREECHER_SOUL.get());
         add(AMEntityRegistry.SNOW_LEOPARD.get(), 1, 3, AMItemRegistry.MOOSE_RIBS.get());
         add(AMEntityRegistry.SOUL_VULTURE.get(), AMItemRegistry.SOUL_HEART.get());
         add(AMEntityRegistry.SPECTRE.get(), Items.PHANTOM_MEMBRANE);
@@ -87,6 +90,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.TERRAPIN.get(), 1, 3, Items.SEAGRASS);
         add(AMEntityRegistry.TOUCAN.get(), Items.GOLDEN_APPLE);
         add(AMEntityRegistry.TUSKLIN.get(), 1, 3, Items.BROWN_MUSHROOM);
+        add(AMEntityRegistry.UNDERMINER.get(), 8, 24, Items.RAW_COPPER, Items.RAW_IRON, Items.RAW_GOLD);
         add(AMEntityRegistry.WARPED_MOSCO.get(), AMItemRegistry.HEMOLYMPH_SAC.get());
         add(AMEntityRegistry.WARPED_TOAD.get(), 1, 3, Items.NETHER_WART, Items.WARPED_FUNGUS);
     }

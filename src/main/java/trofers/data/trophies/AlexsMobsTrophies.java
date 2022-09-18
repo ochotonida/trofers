@@ -2,6 +2,7 @@ package trofers.data.trophies;
 
 import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
+import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -87,6 +88,8 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.ENDERGRADE.get(), 0x7fbbe8);
         builder(AMEntityRegistry.ENDERIOPHAGE.get(), 0xa55ca8)
                 .sound(AMSoundRegistry.ENDERIOPHAGE_SQUISH.get());
+        builder(AMEntityRegistry.FARSEER.get(), 0xa194c1)
+                .cooldown(60 * 60 * 20);
         builder(AMEntityRegistry.FLUTTER.get(), 0xd885e5);
         builder(AMEntityRegistry.FLY.get(), 0xc19288);
         builder(AMEntityRegistry.FLYING_FISH.get(), 0x7abaea)
@@ -137,6 +140,9 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.MUDSKIPPER.get(), 0x5f6f49)
                 .sound(AMSoundRegistry.MUDSKIPPER_HURT.get());
         builder(AMEntityRegistry.MUNGUS.get(), 0x8679ae);
+        builder(AMEntityRegistry.MURMUR_HEAD.get(), 0x9a5069)
+                .scale(0.5)
+                .sound(AMSoundRegistry.MURMUR_IDLE.get());
         builder(AMEntityRegistry.POTOO.get(), 0xa18a63)
                 .sound(AMSoundRegistry.POTOO_CALL.get());
         builder(AMEntityRegistry.ORCA.get(), 0x71777f)
@@ -163,6 +169,8 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.SKELEWAG.get(), 0xd6f9af)
                 .offset(0, 1, 2)
                 .scale(0.1666);
+        builder(AMEntityRegistry.SKREECHER.get(), 0x16dbe9)
+                .sound(AMSoundRegistry.SKREECHER_DETECT.get());
         builder(AMEntityRegistry.SNOW_LEOPARD.get(), 0x948a80);
         builder(AMEntityRegistry.SOUL_VULTURE.get(), 0x3dd6e1);
         builder(AMEntityRegistry.SPECTRE.get(), 0xc0c6ff)
@@ -187,6 +195,9 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.TOUCAN.get(), 0xf28d32);
         builder(AMEntityRegistry.TUSKLIN.get(), 0x7c6445)
                 .scale(0.2);
+        builder(AMEntityRegistry.UNDERMINER.get(), 0x96bbc4)
+                .putHandItem(AMItemRegistry.GHOSTLY_PICKAXE.get())
+                .getTag().putBoolean("Dwarf", true);
         builder(AMEntityRegistry.WARPED_MOSCO.get(), 0x20fcce)
                 .scale(0.1666);
         builder(AMEntityRegistry.WARPED_TOAD.get(), 0x179896);

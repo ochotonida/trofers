@@ -1,0 +1,20 @@
+{
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "trofers:optional_item",
+          "name": "alexsmobs:elastic_tendon",
+          "when": [
+            {
+              "type": "forge:mod_loaded",
+              "modid": "alexsmobs"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}
