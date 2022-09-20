@@ -1,6 +1,6 @@
 {
   "colors": {
-    "accent": "#937155",
+    "accent": "#CCCCCC",
     "base": "#606060"
   },
   "display": {
@@ -17,10 +17,10 @@
   },
   "entity": {
     "type": "minecraft:cat",
-    "nbt": "{CatType:0,Sitting:1b}"
+    "nbt": "{Sitting:1b,variant:\"minecraft:black\"}"
   },
   "name": {
-    "color": "#937155",
+    "color": "#CCCCCC",
     "translate": "trophy.trofers.composed",
     "with": [
       {

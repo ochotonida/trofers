@@ -5,6 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.Items;
 import trofers.common.trophy.Trophy;
@@ -36,9 +37,10 @@ public class VanillaTrophies {
         builder(EntityType.BEE, 0xebc542)
                 .sound(SoundEvents.BEE_POLLINATE);
         builder(EntityType.BLAZE, 0xede746);
-        EntityTrophyBuilder cat = builder(EntityType.CAT, 0x937155)
+        EntityTrophyBuilder cat = builder(EntityType.CAT, 0xcccccc)
                 .lootTable("gameplay/cat_morning_gift");
-        cat.getTag().putInt("CatType", 0);
+        //noinspection ConstantConditions
+        cat.getTag().putString("variant", Registry.CAT_VARIANT.getKey(CatVariant.BLACK).toString());
         cat.getTag().putBoolean("Sitting", true);
         builder(EntityType.CAVE_SPIDER, 0x147b6a)
                 .sound(SoundEvents.SPIDER_AMBIENT);
