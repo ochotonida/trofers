@@ -206,9 +206,14 @@ public record Trophy(
 
         List<Component> tooltip = new ArrayList<>();
         if (object.has("tooltip")) {
-            JsonArray lines = GsonHelper.getAsJsonArray(object, "tooltip");
-            for (JsonElement line : lines) {
-                tooltip.add(Component.Serializer.fromJson(line));
+            JsonElement tooltipElement = object.get("tooltip");
+            if (!tooltipElement.isJsonArray()) {
+                tooltip.add(Component.Serializer.fromJson(tooltipElement));
+            } else {
+                JsonArray lines = GsonHelper.getAsJsonArray(object, "tooltip");
+                for (JsonElement line : lines) {
+                    tooltip.add(Component.Serializer.fromJson(line));
+                }
             }
         }
 
