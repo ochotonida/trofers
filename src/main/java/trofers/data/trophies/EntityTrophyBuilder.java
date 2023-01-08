@@ -130,11 +130,6 @@ public class EntityTrophyBuilder {
         return this;
     }
 
-    @SuppressWarnings("ConstantConditions")
-    public String getModId() {
-        return ForgeRegistries.ENTITY_TYPES.getKey(entityType).getNamespace();
-    }
-
     public Trophy createTrophy() {
         EntityInfo entityInfo = new EntityInfo(entityType, getTag(), false);
         ColorInfo colorInfo = new ColorInfo(0x606060, color);
