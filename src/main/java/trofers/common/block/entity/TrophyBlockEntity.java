@@ -8,8 +8,10 @@ import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -122,15 +124,9 @@ public class TrophyBlockEntity extends BlockEntity {
         EffectInfo.RewardInfo rewards = trophy.effects().rewards();
         EffectInfo.SoundInfo sound = trophy.effects().sound();
 
-        if (sound != null) {
-            player.level.playSound(
-                    player,
-                    getBlockPos(),
-                    sound.soundEvent(),
-                    SoundSource.BLOCKS,
-                    sound.volume(),
-                    sound.pitch()
-            );
+        if (sound != null && level instanceof ServerLevel serverLevel) {
+            Vec3 pos = Vec3.atCenterOf(getBlockPos());
+            playSound(serverLevel, sound.soundEvent(), pos, sound.volume(), sound.pitch());
         }
 
         giveRewards(rewards, player, hand);
@@ -138,6 +134,22 @@ public class TrophyBlockEntity extends BlockEntity {
         return sound != null
                 || rewards.lootTable() != null && ModConfig.common.enableTrophyLoot.get()
                 || !rewards.statusEffect().isEmpty() && ModConfig.common.enableTrophyEffects.get();
+    }
+
+    private static void playSound(ServerLevel level, ResourceLocation sound, Vec3 pos, float volume, float pitch) {
+        double maxDistance = Math.pow(volume > 1 ? volume * 16D : 16, 2);
+
+        for (ServerPlayer player : level.players()) {
+            double x = pos.x - player.getX();
+            double y = pos.y - player.getY();
+            double z = pos.z - player.getZ();
+            double distance = x * x + y * y + z * z;
+            if (distance > maxDistance) {
+                continue;
+            }
+
+            player.connection.send(new ClientboundCustomSoundPacket(sound, SoundSource.BLOCKS, pos, volume, pitch));
+        }
     }
 
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {

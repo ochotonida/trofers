@@ -5,7 +5,6 @@ import com.google.gson.JsonParseException;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -60,18 +59,17 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         return new EffectInfo(sound, rewards);
     }
 
-    public static record SoundInfo(SoundEvent soundEvent, float volume, float pitch) {
+    public static record SoundInfo(ResourceLocation soundEvent, float volume, float pitch) {
 
         protected void toNetwork(FriendlyByteBuf buffer) {
-            // noinspection ConstantConditions
-            buffer.writeResourceLocation(soundEvent.getRegistryName());
+            buffer.writeResourceLocation(soundEvent);
             buffer.writeFloat(volume());
             buffer.writeFloat(pitch());
         }
 
         protected static SoundInfo fromNetwork(FriendlyByteBuf buffer) {
             return new SoundInfo(
-                    ForgeRegistries.SOUND_EVENTS.getValue(buffer.readResourceLocation()),
+                    buffer.readResourceLocation(),
                     buffer.readFloat(),
                     buffer.readFloat()
             );
@@ -79,8 +77,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
 
         protected JsonObject toJson() {
             JsonObject result = new JsonObject();
-            // noinspection ConstantConditions
-            result.addProperty("soundEvent", soundEvent().getRegistryName().toString());
+            result.addProperty("soundEvent", soundEvent().toString());
             if (volume() != 1) {
                 result.addProperty("volume", volume());
             }
@@ -91,12 +88,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         }
 
         protected static SoundInfo fromJson(JsonObject object) {
-            ResourceLocation soundEventID = new ResourceLocation(GsonHelper.getAsString(object, "soundEvent"));
-            if (!ForgeRegistries.SOUND_EVENTS.containsKey(soundEventID)) {
-                throw new JsonParseException(String.format("Unknown sound event: %s", soundEventID));
-            }
-            SoundEvent soundEvent = ForgeRegistries.SOUND_EVENTS.getValue(soundEventID);
-
+            ResourceLocation soundEvent = new ResourceLocation(GsonHelper.getAsString(object, "soundEvent"));
             float volume = Trophy.readOptionalFloat(object, "volume", 1);
             float pitch = Trophy.readOptionalFloat(object, "pitch", 1);
 

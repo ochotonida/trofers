@@ -136,7 +136,7 @@ public class EntityTrophyBuilder {
         EntityInfo entityInfo = new EntityInfo(entityType, getTag(), false);
         ColorInfo colorInfo = new ColorInfo(0x606060, color);
         EffectInfo effectInfo = new EffectInfo(
-                new EffectInfo.SoundInfo(getSoundEvent(), 1, 1),
+                new EffectInfo.SoundInfo(getSoundEvent().getLocation(), 1, 1),
                 new EffectInfo.RewardInfo(getLootTable(), effect, cooldown)
         );
 
