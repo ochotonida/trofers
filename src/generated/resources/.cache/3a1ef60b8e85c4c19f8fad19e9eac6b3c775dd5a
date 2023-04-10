@@ -1,10 +1,12 @@
-// 1.19.2	2023-01-08T17:50:43.1067681	Trophies
+// 1.19.2	2023-04-10T12:48:32.8671226	Trophies
 aa8a8990fbf59476f14fd60d78d9cda174c13a9d data/trofers/trofers/alexsmobs/alligator_snapping_turtle.json
 b9ec97781f2412c716bdabc700e75ea9450cdb64 data/trofers/trofers/alexsmobs/anaconda.json
 06d29c8bbe1617f4e3f3644a0a3acf0cabc888a1 data/trofers/trofers/alexsmobs/anteater.json
 64ec8c83a1bfeb654a755c2cddfc1cf1567113d6 data/trofers/trofers/alexsmobs/bald_eagle.json
+44a2cc6ded98a9614ae49161289c93fb0a10b135 data/trofers/trofers/alexsmobs/banana_slug.json
 adc3e0b7dfbf8b817631032237b03211ff4e2771 data/trofers/trofers/alexsmobs/bison.json
 dda367443ffef505e637185190f780b5d588c55d data/trofers/trofers/alexsmobs/blobfish.json
+74f8f8ad86db36b6a3b362afa322d52a4ada2db1 data/trofers/trofers/alexsmobs/blue_jay.json
 4335e39cbdd06d3b797903ddb4bb4de40692a2eb data/trofers/trofers/alexsmobs/bone_serpent.json
 ed0764767c872fb0c14c77b4e4db80924827fbda data/trofers/trofers/alexsmobs/bunfungus.json
 5ffcce6d726b645427d3aa58769fe106f4041908 data/trofers/trofers/alexsmobs/cachalot_whale.json
@@ -66,6 +68,7 @@ e5f60a3daeb66b91c998ebd9dc5c3f5836a1762f data/trofers/trofers/alexsmobs/seal.jso
 c362d4b118056ef9dfe21437c33126e71823b353 data/trofers/trofers/alexsmobs/shoebill.json
 36d4e35a7b5a0cba31df59dda4f191dbccaf3dc4 data/trofers/trofers/alexsmobs/skelewag.json
 b7622aac132b42bda8f898ffe3fe0e1e277606f3 data/trofers/trofers/alexsmobs/skreecher.json
+b5a839f363492ad0c152c726f1a23c43d92be09b data/trofers/trofers/alexsmobs/skunk.json
 f9d6fba5f76302f2b1e6df76207922510e4de6f0 data/trofers/trofers/alexsmobs/snow_leopard.json
 58fac6075942042ba610d8885035452781c2d057 data/trofers/trofers/alexsmobs/soul_vulture.json
 e06913533b2705dc5c78ca41b942a67dc719b84c data/trofers/trofers/alexsmobs/spectre.json

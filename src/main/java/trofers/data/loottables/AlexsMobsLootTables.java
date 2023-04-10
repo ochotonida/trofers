@@ -18,8 +18,10 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.ANACONDA.get(), AMItemRegistry.SHED_SNAKE_SKIN.get());
         add(AMEntityRegistry.ANTEATER.get(), AMItemRegistry.LEAFCUTTER_ANT_PUPA.get());
         add(AMEntityRegistry.BALD_EAGLE.get(), 1, 3, Items.SALMON);
+        add(AMEntityRegistry.BANANA_SLUG.get(), AMItemRegistry.BANANA_SLUG_SLIME.get());
         add(AMEntityRegistry.BISON.get(), AMItemRegistry.BISON_FUR.get());
         add(AMEntityRegistry.BLOBFISH.get(), AMItemRegistry.FISH_OIL.get());
+        add(AMEntityRegistry.BLUE_JAY.get(), Items.FEATHER);
         add(AMEntityRegistry.BONE_SERPENT.get(), AMItemRegistry.BONE_SERPENT_TOOTH.get());
         add(AMEntityRegistry.BUNFUNGUS.get(), 2, 6, Items.MYCELIUM);
         add(AMEntityRegistry.CACHALOT_WHALE.get(), AMItemRegistry.AMBERGRIS.get());
@@ -79,6 +81,7 @@ public class AlexsMobsLootTables extends LootTableProvider {
         add(AMEntityRegistry.SHOEBILL.get(), 1, 3, Items.FEATHER);
         add(AMEntityRegistry.SKELEWAG.get(), AMItemRegistry.FISH_BONES.get());
         add(AMEntityRegistry.SKREECHER.get(), AMItemRegistry.SKREECHER_SOUL.get());
+        add(AMEntityRegistry.SKUNK.get(), AMItemRegistry.STINK_BOTTLE.get());
         add(AMEntityRegistry.SNOW_LEOPARD.get(), 1, 3, AMItemRegistry.MOOSE_RIBS.get());
         add(AMEntityRegistry.SOUL_VULTURE.get(), AMItemRegistry.SOUL_HEART.get());
         add(AMEntityRegistry.SPECTRE.get(), Items.PHANTOM_MEMBRANE);

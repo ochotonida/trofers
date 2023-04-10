@@ -1,0 +1,36 @@
+{
+  "colors": {
+    "accent": "#54A4FB",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/blue_jay"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:blue_jay_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:blue_jay"
+  },
+  "name": {
+    "color": "#54A4FB",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.blue_jay"
+      }
+    ]
+  }
+}

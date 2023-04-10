@@ -91,8 +91,8 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
-    implementation fg.deobf("curse.maven:citadel-331936:3987892")
-    implementation fg.deobf("curse.maven:alexsmobs-426558:3994223")
+    implementation fg.deobf("curse.maven:citadel-331936:4473243")
+    implementation fg.deobf("curse.maven:alexsmobs-426558:4159154")
 
     compileOnly fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
     compileOnly fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
@@ -100,8 +100,8 @@ dependencies {
     // compileOnly fg.deobf("slimeknights.mantle:Mantle:1.18.2-1.9.27")
     // compileOnly fg.deobf("slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.32")
 
-    implementation fg.deobf("vazkii.autoreglib:AutoRegLib:1.8-54.115")
-    implementation fg.deobf("vazkii.quark:Quark:3.3-372.2483")
+    implementation fg.deobf("curse.maven:quark-250363:4100299")
+    implementation fg.deobf("curse.maven:quark-243121:4480516")
 }
 
 jar {

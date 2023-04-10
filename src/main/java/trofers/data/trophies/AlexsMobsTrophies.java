@@ -40,9 +40,12 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.ANTEATER.get(), 0x5a4c47)
                 .sound( AMSoundRegistry.ANTEATER_HURT.get());
         builder(AMEntityRegistry.BALD_EAGLE.get(), 0xc48e2f);
+        builder(AMEntityRegistry.BANANA_SLUG.get(), 0xfcdd53)
+                .sound(AMSoundRegistry.BANANA_SLUG_HURT.get());
         builder(AMEntityRegistry.BLOBFISH.get(), 0x7e7d7c)
                 .sound(SoundEvents.COD_FLOP)
                 .getTag().putFloat("BlobfishScale", 1);
+        builder(AMEntityRegistry.BLUE_JAY.get(), 0x54a4fb);
         builder(AMEntityRegistry.BISON.get(), 0x796445)
                 .scale(0.1666);
         builder(AMEntityRegistry.BONE_SERPENT.get(), 0xd1c4ac)
@@ -171,6 +174,7 @@ public class AlexsMobsTrophies {
                 .scale(0.1666);
         builder(AMEntityRegistry.SKREECHER.get(), 0x16dbe9)
                 .sound(AMSoundRegistry.SKREECHER_DETECT.get());
+        builder(AMEntityRegistry.SKUNK.get(), 0xe1e2ef);
         builder(AMEntityRegistry.SNOW_LEOPARD.get(), 0x948a80);
         builder(AMEntityRegistry.SOUL_VULTURE.get(), 0x3dd6e1);
         builder(AMEntityRegistry.SPECTRE.get(), 0xc0c6ff)

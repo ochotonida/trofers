@@ -1,4 +1,4 @@
-// 1.19.2	2022-09-21T10:18:41.1210922	LootTables
+// 1.19.2	2023-04-10T12:48:32.8651218	LootTables
 4876e39a5995f8aa5bc3bc4ed6ebb80319d70d1a data/trofers/loot_tables/blocks/large_pillar.json
 3b05fe9345acfc44ed650d02531f0b2bdbb815ac data/trofers/loot_tables/blocks/large_plate.json
 245fefed32df411cb00a74fbe03efb5516c7f28f data/trofers/loot_tables/blocks/medium_pillar.json
@@ -9,8 +9,10 @@ d7529e62ad5efe36b047413ec3ddeff5d3ec8fa1 data/trofers/loot_tables/blocks/medium_
 e409007369aaf96c5d2a6388968498da41fa4afb data/trofers/loot_tables/trophies/alexsmobs/anaconda.json
 0270b2f67bdb7971ba43eafea42d8685b7f9d215 data/trofers/loot_tables/trophies/alexsmobs/anteater.json
 b9eb87e4a10b8a4c86f1871cfaa8f15345e579c5 data/trofers/loot_tables/trophies/alexsmobs/bald_eagle.json
+f4fb46a40e3dc17152e7bbfc6eae121a643aaa8e data/trofers/loot_tables/trophies/alexsmobs/banana_slug.json
 339847539c433043f4d745f7931d13411f2fe7a0 data/trofers/loot_tables/trophies/alexsmobs/bison.json
 70b96fcb966036e1f286384a8bc1cedbfbf45c80 data/trofers/loot_tables/trophies/alexsmobs/blobfish.json
+f5fbfcf4f6eb4cf5c9758f54373f95e5bedb5a69 data/trofers/loot_tables/trophies/alexsmobs/blue_jay.json
 59e0330509d61bbf51990e0cbe57b8ef752295a7 data/trofers/loot_tables/trophies/alexsmobs/bone_serpent.json
 58603eca73916a3b1bccae9e6abfe3c229e20bff data/trofers/loot_tables/trophies/alexsmobs/bunfungus.json
 cfb1eb075aea7ea9a2cc11a59247e7e463c84dcd data/trofers/loot_tables/trophies/alexsmobs/cachalot_whale.json
@@ -70,6 +72,7 @@ b9fbdb9e02ba21540860192880448ee8f081dbea data/trofers/loot_tables/trophies/alexs
 b4eb77bfe2ad56218e905f961d1ed865ec5a0983 data/trofers/loot_tables/trophies/alexsmobs/shoebill.json
 6f466ae16331cd7871b33fe04022bef81d945246 data/trofers/loot_tables/trophies/alexsmobs/skelewag.json
 0ce5c1d5fa0bbb0bbc7012e00d4842b5cfa449d8 data/trofers/loot_tables/trophies/alexsmobs/skreecher.json
+5de2de03bd10ae168bdc7d82b06fa53ed7a4b245 data/trofers/loot_tables/trophies/alexsmobs/skunk.json
 c3057cd45e09cf55ec386d387572f0aef006eebc data/trofers/loot_tables/trophies/alexsmobs/snow_leopard.json
 21036e463f358f8e1c333a47ba21a429faa9951d data/trofers/loot_tables/trophies/alexsmobs/soul_vulture.json
 742cc525d7b1390a1bef5b4ab9cd5044b4adeed8 data/trofers/loot_tables/trophies/alexsmobs/spectre.json

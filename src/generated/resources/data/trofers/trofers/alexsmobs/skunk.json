@@ -1,0 +1,36 @@
+{
+  "colors": {
+    "accent": "#E1E2EF",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/alexsmobs/skunk"
+    },
+    "sound": {
+      "soundEvent": "alexsmobs:skunk_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:skunk"
+  },
+  "name": {
+    "color": "#E1E2EF",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.skunk"
+      }
+    ]
+  }
+}
