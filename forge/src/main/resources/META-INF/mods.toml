@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[45,)"
+license="MIT"
+issueTrackerURL="https://github.com/ochotonida/trofers/issues"
+
+[[mods]]
+modId="trofers"
+version="${version}"
+displayName="Trofers"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/trofers"
+logoFile="logo.png"
+authors="ochotonida"
+
+description='''Adds trophies that can be customized through data packs'''
+
+[[dependencies.trofers]]
+modId="forge"
+mandatory=true
+versionRange="[45,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trofers]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.19.4,1.20)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trofers]]
+modId = "architectury"
+mandatory = true
+versionRange = "[8.1.79,)"
+ordering = "AFTER"
+side = "BOTH"

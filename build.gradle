@@ -1,134 +1,66 @@
-buildscript {
+plugins {
+    id "architectury-plugin" version "3.4-SNAPSHOT"
+    id "dev.architectury.loom" version "0.12.0-SNAPSHOT" apply false
+}
+
+architectury {
+    minecraft = rootProject.minecraft_version
+}
+
+subprojects {
+    if (project.name != 'data') {
+        apply plugin: "dev.architectury.loom"
+
+        loom {
+            silentMojangMappingsLicense()
+        }
+
+        dependencies {
+            minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+            mappings loom.officialMojangMappings()
+        }
+    }
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "architectury-plugin"
+    apply plugin: "maven-publish"
+
+    sourceSets {
+        main.resources.srcDirs = ['src/main/resources', 'src/generated/resources']
+    }
+
+    archivesBaseName = rootProject.archives_base_name
+    version = rootProject.mod_version
+    group = rootProject.maven_group
+
     repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
+
     }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7.+'
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+        options.release = 17
+    }
+
+    java {
+        withSourcesJar()
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.spongepowered.mixin'
 
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-
-version = '1.19.2-3.2.0'
-group = 'trofers'
-archivesBaseName = 'trofers'
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-minecraft {
-    mappings channel: 'official', version: '1.19.4'
-
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', ''
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                trofers {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', ''
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                trofers {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', ''
-            property 'forge.logging.console.level', 'debug'
-
-            args '--mod', 'trofers', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                trofers {
-                    source sourceSets.main
-                }
-            }
+task collectJars(type: Copy) {
+    subprojects {
+        if (project.name != "common" && project.name != "data") {
+            def remapJar = project.tasks.named('remapJar')
+            dependsOn remapJar
+            from remapJar
         }
     }
+
+    into(buildDir.toPath().resolve("libs"))
 }
 
-sourceSets.main.resources { 
-  srcDir 'src/generated/resources'
-}
-
-repositories {
-    maven {
-        url "https://www.cursemaven.com"
-    }
-    maven {
-        url "https://maven.blamejared.com/"
-    }
-    maven {
-        url 'https://maven.covers1624.net/'
-    }
-    maven {
-        url 'https://dvs1.progwml6.com/files/maven'
-    }
-}
-
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.4-45.0.43'
-
-    // compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-    // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
-
-    compileOnly fg.deobf("curse.maven:citadel-331936:4473243")
-    compileOnly fg.deobf("curse.maven:alexsmobs-426558:4159154")
-
-    compileOnly fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
-    compileOnly fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
-
-    // compileOnly fg.deobf("slimeknights.mantle:Mantle:1.18.2-1.9.27")
-    // compileOnly fg.deobf("slimeknights.tconstruct:TConstruct:1.18.2-3.5.1.32")
-
-    compileOnly fg.deobf("curse.maven:quark-250363:4100299")
-    compileOnly fg.deobf("curse.maven:quark-243121:4480516")
-}
-
-jar {
-    manifest {
-        attributes([
-                "Specification-Title": "trofers",
-                "Specification-Vendor": "ochotonida",
-                "Specification-Version": "1",
-                "Implementation-Title": project.name,
-                "Implementation-Version": project.jar.archiveVersion,
-                "Implementation-Vendor": "ochotonida",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-}
-
-jar.finalizedBy('reobfJar')
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/mcmodsrepo"
-        }
-    }
+assemble {
+    dependsOn(collectJars)
 }
