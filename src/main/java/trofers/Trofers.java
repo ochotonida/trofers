@@ -36,6 +36,7 @@ public class Trofers {
         ModLootPoolEntries.LOOT_POOL_ENTRY_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::onCommonSetup);
+        modEventBus.addListener(ModItems::registerTab);
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(TrophyManager::onDataPackReload);

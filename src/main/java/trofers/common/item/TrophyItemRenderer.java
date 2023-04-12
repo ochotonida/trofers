@@ -4,15 +4,15 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import trofers.common.trophy.Trophy;
 import trofers.common.block.TrophyBlock;
 import trofers.common.block.entity.TrophyBlockEntityRenderer;
+import trofers.common.trophy.Trophy;
 
 public class TrophyItemRenderer extends BlockEntityWithoutLevelRenderer {
 
@@ -27,7 +27,7 @@ public class TrophyItemRenderer extends BlockEntityWithoutLevelRenderer {
     @Override
     public void renderByItem(
             ItemStack stack,
-            ItemTransforms.TransformType transformType,
+            ItemDisplayContext displayContext,
             PoseStack poseStack,
             MultiBufferSource multiBufferSource,
             int light,
@@ -38,7 +38,7 @@ public class TrophyItemRenderer extends BlockEntityWithoutLevelRenderer {
         poseStack.translate(0.5, 0.5, 0.5);
         ItemRenderer renderer = Minecraft.getInstance().getItemRenderer();
         BakedModel model = Minecraft.getInstance().getBlockRenderer().getBlockModel(((BlockItem) stack.getItem()).getBlock().defaultBlockState());
-        renderer.render(stack, ItemTransforms.TransformType.NONE, false, poseStack, multiBufferSource, light, overlay, model);
+        renderer.render(stack, ItemDisplayContext.NONE, false, poseStack, multiBufferSource, light, overlay, model);
         poseStack.translate(0, -0.5, 0);
 
         renderTrophy(stack, poseStack, multiBufferSource, light, overlay);

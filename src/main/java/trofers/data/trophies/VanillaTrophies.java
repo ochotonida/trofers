@@ -1,7 +1,7 @@
 package trofers.data.trophies;
 
 import net.minecraft.Util;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -39,8 +39,7 @@ public class VanillaTrophies {
         builder(EntityType.BLAZE, 0xede746);
         EntityTrophyBuilder cat = builder(EntityType.CAT, 0xcccccc)
                 .lootTable("gameplay/cat_morning_gift");
-        //noinspection ConstantConditions
-        cat.getTag().putString("variant", Registry.CAT_VARIANT.getKey(CatVariant.BLACK).toString());
+        cat.getTag().putString("variant", BuiltInRegistries.CAT_VARIANT.getOptional(CatVariant.BLACK).orElseThrow().toString());
         cat.getTag().putBoolean("Sitting", true);
         builder(EntityType.CAVE_SPIDER, 0x147b6a)
                 .sound(SoundEvents.SPIDER_AMBIENT);
@@ -78,7 +77,7 @@ public class VanillaTrophies {
         fox.getTag().putString("Type", "red");
         //noinspection ConstantConditions
         builder(EntityType.FROG, 0x669530)
-                .getTag().putString("variant", Registry.FROG_VARIANT.getKey(FrogVariant.COLD).toString());
+                .getTag().putString("variant", BuiltInRegistries.FROG_VARIANT.getKey(FrogVariant.COLD).toString());
         builder(EntityType.GHAST, 0xf0f0f0)
                 .offset(0, 5, 0)
                 .scale(0.075);

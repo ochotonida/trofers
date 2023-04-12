@@ -2,15 +2,17 @@ package trofers.common.block.entity;
 
 import net.minecraft.ResourceLocationException;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
+import net.minecraft.network.protocol.game.ClientboundSoundPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -147,8 +149,8 @@ public class TrophyBlockEntity extends BlockEntity {
             if (distance > maxDistance) {
                 continue;
             }
-
-            player.connection.send(new ClientboundCustomSoundPacket(sound, SoundSource.BLOCKS, pos, volume, pitch, seed));
+            Holder<SoundEvent> holder = Holder.direct(SoundEvent.createVariableRangeEvent(sound));
+            player.connection.send(new ClientboundSoundPacket(holder, SoundSource.BLOCKS, pos.x(), pos.y(), pos.z(), volume, pitch, seed));
         }
     }
 

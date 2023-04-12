@@ -3,29 +3,28 @@ package trofers.data;
 import com.google.common.collect.Sets;
 import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
-import trofers.Trofers;
 import trofers.common.trophy.Trophy;
 import trofers.data.trophies.*;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class Trophies implements DataProvider {
 
     public final List<Trophy> trophies = new ArrayList<>();
-    private final DataGenerator generator;
+    private final PackOutput packOutput;
 
-    public Trophies(DataGenerator dataGenerator) {
-        this.generator = dataGenerator;
+    public Trophies(PackOutput packOutput) {
+        this.packOutput = packOutput;
     }
 
     protected void addTrophies() {
@@ -41,10 +40,10 @@ public class Trophies implements DataProvider {
     }
 
     @Override
-    public void run(CachedOutput cache) {
+    public CompletableFuture<?> run(CachedOutput cache) {
         addTrophies();
 
-        Path outputFolder = generator.getOutputFolder();
+        Path outputFolder = packOutput.getOutputFolder();
         Set<ResourceLocation> resourceLocations = Sets.newHashSet();
 
         for (Trophy trophy : trophies) {
@@ -60,17 +59,10 @@ public class Trophies implements DataProvider {
                 } else {
                     object = trophy.toJson(new ModLoadedCondition(modId));
                 }
-                saveTrophy(cache, object, path);
+                DataProvider.saveStable(cache, object, path);
             }
         }
-    }
-
-    private static void saveTrophy(CachedOutput cache, JsonObject object, Path path) {
-        try {
-            DataProvider.saveStable(cache, object, path);
-        } catch (IOException exception) {
-            Trofers.LOGGER.error("Couldn't save trophy {}", path, exception);
-        }
+        return null;
     }
 
     private static Path createPath(Path path, Trophy trophy) {

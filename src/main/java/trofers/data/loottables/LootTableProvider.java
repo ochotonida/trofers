@@ -1,6 +1,6 @@
 package trofers.data.loottables;
 
-import com.mojang.datafixers.util.Pair;
+import net.minecraft.data.loot.LootTableProvider.SubProviderEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -9,7 +9,6 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
@@ -19,25 +18,22 @@ import trofers.Trofers;
 import trofers.common.loot.OptionalLootItem;
 
 import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
 
 public abstract class LootTableProvider {
 
     private final Map<EntityType<?>, LootTable.Builder> lootTables = new HashMap<>();
 
-    public List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getLootTables() {
+    public List<SubProviderEntry> getLootTables() {
         lootTables.clear();
         addLootTables();
 
-        List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> result = new ArrayList<>();
+        List<SubProviderEntry> result = new ArrayList<>();
 
         lootTables.forEach((type, lootTable) -> {
             String modid = Trofers.MODID.equals(getModId()) ? "" : getModId() + "/";
             // noinspection ConstantConditions
             ResourceLocation location = new ResourceLocation(Trofers.MODID, String.format("trophies/%s", modid + ForgeRegistries.ENTITY_TYPES.getKey(type).getPath()));
-            result.add(Pair.of(() -> builder -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS));
+            result.add(new SubProviderEntry(() -> builder -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS));
 
         });
 

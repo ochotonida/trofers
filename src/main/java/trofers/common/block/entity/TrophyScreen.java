@@ -12,9 +12,9 @@ import net.minecraft.ReportedException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
@@ -25,6 +25,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.client.gui.widget.ExtendedButton;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -89,10 +90,6 @@ public class TrophyScreen extends Screen {
     public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
         renderBackground(poseStack);
         super.render(poseStack, mouseX, mouseY, partialTicks);
-
-        for (Button button : trophyButtons) {
-            button.renderToolTip(poseStack, mouseX, mouseY);
-        }
     }
 
     @Override
@@ -156,7 +153,7 @@ public class TrophyScreen extends Screen {
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
         boolean result = super.mouseClicked(pMouseX, pMouseY, pButton);
         if (getFocused() != searchBox) {
-            searchBox.setFocus(false);
+            searchBox.setFocused(false);
         }
         return result;
     }
@@ -266,17 +263,23 @@ public class TrophyScreen extends Screen {
     private class ItemButton extends ExtendedButton {
 
         private final ItemStack item;
+        private final int x;
+        private final int y;
 
         public ItemButton(int xPos, int yPos, int size, ItemStack item, OnPress handler) {
             super(xPos, yPos, size, size, Component.empty(), handler);
             this.item = item;
+            this.x = xPos;
+            this.y = yPos;
+            setTooltip(Tooltip.create(item.getHoverName()));
         }
 
         @Override
-        public void renderButton(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-            super.renderButton(poseStack, mouseX, mouseY, partialTicks);
+        public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+            super.renderWidget(poseStack, mouseX, mouseY, partialTicks);
 
             renderScaledGuiItem(
+                    poseStack,
                     item,
                     x + (int) (width - 16 * ITEM_SCALE) / 2,
                     y + (int) (height - 16 * ITEM_SCALE) / 2,
@@ -284,18 +287,12 @@ public class TrophyScreen extends Screen {
             );
         }
 
-        @Override
-        public void renderToolTip(PoseStack poseStack, int mouseX, int mouseY) {
-            if (isHovered) {
-                renderTooltip(poseStack, item, mouseX, mouseY);
-            }
-        }
-
         @SuppressWarnings("SameParameterValue")
-        private void renderScaledGuiItem(ItemStack item, int x, int y, float scale) {
+        private void renderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale) {
             if (!item.isEmpty()) {
                 BakedModel bakedmodel = itemRenderer.getModel(item, null, Minecraft.getInstance().player, 0);
-                itemRenderer.blitOffset += 50;
+                poseStack.pushPose();
+                poseStack.translate(0, 0, 50);
                 try {
                     renderGuiItem(item, x, y, scale, bakedmodel);
                 } catch (Exception exception) {
@@ -308,7 +305,7 @@ public class TrophyScreen extends Screen {
                     category.setDetail("Item Foil", () -> String.valueOf(item.hasFoil()));
                     throw new ReportedException(crashReport);
                 }
-                itemRenderer.blitOffset -= 50;
+                poseStack.popPose();
             }
         }
 
@@ -321,7 +318,7 @@ public class TrophyScreen extends Screen {
             RenderSystem.setShaderColor(1, 1, 1, 1);
             PoseStack modelViewStack = RenderSystem.getModelViewStack();
             modelViewStack.pushPose();
-            modelViewStack.translate(x, y, 100 + itemRenderer.blitOffset);
+            modelViewStack.translate(x, y, 100);
             modelViewStack.translate(16 * scale / 2, 16 * scale / 2, 0);
             modelViewStack.scale(1, -1, 1);
             modelViewStack.scale(scale, scale, scale);
@@ -334,7 +331,7 @@ public class TrophyScreen extends Screen {
                 Lighting.setupForFlatItems();
             }
 
-            itemRenderer.render(item, ItemTransforms.TransformType.GUI, false, poseStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, model);
+            itemRenderer.render(item, ItemDisplayContext.GUI, false, poseStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, model);
             buffer.endBatch();
             RenderSystem.enableDepthTest();
             if (flag) {

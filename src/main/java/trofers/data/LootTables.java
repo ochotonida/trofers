@@ -1,14 +1,12 @@
 package trofers.data;
 
-import com.mojang.datafixers.util.Pair;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.ValidationContext;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraftforge.fml.ModList;
@@ -21,20 +19,18 @@ import trofers.data.loottables.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.Set;
 
 public class LootTables extends net.minecraft.data.loot.LootTableProvider {
 
-    private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> lootTables = new ArrayList<>();
+    private final List<SubProviderEntry> lootTables = new ArrayList<>();
 
-    public LootTables(DataGenerator generator) {
-        super(generator);
+    public LootTables(PackOutput packOutput) {
+        super(packOutput, Set.of(), List.of());
     }
 
     @Override
-    protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> getTables() {
+    public List<SubProviderEntry> getTables() {
         lootTables.clear();
 
         addBlockLootTables();
@@ -69,7 +65,7 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
                             ).apply(copyNbtBuilder)
                     )
             );
-            lootTables.add(Pair.of(() -> builder -> builder.accept(location, lootTable), LootContextParamSets.BLOCK));
+            lootTables.add(new SubProviderEntry(() -> builder -> builder.accept(location, lootTable), LootContextParamSets.BLOCK));
         }
     }
 

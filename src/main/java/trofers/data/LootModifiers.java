@@ -1,6 +1,6 @@
 package trofers.data;
 
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -23,8 +23,8 @@ public class LootModifiers extends GlobalLootModifierProvider {
 
     private final Trophies trophies;
 
-    public LootModifiers(DataGenerator generator, Trophies trophies) {
-        super(generator, Trofers.MODID);
+    public LootModifiers(PackOutput packOutput, Trophies trophies) {
+        super(packOutput, Trofers.MODID);
         this.trophies = trophies;
     }
 

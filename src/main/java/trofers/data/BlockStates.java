@@ -1,7 +1,7 @@
 package trofers.data;
 
 import net.minecraft.core.Direction;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -14,8 +14,8 @@ import trofers.common.init.ModBlocks;
 
 public class BlockStates extends BlockStateProvider {
 
-    public BlockStates(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, Trofers.MODID, existingFileHelper);
+    public BlockStates(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+        super(packOutput, Trofers.MODID, existingFileHelper);
     }
 
     @Override
