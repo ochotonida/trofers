@@ -1,5 +1,6 @@
 package trofers.data.providers;
 
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
@@ -10,11 +11,10 @@ import net.minecraft.world.level.storage.loot.functions.CopyNbtFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.RegistryObject;
 import trofers.Trofers;
-import trofers.forge.common.block.TrophyBlock;
-import trofers.forge.common.init.ModBlocks;
+import trofers.block.TrophyBlock;
 import trofers.data.providers.loottables.*;
+import trofers.registry.ModBlocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,7 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
                 .copyData(ContextNbtProvider.BLOCK_ENTITY)
                 .copy("Trophy", "BlockEntityTag.Trophy");
 
-        for (RegistryObject<TrophyBlock> trophy : ModBlocks.TROPHIES) {
+        for (RegistrySupplier<TrophyBlock> trophy : ModBlocks.TROPHIES) {
             ResourceLocation location = new ResourceLocation(Trofers.MOD_ID, "blocks/" + trophy.getId().getPath());
             LootTable.Builder lootTable = LootTable.lootTable().withPool(
                     LootPool.lootPool().add(

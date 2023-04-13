@@ -7,7 +7,7 @@ import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;*/
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
-import trofers.forge.common.trophy.Trophy;
+import trofers.trophy.Trophy;
 
 import java.util.ArrayList;
 import java.util.List;

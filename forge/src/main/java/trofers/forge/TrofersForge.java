@@ -4,6 +4,7 @@ import dev.architectury.platform.forge.EventBuses;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
@@ -11,10 +12,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.Trofers;
 import trofers.TrofersClient;
-import trofers.forge.common.config.ModConfig;
-import trofers.forge.common.init.*;
-import trofers.forge.common.network.NetworkHandler;
-import trofers.forge.common.trophy.TrophyManager;
+import trofers.config.ModConfig;
+import trofers.forge.init.ModLootModifiers;
+import trofers.network.NetworkHandler;
+import trofers.trophy.TrophyManager;
 
 @Mod(Trofers.MOD_ID)
 public class TrofersForge {
@@ -30,18 +31,13 @@ public class TrofersForge {
         ModConfig.registerCommon();
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModItems.ITEMS.register(modEventBus);
-        ModBlocks.BLOCKS.register(modEventBus);
-        ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
-        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus);
-        ModLootConditions.LOOT_CONDITION_TYPES.register(modEventBus);
-        ModLootPoolEntries.LOOT_POOL_ENTRY_TYPES.register(modEventBus);
 
         modEventBus.addListener(this::onCommonSetup);
-        modEventBus.addListener(ModItems::registerTab);
+
+        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus); // TODO move to common
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
-        MinecraftForge.EVENT_BUS.addListener(TrophyManager::onDataPackReload);
+        MinecraftForge.EVENT_BUS.addListener(this::onDataPackReload);
     }
 
     public void onCommonSetup(FMLCommonSetupEvent event) {
@@ -50,5 +46,13 @@ public class TrofersForge {
 
     public void onAddReloadListener(AddReloadListenerEvent event) {
         event.addListener(new TrophyManager());
+    }
+
+    public void onDataPackReload(OnDatapackSyncEvent event) {
+        if (event.getPlayer() != null) {
+            TrophyManager.sync(event.getPlayer());
+        } else {
+            event.getPlayerList().getPlayers().forEach(TrophyManager::sync);
+        }
     }
 }

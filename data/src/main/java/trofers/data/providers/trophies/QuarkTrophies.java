@@ -3,9 +3,7 @@ package trofers.data.providers.trophies;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
-import trofers.forge.common.trophy.Trophy;
-/*import vazkii.quark.base.handler.QuarkSounds;
-import vazkii.quark.content.mobs.module.*;*/
+import trofers.trophy.Trophy;
 
 import java.util.ArrayList;
 import java.util.List;

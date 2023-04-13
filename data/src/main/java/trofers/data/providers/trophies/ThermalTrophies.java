@@ -2,7 +2,7 @@ package trofers.data.providers.trophies;
 
 // import cofh.thermal.core.init.TCoreReferences;
 import net.minecraft.world.entity.EntityType;
-import trofers.forge.common.trophy.Trophy;
+import trofers.trophy.Trophy;
 
 import java.util.ArrayList;
 import java.util.List;

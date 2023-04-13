@@ -7,10 +7,10 @@ import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
-import trofers.forge.common.block.PillarTrophyBlock;
-import trofers.forge.common.block.PlateTrophyBlock;
-import trofers.forge.common.block.TrophyBlock;
-import trofers.forge.common.init.ModBlocks;
+import trofers.block.PillarTrophyBlock;
+import trofers.block.PlateTrophyBlock;
+import trofers.block.TrophyBlock;
+import trofers.registry.ModBlocks;
 
 public class BlockStates extends BlockStateProvider {
 

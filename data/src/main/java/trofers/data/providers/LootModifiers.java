@@ -18,11 +18,11 @@ import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
-import trofers.forge.common.init.ModItems;
-import trofers.forge.common.loot.AddEntityTrophy;
-import trofers.forge.common.loot.RandomTrophyChanceCondition;
-import trofers.forge.common.trophy.Trophy;
 import trofers.data.providers.trophies.TinkersConstructTrophies;
+import trofers.forge.loot.AddEntityTrophy;
+import trofers.loot.RandomTrophyChanceCondition;
+import trofers.registry.ModItems;
+import trofers.trophy.Trophy;
 
 import java.nio.file.Path;
 import java.util.ArrayList;

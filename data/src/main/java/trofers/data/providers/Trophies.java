@@ -1,16 +1,18 @@
 package trofers.data.providers;
 
 import com.google.common.collect.Sets;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
-import trofers.forge.common.trophy.Trophy;
 import trofers.data.providers.trophies.*;
+import trofers.trophy.Trophy;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -59,13 +61,38 @@ public class Trophies implements DataProvider {
                 if (modId.equals("minecraft")) {
                     object = trophy.toJson();
                 } else {
-                    object = trophy.toJson(new ModLoadedCondition(modId));
+                    object = new JsonObject();
+
+                    addFabricConditions(object, modId);
+                    addForgeConditions(object, modId);
+
+                    trophy.toJson(object);
                 }
                 futures.add(DataProvider.saveStable(cache, object, path));
             }
         }
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
+    }
+
+    private void addFabricConditions(JsonObject object, String modId) {
+        JsonArray conditions = new JsonArray();
+        object.add("fabric:load_conditions", conditions);
+
+        JsonObject modLoadedCondition = new JsonObject();
+        modLoadedCondition.addProperty("condition", "fabric:all_mods_loaded");
+        conditions.add(modLoadedCondition);
+
+        JsonArray mods = new JsonArray();
+        modLoadedCondition.add("values", mods);
+
+        mods.add(modId);
+    }
+
+    private void addForgeConditions(JsonObject object, String modId) {
+        JsonArray conditions = new JsonArray();
+        conditions.add(CraftingHelper.serialize(new ModLoadedCondition(modId)));
+        object.add("conditions", conditions);
     }
 
     private static Path createPath(Path path, Trophy trophy) {

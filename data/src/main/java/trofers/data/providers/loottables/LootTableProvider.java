@@ -15,7 +15,6 @@ import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
-import trofers.forge.common.loot.OptionalLootItem;
 
 import java.util.*;
 
@@ -34,7 +33,6 @@ public abstract class LootTableProvider {
             // noinspection ConstantConditions
             ResourceLocation location = new ResourceLocation(Trofers.MOD_ID, String.format("trophies/%s", modid + ForgeRegistries.ENTITY_TYPES.getKey(type).getPath()));
             result.add(new SubProviderEntry(() -> builder -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS));
-
         });
 
         return result;
@@ -87,7 +85,7 @@ public abstract class LootTableProvider {
         if ("minecraft".equals(modid) || Trofers.MOD_ID.equals(modid)) {
             return LootItem.lootTableItem(item);
         } else {
-            return OptionalLootItem.whenLoaded(item);
+            throw new IllegalArgumentException();
         }
     }
 

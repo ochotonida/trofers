@@ -1,22 +1,21 @@
 package trofers.forge;
 
+import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.RegistryObject;
-import trofers.forge.common.block.entity.TrophyBlockEntity;
-import trofers.forge.common.block.entity.TrophyBlockEntityRenderer;
-import trofers.forge.common.block.entity.TrophyScreen;
-import trofers.forge.common.init.ModBlockEntityTypes;
-import trofers.forge.common.init.ModBlocks;
-import trofers.forge.common.init.ModItems;
-import trofers.forge.common.trophy.Trophy;
+import trofers.block.entity.TrophyBlockEntity;
+import trofers.block.entity.TrophyBlockEntityRenderer;
+import trofers.block.entity.TrophyScreen;
+import trofers.registry.ModBlockEntityTypes;
+import trofers.registry.ModBlocks;
+import trofers.registry.ModItems;
+import trofers.trophy.Trophy;
 
 public class TrofersForgeClient {
 
@@ -39,36 +38,28 @@ public class TrofersForgeClient {
 
     public void onBlockColorHandler(RegisterColorHandlersEvent.Block event) {
         event.register((state, level, pos, index) -> {
-            if (index >= 0 && index < 3 && level != null && pos != null) {
-                BlockEntity blockEntity = level.getBlockEntity(pos);
-                if (blockEntity instanceof TrophyBlockEntity trophyBlockEntity) {
-                    Trophy trophy = trophyBlockEntity.getTrophy();
-                    if (trophy == null) {
-                        return 0xFFFFFF;
-                    }
-
-                    if (index == 0) {
-                        return trophy.colors().base();
-                    } else if (index == 1) {
-                        return trophy.colors().accent();
-                    }
-                }
+            if (level != null && pos != null && level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
+                return getTrophyColor(blockEntity.getTrophy(), index);
             }
             return 0xFFFFFF;
-        }, ModBlocks.TROPHIES.stream().map(RegistryObject::get).toArray(Block[]::new));
+        }, ModBlocks.TROPHIES.stream().map(RegistrySupplier::get).toArray(Block[]::new));
     }
 
     public void onItemColorHandler(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, index) -> {
-            Trophy trophy = Trophy.getTrophy(stack);
-            if (trophy != null) {
-                if (index == 0) {
-                    return trophy.colors().base();
-                } else if (index == 1) {
-                    return trophy.colors().accent();
-                }
+        event.register(
+                (stack, index) -> getTrophyColor(Trophy.getTrophy(stack), index),
+                ModItems.TROPHIES.stream().map(RegistrySupplier::get).toArray(Item[]::new)
+        );
+    }
+
+    private int getTrophyColor(Trophy trophy, int index) {
+        if (trophy != null) {
+            if (index == 0) {
+                return trophy.colors().base();
+            } else if (index == 1) {
+                return trophy.colors().accent();
             }
-            return 0xFFFFFF;
-        }, ModItems.TROPHIES.stream().map(RegistryObject::get).toArray(Item[]::new));
+        }
+        return 0xFFFFFF;
     }
 }

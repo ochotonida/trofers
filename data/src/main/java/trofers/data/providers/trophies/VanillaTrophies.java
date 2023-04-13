@@ -8,7 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.Items;
-import trofers.forge.common.trophy.Trophy;
+import trofers.trophy.Trophy;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "trofers.forge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+  ],
+  "mixins": [
+    "TrophyBlockEntityMixin",
+    "TrophyItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

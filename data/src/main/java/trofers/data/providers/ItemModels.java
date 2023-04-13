@@ -7,7 +7,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import trofers.Trofers;
-import trofers.forge.common.init.ModBlocks;
+import trofers.registry.ModBlocks;
 
 public class ItemModels extends ItemModelProvider {
 
