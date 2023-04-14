@@ -1,0 +1,40 @@
+{
+  "colors": {
+    "accent": "#CCB792",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:rattlesnake_loop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:rattlesnake"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alexsmobs"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#CCB792",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.rattlesnake"
+      }
+    ]
+  }
+}

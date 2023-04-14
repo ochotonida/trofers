@@ -14,10 +14,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/tropical_fish"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.tropical_fish.flop"
     }

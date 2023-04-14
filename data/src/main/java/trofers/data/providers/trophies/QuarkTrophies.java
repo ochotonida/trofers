@@ -1,9 +1,13 @@
 package trofers.data.providers.trophies;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.trophy.Trophy;
+import vazkii.quark.base.handler.QuarkSounds;
+import vazkii.quark.content.mobs.module.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +30,7 @@ public class QuarkTrophies {
 
     public static List<Trophy> createTrophies() {
         TROPHIES.clear();
-        /*builder(CrabsModule.crabType, 0xc8431f)
+        builder(CrabsModule.crabType, 0xc8431f)
                 .rotate(0, 90, 0)
                 .sound(QuarkSounds.ENTITY_CRAB_IDLE);
         builder(ForgottenModule.forgottenType, 0x76615c)
@@ -44,7 +48,7 @@ public class QuarkTrophies {
         builder(ToretoiseModule.toretoiseType, 0xe32008)
                 .getTag().putByte("oreType", (byte) 3);
         builder(WraithModule.wraithType, 0x81969b)
-                .sound(SoundEvents.SKELETON_AMBIENT);*/
+                .sound(SoundEvents.SKELETON_AMBIENT);
 
         return TROPHIES.stream().map(EntityTrophyBuilder::createTrophy).toList();
     }

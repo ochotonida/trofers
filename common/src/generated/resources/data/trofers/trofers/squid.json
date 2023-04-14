@@ -10,10 +10,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/squid"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.squid.ambient"
     }

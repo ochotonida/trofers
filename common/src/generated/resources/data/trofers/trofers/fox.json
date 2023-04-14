@@ -14,10 +14,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/fox"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.fox.ambient"
     }

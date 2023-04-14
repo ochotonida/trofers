@@ -7,12 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "statusEffect": {
-        "duration": 100,
-        "effect": "minecraft:slow_falling"
-      }
-    },
     "sound": {
       "soundEvent": "minecraft:entity.chicken.ambient"
     }

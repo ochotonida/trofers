@@ -10,10 +10,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/phantom"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.phantom.ambient"
     }

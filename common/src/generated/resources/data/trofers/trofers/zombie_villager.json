@@ -7,10 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/zombie_villager"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.zombie_villager.ambient"
     }

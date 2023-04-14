@@ -47,11 +47,33 @@ mixin {
     config "mixins.${mod_id}.common.json"
 }
 
+repositories {
+    maven {
+        url "https://www.cursemaven.com"
+    }
+    maven {
+        // thermal
+        url 'https://maven.covers1624.net/'
+    }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${rootProject.forge_version}"
     implementation fg.deobf("dev.architectury:architectury-forge:$architectury_version")
     implementation(project(path: ':common', configuration: 'namedElements')) { transitive false }
     implementation(project(path: ':forge', configuration: 'namedElements')) { transitive false }
+
+    implementation fg.deobf("curse.maven:citadel-331936:4473245")
+    implementation fg.deobf("curse.maven:alexsmobs-426558:4476475")
+
+    compileOnly fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
+    compileOnly fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
+
+    compileOnly fg.deobf("curse.maven:mantle-74924:4353120")
+    compileOnly fg.deobf("curse.maven:tconstruct-74072:4395997")
+
+    compileOnly fg.deobf("curse.maven:autoreglib-250363:4100299")
+    compileOnly fg.deobf("curse.maven:quark-243121:4480516")
 }
 
 jar.finalizedBy('reobfJar')

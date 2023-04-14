@@ -5,6 +5,14 @@
       "type": "forge:mod_loaded"
     }
   ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "tconstruct"
+      ]
+    }
+  ],
   "name": {
     "color": "#A46DE9",
     "translate": "trophy.trofers.composed",
@@ -28,10 +36,6 @@
   "effects": {
     "sound": {
       "soundEvent": "minecraft:entity.slime.squish"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/tconstruct/ender_slime",
-      "cooldown": 9600
     }
   }
 }

@@ -7,13 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "statusEffect": {
-        "amplifier": 3,
-        "duration": 800,
-        "effect": "minecraft:speed"
-      }
-    },
     "sound": {
       "soundEvent": "minecraft:entity.ocelot.ambient"
     }

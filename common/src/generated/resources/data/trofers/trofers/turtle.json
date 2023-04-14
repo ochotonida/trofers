@@ -7,14 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "statusEffect": {
-        "amplifier": 3,
-        "duration": 2400,
-        "effect": "minecraft:resistance"
-      }
-    },
     "sound": {
       "soundEvent": "minecraft:entity.turtle.ambient_land"
     }

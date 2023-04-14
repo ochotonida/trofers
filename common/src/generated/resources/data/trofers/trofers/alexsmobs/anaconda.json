@@ -1,0 +1,43 @@
+{
+  "colors": {
+    "accent": "#6C7239",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "offset": {
+      "z": 1.625
+    },
+    "scale": 0.375
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:anaconda_attack"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:anaconda"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alexsmobs"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#6C7239",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.anaconda"
+      }
+    ]
+  }
+}

@@ -9,7 +9,7 @@
   "effects": {
     "rewards": {
       "statusEffect": {
-        "duration": 100,
+        "duration": 2000,
         "effect": "minecraft:levitation"
       }
     },

@@ -5,6 +5,14 @@
       "type": "forge:mod_loaded"
     }
   ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "thermal"
+      ]
+    }
+  ],
   "name": {
     "color": "#CEEAF1",
     "translate": "trophy.trofers.composed",
@@ -27,10 +35,6 @@
   "effects": {
     "sound": {
       "soundEvent": "thermal:entity.blitz.ambient"
-    },
-    "rewards": {
-      "lootTable": "trofers:trophies/thermal/blitz",
-      "cooldown": 9600
     }
   }
 }

@@ -1,14 +1,22 @@
 {
-  "colors": {
-    "accent": "#C8431F",
-    "base": "#606060"
-  },
   "conditions": [
     {
       "type": "forge:mod_loaded",
       "modid": "quark"
     }
   ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "quark"
+      ]
+    }
+  ],
+  "colors": {
+    "accent": "#C8431F",
+    "base": "#606060"
+  },
   "display": {
     "rotation": {
       "y": 90.0
@@ -16,10 +24,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/quark/crab"
-    },
     "sound": {
       "soundEvent": "quark:entity.crab.idle"
     }

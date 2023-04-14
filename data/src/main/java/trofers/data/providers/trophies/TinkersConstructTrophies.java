@@ -1,6 +1,9 @@
 package trofers.data.providers.trophies;
 
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
+import slimeknights.tconstruct.TConstruct;
+import slimeknights.tconstruct.world.TinkerWorld;
 import trofers.trophy.Trophy;
 
 import java.util.ArrayList;
@@ -19,7 +22,6 @@ public class TinkersConstructTrophies {
 
     public static List<Trophy> createTrophies() {
         TROPHIES.clear();
-        /* TODO
         builder(TinkerWorld.enderSlimeEntity.get(), 0xa46de9)
                 .sound(SoundEvents.SLIME_SQUISH)
                 .getTag().putInt("Size", 1);
@@ -29,12 +31,11 @@ public class TinkersConstructTrophies {
         builder(TinkerWorld.terracubeEntity.get(), 0x98a1b1)
                 .sound(SoundEvents.SLIME_SQUISH)
                 .getTag().putInt("Size", 1);
-         */
         return TROPHIES.stream().map(EntityTrophyBuilder::createTrophy).toList();
     }
 
     public static void addExtraTrophies(Map<String, Map<EntityType<?>, Trophy>> trophies) {
         Trophy slimeTrophy = trophies.get("minecraft").get(EntityType.SLIME);
-        // TODO trophies.get(TConstruct.MOD_ID).put(TinkerWorld.earthSlimeEntity.get(), slimeTrophy);
+        trophies.get(TConstruct.MOD_ID).put(TinkerWorld.earthSlimeEntity.get(), slimeTrophy);
     }
 }

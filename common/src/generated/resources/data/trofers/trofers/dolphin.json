@@ -9,7 +9,7 @@
   "effects": {
     "rewards": {
       "statusEffect": {
-        "duration": 800,
+        "duration": 16000,
         "effect": "minecraft:dolphins_grace"
       }
     },

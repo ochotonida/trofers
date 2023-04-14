@@ -1,22 +1,26 @@
 {
-  "colors": {
-    "accent": "#8F3E44",
-    "base": "#606060"
-  },
   "conditions": [
     {
       "type": "forge:mod_loaded",
       "modid": "quark"
     }
   ],
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "quark"
+      ]
+    }
+  ],
+  "colors": {
+    "accent": "#8F3E44",
+    "base": "#606060"
+  },
   "display": {
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/quark/foxhound"
-    },
     "sound": {
       "soundEvent": "quark:entity.foxhound.ambient"
     }

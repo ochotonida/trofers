@@ -10,10 +10,6 @@
     "scale": 0.075
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/ghast"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.ghast.ambient"
     }

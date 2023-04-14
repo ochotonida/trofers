@@ -1,0 +1,40 @@
+{
+  "colors": {
+    "accent": "#736D4A",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:komodo_dragon_idle"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:komodo_dragon"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alexsmobs"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#736D4A",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.komodo_dragon"
+      }
+    ]
+  }
+}

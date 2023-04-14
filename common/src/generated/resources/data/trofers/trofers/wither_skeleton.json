@@ -7,10 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 24000,
-      "lootTable": "trofers:trophies/wither_skeleton"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.wither_skeleton.ambient"
     }

@@ -32,8 +32,7 @@ public class EntityTrophyBuilder {
     private double scale = 0.25;
     private SoundEvent soundEvent;
     private CompoundTag effect = new CompoundTag();
-    private int cooldown = 20 * 60 * 8;
-    private ResourceLocation lootTable;
+    private int cooldown = 0;
 
     public EntityTrophyBuilder(EntityType<?> entityType, int color) {
         this.entityType = entityType;
@@ -107,26 +106,17 @@ public class EntityTrophyBuilder {
         return this;
     }
 
-    public EntityTrophyBuilder effect(MobEffect effect, int time) {
-        return effect(effect, time, 0);
+    public EntityTrophyBuilder effect(MobEffect effect, int timeSeconds) {
+        return effect(effect, timeSeconds, 0);
     }
 
-    public EntityTrophyBuilder effect(MobEffect effect, int time, int amplifier) {
-        this.effect = new MobEffectInstance(effect, time, amplifier).save(new CompoundTag());
+    public EntityTrophyBuilder effect(MobEffect effect, int timeSeconds, int amplifier) {
+        this.effect = new MobEffectInstance(effect, timeSeconds * 20, amplifier).save(new CompoundTag());
         return this;
     }
 
-    public EntityTrophyBuilder cooldown(int cooldown) {
-        this.cooldown = cooldown;
-        return this;
-    }
-
-    public EntityTrophyBuilder lootTable(String lootTable) {
-        return lootTable(new ResourceLocation(lootTable));
-    }
-
-    public EntityTrophyBuilder lootTable(ResourceLocation lootTable) {
-        this.lootTable = lootTable;
+    public EntityTrophyBuilder cooldown(int timeSeconds) {
+        this.cooldown = timeSeconds * 20;
         return this;
     }
 
@@ -198,9 +188,8 @@ public class EntityTrophyBuilder {
 
     @SuppressWarnings("ConstantConditions")
     protected ResourceLocation getLootTable() {
-        if (!effect.isEmpty() || lootTable != null) {
-            return lootTable;
-        }
+        if (true) return null; // TODO
+
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entityType);
         String modId = entityId.getNamespace().equals("minecraft") ? "" : entityId.getNamespace() + "/";
         return new ResourceLocation(Trofers.MOD_ID, String.format("trophies/%s", modId + ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath()));

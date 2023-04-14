@@ -7,12 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "statusEffect": {
-        "duration": 800,
-        "effect": "minecraft:invisibility"
-      }
-    },
     "sound": {
       "soundEvent": "minecraft:entity.wandering_trader.ambient"
     }

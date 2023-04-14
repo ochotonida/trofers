@@ -7,10 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 288000,
-      "lootTable": "trofers:trophies/evoker"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.evoker.ambient"
     }

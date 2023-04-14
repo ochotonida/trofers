@@ -37,15 +37,12 @@ public class VanillaTrophies {
         builder(EntityType.BEE, 0xebc542)
                 .sound(SoundEvents.BEE_POLLINATE);
         builder(EntityType.BLAZE, 0xede746);
-        EntityTrophyBuilder cat = builder(EntityType.CAT, 0xcccccc)
-                .lootTable("gameplay/cat_morning_gift");
+        EntityTrophyBuilder cat = builder(EntityType.CAT, 0xcccccc);
         cat.getTag().putString("variant", BuiltInRegistries.CAT_VARIANT.getOptional(CatVariant.BLACK).orElseThrow().toString());
         cat.getTag().putBoolean("Sitting", true);
         builder(EntityType.CAVE_SPIDER, 0x147b6a)
                 .sound(SoundEvents.SPIDER_AMBIENT);
-        builder(EntityType.CHICKEN, 0xffffff)
-                .effect(MobEffects.SLOW_FALLING, 20 * 5)
-                .cooldown(0);
+        builder(EntityType.CHICKEN, 0xffffff);
         builder(EntityType.COD, 0xb6986c)
                 .offset(-3/8D, 1, 0)
                 .rotate(0, 0, -90)
@@ -58,18 +55,13 @@ public class VanillaTrophies {
                 .effect(MobEffects.DOLPHINS_GRACE, 20 * 40)
                 .cooldown(0);
         builder(EntityType.DONKEY, 0x817164);
-        builder(EntityType.DROWNED, 0x56847e)
-                .effect(MobEffects.WATER_BREATHING, 20 * 40)
-                .cooldown(0);
+        builder(EntityType.DROWNED, 0x56847e);
         builder(EntityType.ELDER_GUARDIAN, 0xbfbbaa)
-                .scale(0.10625)
-                .effect(MobEffects.DIG_SPEED, 20 * 40, 2)
-                .cooldown(0);
+                .scale(0.10625);
         builder(EntityType.ENDERMAN, 0xa14fb6)
                 .getTag("carriedBlockState").putString("Name", "minecraft:tnt");
         builder(EntityType.ENDERMITE, 0x644b84);
-        builder(EntityType.EVOKER, 0x959c9c)
-                .cooldown(20 * 60 * 60 * 4);
+        builder(EntityType.EVOKER, 0x959c9c);
         EntityTrophyBuilder fox = builder(EntityType.FOX, 0xe37c21)
                 .offset(0.75, 0, 0.5)
                 .rotate(0, -90, 0);
@@ -83,8 +75,6 @@ public class VanillaTrophies {
                 .scale(0.075);
         builder(EntityType.GLOW_SQUID, 0x32a1a1)
                 .offset(0, 5, 0)
-                .effect(MobEffects.GLOWING, 20 * 10)
-                .cooldown(0)
                 .getTag().putInt("DarkTicksRemaining", 1);
         builder(EntityType.GOAT, 0xc2ab8e);
         builder(EntityType.GUARDIAN, 0x6a9087);
@@ -95,7 +85,6 @@ public class VanillaTrophies {
         builder(EntityType.HUSK, 0xc7ab6f);
         builder(EntityType.IRON_GOLEM, 0xcdb297)
                 .sound(SoundEvents.IRON_GOLEM_REPAIR)
-                .effect(MobEffects.ABSORPTION, 20 * 60 * 2, 2)
                 .getTag().putUUID("UUID", Util.NIL_UUID);
         EntityTrophyBuilder llama = builder(EntityType.LLAMA, 0xe3e4d4);
         llama.getTag().putInt("Variant", 3);
@@ -105,9 +94,7 @@ public class VanillaTrophies {
         builder(EntityType.MOOSHROOM, 0xa41012)
                 .sound(SoundEvents.COW_AMBIENT);
         builder(EntityType.MULE, 0x89492c);
-        builder(EntityType.OCELOT, 0xedb262)
-                .effect(MobEffects.MOVEMENT_SPEED, 20 * 40, 3)
-                .cooldown(0);
+        builder(EntityType.OCELOT, 0xedb262);
         builder(EntityType.PANDA, 0xe4e4e4)
                 .getTag().putString("MainGene", "playful");
         builder(EntityType.PARROT, 0xe60000)
@@ -116,10 +103,9 @@ public class VanillaTrophies {
                 .offset(0, 1, 0);
         builder(EntityType.PIG, 0xf1a3a4)
                 .getTag().putUUID("UUID", new UUID(2, 0));
-        builder(EntityType.PIGLIN, 0xefb987).lootTable("gameplay/piglin_bartering")
+        builder(EntityType.PIGLIN, 0xefb987)
                 .getTag().putBoolean("IsImmuneToZombification", true);
         builder(EntityType.PIGLIN_BRUTE, 0xefb987)
-                .effect(MobEffects.DAMAGE_BOOST, 20 * 60 * 2, 1)
                 .putHandItem(Items.GOLDEN_AXE);
         builder(EntityType.PILLAGER, 0x929c9c).putHandItem(Items.CROSSBOW);
         builder(EntityType.POLAR_BEAR, 0xf2f2f4);
@@ -127,8 +113,6 @@ public class VanillaTrophies {
                 .sound(SoundEvents.PUFFER_FISH_BLOW_UP)
                 .getTag().putInt("PuffState", 2);
         builder(EntityType.RABBIT, 0xa28b72)
-                .effect(MobEffects.JUMP, 20 * 40, 3)
-                .cooldown(0)
                 .getTag().putInt("RabbitType", 0);
         builder(EntityType.RAVAGER, 0x91acab)
                 .scale(0.175);
@@ -154,9 +138,7 @@ public class VanillaTrophies {
                 .offset(0, 5, 0);
         builder(EntityType.STRAY, 0x607576)
                 .putHandItem(Items.BOW);
-        builder(EntityType.STRIDER, 0xb44040)
-                .effect(MobEffects.FIRE_RESISTANCE, 20 * 40)
-                .cooldown(0);
+        builder(EntityType.STRIDER, 0xb44040);
         builder(EntityType.TADPOLE, 0x71563f)
                 .sound(SoundEvents.TADPOLE_FLOP);
         builder(EntityType.TRADER_LLAMA, 0x425f90)
@@ -168,22 +150,16 @@ public class VanillaTrophies {
                 .sound(SoundEvents.TROPICAL_FISH_FLOP)
                 .getTag().putInt("Variant", 1 | 1 << 8 | 14 << 16 | 14 << 24);
         builder(EntityType.TURTLE, 0x3ea240)
-                .sound(SoundEvents.TURTLE_AMBIENT_LAND)
-                .effect(MobEffects.DAMAGE_RESISTANCE, 20 * 60 * 2, 3);
+                .sound(SoundEvents.TURTLE_AMBIENT_LAND);
         builder(EntityType.VEX, 0x89a0b6);
-        EntityTrophyBuilder villager = builder(EntityType.VILLAGER, 0xbf886d)
-                .effect(MobEffects.HERO_OF_THE_VILLAGE, 20 * 60 * 2, 4);
+        EntityTrophyBuilder villager = builder(EntityType.VILLAGER, 0xbf886d);
         villager.getTag("VillagerData").putInt("level", 1);
         villager.getTag("VillagerData").putString("profession", "minecraft:weaponsmith");
         villager.getTag("VillagerData").putString("type", "minecraft:plains");
         builder(EntityType.VINDICATOR, 0x929c9c);
-        builder(EntityType.WANDERING_TRADER, 0x425f90)
-                .effect(MobEffects.INVISIBILITY, 20 * 40)
-                .cooldown(0);
-        builder(EntityType.WITCH, 0xa39482)
-                .effect(MobEffects.REGENERATION, 20 * 30);
+        builder(EntityType.WANDERING_TRADER, 0x425f90);
+        builder(EntityType.WITCH, 0xa39482);
         builder(EntityType.WITHER_SKELETON, 0x626565)
-                .cooldown(20 * 60 * 20)
                 .putHandItem(Items.STONE_SWORD);
         EntityTrophyBuilder wolf = builder(EntityType.WOLF, 0xdcdadb);
         wolf.getTag().putBoolean("Sitting", true);

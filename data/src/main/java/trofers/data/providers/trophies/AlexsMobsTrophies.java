@@ -1,10 +1,11 @@
 package trofers.data.providers.trophies;
 
-/*import com.github.alexthe666.alexsmobs.effect.AMEffectRegistry;
 import com.github.alexthe666.alexsmobs.entity.AMEntityRegistry;
 import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
-import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;*/
+import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.trophy.Trophy;
@@ -30,7 +31,7 @@ public class AlexsMobsTrophies {
 
     public static List<Trophy> createTrophies() {
         TROPHIES.clear();
-        /*builder(AMEntityRegistry.ALLIGATOR_SNAPPING_TURTLE.get(), 0x6a5747);
+        builder(AMEntityRegistry.ALLIGATOR_SNAPPING_TURTLE.get(), 0x6a5747);
         builder(AMEntityRegistry.ANACONDA.get(), 0x6c7239)
                 .offset(0, 0, 2 - 0.375F)
                 .scale(0.375F)
@@ -89,8 +90,7 @@ public class AlexsMobsTrophies {
         builder(AMEntityRegistry.ENDERGRADE.get(), 0x7fbbe8);
         builder(AMEntityRegistry.ENDERIOPHAGE.get(), 0xa55ca8)
                 .sound(AMSoundRegistry.ENDERIOPHAGE_SQUISH.get());
-        builder(AMEntityRegistry.FARSEER.get(), 0xa194c1)
-                .cooldown(60 * 60 * 20);
+        builder(AMEntityRegistry.FARSEER.get(), 0xa194c1);
         builder(AMEntityRegistry.FLUTTER.get(), 0xd885e5);
         builder(AMEntityRegistry.FLY.get(), 0xc19288);
         builder(AMEntityRegistry.FLYING_FISH.get(), 0x7abaea)
@@ -118,8 +118,7 @@ public class AlexsMobsTrophies {
                 .scale(0.2)
                 .sound(SoundEvents.COD_FLOP);
         builder(AMEntityRegistry.HUMMINGBIRD.get(), 0x3d966c);
-        builder(AMEntityRegistry.JERBOA.get(), 0xdbc388)
-                .effect(AMEffectRegistry.FLEET_FOOTED.get(), 2 * 60 * 20, 4 * 60 * 20);
+        builder(AMEntityRegistry.JERBOA.get(), 0xdbc388);
         builder(AMEntityRegistry.KANGAROO.get(), 0xd6a771);
         builder(AMEntityRegistry.KOMODO_DRAGON.get(), 0x736d4a);
         builder(AMEntityRegistry.LAVIATHAN.get(), 0xffdb9b)
@@ -148,9 +147,7 @@ public class AlexsMobsTrophies {
                 .sound(AMSoundRegistry.POTOO_CALL.get());
         builder(AMEntityRegistry.ORCA.get(), 0x71777f)
                 .offset(0, 1, -1)
-                .scale(0.1)
-                .effect(AMEffectRegistry.ORCAS_MIGHT.get(), 2 * 60 * 20)
-                .cooldown(4 * 60 * 20);
+                .scale(0.1);
         builder(AMEntityRegistry.PLATYPUS.get(), 0x62bdba)
                 .getTag().putString("CustomName", Component.Serializer.toJson(Component.literal("perry")));
         builder(AMEntityRegistry.RACCOON.get(), 0x83807d)
@@ -183,17 +180,13 @@ public class AlexsMobsTrophies {
                 .sound(AMSoundRegistry.STRADDLER_IDLE.get());
         builder(AMEntityRegistry.SUGAR_GLIDER.get(), 0xdbd9cc);
         builder(AMEntityRegistry.SUNBIRD.get(), 0xfc8865)
-                .scale(0.1)
-                .effect(AMEffectRegistry.SUNBIRD_CURSE.get(), 10 * 20)
-                .cooldown(0);
+                .scale(0.1);
         builder(AMEntityRegistry.TARANTULA_HAWK.get(), 0xba4c2d)
                 .scale(0.1875).sound(AMSoundRegistry.TARANTULA_HAWK_WING.get());
         builder(AMEntityRegistry.TASMANIAN_DEVIL.get(), 0xa6b2bd);
         builder(AMEntityRegistry.TERRAPIN.get(), 0x6d6d2f)
                 .sound(AMSoundRegistry.TERRAPIN_HURT.get());
-        builder(AMEntityRegistry.TIGER.get(), 0xe2b653)
-                .effect(AMEffectRegistry.TIGERS_BLESSING.get(), 2 * 60 * 20)
-                .cooldown(4 * 60 * 20);
+        builder(AMEntityRegistry.TIGER.get(), 0xe2b653);
         builder(AMEntityRegistry.TOUCAN.get(), 0xf28d32);
         builder(AMEntityRegistry.TUSKLIN.get(), 0x7c6445)
                 .scale(0.2);
@@ -202,7 +195,7 @@ public class AlexsMobsTrophies {
                 .getTag().putBoolean("Dwarf", true);
         builder(AMEntityRegistry.WARPED_MOSCO.get(), 0x20fcce)
                 .scale(0.1666);
-        builder(AMEntityRegistry.WARPED_TOAD.get(), 0x179896);*/
+        builder(AMEntityRegistry.WARPED_TOAD.get(), 0x179896);
 
         return TROPHIES.stream().map(EntityTrophyBuilder::createTrophy).toList();
     }

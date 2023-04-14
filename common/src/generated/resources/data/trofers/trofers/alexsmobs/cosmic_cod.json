@@ -1,0 +1,40 @@
+{
+  "colors": {
+    "accent": "#6E9DDB",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "alexsmobs:cosmic_cod_hurt"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:cosmic_cod"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alexsmobs"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#6E9DDB",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.cosmic_cod"
+      }
+    ]
+  }
+}

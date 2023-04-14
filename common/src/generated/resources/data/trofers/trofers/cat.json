@@ -7,10 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "minecraft:gameplay/cat_morning_gift"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.cat.ambient"
     }

@@ -7,10 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/magma_cube"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.magma_cube.squish"
     }

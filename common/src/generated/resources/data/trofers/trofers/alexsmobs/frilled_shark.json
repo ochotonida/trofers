@@ -1,0 +1,40 @@
+{
+  "colors": {
+    "accent": "#675C60",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.cod.flop"
+    }
+  },
+  "entity": {
+    "type": "alexsmobs:frilled_shark"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "alexsmobs"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#675C60",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.alexsmobs.frilled_shark"
+      }
+    ]
+  }
+}

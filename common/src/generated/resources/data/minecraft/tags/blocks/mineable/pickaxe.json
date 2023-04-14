@@ -1,10 +1,10 @@
 {
   "values": [
-    "trofers:large_pillar",
-    "trofers:small_plate",
-    "trofers:medium_plate",
-    "trofers:large_plate",
     "trofers:medium_pillar",
-    "trofers:small_pillar"
+    "trofers:small_pillar",
+    "trofers:medium_plate",
+    "trofers:small_plate",
+    "trofers:large_pillar",
+    "trofers:large_plate"
   ]
 }

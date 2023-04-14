@@ -7,10 +7,6 @@
     "scale": 0.175
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/ravager"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.ravager.ambient"
     }

@@ -14,10 +14,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/salmon"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.salmon.flop"
     }

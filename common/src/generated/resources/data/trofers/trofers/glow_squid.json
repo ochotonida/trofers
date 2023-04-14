@@ -10,12 +10,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "statusEffect": {
-        "duration": 200,
-        "effect": "minecraft:glowing"
-      }
-    },
     "sound": {
       "soundEvent": "minecraft:entity.glow_squid.ambient"
     }

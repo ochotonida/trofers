@@ -7,14 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "statusEffect": {
-        "amplifier": 2,
-        "duration": 2400,
-        "effect": "minecraft:absorption"
-      }
-    },
     "sound": {
       "soundEvent": "minecraft:entity.iron_golem.repair"
     }

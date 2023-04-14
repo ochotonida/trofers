@@ -7,10 +7,6 @@
     "scale": 0.25
   },
   "effects": {
-    "rewards": {
-      "cooldown": 9600,
-      "lootTable": "trofers:trophies/hoglin"
-    },
     "sound": {
       "soundEvent": "minecraft:entity.hoglin.ambient"
     }
