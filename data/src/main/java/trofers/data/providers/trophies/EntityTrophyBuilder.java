@@ -20,6 +20,7 @@ import trofers.Trofers;
 import trofers.trophy.*;
 
 import java.util.Collections;
+import java.util.Optional;
 
 @SuppressWarnings("UnusedReturnValue")
 public class EntityTrophyBuilder {
@@ -130,12 +131,12 @@ public class EntityTrophyBuilder {
 
         return new Trophy(
                 createId(),
-                createTrophyName(),
+                Optional.of(createTrophyName()),
                 Collections.emptyList(),
                 createDisplayInfo(),
                 Animation.STATIC,
                 ItemStack.EMPTY,
-                entityInfo,
+                Optional.of(entityInfo),
                 colorInfo,
                 effectInfo,
                 false
@@ -148,7 +149,7 @@ public class EntityTrophyBuilder {
         if (!ForgeRegistries.ENTITY_TYPES.getKey(entityType).getNamespace().equals("minecraft")) {
             folder = ForgeRegistries.ENTITY_TYPES.getKey(entityType).getNamespace() + "/";
         }
-        return new ResourceLocation(Trofers.MOD_ID, folder + ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath());
+        return Trofers.id(folder + ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath());
     }
 
     protected Component createTrophyName() {
@@ -192,6 +193,6 @@ public class EntityTrophyBuilder {
 
         ResourceLocation entityId = ForgeRegistries.ENTITY_TYPES.getKey(entityType);
         String modId = entityId.getNamespace().equals("minecraft") ? "" : entityId.getNamespace() + "/";
-        return new ResourceLocation(Trofers.MOD_ID, String.format("trophies/%s", modId + ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath()));
+        return Trofers.id(String.format("trophies/%s", modId + ForgeRegistries.ENTITY_TYPES.getKey(entityType).getPath()));
     }
 }

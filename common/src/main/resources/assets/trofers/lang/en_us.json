@@ -1,7 +1,6 @@
 {
   "trofers.creative_tab": "Trofers",
   "block.trofers.trophy": "Trophy",
-  "button.trofers.cancel": "Cancel",
   "config.trofers.trophy_chance": "Trophy Chance",
   "config.trofers.enable_trophy_loot": "Enable Trophy Loot",
   "config.trofers.enable_trophy_effects": "Enable Trophy Effects",

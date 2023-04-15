@@ -1,5 +1,6 @@
 package trofers.block;
 
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import trofers.Trofers;
 import trofers.block.entity.TrophyBlockEntity;
 import trofers.block.entity.TrophyScreen;
 import trofers.registry.ModBlockEntityTypes;
@@ -32,6 +34,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class TrophyBlock extends BaseEntityBlock {
+
+    public static final String DESCRIPTION_ID = Util.makeDescriptionId("block", Trofers.id("trophy"));
 
     private final int size;
 
@@ -53,7 +57,7 @@ public abstract class TrophyBlock extends BaseEntityBlock {
 
     @Override
     public String getDescriptionId() {
-        return "block.trofers.trophy";
+        return DESCRIPTION_ID;
     }
 
     @Override

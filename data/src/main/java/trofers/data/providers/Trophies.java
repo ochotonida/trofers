@@ -10,6 +10,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.data.Util;
 import trofers.data.providers.trophies.*;
+import trofers.trophy.EntityInfo;
 import trofers.trophy.Trophy;
 
 import java.nio.file.Path;
@@ -49,20 +50,24 @@ public class Trophies implements DataProvider {
         Set<ResourceLocation> resourceLocations = Sets.newHashSet();
 
         for (Trophy trophy : trophies) {
-            // noinspection ConstantConditions
-            String modId = ForgeRegistries.ENTITY_TYPES.getKey(trophy.entity().getType()).getNamespace();
-            if (!resourceLocations.add(trophy.id())) {
-                throw new IllegalStateException("Duplicate trophy " + trophy.id());
-            } else {
-                Path path = createPath(outputFolder, trophy);
-                JsonObject object;
-                if (modId.equals("minecraft")) {
-                    object = trophy.toJson();
-                } else {
-                    object = trophy.toJson(Util.addModLoadedConditions(new JsonObject(), modId));
-                }
-                futures.add(DataProvider.saveStable(cache, object, path));
-            }
+            trophy.entity()
+                    .map(EntityInfo::getType)
+                    .map(ForgeRegistries.ENTITY_TYPES::getKey)
+                    .map(ResourceLocation::getNamespace)
+                    .ifPresent(modId -> {
+                        if (!resourceLocations.add(trophy.id())) {
+                            throw new IllegalStateException("Duplicate trophy " + trophy.id());
+                        } else {
+                            Path path = createPath(outputFolder, trophy);
+                            JsonObject object;
+                            if (modId.equals("minecraft")) {
+                                object = trophy.toJson();
+                            } else {
+                                object = trophy.toJson(Util.addModLoadedConditions(new JsonObject(), modId));
+                            }
+                            futures.add(DataProvider.saveStable(cache, object, path));
+                        }
+                    });
         }
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));

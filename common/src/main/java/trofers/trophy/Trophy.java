@@ -16,17 +16,16 @@ import trofers.util.JsonHelper;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public record Trophy(
         ResourceLocation id,
-        @Nullable
-        Component name,
+        Optional<Component> name,
         List<Component> tooltip,
         DisplayInfo display,
         Animation animation,
         ItemStack item,
-        @Nullable
-        EntityInfo entity,
+        Optional<EntityInfo> entity,
         ColorInfo colors,
         EffectInfo effects,
         boolean isHidden
@@ -55,17 +54,13 @@ public record Trophy(
 
     public void toNetwork(FriendlyByteBuf buffer) {
         buffer.writeResourceLocation(id);
-        buffer.writeBoolean(name != null);
-        if (name != null) {
-            buffer.writeComponent(name);
-        }
+        buffer.writeBoolean(name.isPresent());
+        name.ifPresent(buffer::writeComponent);
         display.toNetwork(buffer);
         animation.toNetwork(buffer);
         buffer.writeItem(item);
-        buffer.writeBoolean(entity != null);
-        if (entity != null) {
-            entity.toNetwork(buffer);
-        }
+        buffer.writeBoolean(entity.isPresent());
+        entity.ifPresent(entityInfo -> entityInfo.toNetwork(buffer));
         colors.toNetwork(buffer);
         effects.toNetwork(buffer);
         for (Component line : tooltip) {
@@ -98,12 +93,12 @@ public record Trophy(
         boolean isHidden = buffer.readBoolean();
         return new Trophy(
                 id,
-                name,
+                Optional.ofNullable(name),
                 tooltip,
                 display,
                 animation,
                 item,
-                entity,
+                Optional.ofNullable(entity),
                 colors,
                 effects,
                 isHidden
@@ -115,7 +110,7 @@ public record Trophy(
     }
 
     public JsonObject toJson(JsonObject result) {
-        result.add("name", Component.Serializer.toJsonTree(name()));
+        name.ifPresent(component -> result.add("name", Component.Serializer.toJsonTree(component)));
 
         if (!tooltip().isEmpty()) {
             JsonArray tooltip = new JsonArray();
@@ -137,9 +132,7 @@ public record Trophy(
             result.add("item", JsonHelper.serializeItem(item()));
         }
 
-        if (entity() != null) {
-            result.add("entity", entity().toJson());
-        }
+        entity().ifPresent(entityInfo -> result.add("entity", entityInfo.toJson()));
 
         if (!colors().equals(ColorInfo.NONE)) {
             result.add("colors", colors().toJson());
@@ -214,12 +207,12 @@ public record Trophy(
 
         return new Trophy(
                 id,
-                name,
+                Optional.ofNullable(name),
                 tooltip,
                 display,
                 animation,
                 item,
-                entity,
+                Optional.ofNullable(entity),
                 colors,
                 effects,
                 isHidden

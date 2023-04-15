@@ -40,7 +40,7 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
                 .copy("Trophy", "BlockEntityTag.Trophy");
 
         for (RegistrySupplier<TrophyBlock> trophy : ModBlocks.TROPHIES) {
-            ResourceLocation location = new ResourceLocation(Trofers.MOD_ID, "blocks/" + trophy.getId().getPath());
+            ResourceLocation location = Trofers.id("blocks/" + trophy.getId().getPath());
             LootTable.Builder lootTable = LootTable.lootTable().withPool(
                     LootPool.lootPool().add(
                             LootItem.lootTableItem(

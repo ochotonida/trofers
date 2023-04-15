@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -39,9 +40,9 @@ public class AddEntityTrophy extends LootModifier {
     private final Map<ResourceLocation, ResourceLocation> trophies;
     private final Set<EntityType<?>> entities;
 
-    public AddEntityTrophy(LootItemCondition[] conditions, Item trophyBase, Map<ResourceLocation, ResourceLocation> trophies) {
+    public AddEntityTrophy(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies) {
         super(conditions);
-        this.trophyBase = trophyBase;
+        this.trophyBase = trophyBase.asItem();
         this.trophies = trophies;
         entities = new HashSet<>();
         for (ResourceLocation entityTypeId : trophies.keySet()) {

@@ -9,9 +9,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.TrofersClient;
 import trofers.block.TrophyBlock;
 import trofers.block.entity.TrophyBlockEntityRenderer;
-import trofers.block.entity.TrophySearchTreeManager;
 import trofers.registry.ModBlockEntityTypes;
 import trofers.registry.ModBlocks;
+import trofers.trophy.TrophySearchTreeManager;
 
 import java.util.function.Supplier;
 

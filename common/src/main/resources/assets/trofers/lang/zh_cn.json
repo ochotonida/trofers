@@ -1,7 +1,6 @@
 {
   "trofers.creative_tab": "Trofers",
   "block.trofers.trophy": "奖杯",
-  "button.trofers.cancel": "取消",
   "config.trofers.trophy_chance": "奖杯掉落机率",
   "config.trofers.enable_trophy_loot": "启用奖杯战利品",
   "config.trofers.enable_trophy_effects": "启用奖杯状态效果",

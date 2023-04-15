@@ -39,8 +39,8 @@ public class TrophyItem extends BlockItem {
     @Override
     public Component getName(ItemStack stack) {
         Trophy trophy = Trophy.getTrophy(stack);
-        if (trophy != null && trophy.name() != null) {
-            return trophy.name();
+        if (trophy != null && trophy.name().isPresent()) {
+            return trophy.name().get();
         }
         return super.getName(stack);
     }

@@ -10,7 +10,6 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.Trofers;
-import trofers.TrofersClient;
 import trofers.config.ModConfig;
 import trofers.forge.init.ModLootModifiers;
 import trofers.trophy.TrophyManager;
@@ -22,8 +21,6 @@ public class TrofersForge {
         EventBuses.registerModEventBus(Trofers.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
 
         Trofers.init();
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> TrofersClient::init);
-
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> TrofersForgeClient::new);
 
         ModConfig.registerCommon();

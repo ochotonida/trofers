@@ -11,10 +11,6 @@ import javax.annotation.Nullable;
 
 public class TrofersClient {
 
-    public static void init() {
-
-    }
-
     private static int getTrophyColor(Trophy trophy, int index) {
         if (trophy != null) {
             if (index == 0) {

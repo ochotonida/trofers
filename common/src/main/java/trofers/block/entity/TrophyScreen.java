@@ -21,14 +21,15 @@ import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import trofers.Trofers;
 import trofers.network.NetworkHandler;
 import trofers.network.SetTrophyPacket;
 import trofers.trophy.Trophy;
+import trofers.trophy.TrophySearchTreeManager;
 
 import java.util.HashSet;
 import java.util.List;
@@ -165,7 +166,7 @@ public class TrophyScreen extends Screen {
 
         addRenderableWidget(
                 Button.builder(
-                        Component.translatable(String.format("button.%s.cancel", Trofers.MOD_ID)),
+                        CommonComponents.GUI_CANCEL,
                         button -> onClose()
                 ).pos(
                         width / 2 - CANCEL_BUTTON_WIDTH / 2,

@@ -11,6 +11,6 @@ public abstract class TrophyManagerMixin implements IdentifiableResourceReloadLi
 
     @Override
     public ResourceLocation getFabricId() {
-        return new ResourceLocation(Trofers.MOD_ID, "trophy_manager");
+        return Trofers.id("trophy_manager");
     }
 }

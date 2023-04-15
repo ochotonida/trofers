@@ -21,7 +21,8 @@ import trofers.Trofers;
 import trofers.data.providers.trophies.TinkersConstructTrophies;
 import trofers.forge.loot.AddEntityTrophy;
 import trofers.loot.RandomTrophyChanceCondition;
-import trofers.registry.ModItems;
+import trofers.registry.ModBlocks;
+import trofers.trophy.EntityInfo;
 import trofers.trophy.Trophy;
 
 import java.nio.file.Path;
@@ -51,13 +52,14 @@ public class LootModifiers implements DataProvider {
     protected void start() {
         Map<String, Map<EntityType<?>, Trophy>> trophies = new HashMap<>();
         for (Trophy trophy : this.trophies.trophies) {
-            EntityType<?> entityType = trophy.entity().getType();
-            String modid = ForgeRegistries.ENTITY_TYPES.getKey(trophy.entity().getType()).getNamespace();
+            trophy.entity().map(EntityInfo::getType).ifPresent(entityType -> {
+                String modid = ForgeRegistries.ENTITY_TYPES.getKey(entityType).getNamespace();
 
-            if (!trophies.containsKey(modid)) {
-                trophies.put(modid, new HashMap<>());
-            }
-            trophies.get(modid).put(entityType, trophy);
+                if (!trophies.containsKey(modid)) {
+                    trophies.put(modid, new HashMap<>());
+                }
+                trophies.get(modid).put(entityType, trophy);
+            });
         }
 
         if (ModList.get().isLoaded("tinkers_construct"))
@@ -70,7 +72,7 @@ public class LootModifiers implements DataProvider {
             };
 
             Map<ResourceLocation, ResourceLocation> trophyIds = trophies.get(modId).entrySet().stream().collect(Collectors.toMap(entry -> ForgeRegistries.ENTITY_TYPES.getKey(entry.getKey()), entry -> entry.getValue().id()));
-            AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModItems.SMALL_PLATE.get(), trophyIds);
+            AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModBlocks.SMALL_PLATE.get(), trophyIds);
 
             String name = modId.equals("minecraft") ? "vanilla" : modId;
             name = name + "_trophies";

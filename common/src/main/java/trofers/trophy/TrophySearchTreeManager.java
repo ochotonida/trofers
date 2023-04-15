@@ -1,4 +1,4 @@
-package trofers.block.entity;
+package trofers.trophy;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.searchtree.FullTextSearchTree;
@@ -6,8 +6,7 @@ import net.minecraft.client.searchtree.RefreshableSearchTree;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
-import trofers.trophy.Trophy;
-import trofers.trophy.TrophyManager;
+import trofers.block.TrophyBlock;
 
 import java.util.Comparator;
 import java.util.List;
@@ -31,11 +30,9 @@ public class TrophySearchTreeManager implements ResourceManagerReloadListener {
     public static void createSearchTree() {
         searchTree = new FullTextSearchTree<>(
                 trophy -> Stream.of(
-                        ChatFormatting.stripFormatting((
-                                        trophy.name() == null
-                                                ? Component.translatable("block.trofers.trophy")
-                                                : trophy.name().getString()
-                                ).toString()
+                        ChatFormatting.stripFormatting(trophy.name()
+                                .orElse(Component.translatable(TrophyBlock.DESCRIPTION_ID))
+                                .getString()
                         ).trim()
                 ),
                 trophy -> Stream.of(trophy.id()),

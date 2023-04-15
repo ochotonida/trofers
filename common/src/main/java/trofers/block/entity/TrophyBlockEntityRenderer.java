@@ -13,6 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import trofers.trophy.Animation;
+import trofers.trophy.EntityInfo;
 import trofers.trophy.Trophy;
 
 public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBlockEntity> {
@@ -69,10 +70,11 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
     }
 
     private static void renderEntity(Trophy trophy, float ticks, int trophyHeight, PoseStack poseStack, MultiBufferSource multiBufferSource, int light) {
-        if (Minecraft.getInstance().level == null || trophy.entity() == null) {
+        if (Minecraft.getInstance().level == null || trophy.entity().isEmpty()) {
             return;
         }
-        Entity entity = trophy.entity().getOrCreateEntity(Minecraft.getInstance().level);
+        EntityInfo entityInfo = trophy.entity().get();
+        Entity entity = entityInfo.getOrCreateEntity(Minecraft.getInstance().level);
         if (entity == null) {
             return;
         }
@@ -81,7 +83,7 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         float entityHeight = entity.getBbHeight();
         translateRotate(poseStack, trophy, trophyHeight, entityHeight / 2, ticks);
 
-        if (!trophy.entity().isAnimated()) {
+        if (!entityInfo.isAnimated()) {
             ticks = 0;
         }
 

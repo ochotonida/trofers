@@ -14,10 +14,10 @@ import net.minecraft.world.level.block.Block;
 import trofers.TrofersClient;
 import trofers.block.TrophyBlock;
 import trofers.block.entity.TrophyBlockEntityRenderer;
-import trofers.block.entity.TrophySearchTreeManager;
 import trofers.item.TrophyItemRenderer;
 import trofers.registry.ModBlockEntityTypes;
 import trofers.registry.ModBlocks;
+import trofers.trophy.TrophySearchTreeManager;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -26,8 +26,6 @@ public class TrofersFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        TrofersClient.init();
-
         BlockEntityRenderers.register(ModBlockEntityTypes.TROPHY.get(), TrophyBlockEntityRenderer::new);
 
         registerTrophyItemRenderers();

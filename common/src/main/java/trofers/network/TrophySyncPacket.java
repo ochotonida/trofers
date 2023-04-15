@@ -3,9 +3,9 @@ package trofers.network;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import trofers.block.entity.TrophySearchTreeManager;
 import trofers.trophy.Trophy;
 import trofers.trophy.TrophyManager;
+import trofers.trophy.TrophySearchTreeManager;
 
 import java.util.HashMap;
 import java.util.Map;
