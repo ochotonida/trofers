@@ -1,8 +1,40 @@
 package trofers;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockAndTintGetter;
+import net.minecraft.world.level.block.state.BlockState;
+import trofers.block.entity.TrophyBlockEntity;
+import trofers.trophy.Trophy;
+
+import javax.annotation.Nullable;
+
 public class TrofersClient {
 
     public static void init() {
 
+    }
+
+    private static int getTrophyColor(Trophy trophy, int index) {
+        if (trophy != null) {
+            if (index == 0) {
+                return trophy.colors().base();
+            } else if (index == 1) {
+                return trophy.colors().accent();
+            }
+        }
+        return 0xFFFFFF;
+    }
+
+    @SuppressWarnings("unused")
+    public static int getTrophyBlockColor(BlockState state, @Nullable BlockAndTintGetter level, @Nullable BlockPos pos, int index) {
+        if (level != null && pos != null && level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
+            return getTrophyColor(blockEntity.getTrophy(), index);
+        }
+        return 0xFFFFFF;
+    }
+
+    public static int getTrophyItemColor(ItemStack stack, int index) {
+        return getTrophyColor(Trophy.getTrophy(stack), index);
     }
 }

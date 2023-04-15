@@ -17,6 +17,9 @@
   "entrypoints": {
     "main": [
       "trofers.fabric.TrofersFabric"
+    ],
+    "client": [
+      "trofers.fabric.TrofersFabricClient"
     ]
   },
   "mixins": [

@@ -8,13 +8,11 @@ import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.Trofers;
 import trofers.TrofersClient;
 import trofers.config.ModConfig;
 import trofers.forge.init.ModLootModifiers;
-import trofers.network.NetworkHandler;
 import trofers.trophy.TrophyManager;
 
 @Mod(Trofers.MOD_ID)
@@ -32,16 +30,10 @@ public class TrofersForge {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        modEventBus.addListener(this::onCommonSetup);
-
         ModLootModifiers.LOOT_MODIFIERS.register(modEventBus); // TODO move to common
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(this::onDataPackReload);
-    }
-
-    public void onCommonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(NetworkHandler::register);
     }
 
     public void onAddReloadListener(AddReloadListenerEvent event) {

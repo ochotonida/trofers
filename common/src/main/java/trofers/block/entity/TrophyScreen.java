@@ -4,7 +4,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.ChatFormatting;
 import net.minecraft.CrashReport;
 import net.minecraft.CrashReportCategory;
 import net.minecraft.ReportedException;
@@ -20,13 +19,9 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
-import net.minecraft.client.searchtree.FullTextSearchTree;
-import net.minecraft.client.searchtree.RefreshableSearchTree;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
@@ -34,14 +29,10 @@ import trofers.Trofers;
 import trofers.network.NetworkHandler;
 import trofers.network.SetTrophyPacket;
 import trofers.trophy.Trophy;
-import trofers.trophy.TrophyManager;
 
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class TrophyScreen extends Screen {
 
@@ -80,7 +71,7 @@ public class TrophyScreen extends Screen {
         this.blockPos = blockPos;
         this.currentPage = -1;
 
-        trophies = SearchTreeManager.searchTree.search("");
+        trophies = TrophySearchTreeManager.search("");
     }
 
     public static void open(Item item, BlockPos pos) {
@@ -218,7 +209,7 @@ public class TrophyScreen extends Screen {
     }
 
     public void onEditSearchBox(String text) {
-        List<Trophy> searchResult = SearchTreeManager.searchTree.search(text);
+        List<Trophy> searchResult = TrophySearchTreeManager.search(text);
 
         if (!searchResult.equals(trophies)) {
             trophies = searchResult;
@@ -365,35 +356,4 @@ public class TrophyScreen extends Screen {
         }
     }
 
-    public static class SearchTreeManager implements ResourceManagerReloadListener {
-
-        private static RefreshableSearchTree<Trophy> searchTree;
-
-        @Override
-        public void onResourceManagerReload(ResourceManager manager) {
-            createSearchTree();
-        }
-
-        @SuppressWarnings("ConstantConditions")
-        public static void createSearchTree() {
-            searchTree = new FullTextSearchTree<>(
-                    trophy -> Stream.of(
-                            ChatFormatting.stripFormatting((
-                                            trophy.name() == null
-                                                    ? Component.translatable("block.trofers.trophy")
-                                                    : trophy.name().getString()
-                                    ).toString()
-                            ).trim()
-                    ),
-                    trophy -> Stream.of(trophy.id()),
-                    TrophyManager.values()
-                            .stream()
-                            .filter(trophy -> !trophy.isHidden())
-                            .sorted(Comparator.comparing(trophy -> trophy.id().toString()))
-                            .collect(Collectors.toList())
-            );
-
-            searchTree.refresh();
-        }
-    }
 }

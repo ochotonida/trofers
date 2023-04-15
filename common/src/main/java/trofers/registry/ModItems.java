@@ -13,22 +13,17 @@ import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.item.TrophyItem;
 
-import java.util.HashSet;
-import java.util.Set;
-
 @SuppressWarnings("unused")
 public class ModItems {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(Trofers.MOD_ID, Registries.ITEM);
 
     private static ItemStack makeIcon() {
-        ItemStack result = new ItemStack(MEDIUM_PILLAR.get());
+        ItemStack result = new ItemStack(ModBlocks.MEDIUM_PILLAR.get());
         result.getOrCreateTagElement("BlockEntityTag")
                 .putString("Trophy", new ResourceLocation(Trofers.MOD_ID, "panda").toString());
         return result;
     }
-
-    public static final Set<RegistrySupplier<TrophyItem>> TROPHIES = new HashSet<>();
 
     public static final RegistrySupplier<TrophyItem> SMALL_PILLAR = addTrophy(ModBlocks.SMALL_PILLAR);
     public static final RegistrySupplier<TrophyItem> MEDIUM_PILLAR = addTrophy(ModBlocks.MEDIUM_PILLAR);
@@ -54,14 +49,8 @@ public class ModItems {
     );
 
     private static RegistrySupplier<TrophyItem> addTrophy(RegistrySupplier<TrophyBlock> block) {
-        RegistrySupplier<TrophyItem> trophy = ITEMS.register(block.getId().getPath(), () ->
-                new TrophyItem(
-                        block.get(),
-                        new Item.Properties()
-                                .fireResistant()
-                )
+        return ITEMS.register(block.getId().getPath(),
+                () -> new TrophyItem(block.get(), new Item.Properties().fireResistant())
         );
-        TROPHIES.add(trophy);
-        return trophy;
     }
 }
