@@ -6,6 +6,7 @@
     "TrophySearchTreeManagerMixin"
   ],
   "mixins": [
+    "AbstractLootModifierMixin",
     "TrophyManagerMixin"
   ],
   "injectors": {

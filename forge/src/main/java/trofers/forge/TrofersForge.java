@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.Trofers;
 import trofers.config.ModConfig;
-import trofers.forge.init.ModLootModifiers;
+import trofers.forge.platform.ForgePlatformHelper;
 import trofers.trophy.TrophyManager;
 
 @Mod(Trofers.MOD_ID)
@@ -27,7 +27,7 @@ public class TrofersForge {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus); // TODO move to common
+        ForgePlatformHelper.LOOT_MODIFIERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(this::onDataPackReload);

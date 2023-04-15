@@ -21,10 +21,30 @@ configurations {
     developmentFabric.extendsFrom common
 }
 
+repositories {
+    maven {
+        // porting lib
+        url = "https://mvn.devos.one/snapshots/"
+    }
+    maven {
+        // mod menu
+        url = "https://maven.terraformersmc.com"
+    }
+    maven {
+        url = "https://jitpack.io"
+    }
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
     modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:base:${rootProject.porting_lib_version}+${rootProject.minecraft_version}"))
+
+    modRuntimeOnly("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") {
+        transitive = false
+    }
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

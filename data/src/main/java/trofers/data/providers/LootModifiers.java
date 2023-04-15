@@ -19,7 +19,7 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
 import trofers.data.providers.trophies.TinkersConstructTrophies;
-import trofers.forge.loot.AddEntityTrophy;
+import trofers.loot.AddEntityTrophy;
 import trofers.loot.RandomTrophyChanceCondition;
 import trofers.registry.ModBlocks;
 import trofers.trophy.EntityInfo;
@@ -76,7 +76,7 @@ public class LootModifiers implements DataProvider {
 
             String name = modId.equals("minecraft") ? "vanilla" : modId;
             name = name + "_trophies";
-            add(name, modifier);
+            add(name, (IGlobalLootModifier) modifier);
         }
     }
 

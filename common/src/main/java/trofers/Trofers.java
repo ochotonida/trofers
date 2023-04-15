@@ -7,6 +7,7 @@ import trofers.network.NetworkHandler;
 import trofers.registry.ModBlockEntityTypes;
 import trofers.registry.ModBlocks;
 import trofers.registry.ModLootConditions;
+import trofers.registry.ModLootModifiers;
 
 public class Trofers {
 
@@ -24,5 +25,6 @@ public class Trofers {
         ModBlocks.ITEMS.register();
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register();
         ModLootConditions.LOOT_CONDITION_TYPES.register();
+        ModLootModifiers.registerLootModifiers();
     }
 }
