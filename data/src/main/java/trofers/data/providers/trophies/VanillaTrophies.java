@@ -32,7 +32,7 @@ public class VanillaTrophies {
                 .sound(SoundEvents.AXOLOTL_IDLE_AIR)
                 .getTag().putInt("Variant", 0);
         builder(EntityType.BAT, 0x75653f)
-                .effect(MobEffects.NIGHT_VISION, 20 * 40)
+                .effect(MobEffects.NIGHT_VISION, 20)
                 .cooldown(0);
         builder(EntityType.BEE, 0xebc542)
                 .sound(SoundEvents.BEE_POLLINATE);
@@ -52,7 +52,7 @@ public class VanillaTrophies {
         builder(EntityType.CREEPER, 0x48b23a)
                 .sound(SoundEvents.CREEPER_PRIMED);
         builder(EntityType.DOLPHIN, 0xb0c4d8)
-                .effect(MobEffects.DOLPHINS_GRACE, 20 * 40)
+                .effect(MobEffects.DOLPHINS_GRACE, 20)
                 .cooldown(0);
         builder(EntityType.DONKEY, 0x817164);
         builder(EntityType.DROWNED, 0x56847e);
@@ -122,7 +122,7 @@ public class VanillaTrophies {
                 .sound(SoundEvents.SALMON_FLOP);
         builder(EntityType.SHEEP, 0xffffff);
         builder(EntityType.SHULKER, 0x986a97)
-                .effect(MobEffects.LEVITATION, 20 * 5)
+                .effect(MobEffects.LEVITATION, 5)
                 .cooldown(0);
         builder(EntityType.SILVERFISH, 0x778c99);
         builder(EntityType.SKELETON, 0xbdbdbd)

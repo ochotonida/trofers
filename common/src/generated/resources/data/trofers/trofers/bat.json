@@ -9,7 +9,7 @@
   "effects": {
     "rewards": {
       "statusEffect": {
-        "duration": 16000,
+        "duration": 400,
         "effect": "minecraft:night_vision"
       }
     },
