@@ -1,7 +1,7 @@
 {
   "trofers.creative_tab": "Trofers",
   "block.trofers.trophy": "Trofeo",
-  "config.trofers.trophy_chance": "Possibilità di trofeo",
+  "text.autoconfig.trofers.option.general.trophyChance": "Possibilità di trofeo",
   "message.trofers.reward_cooldown": "Prossima ricompensa disponibile in %s",
   "time.trofers.second": "1 secondo",
   "time.trofers.seconds": "%s secondi",

@@ -30,7 +30,6 @@ import net.minecraft.world.phys.Vec3;
 import org.apache.logging.log4j.Level;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
-import trofers.config.ModConfig;
 import trofers.registry.ModBlockEntityTypes;
 import trofers.trophy.EffectInfo;
 import trofers.trophy.Trophy;
@@ -126,8 +125,8 @@ public class TrophyBlockEntity extends BlockEntity {
         giveRewards(rewards, player, hand);
 
         return sound != null
-                || rewards.lootTable() != null && ModConfig.common.enableTrophyLoot.get()
-                || !rewards.statusEffect().isEmpty() && ModConfig.common.enableTrophyEffects.get();
+                || rewards.lootTable() != null && Trofers.CONFIG.general.enableTrophyLoot
+                || !rewards.statusEffect().isEmpty() && Trofers.CONFIG.general.enableTrophyEffects;
     }
 
     private static void playSound(ServerLevel level, ResourceLocation sound, Vec3 pos, float volume, float pitch) {
@@ -150,8 +149,8 @@ public class TrophyBlockEntity extends BlockEntity {
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
         if (player.level.isClientSide()) {
             return;
-        } else if ((!ModConfig.common.enableTrophyLoot.get() || rewards.lootTable() == null)
-                && (!ModConfig.common.enableTrophyEffects.get() || rewards.statusEffect().isEmpty())) {
+        } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable() == null)
+                && (!Trofers.CONFIG.general.enableTrophyEffects || rewards.statusEffect().isEmpty())) {
             return;
         }
 
@@ -194,7 +193,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     private void rewardPotionEffect(EffectInfo.RewardInfo rewards, Player player) {
-        if (ModConfig.common.enableTrophyEffects.get()) {
+        if (Trofers.CONFIG.general.enableTrophyEffects) {
             MobEffectInstance potionEffect = rewards.createStatusEffect();
             if (potionEffect != null) {
                 player.addEffect(potionEffect);
@@ -203,7 +202,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     private void rewardLoot(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
-        if (ModConfig.common.enableTrophyLoot.get()) {
+        if (Trofers.CONFIG.general.enableTrophyLoot) {
             ResourceLocation lootTableLocation = rewards.lootTable();
             if (lootTableLocation != null) {
                 // noinspection ConstantConditions

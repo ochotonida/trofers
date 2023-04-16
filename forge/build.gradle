@@ -41,6 +41,8 @@ dependencies {
     modRuntimeOnly "curse.maven:citadel-331936:4473245"
     modRuntimeOnly "curse.maven:alexsmobs-426558:4476475"
 
+    modImplementation "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
+
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }

@@ -6,7 +6,7 @@ import com.google.gson.JsonSerializationContext;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
-import trofers.config.ModConfig;
+import trofers.Trofers;
 import trofers.registry.ModLootConditions;
 
 public class RandomTrophyChanceCondition implements LootItemCondition {
@@ -20,7 +20,7 @@ public class RandomTrophyChanceCondition implements LootItemCondition {
     }
 
     public boolean test(LootContext context) {
-        return context.getRandom().nextDouble() < ModConfig.common.trophyChance.get();
+        return context.getRandom().nextDouble() < Trofers.CONFIG.general.getTrophyChance();
     }
 
     public static LootItemCondition.Builder randomTrophyChance() {

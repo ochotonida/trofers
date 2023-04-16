@@ -1,9 +1,9 @@
 {
   "trofers.creative_tab": "Trofers",
   "block.trofers.trophy": "奖杯",
-  "config.trofers.trophy_chance": "奖杯掉落机率",
-  "config.trofers.enable_trophy_loot": "启用奖杯战利品",
-  "config.trofers.enable_trophy_effects": "启用奖杯状态效果",
+  "text.autoconfig.trofers.option.general.trophyChance": "奖杯掉落机率",
+  "text.autoconfig.trofers.option.general.enableTrophyLoot": "启用奖杯战利品",
+  "text.autoconfig.trofers.option.general.enableTrophyEffects": "启用奖杯状态效果",
   "message.trofers.reward_cooldown": "下一个奖励在%s后可获得",
   "time.trofers.second": "1秒",
   "time.trofers.seconds": "%s秒",
