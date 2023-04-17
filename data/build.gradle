@@ -45,6 +45,7 @@ minecraft {
 
 mixin {
     config "mixins.${mod_id}.common.json"
+    config "mixins.${mod_id}.forge.json"
 }
 
 repositories {
@@ -74,6 +75,8 @@ dependencies {
 
     compileOnly fg.deobf("curse.maven:autoreglib-250363:4100299")
     compileOnly fg.deobf("curse.maven:quark-243121:4480516")
+
+    runtimeOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 }
 
 jar.finalizedBy('reobfJar')
