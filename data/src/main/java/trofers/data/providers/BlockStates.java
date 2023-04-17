@@ -7,8 +7,6 @@ import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
-import trofers.block.PillarTrophyBlock;
-import trofers.block.PlateTrophyBlock;
 import trofers.block.TrophyBlock;
 import trofers.registry.ModBlocks;
 
@@ -20,42 +18,46 @@ public class BlockStates extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        ModBlocks.TROPHIES.forEach(trophy -> {
-            String modelLocation = Trofers.MOD_ID + ":block/" + trophy.getId().getPath();
-            ModelBuilder<?> builder = models().withExistingParent(modelLocation, "block");
-            horizontalBlock(trophy.get(), state -> builder);
-            if (trophy.get() instanceof PillarTrophyBlock) {
-                createPillar(builder, trophy.get());
-            } else if (trophy.get() instanceof PlateTrophyBlock){
-                createPlate(builder, trophy.get());
-            }
-        });
+        createPillar(ModBlocks.SMALL_PILLAR.get(), 6);
+        createPillar(ModBlocks.MEDIUM_PILLAR.get(), 7);
+        createPillar(ModBlocks.LARGE_PILLAR.get(), 8);
+        createPlate(ModBlocks.SMALL_PLATE.get(), 6);
+        createPlate(ModBlocks.MEDIUM_PLATE.get(), 7);
+        createPlate(ModBlocks.LARGE_PLATE.get(), 8);
     }
 
-    public static void createPillar(ModelBuilder<?> modelBuilder, TrophyBlock block) {
-        int size = block.getSize();
-        int width = 2 * (size - 2);
-        texturedCenteredBox(modelBuilder, width, 0, 2, 0);
-        texturedCenteredBox(modelBuilder, width - 2, 2, size - 2, 1);
-        texturedCenteredBox(modelBuilder, width, size - 2, size, 0);
-        setTextures(modelBuilder, block);
+    @SuppressWarnings("ConstantConditions")
+    private ModelBuilder<?> createBuilder(TrophyBlock block) {
+        String modelLocation = Trofers.MOD_ID + ":block/" + ForgeRegistries.BLOCKS.getKey(block).getPath();
+        ModelBuilder<?> builder = models().withExistingParent(modelLocation, "block");
+        horizontalBlock(block, state -> builder);
+        return builder;
     }
 
-    public static void createPlate(ModelBuilder<?> modelBuilder, TrophyBlock block) {
-        int size = block.getSize();
+    private void createPillar(TrophyBlock block, int size) {
+        ModelBuilder<?> builder = createBuilder(block);
         int width = 2 * (size - 2);
-        texturedCenteredBox(modelBuilder, width, 0, 2, 0);
-        centeredBox(modelBuilder, width, 0, 2)
+        texturedCenteredBox(builder, width, 0, 2, 0);
+        texturedCenteredBox(builder, width - 2, 2, size - 2, 1);
+        texturedCenteredBox(builder, width, size - 2, size, 0);
+        setTextures(builder, block);
+    }
+
+    private void createPlate(TrophyBlock block, int size) {
+        ModelBuilder<?> builder = createBuilder(block);
+        int width = 2 * (size - 2);
+        texturedCenteredBox(builder, width, 0, 2, 0);
+        centeredBox(builder, width, 0, 2)
                 .face(Direction.UP).tintindex(1).texture("#overlay");
 
-        setTextures(modelBuilder, block);
+        setTextures(builder, block);
         // noinspection ConstantConditions
         String overlayTexture = Trofers.MOD_ID + ":block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_overlay";
-        modelBuilder.texture("overlay", overlayTexture);
-        modelBuilder.renderType("cutout");
+        builder.texture("overlay", overlayTexture);
+        builder.renderType("cutout");
     }
 
-    public static void setTextures(ModelBuilder<?> modelBuilder, TrophyBlock block) {
+    private static void setTextures(ModelBuilder<?> modelBuilder, TrophyBlock block) {
         // noinspection ConstantConditions
         String name = ForgeRegistries.BLOCKS.getKey(block).getPath();
         String texturePath = Trofers.MOD_ID + ":block/" + name.replace("plate", "pillar");
@@ -65,7 +67,7 @@ public class BlockStates extends BlockStateProvider {
                 .texture("side", texturePath + "_side");
     }
 
-    public static void texturedCenteredBox(ModelBuilder<?> builder, int width, int minY, int maxY, int tintIndex) {
+    private static void texturedCenteredBox(ModelBuilder<?> builder, int width, int minY, int maxY, int tintIndex) {
         centeredBox(builder, width, minY, maxY)
                 .allFaces((direction, face) -> face
                                 .tintindex(tintIndex)
@@ -73,7 +75,7 @@ public class BlockStates extends BlockStateProvider {
                 );
     }
 
-    public static ModelBuilder<?>.ElementBuilder centeredBox(ModelBuilder<?> builder, int width, int minY, int maxY) {
+    private static ModelBuilder<?>.ElementBuilder centeredBox(ModelBuilder<?> builder, int width, int minY, int maxY) {
         return builder.element()
                 .from(8 - width / 2F, minY, 8 - width / 2F)
                 .to(8 + width / 2F, maxY, 8 + width / 2F);

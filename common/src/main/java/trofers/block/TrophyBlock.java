@@ -24,6 +24,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import trofers.Trofers;
 import trofers.block.entity.TrophyBlockEntity;
 import trofers.screen.TrophySelectionScreen;
@@ -33,15 +36,17 @@ import trofers.trophy.Trophy;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class TrophyBlock extends BaseEntityBlock {
+public class TrophyBlock extends BaseEntityBlock {
 
     public static final String DESCRIPTION_ID = Util.makeDescriptionId("block", Trofers.id("trophy"));
 
-    private final int size;
+    private final int height;
+    private final VoxelShape shape;
 
-    public TrophyBlock(Properties properties, int size) {
+    private TrophyBlock(Properties properties, int height, VoxelShape shape) {
         super(properties);
-        this.size = size;
+        this.height = height;
+        this.shape = shape;
         registerDefaultState(
                 defaultBlockState()
                         .setValue(BlockStateProperties.WATERLOGGED, false)
@@ -49,10 +54,40 @@ public abstract class TrophyBlock extends BaseEntityBlock {
         );
     }
 
-    public abstract int getHeight();
+    public static TrophyBlock createPillarTrophy(Properties properties, int size) {
+        return new TrophyBlock(properties, size, createPillarShape(size));
+    }
 
-    public int getSize() {
-        return size;
+    public static TrophyBlock createPlateTrophy(Properties properties, int size) {
+        return new TrophyBlock(properties, 2, createPlateShape(size));
+    }
+
+    private static VoxelShape createPillarShape(int size) {
+        int width = 2 * (size - 2);
+        return Shapes.or(
+                centeredBox(width, 0, 2),
+                centeredBox(width - 2, 2, size - 2),
+                centeredBox(width, size - 2, size)
+        );
+    }
+
+    private static VoxelShape createPlateShape(int size) {
+        int width = 2 * (size - 2);
+        return box(8 - width / 2D, 0, 8 - width / 2D, 8 + width / 2D, 2, 8 + width / 2D);
+    }
+
+    private static VoxelShape centeredBox(int width, int minY, int maxY) {
+        return box(8 - width / 2D, minY, 8 - width / 2D, 8 + width / 2D, maxY, 8 + width / 2D);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return shape;
+    }
+
+    public int getHeight() {
+        return height;
     }
 
     @Override

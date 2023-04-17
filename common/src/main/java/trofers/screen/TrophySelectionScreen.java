@@ -225,8 +225,6 @@ public class TrophySelectionScreen extends Screen {
         if (currentPage > 0) {
             previousButton.active = true;
         }
-
-        System.out.println(trophyButtons.size());
     }
 
     @Override

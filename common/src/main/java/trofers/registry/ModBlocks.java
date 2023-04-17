@@ -12,8 +12,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import trofers.Trofers;
-import trofers.block.PillarTrophyBlock;
-import trofers.block.PlateTrophyBlock;
 import trofers.block.TrophyBlock;
 import trofers.item.TrophyItem;
 
@@ -37,11 +35,11 @@ public class ModBlocks {
     public static final RegistrySupplier<TrophyBlock> LARGE_PLATE = addPlate("large_plate", 8);
 
     private static RegistrySupplier<TrophyBlock> addPillar(String name, int size) {
-        return addTrophy(name, () -> new PillarTrophyBlock(createProperties(), size));
+        return addTrophy(name, () -> TrophyBlock.createPillarTrophy(createProperties(), size));
     }
 
     private static RegistrySupplier<TrophyBlock> addPlate(String name, int size) {
-        return addTrophy(name, () -> new PlateTrophyBlock(createProperties(), size));
+        return addTrophy(name, () -> TrophyBlock.createPlateTrophy(createProperties(), size));
     }
 
     private static RegistrySupplier<TrophyBlock> addTrophy(String name, Supplier<TrophyBlock> block) {
