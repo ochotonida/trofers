@@ -1,6 +1,5 @@
-package trofers.block.entity;
+package trofers.screen;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -17,15 +16,16 @@ import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositione
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
+import org.joml.Matrix4f;
+import trofers.block.entity.TrophyBlockEntity;
 import trofers.network.NetworkHandler;
 import trofers.network.SetTrophyPacket;
 import trofers.trophy.Trophy;
@@ -35,19 +35,19 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class TrophyScreen extends Screen {
+public class TrophySelectionScreen extends Screen {
 
     private static final int HORIZONTAL_PADDING = 80;
-    private static final int VERTICAL_PADDING = 20;
-    private static final int BUTTON_SIZE = 40;
+    private static final int VERTICAL_PADDING = 16;
+    private static final int TROPHY_BUTTON_SIZE = 40;
     private static final int BUTTON_SPACING = 8;
     private static final int CANCEL_BUTTON_WIDTH = 96;
-    private static final int UPPER_BUTTON_SIZE = 20;
+    private static final int NAVIGATION_BUTTON_SIZE = 20;
     private static final int SEARCH_BAR_HEIGHT = 12;
-    private static final int SEARCH_BAR_SPACING = 4;
-    private static final int MIN_ROWS = 2;
-    private static final int MIN_COLUMNS = 2;
-    private static final int MAX_COLUMNS = 16;
+    private static final int SEARCH_BAR_VERTICAL_SPACING = 8;
+    private static final int MIN_ROW_COUNT = 2;
+    private static final int MIN_COLUMN_COUNT = 2;
+    private static final int MAX_COLUMN_COUNT = 16;
     private static final float ITEM_SCALE = 2;
 
     private List<Trophy> trophies;
@@ -58,25 +58,25 @@ public class TrophyScreen extends Screen {
     private final Set<Button> trophyButtons = new HashSet<>();
 
     private int currentPage;
-    private int rows;
-    private int columns;
+    private int rowCount;
+    private int columnCount;
     private int rowStart;
     private int columnStart;
 
-    private final Item trophyItem;
+    private final BlockState blockState;
     private final BlockPos blockPos;
 
-    public TrophyScreen(Item trophyItem, BlockPos blockPos) {
+    public TrophySelectionScreen(BlockState blockState, BlockPos blockPos) {
         super(Component.empty());
-        this.trophyItem = trophyItem;
+        this.blockState = blockState;
         this.blockPos = blockPos;
         this.currentPage = -1;
 
         trophies = TrophySearchTreeManager.search("");
     }
 
-    public static void open(Item item, BlockPos pos) {
-        Minecraft.getInstance().setScreen(new TrophyScreen(item, pos));
+    public static void open(BlockState blockState, BlockPos pos) {
+        Minecraft.getInstance().setScreen(new TrophySelectionScreen(blockState, pos));
     }
 
     @Override
@@ -87,14 +87,11 @@ public class TrophyScreen extends Screen {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        boolean isInventoryKeyDown = minecraft != null && minecraft.options.keyInventory.matches(keyCode, scanCode);
         if (super.keyPressed(keyCode, scanCode, modifiers)) {
             return true;
-        } else if (
-                !searchBox.isFocused()
-                && minecraft != null
-                && minecraft.options.keyInventory.matches(keyCode, scanCode)
-        ) {
-            this.onClose();
+        } else if (!searchBox.isFocused() && isInventoryKeyDown) {
+            onClose();
             return true;
         }
         return false;
@@ -102,15 +99,15 @@ public class TrophyScreen extends Screen {
 
     @Override
     protected void init() {
-        columns = (width - HORIZONTAL_PADDING * 2 - BUTTON_SIZE) / (BUTTON_SIZE + BUTTON_SPACING) + 1;
-        columns = Math.max(columns, MIN_COLUMNS);
-        columns = Math.min(columns, MAX_COLUMNS);
+        columnCount = (width - HORIZONTAL_PADDING * 2 - TROPHY_BUTTON_SIZE) / (TROPHY_BUTTON_SIZE + BUTTON_SPACING) + 1;
+        columnCount = Math.max(columnCount, MIN_COLUMN_COUNT);
+        columnCount = Math.min(columnCount, MAX_COLUMN_COUNT);
 
-        columnStart = width / 2 - (BUTTON_SIZE * columns + BUTTON_SPACING * (columns - 1)) / 2;
-        rowStart = VERTICAL_PADDING + UPPER_BUTTON_SIZE + SEARCH_BAR_HEIGHT + SEARCH_BAR_SPACING + 16;
+        columnStart = width / 2 - (TROPHY_BUTTON_SIZE * columnCount + BUTTON_SPACING * (columnCount - 1)) / 2;
+        rowStart = VERTICAL_PADDING + NAVIGATION_BUTTON_SIZE + SEARCH_BAR_HEIGHT + SEARCH_BAR_VERTICAL_SPACING * 2;
 
-        rows = (height - rowStart - VERTICAL_PADDING - BUTTON_SIZE) / (BUTTON_SIZE + BUTTON_SPACING) + 1;
-        rows = Math.max(rows, MIN_ROWS);
+        rowCount = (height - rowStart - VERTICAL_PADDING - TROPHY_BUTTON_SIZE) / (TROPHY_BUTTON_SIZE + BUTTON_SPACING) + 1;
+        rowCount = Math.max(rowCount, MIN_ROW_COUNT);
 
         createUpperButtons();
 
@@ -123,8 +120,8 @@ public class TrophyScreen extends Screen {
 
     @Override
     public void resize(Minecraft minecraft, int width, int height) {
-        int previousRows = rows;
-        int previousColumns = columns;
+        int previousRowCount = rowCount;
+        int previousColumnCount = columnCount;
 
         String search = searchBox.getValue();
         List<Trophy> trophies = this.trophies;
@@ -134,7 +131,7 @@ public class TrophyScreen extends Screen {
         searchBox.setValue(search);
         this.trophies = trophies;
 
-        if (columns == previousColumns && rows == previousRows) {
+        if (columnCount == previousColumnCount && rowCount == previousRowCount) {
             setCurrentPage(currentPage);
         } else {
             setCurrentPage(0);
@@ -151,54 +148,33 @@ public class TrophyScreen extends Screen {
     }
 
     private void createUpperButtons() {
-        previousButton = addRenderableWidget(
-                Button.builder(
-                        Component.literal("<"),
-                        button -> setCurrentPage(currentPage - 1)
-                ).pos(
-                        width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - UPPER_BUTTON_SIZE,
-                        VERTICAL_PADDING
-                ).size(
-                        UPPER_BUTTON_SIZE,
-                        UPPER_BUTTON_SIZE
-                ).build()
-        );
+        int xPos = width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - NAVIGATION_BUTTON_SIZE;
 
-        addRenderableWidget(
-                Button.builder(
-                        CommonComponents.GUI_CANCEL,
-                        button -> onClose()
-                ).pos(
-                        width / 2 - CANCEL_BUTTON_WIDTH / 2,
-                        VERTICAL_PADDING
-                ).size(
-                        CANCEL_BUTTON_WIDTH,
-                        UPPER_BUTTON_SIZE
-                ).build()
-        );
+        previousButton = Button.builder(Component.literal("<"), button -> setCurrentPage(currentPage - 1))
+                .pos(xPos, VERTICAL_PADDING)
+                .width(NAVIGATION_BUTTON_SIZE)
+                .build();
+        addRenderableWidget(previousButton);
 
-        nextButton = addRenderableWidget(
-                Button.builder(
-                        Component.literal(">"),
-                        button -> setCurrentPage(currentPage + 1)
-                ).pos(
-                        width / 2 + CANCEL_BUTTON_WIDTH / 2 + BUTTON_SPACING,
-                        VERTICAL_PADDING
-                ).size(
-                        UPPER_BUTTON_SIZE,
-                        UPPER_BUTTON_SIZE
-                ).build()
+        xPos += NAVIGATION_BUTTON_SIZE + BUTTON_SPACING;
+        Button cancelButton = Button.builder(CommonComponents.GUI_CANCEL, button -> onClose())
+                .pos(xPos, VERTICAL_PADDING)
+                .width(CANCEL_BUTTON_WIDTH)
+                .build();
+        addRenderableWidget(cancelButton);
 
-        );
+        xPos += CANCEL_BUTTON_WIDTH + BUTTON_SPACING;
+        nextButton = Button.builder(Component.literal(">"), button -> setCurrentPage(currentPage + 1))
+                .pos(xPos, VERTICAL_PADDING)
+                .width(NAVIGATION_BUTTON_SIZE)
+                .build();
+        addRenderableWidget(nextButton);
 
-        searchBox = new EditBox(
-                font,
-                width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - UPPER_BUTTON_SIZE,
-                VERTICAL_PADDING + UPPER_BUTTON_SIZE + SEARCH_BAR_SPACING,
-                CANCEL_BUTTON_WIDTH + UPPER_BUTTON_SIZE * 2 + BUTTON_SPACING * 2,
-                SEARCH_BAR_HEIGHT,
-                Component.translatable("itemGroup.search")
-        );
+        int searchBoxX = width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - NAVIGATION_BUTTON_SIZE;
+        int searchBoxY = VERTICAL_PADDING + NAVIGATION_BUTTON_SIZE + SEARCH_BAR_VERTICAL_SPACING;
+        int searchBoxWidth = CANCEL_BUTTON_WIDTH + NAVIGATION_BUTTON_SIZE * 2 + BUTTON_SPACING * 2;
+        Component searchBoxNarration = Component.translatable("itemGroup.search");
+        searchBox = new EditBox(font, searchBoxX, searchBoxY, searchBoxWidth, SEARCH_BAR_HEIGHT, searchBoxNarration);
         searchBox.setBordered(true);
         searchBox.setResponder(this::onEditSearchBox);
         addRenderableWidget(searchBox);
@@ -223,21 +199,22 @@ public class TrophyScreen extends Screen {
         trophyButtons.forEach(this::removeWidget);
         trophyButtons.clear();
 
-        int index = currentPage * columns * rows;
+        int index = currentPage * columnCount * rowCount;
 
-        for (int row = 0; row < rows; row++) {
-            for (int column = 0; column < columns; column++) {
+        for (int row = 0; row < rowCount; row++) {
+            for (int column = 0; column < columnCount; column++) {
                 if (index >= trophies.size()) {
                     break;
                 }
 
-                ItemStack stack = new ItemStack(trophyItem);
+                ItemStack stack = new ItemStack(blockState.getBlock());
                 Trophy trophy = trophies.get(index++);
                 stack.getOrCreateTagElement("BlockEntityTag").putString("Trophy", trophy.id().toString());
 
-                int x = columnStart + column * (BUTTON_SIZE + BUTTON_SPACING);
-                int y = rowStart + row * (BUTTON_SIZE + BUTTON_SPACING);
-                trophyButtons.add(addRenderableWidget(new ItemButton(x, y, BUTTON_SIZE, stack, button -> setTrophy(trophy))));
+                int x = columnStart + column * (TROPHY_BUTTON_SIZE + BUTTON_SPACING);
+                int y = rowStart + row * (TROPHY_BUTTON_SIZE + BUTTON_SPACING);
+                Button trophyButton = new TrophyButton(x, y, TROPHY_BUTTON_SIZE, stack, trophy);
+                trophyButtons.add(addRenderableWidget(trophyButton));
             }
         }
 
@@ -248,6 +225,8 @@ public class TrophyScreen extends Screen {
         if (currentPage > 0) {
             previousButton.active = true;
         }
+
+        System.out.println(trophyButtons.size());
     }
 
     @Override
@@ -255,28 +234,35 @@ public class TrophyScreen extends Screen {
         return false;
     }
 
-    private void setTrophy(Trophy trophy) {
-        NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophy, blockPos));
-        if (Minecraft.getInstance().player != null) {
-            if (Minecraft.getInstance().player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
-                blockEntity.setTrophy(trophy);
-            }
-        }
-        onClose();
-    }
-
-    private class ItemButton extends Button {
+    private class TrophyButton extends Button {
 
         private final ItemStack item;
+        private final Trophy trophy;
         private final int x;
         private final int y;
 
-        public ItemButton(int xPos, int yPos, int size, ItemStack item, Button.OnPress handler) {
-            super(xPos, yPos, size, size, Component.empty(), handler, supplier -> item.getHoverName().copy());
+        private TrophyButton(int xPos, int yPos, int size, ItemStack item, Trophy trophy) {
+            super(xPos, yPos, size, size, Component.empty(), button -> {}, supplier -> item.getHoverName().copy());
             setTooltip(Tooltip.create(item.getHoverName()));
+            this.trophy = trophy;
             this.item = item;
             this.x = xPos;
             this.y = yPos;
+        }
+
+        @Override
+        public void onClick(double x, double y) {
+            setTrophy(trophy);
+        }
+
+        private void setTrophy(Trophy trophy) {
+            NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophy, blockPos));
+            if (Minecraft.getInstance().player != null) {
+                if (Minecraft.getInstance().player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
+                    blockEntity.setTrophy(trophy);
+                }
+            }
+            onClose();
         }
 
         @Override
@@ -287,12 +273,11 @@ public class TrophyScreen extends Screen {
             return DefaultTooltipPositioner.INSTANCE;
         }
 
-
         @Override
         public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
             super.renderWidget(poseStack, mouseX, mouseY, partialTicks);
 
-            renderScaledGuiItem(
+            tryRenderScaledGuiItem(
                     poseStack,
                     item,
                     x + (int) (width - 16 * ITEM_SCALE) / 2,
@@ -302,13 +287,13 @@ public class TrophyScreen extends Screen {
         }
 
         @SuppressWarnings("SameParameterValue")
-        private void renderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale) {
+        private void tryRenderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale) {
             if (!item.isEmpty()) {
                 BakedModel bakedmodel = itemRenderer.getModel(item, null, Minecraft.getInstance().player, 0);
                 poseStack.pushPose();
                 poseStack.translate(0, 0, 50);
                 try {
-                    renderGuiItem(item, x, y, scale, bakedmodel);
+                    renderScaledGuiItem(poseStack, item, x, y, scale, bakedmodel);
                 } catch (Exception exception) {
                     CrashReport crashReport = CrashReport.forThrowable(exception, "Rendering item");
                     CrashReportCategory category = crashReport.addCategory("Item being rendered");
@@ -323,38 +308,33 @@ public class TrophyScreen extends Screen {
             }
         }
 
-        @SuppressWarnings("deprecation")
-        protected void renderGuiItem(ItemStack item, int x, int y, float scale, BakedModel model) {
-            Minecraft.getInstance().getTextureManager().getTexture(TextureAtlas.LOCATION_BLOCKS).setFilter(false, false);
-            RenderSystem.setShaderTexture(0, TextureAtlas.LOCATION_BLOCKS);
-            RenderSystem.enableBlend();
-            RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-            RenderSystem.setShaderColor(1, 1, 1, 1);
-            PoseStack modelViewStack = RenderSystem.getModelViewStack();
-            modelViewStack.pushPose();
-            modelViewStack.translate(x, y, 100);
-            modelViewStack.translate(16 * scale / 2, 16 * scale / 2, 0);
-            modelViewStack.scale(1, -1, 1);
-            modelViewStack.scale(scale, scale, scale);
-            modelViewStack.scale(16, 16, 16);
-            RenderSystem.applyModelViewMatrix();
-            PoseStack poseStack = new PoseStack();
-            MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-            boolean flag = !model.usesBlockLight();
-            if (flag) {
+        protected void renderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale, BakedModel model) {
+            poseStack.pushPose();
+            poseStack.translate(x, y, 100);
+            poseStack.translate(16 * scale / 2, 16 * scale / 2, 0);
+            poseStack.mulPoseMatrix((new Matrix4f()).scaling(1, -1, 1));
+            poseStack.scale(scale, scale, scale);
+            poseStack.scale(16, 16, 16);
+            MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
+            boolean usesFlatLighting = !model.usesBlockLight();
+            if (usesFlatLighting) {
                 Lighting.setupForFlatItems();
             }
 
-            itemRenderer.render(item, ItemDisplayContext.GUI, false, poseStack, buffer, 15728880, OverlayTexture.NO_OVERLAY, model);
-            buffer.endBatch();
+            PoseStack modelViewStack = RenderSystem.getModelViewStack();
+            modelViewStack.pushPose();
+            modelViewStack.mulPoseMatrix(poseStack.last().pose());
+            RenderSystem.applyModelViewMatrix();
+            itemRenderer.render(item, ItemDisplayContext.GUI, false, new PoseStack(), bufferSource, 15728880, OverlayTexture.NO_OVERLAY, model);
+            bufferSource.endBatch();
             RenderSystem.enableDepthTest();
-            if (flag) {
+            if (usesFlatLighting) {
                 Lighting.setupFor3DItems();
             }
 
+            poseStack.popPose();
             modelViewStack.popPose();
             RenderSystem.applyModelViewMatrix();
         }
     }
-
 }

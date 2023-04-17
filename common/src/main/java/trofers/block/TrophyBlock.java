@@ -26,7 +26,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import trofers.Trofers;
 import trofers.block.entity.TrophyBlockEntity;
-import trofers.block.entity.TrophyScreen;
+import trofers.screen.TrophySelectionScreen;
 import trofers.registry.ModBlockEntityTypes;
 import trofers.trophy.Trophy;
 
@@ -148,7 +148,7 @@ public abstract class TrophyBlock extends BaseEntityBlock {
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (player.isCreative()) {
             if (level.isClientSide()) {
-                TrophyScreen.open(state.getBlock().asItem(), pos);
+                TrophySelectionScreen.open(state, pos);
             }
             return InteractionResult.sidedSuccess(level.isClientSide());
         }
