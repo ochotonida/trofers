@@ -48,16 +48,6 @@ mixin {
     config "mixins.${mod_id}.forge.json"
 }
 
-repositories {
-    maven {
-        url "https://www.cursemaven.com"
-    }
-    maven {
-        // thermal
-        url 'https://maven.covers1624.net/'
-    }
-}
-
 dependencies {
     minecraft "net.minecraftforge:forge:${rootProject.forge_version}"
     implementation fg.deobf("dev.architectury:architectury-forge:$architectury_version")

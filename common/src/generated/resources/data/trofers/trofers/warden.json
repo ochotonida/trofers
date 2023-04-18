@@ -1,0 +1,26 @@
+{
+  "colors": {
+    "accent": "#00989B",
+    "base": "#606060"
+  },
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.warden.ambient"
+    }
+  },
+  "entity": {
+    "type": "minecraft:warden"
+  },
+  "name": {
+    "color": "#00989B",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.minecraft.warden"
+      }
+    ]
+  }
+}

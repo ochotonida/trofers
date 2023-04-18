@@ -8,7 +8,7 @@ architectury {
 }
 
 subprojects {
-    if (project.name != 'data') {
+    if (project.name != "data") {
         apply plugin: "dev.architectury.loom"
 
         loom {
@@ -36,7 +36,29 @@ allprojects {
     group = rootProject.maven_group
 
     repositories {
-
+        maven {
+            name = "Porting Lib"
+            url = "https://mvn.devos.one/snapshots/"
+        }
+        maven {
+            name = "Mod Menu"
+            url = "https://maven.terraformersmc.com"
+        }
+        maven {
+            name = "Thermal"
+            url = "https://maven.covers1624.net/"
+        }
+        maven {
+            name = "Modrinth"
+            url = "https://api.modrinth.com/maven"
+        }
+        maven {
+            name = "CurseForge"
+            url = "https://www.cursemaven.com"
+        }
+        maven {
+            url = "https://jitpack.io"
+        }
     }
 
     tasks.withType(JavaCompile) {

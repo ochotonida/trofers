@@ -39,6 +39,8 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .loot(Items.BLAZE_POWDER)
                 .cooldown(16 * 60)
                 .accentColor(0xede746);
+        builder(EntityType.CAMEL)
+                .accentColor(0xfbc268);
         builder(EntityType.CAT)
                 .accentColor(0xcccccc)
                 .putString("variant", BuiltInRegistries.CAT_VARIANT.getOptional(CatVariant.BLACK).orElseThrow().toString())
@@ -184,6 +186,10 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .loot(Items.SLIME_BALL)
                 .sound(SoundEvents.SLIME_SQUISH)
                 .putInt("Size", 1);
+        builder(EntityType.SNIFFER)
+                .accentColor(0x98331e)
+                .scale(0.175)
+                .sound(SoundEvents.SNIFFER_IDLE);
         builder(EntityType.SNOW_GOLEM)
                 .accentColor(0xffffff)
                 .sound(SoundEvents.SNOW_PLACE);
@@ -226,6 +232,8 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .accentColor(0x929c9c);
         builder(EntityType.WANDERING_TRADER)
                 .accentColor(0x425f90);
+        builder(EntityType.WARDEN)
+                .accentColor(0x00989b);
         builder(EntityType.WITCH)
                 .accentColor(0xa39482);
         builder(EntityType.WITHER_SKELETON)

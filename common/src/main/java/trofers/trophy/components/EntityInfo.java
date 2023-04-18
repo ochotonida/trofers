@@ -54,7 +54,7 @@ public class EntityInfo {
     }
 
     private void createEntity(Level level) {
-        if (type == null) {
+        if (type == null || !type.requiredFeatures().isSubsetOf(level.enabledFeatures())) {
             return;
         }
 

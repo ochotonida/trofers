@@ -5,8 +5,11 @@ import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.registries.ForgeRegistries;
 import trofers.Trofers;
+import trofers.trophy.Trophy;
 import trofers.trophy.builder.TrophyBuilder;
+import trofers.trophy.components.EffectInfo;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,7 +26,11 @@ public abstract class TrophyProvider<T extends TrophyBuilder<T>> {
     public void validateTrophies() {
         if (ModList.get().isLoaded(getModId())) {
             for (ResourceLocation trophyId : trophies.keySet()) {
-                trophies.get(trophyId).build(trophyId);
+                Trophy trophy = trophies.get(trophyId).build(trophyId);
+                EffectInfo.SoundInfo sound = trophy.effects().sound();
+                if (sound != null && !ForgeRegistries.SOUND_EVENTS.containsKey(sound.soundEvent())) {
+                    throw new IllegalStateException("Invalid sound event: " + sound.soundEvent().toString());
+                }
             }
         }
     }

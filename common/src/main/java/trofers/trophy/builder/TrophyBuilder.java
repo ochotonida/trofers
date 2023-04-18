@@ -9,13 +9,13 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
+import trofers.Trofers;
 import trofers.trophy.Trophy;
 import trofers.trophy.components.*;
+import trofers.util.JsonHelper;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @SuppressWarnings({"unchecked", "unused", "UnusedReturnValue"})
 public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
@@ -27,6 +27,8 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
     private ColorInfo colorInfo = ColorInfo.NONE;
     private EffectInfo effectInfo = EffectInfo.NONE;
     private boolean isHidden = false;
+
+    private final Set<String> requiredMods = new HashSet<>();
 
     public Trophy build(ResourceLocation id) {
         return new Trophy(
@@ -50,6 +52,13 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
     protected abstract Optional<EntityInfo> getEntityInfo();
 
     protected abstract void entityInfoToJson(JsonObject result);
+
+    public T requiresMod(String modId) {
+        if (!modId.equals(Trofers.MOD_ID) && !modId.equals(ResourceLocation.DEFAULT_NAMESPACE)) {
+            requiredMods.add(modId);
+        }
+        return (T) this;
+    }
 
     public T name(@Nullable Component name) {
         this.name = Optional.ofNullable(name);
@@ -157,6 +166,8 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
     }
 
     public JsonObject toJson(JsonObject result) {
+        JsonHelper.addModLoadedConditions(result, requiredMods.toArray(String[]::new));
+
         name.ifPresent(component -> result.add("name", Component.Serializer.toJsonTree(component)));
 
         if (!tooltipLines.isEmpty()) {

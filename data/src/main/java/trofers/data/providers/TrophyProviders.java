@@ -1,13 +1,10 @@
 package trofers.data.providers;
 
 import com.google.common.collect.Sets;
-import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import trofers.Trofers;
-import trofers.data.Util;
 import trofers.data.providers.trophies.*;
 import trofers.trophy.builder.TrophyBuilder;
 
@@ -63,17 +60,8 @@ public class TrophyProviders implements DataProvider {
                 if (!resourceLocations.add(trophyId)) {
                     throw new IllegalStateException("Duplicate trophy " + trophyId);
                 }
-                TrophyBuilder<?> trophy = trophies.get(trophyId);
                 Path path = createPath(outputFolder, trophyId);
-
-                JsonObject object;
-                String modId = trophyProvider.getModId();
-                if (modId.equals("minecraft") || modId.equals(Trofers.MOD_ID)) {
-                    object = trophy.toJson();
-                } else {
-                    object = trophy.toJson(Util.addModLoadedConditions(new JsonObject(), modId));
-                }
-                futures.add(DataProvider.saveStable(cache, object, path));
+                futures.add(DataProvider.saveStable(cache, trophies.get(trophyId).toJson(), path));
             }
         }
 

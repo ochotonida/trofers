@@ -28,12 +28,6 @@ configurations {
     developmentForge.extendsFrom common
 }
 
-repositories {
-    maven {
-        url "https://www.cursemaven.com"
-    }
-}
-
 dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"

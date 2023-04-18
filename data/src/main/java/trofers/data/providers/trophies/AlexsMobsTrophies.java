@@ -59,6 +59,8 @@ public class AlexsMobsTrophies extends EntityTrophyProvider {
                 .accentColor(0xbababa)
                 .offset(0, 0, -1)
                 .scale(0.05);
+        builder(AMEntityRegistry.CAIMAN.get())
+                .accentColor(0x8c913e);
         builder(AMEntityRegistry.CAPUCHIN_MONKEY.get())
                 .accentColor(0xeed7b1);
         builder(AMEntityRegistry.CATFISH.get())
@@ -266,6 +268,10 @@ public class AlexsMobsTrophies extends EntityTrophyProvider {
                 .accentColor(0xe2b653);
         builder(AMEntityRegistry.TOUCAN.get())
                 .accentColor(0xf28d32);
+        builder(AMEntityRegistry.TRIOPS.get())
+                .accentColor(0xc76f4f)
+                .putFloat("TriopsScale", 1)
+                .sound(AMSoundRegistry.TRIOPS_HURT.get());
         builder(AMEntityRegistry.TUSKLIN.get())
                 .accentColor(0x7c6445)
                 .scale(0.2);
