@@ -23,6 +23,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
     public void addTrophies() {
         builder(EntityType.ALLAY)
                 .accentColor(0x68ffff)
+                .loot(Items.COOKIE)
                 .sound(SoundEvents.ALLAY_ITEM_GIVEN);
         builder(EntityType.AXOLOTL)
                 .accentColor(0xfbc1e2)
@@ -30,12 +31,13 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .putInt("Variant", 0);
         builder(EntityType.BAT)
                 .accentColor(0x75653f)
-                .mobEffect(MobEffects.NIGHT_VISION, 20)
-                .cooldown(0);
+                .mobEffect(MobEffects.NIGHT_VISION, 20);
         builder(EntityType.BEE)
                 .accentColor(0xebc542)
                 .sound(SoundEvents.BEE_POLLINATE);
         builder(EntityType.BLAZE)
+                .loot(Items.BLAZE_POWDER)
+                .cooldown(16 * 60)
                 .accentColor(0xede746);
         builder(EntityType.CAT)
                 .accentColor(0xcccccc)
@@ -45,6 +47,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .accentColor(0x147b6a)
                 .sound(SoundEvents.SPIDER_AMBIENT);
         builder(EntityType.CHICKEN)
+                .loot(Items.EGG)
                 .accentColor(0xffffff);
         builder(EntityType.COD)
                 .accentColor(0xb6986c)
@@ -59,8 +62,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .sound(SoundEvents.CREEPER_PRIMED);
         builder(EntityType.DOLPHIN)
                 .accentColor(0xb0c4d8)
-                .mobEffect(MobEffects.DOLPHINS_GRACE, 20)
-                .cooldown(0);
+                .mobEffect(MobEffects.DOLPHINS_GRACE, 20);
         builder(EntityType.DONKEY)
                 .accentColor(0x817164);
         builder(EntityType.DROWNED)
@@ -70,6 +72,9 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .scale(0.10625);
         builder(EntityType.ENDERMAN)
                 .accentColor(0xa14fb6)
+                .loot(Items.ENDER_PEARL)
+                .cooldown(16 * 60)
+                .sound(SoundEvents.ENDERMAN_TELEPORT)
                 .tag("carriedBlockState", tag -> tag.putString("Name", "minecraft:tnt"));
         builder(EntityType.ENDERMITE)
                 .accentColor(0x644b84);
@@ -77,6 +82,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .accentColor(0x959c9c);
         builder(EntityType.FOX)
                 .accentColor(0xe37c21)
+                .loot(Items.SWEET_BERRIES)
                 .offset(0.75, 0, 0.5)
                 .rotate(0, -90, 0)
                 .putBoolean("Sleeping", true)
@@ -113,6 +119,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .putInt("Variant", 3);
         builder(EntityType.MAGMA_CUBE)
                 .accentColor(0xff4600)
+                .loot(Items.MAGMA_CREAM)
                 .sound(SoundEvents.MAGMA_CUBE_SQUISH)
                 .putInt("Size", 1);
         builder(EntityType.MOOSHROOM)
@@ -146,6 +153,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .accentColor(0xf2f2f4);
         builder(EntityType.PUFFERFISH)
                 .accentColor(0xe3970b)
+                .mobEffect(MobEffects.POISON, 5)
                 .sound(SoundEvents.PUFFER_FISH_BLOW_UP)
                 .putInt("PuffState", 2);
         builder(EntityType.RABBIT)
@@ -163,8 +171,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .accentColor(0xffffff);
         builder(EntityType.SHULKER)
                 .accentColor(0x986a97)
-                .mobEffect(MobEffects.LEVITATION, 5)
-                .cooldown(0);
+                .mobEffect(MobEffects.LEVITATION, 5);
         builder(EntityType.SILVERFISH)
                 .accentColor(0x778c99);
         builder(EntityType.SKELETON)
@@ -174,6 +181,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .accentColor(0xd0d0d2);
         builder(EntityType.SLIME)
                 .accentColor(0x77c264)
+                .loot(Items.SLIME_BALL)
                 .sound(SoundEvents.SLIME_SQUISH)
                 .putInt("Size", 1);
         builder(EntityType.SNOW_GOLEM)

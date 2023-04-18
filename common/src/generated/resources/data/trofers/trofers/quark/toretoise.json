@@ -13,6 +13,10 @@
     "scale": 0.25
   },
   "effects": {
+    "rewards": {
+      "cooldown": 9600,
+      "lootTable": "trofers:trophies/quark/toretoise"
+    },
     "sound": {
       "soundEvent": "quark:entity.toretoise.idle"
     }

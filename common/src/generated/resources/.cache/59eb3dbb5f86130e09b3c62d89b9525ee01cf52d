@@ -1,7 +1,17 @@
-// 1.19.4	2023-04-18T13:57:52.8918026	Loot Tables
+// 1.19.4	2023-04-18T14:27:16.3700923	Loot Tables
 4876e39a5995f8aa5bc3bc4ed6ebb80319d70d1a data/trofers/loot_tables/blocks/large_pillar.json
 3b05fe9345acfc44ed650d02531f0b2bdbb815ac data/trofers/loot_tables/blocks/large_plate.json
 245fefed32df411cb00a74fbe03efb5516c7f28f data/trofers/loot_tables/blocks/medium_pillar.json
 d7529e62ad5efe36b047413ec3ddeff5d3ec8fa1 data/trofers/loot_tables/blocks/medium_plate.json
 46480b3fb54b55af4d87bb3763a8ae141498cd45 data/trofers/loot_tables/blocks/small_pillar.json
 4657ed0d5a47bb7e535194e7a9888344ec48991a data/trofers/loot_tables/blocks/small_plate.json
+2682257cd71ec453ad11de1ea33de7d4b0bae6bd data/trofers/loot_tables/trophies/alexsmobs/grizzly_bear.json
+082f7cb0209f1ccc2c62817271db6e43403e0989 data/trofers/loot_tables/trophies/alexsmobs/sugar_glider.json
+d09a202f64a5717d3f82a652bbbc2d729a734204 data/trofers/loot_tables/trophies/allay.json
+5b83c12d65870216ac2842c6fe3f5027ab04fbc9 data/trofers/loot_tables/trophies/blaze.json
+233bba12760aebc1c28ec1768c83c8159144aad0 data/trofers/loot_tables/trophies/chicken.json
+5f09fa2678ef3f0d8b01cc2eca0188b6ffa74372 data/trofers/loot_tables/trophies/enderman.json
+8df8df6b50e3c15e2331b5f36627ec6ea6a22a7e data/trofers/loot_tables/trophies/fox.json
+ddc742e087b3782890c0ccbc1ecc494c58a29e14 data/trofers/loot_tables/trophies/magma_cube.json
+9db059de1ed68d08c7c69050846575d808e3c32e data/trofers/loot_tables/trophies/quark/toretoise.json
+ad514feaadfaee2f4db40acbfb1af6fa11a62527 data/trofers/loot_tables/trophies/slime.json

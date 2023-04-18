@@ -5,6 +5,7 @@ import com.github.alexthe666.alexsmobs.item.AMItemRegistry;
 import com.github.alexthe666.alexsmobs.misc.AMSoundRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.Items;
 
 public class AlexsMobsTrophies extends EntityTrophyProvider {
 
@@ -141,6 +142,7 @@ public class AlexsMobsTrophies extends EntityTrophyProvider {
                 .accentColor(0x53595d);
         builder(AMEntityRegistry.GRIZZLY_BEAR.get())
                 .accentColor(0x825e3e)
+                .loot(Items.HONEYCOMB)
                 .putBoolean("Honeyed", true);
         builder(AMEntityRegistry.GUSTER.get())
                 .accentColor(0xf8e0a8)
@@ -247,6 +249,7 @@ public class AlexsMobsTrophies extends EntityTrophyProvider {
                 .accentColor(0x596980)
                 .sound(AMSoundRegistry.STRADDLER_IDLE.get());
         builder(AMEntityRegistry.SUGAR_GLIDER.get())
+                .loot(Items.SUGAR)
                 .accentColor(0xdbd9cc);
         builder(AMEntityRegistry.SUNBIRD.get())
                 .accentColor(0xfc8865)

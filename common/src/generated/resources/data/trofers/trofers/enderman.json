@@ -7,8 +7,12 @@
     "scale": 0.25
   },
   "effects": {
+    "rewards": {
+      "cooldown": 19200,
+      "lootTable": "trofers:trophies/enderman"
+    },
     "sound": {
-      "soundEvent": "minecraft:entity.enderman.ambient"
+      "soundEvent": "minecraft:entity.enderman.teleport"
     }
   },
   "entity": {

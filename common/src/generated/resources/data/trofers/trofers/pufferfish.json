@@ -7,6 +7,12 @@
     "scale": 0.25
   },
   "effects": {
+    "rewards": {
+      "statusEffect": {
+        "duration": 100,
+        "effect": "minecraft:poison"
+      }
+    },
     "sound": {
       "soundEvent": "minecraft:entity.puffer_fish.blow_up"
     }

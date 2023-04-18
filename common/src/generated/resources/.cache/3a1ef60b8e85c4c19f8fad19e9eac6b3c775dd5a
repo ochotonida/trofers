@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-18T13:57:52.8812821	Trophies
+// 1.19.4	2023-04-18T14:38:25.7254798	Trophies
 ba62cf38df0846c9011eb02f01f7e5faa094ede2 data/trofers/trofers/alexsmobs/alligator_snapping_turtle.json
 71734588e9ff5b58151f214478db027d5707cf44 data/trofers/trofers/alexsmobs/anaconda.json
 b4810429ebde58ac2588cf028f9d93c3eb2465a2 data/trofers/trofers/alexsmobs/anteater.json
@@ -36,7 +36,7 @@ bdd2769a4a53d6a10832405a4922df3cdb94f8c1 data/trofers/trofers/alexsmobs/flutter.
 3c85c8cf0845e76efc439d4e594591b4840f14c6 data/trofers/trofers/alexsmobs/gelada_monkey.json
 c10beec4fa286979103c608fe4df9de82bebdeee data/trofers/trofers/alexsmobs/giant_squid.json
 4521898e8c70211bd632ffded94cd3c56e638aef data/trofers/trofers/alexsmobs/gorilla.json
-45b7c8c75fa1d341ac685a84cb77435e3695ffc2 data/trofers/trofers/alexsmobs/grizzly_bear.json
+e3d835f25310c655b4576978793718b56d93ad13 data/trofers/trofers/alexsmobs/grizzly_bear.json
 25460d8d6ba1514cb5128c72099d63d996515768 data/trofers/trofers/alexsmobs/guster.json
 240f57631536a2f33680834b1253c8f764341964 data/trofers/trofers/alexsmobs/hammerhead_shark.json
 3433787b0d59ec60a74583e330acdfda3d7eca6e data/trofers/trofers/alexsmobs/hummingbird.json
@@ -74,7 +74,7 @@ c03e1d179af60cf555d1397602e05691d4ba287b data/trofers/trofers/alexsmobs/soul_vul
 45f9dd5472d85c36fb4802205bc2a751e63e72f9 data/trofers/trofers/alexsmobs/spectre.json
 4a51549e660328f010699cb590639ec173c51a20 data/trofers/trofers/alexsmobs/straddler.json
 78bdbe77f446ad59c25aae5b310eacbedbdb50b5 data/trofers/trofers/alexsmobs/stradpole.json
-41cf1ad922e1d25f157593b5f90e8a37db5a1689 data/trofers/trofers/alexsmobs/sugar_glider.json
+d79bbdba077761ee1bab0a888755eedc4c666751 data/trofers/trofers/alexsmobs/sugar_glider.json
 998fc735cd6a2f2a9d626699046eb285fb6cbea6 data/trofers/trofers/alexsmobs/sunbird.json
 15b2844bd81f87cc7e258ce1c1f3f3ab8e5d60b1 data/trofers/trofers/alexsmobs/tarantula_hawk.json
 a1981add4f6916139c398702d74caa9511b2f8b7 data/trofers/trofers/alexsmobs/tasmanian_devil.json
@@ -85,14 +85,14 @@ e676293933a3a85786fc35d175b1829fc6af8353 data/trofers/trofers/alexsmobs/toucan.j
 753af6d420b2cbac1c7b906cdcdda7b5d908e9d8 data/trofers/trofers/alexsmobs/underminer.json
 f94565a5f5e7e3caf24c1bc38bd2b82797661a95 data/trofers/trofers/alexsmobs/warped_mosco.json
 b33f0806d274ac9c578ae3677390fdb1ab5c7aff data/trofers/trofers/alexsmobs/warped_toad.json
-e10b34cf8ee2b8c23a7dbae4aeeaf9b99bd1fc85 data/trofers/trofers/allay.json
+f870d5de543337ee8646e647235201e55efb7547 data/trofers/trofers/allay.json
 aa5762be34698d3aba32175a9d3be203f51bd451 data/trofers/trofers/axolotl.json
 b2d245fcc3ec44df69ffae0a0843107cfa41635f data/trofers/trofers/bat.json
 65db844a0f28ab68e2fac7db6ea0d1ca2bf90a1e data/trofers/trofers/bee.json
-b81c02842f7367b9b9a9285eb86c14a753b75ac6 data/trofers/trofers/blaze.json
+b7995ae4bc893a9fc72de75f1d1fed520a003538 data/trofers/trofers/blaze.json
 35162bf22f41ada8d2c4a7f41dcccb1c998bc4f1 data/trofers/trofers/cat.json
 ccd05beac411c1da9e63cddf1b1e7bdc7798f03d data/trofers/trofers/cave_spider.json
-b227fd09a2e1355f4eb1b41009196534f520b801 data/trofers/trofers/chicken.json
+878ef61e9f96b7d442d8e872568106d07893a6dd data/trofers/trofers/chicken.json
 e514dcb8b1949edcc46332f1a6a25ef3e1141db3 data/trofers/trofers/cod.json
 434223a322cb5cebcfc67b180db5aa32903a4b01 data/trofers/trofers/cow.json
 6c124cdb5ec14a1916b6dd390962132d9bdbe881 data/trofers/trofers/creeper.json
@@ -100,10 +100,10 @@ e514dcb8b1949edcc46332f1a6a25ef3e1141db3 data/trofers/trofers/cod.json
 3781136c40f7a4b0e6a57d6f5b8d576e9da6edb3 data/trofers/trofers/donkey.json
 ad7104bad6ad168dd709e7548058af807f7e8c10 data/trofers/trofers/drowned.json
 fa91f026fdb65272720ae1e5c1f1190226286444 data/trofers/trofers/elder_guardian.json
-2b850ec3f929f6a70a2ac77a165f2761cdedecbe data/trofers/trofers/enderman.json
+17e577553c7b382e0a2d85af5443c66df2704ebd data/trofers/trofers/enderman.json
 0d701622cb9e42e9bf4f749ad96c68c8217e823a data/trofers/trofers/endermite.json
 98c77db8f1e542121dae0d81bc5366dde545bac8 data/trofers/trofers/evoker.json
-411347e48e5a7d608eaad7396bde5d7a3ad5036f data/trofers/trofers/fox.json
+dd2f554d92d8a0f70f61cb77b19a57e680b24d1d data/trofers/trofers/fox.json
 bf6d8f8ebb2f10f7dee935146c937ff2a2dbf4d4 data/trofers/trofers/frog.json
 6ea6954a4041f0a9ad0993bb3d33ff7ce7fc492f data/trofers/trofers/ghast.json
 ff1d5e3e1967b97643ca1e13870830b0812bac5a data/trofers/trofers/glow_squid.json
@@ -114,7 +114,7 @@ ff1d5e3e1967b97643ca1e13870830b0812bac5a data/trofers/trofers/glow_squid.json
 c426db0a89636399846a4e8ed3a391054201a264 data/trofers/trofers/husk.json
 3421dbcf4c7d51f8c0e0a6727dea6e6aafc6b869 data/trofers/trofers/iron_golem.json
 e7b14ecac5d7cbc3447cafaccf5513db416f53bf data/trofers/trofers/llama.json
-9670cf4ede21f3d1d2c59478297bb14edfc949ca data/trofers/trofers/magma_cube.json
+25c56bbe43e00333470c369def34e348f10f8dd7 data/trofers/trofers/magma_cube.json
 74670203989a0d443017554b404b8376fdb8bd4b data/trofers/trofers/mooshroom.json
 51b3ca1cca75f311f5b82b1bbaf1fc0d43309f96 data/trofers/trofers/mule.json
 f8e9beff3fd2b7f19d071773d66e9f87f45b3fba data/trofers/trofers/ocelot.json
@@ -126,13 +126,13 @@ be0bb87702bc6688da3272e9571c04c39df63829 data/trofers/trofers/parrot.json
 76a34abb559ba3bd6d646865a25ec09b08657be0 data/trofers/trofers/piglin_brute.json
 447fc33dbd522651d53f0e5baef681fa3b3d2e12 data/trofers/trofers/pillager.json
 d49ccaa7f4ca2aa834231d3baf845a28b471f15f data/trofers/trofers/polar_bear.json
-7ec3d6c5d595f525042b9eeeb84aff69ec81f31e data/trofers/trofers/pufferfish.json
+07afe3c7045b518f5754c9bf4145f27122c05d19 data/trofers/trofers/pufferfish.json
 5487b535be6a69acb68abf55e432382c8b4a1447 data/trofers/trofers/quark/crab.json
 ca4ed0b71a748bfe1b9eee6d243699ef43ee0751 data/trofers/trofers/quark/forgotten.json
 3548e5dd9c30d2f280975f00b60aad73b71a75a2 data/trofers/trofers/quark/foxhound.json
 8bd53fe4c06d27b59133d0918c4f48dc58118d1e data/trofers/trofers/quark/shiba.json
 51dd85c7618c77b08391ba45a6f764c0fe8087e3 data/trofers/trofers/quark/stoneling.json
-0380611721d37ecc0576476e8c8a153f1ec229dd data/trofers/trofers/quark/toretoise.json
+28fd3d9591670832dfbd68ff4f9b78295586b295 data/trofers/trofers/quark/toretoise.json
 42034e4c6affb0179dcf1e3fd128d137a6ff6466 data/trofers/trofers/quark/wraith.json
 95062a8a1d7c9ab2dc66585cbbac40d304f855e0 data/trofers/trofers/rabbit.json
 37a2233229f4a4fbb77075232fcf5c91d0b9e920 data/trofers/trofers/ravager.json
@@ -142,7 +142,7 @@ ca4ed0b71a748bfe1b9eee6d243699ef43ee0751 data/trofers/trofers/quark/forgotten.js
 45cf9e2d9b14fc930a7694f507abc20f86381516 data/trofers/trofers/silverfish.json
 b6d1529b4acd963e73595e6181de755ad2662550 data/trofers/trofers/skeleton.json
 14344581483963924cbaf606085bf3573829dc45 data/trofers/trofers/skeleton_horse.json
-86d4ee0cccc54cdee097cde9f96d3e4a7b025b75 data/trofers/trofers/slime.json
+077860ec15aacd05c55b57fc81e826447af75ee9 data/trofers/trofers/slime.json
 2196c7d62650507544c68641ae64ec022267fb9f data/trofers/trofers/snow_golem.json
 f5c23e9b9e2577c8e034276946eb15f084aad29e data/trofers/trofers/spider.json
 ce032f5f2d68e61cac1a0a46b77e78885795e864 data/trofers/trofers/squid.json

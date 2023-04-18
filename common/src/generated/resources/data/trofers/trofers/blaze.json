@@ -7,6 +7,10 @@
     "scale": 0.25
   },
   "effects": {
+    "rewards": {
+      "cooldown": 19200,
+      "lootTable": "trofers:trophies/blaze"
+    },
     "sound": {
       "soundEvent": "minecraft:entity.blaze.ambient"
     }

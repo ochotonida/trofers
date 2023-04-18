@@ -38,6 +38,7 @@ public class QuarkTrophies extends EntityTrophyProvider {
                 .putItem("carryingItem", Items.DIAMOND);
         builder("toretoise")
                 .accentColor(0xe32008)
+                .loot(Items.RAW_GOLD)
                 .putByte("oreType", (byte) 3);
         builder("wraith")
                 .accentColor(0x81969b)
