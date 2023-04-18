@@ -22,11 +22,11 @@ public class TrofersData {
         PackOutput packOutput = event.getGenerator().getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        Trophies trophies = new Trophies(packOutput);
-        generator.addProvider(event.includeServer(), trophies);
-        generator.addProvider(event.includeServer(), new LootTables(packOutput));
+        TrophyProviders trophyProviders = new TrophyProviders(packOutput);
+        generator.addProvider(event.includeServer(), trophyProviders);
+        generator.addProvider(event.includeServer(), new LootTables(packOutput, trophyProviders));
+        generator.addProvider(event.includeServer(), new LootModifiers(packOutput, trophyProviders));
         generator.addProvider(event.includeServer(), new BlockTags(packOutput, lookupProvider, helper));
-        generator.addProvider(event.includeServer(), new LootModifiers(packOutput, trophies));
 
         BlockStates blockStates = new BlockStates(packOutput, helper);
         generator.addProvider(event.includeClient(), blockStates);

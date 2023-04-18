@@ -1,0 +1,41 @@
+{
+  "colors": {
+    "accent": "#98A1B1",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "tconstruct"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.slime.squish"
+    }
+  },
+  "entity": {
+    "type": "tconstruct:terracube",
+    "nbt": "{Size:1}"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "tconstruct"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#98A1B1",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.tconstruct.terracube"
+      }
+    ]
+  }
+}

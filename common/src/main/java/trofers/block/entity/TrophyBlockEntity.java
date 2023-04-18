@@ -31,7 +31,7 @@ import org.apache.logging.log4j.Level;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.registry.ModBlockEntityTypes;
-import trofers.trophy.EffectInfo;
+import trofers.trophy.components.EffectInfo;
 import trofers.trophy.Trophy;
 import trofers.trophy.TrophyManager;
 
@@ -212,7 +212,7 @@ public class TrophyBlockEntity extends BlockEntity {
                     return;
                 }
                 LootContext.Builder builder = createLootContext(player, player.getItemInHand(hand));
-                LootContext context = builder.create(LootContextParamSets.EMPTY);
+                LootContext context = builder.create(LootContextParamSets.BLOCK);
                 lootTable.getRandomItems(context).forEach(this::spawnAtLocation);
             }
         }

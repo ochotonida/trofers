@@ -1,4 +1,4 @@
-// 1.19.4	2023-04-15T18:06:27.1873082	Trophies
+// 1.19.4	2023-04-18T13:57:52.8812821	Trophies
 ba62cf38df0846c9011eb02f01f7e5faa094ede2 data/trofers/trofers/alexsmobs/alligator_snapping_turtle.json
 71734588e9ff5b58151f214478db027d5707cf44 data/trofers/trofers/alexsmobs/anaconda.json
 b4810429ebde58ac2588cf028f9d93c3eb2465a2 data/trofers/trofers/alexsmobs/anteater.json
@@ -127,6 +127,13 @@ be0bb87702bc6688da3272e9571c04c39df63829 data/trofers/trofers/parrot.json
 447fc33dbd522651d53f0e5baef681fa3b3d2e12 data/trofers/trofers/pillager.json
 d49ccaa7f4ca2aa834231d3baf845a28b471f15f data/trofers/trofers/polar_bear.json
 7ec3d6c5d595f525042b9eeeb84aff69ec81f31e data/trofers/trofers/pufferfish.json
+5487b535be6a69acb68abf55e432382c8b4a1447 data/trofers/trofers/quark/crab.json
+ca4ed0b71a748bfe1b9eee6d243699ef43ee0751 data/trofers/trofers/quark/forgotten.json
+3548e5dd9c30d2f280975f00b60aad73b71a75a2 data/trofers/trofers/quark/foxhound.json
+8bd53fe4c06d27b59133d0918c4f48dc58118d1e data/trofers/trofers/quark/shiba.json
+51dd85c7618c77b08391ba45a6f764c0fe8087e3 data/trofers/trofers/quark/stoneling.json
+0380611721d37ecc0576476e8c8a153f1ec229dd data/trofers/trofers/quark/toretoise.json
+42034e4c6affb0179dcf1e3fd128d137a6ff6466 data/trofers/trofers/quark/wraith.json
 95062a8a1d7c9ab2dc66585cbbac40d304f855e0 data/trofers/trofers/rabbit.json
 37a2233229f4a4fbb77075232fcf5c91d0b9e920 data/trofers/trofers/ravager.json
 77cdd25c1000566d5e5b4497d94bfb40bbade9c2 data/trofers/trofers/salmon.json
@@ -142,6 +149,12 @@ ce032f5f2d68e61cac1a0a46b77e78885795e864 data/trofers/trofers/squid.json
 587888497dcdcf02868841d8cff634fe274e0567 data/trofers/trofers/stray.json
 40bda3502358cfb69c6c7ea33729afb00fc0b645 data/trofers/trofers/strider.json
 fc1ea8052e4da070e04e5887d39f0a12490ba8c3 data/trofers/trofers/tadpole.json
+3ecc7b06fe6b677a20e2507bbb24e985404f5c2a data/trofers/trofers/tconstruct/ender_slime.json
+8c0f1d2cb49ad2508ea6ced6f9d3d3c5ce8bb072 data/trofers/trofers/tconstruct/sky_slime.json
+bbe59f2a66f73481f75eb3d904bc5a37f8da139d data/trofers/trofers/tconstruct/terracube.json
+8fcf5187ff00b7fe079d194ea0d1dc82bfb8ef59 data/trofers/trofers/thermal/basalz.json
+7e39e8b65a4ae0227f4bc79e2c703f547c5bf69a data/trofers/trofers/thermal/blitz.json
+d2a4f8bddd1f04d45e217fd4a17a9ec5536c448b data/trofers/trofers/thermal/blizz.json
 f9e0c90dcae3ec46f778918c1b8655b6599ac1fb data/trofers/trofers/trader_llama.json
 82acbec22b0b01c1aeffc16b01b183572f963082 data/trofers/trofers/tropical_fish.json
 704454be8b34f1316b368e8eac20b6387be53e5e data/trofers/trofers/turtle.json

@@ -12,8 +12,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import trofers.trophy.Animation;
-import trofers.trophy.EntityInfo;
+import trofers.trophy.components.Animation;
+import trofers.trophy.components.EntityInfo;
 import trofers.trophy.Trophy;
 
 public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBlockEntity> {

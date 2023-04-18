@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import trofers.trophy.components.*;
 import trofers.util.JsonHelper;
 
 import javax.annotation.Nullable;
@@ -105,50 +106,6 @@ public record Trophy(
         );
     }
 
-    public JsonObject toJson() {
-        return toJson(new JsonObject());
-    }
-
-    public JsonObject toJson(JsonObject result) {
-        name.ifPresent(component -> result.add("name", Component.Serializer.toJsonTree(component)));
-
-        if (!tooltip().isEmpty()) {
-            JsonArray tooltip = new JsonArray();
-            result.add("tooltip", tooltip);
-            for (Component line : tooltip()) {
-                tooltip.add(Component.Serializer.toJsonTree(line));
-            }
-        }
-
-        if (!display().equals(DisplayInfo.NONE)) {
-            result.add("display", display().toJson());
-        }
-
-        if (!animation().type().equals(Animation.Type.FIXED)) {
-            result.add("animation", animation().toJson());
-        }
-
-        if (!item().isEmpty()) {
-            result.add("item", JsonHelper.serializeItem(item()));
-        }
-
-        entity().ifPresent(entityInfo -> result.add("entity", entityInfo.toJson()));
-
-        if (!colors().equals(ColorInfo.NONE)) {
-            result.add("colors", colors().toJson());
-        }
-
-        if (!effects().equals(EffectInfo.NONE)) {
-            result.add("effects", effects().toJson());
-        }
-
-        if (isHidden()) {
-            result.addProperty("isHidden", true);
-        }
-
-        return result;
-    }
-
     public static Trophy fromJson(JsonElement element, ResourceLocation id) {
         JsonObject object = GsonHelper.convertToJsonObject(element, "trophy");
 
@@ -217,12 +174,5 @@ public record Trophy(
                 effects,
                 isHidden
         );
-    }
-
-    static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
-        if (object.has(memberName)) {
-            return GsonHelper.getAsFloat(object, memberName);
-        }
-        return defaultValue;
     }
 }

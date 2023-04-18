@@ -12,6 +12,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
+import trofers.data.providers.trophies.TrophyProvider;
 import trofers.registry.ModBlocks;
 
 import java.util.ArrayList;
@@ -22,15 +23,20 @@ import java.util.Set;
 public class LootTables extends net.minecraft.data.loot.LootTableProvider {
 
     private final List<SubProviderEntry> lootTables = new ArrayList<>();
+    private final TrophyProviders trophyProviders;
 
-    public LootTables(PackOutput packOutput) {
+    public LootTables(PackOutput packOutput, TrophyProviders trophyProviders) {
         super(packOutput, Set.of(), List.of());
+        this.trophyProviders = trophyProviders;
     }
 
     @Override
     public List<SubProviderEntry> getTables() {
         lootTables.clear();
         addBlockLootTables();
+        for (TrophyProvider<?> provider : trophyProviders.getTrophyProviders()) {
+            lootTables.addAll(provider.getLootTables());
+        }
         return lootTables;
     }
 

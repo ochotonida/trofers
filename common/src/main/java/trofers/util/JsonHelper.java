@@ -90,4 +90,11 @@ public abstract class JsonHelper {
             throw new JsonSyntaxException(String.format("Invalid NBT Entry: %s", exception));
         }
     }
+
+    public static float readOptionalFloat(JsonObject object, String memberName, int defaultValue) {
+        if (object.has(memberName)) {
+            return GsonHelper.getAsFloat(object, memberName);
+        }
+        return defaultValue;
+    }
 }

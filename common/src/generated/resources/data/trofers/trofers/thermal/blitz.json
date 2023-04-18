@@ -1,0 +1,40 @@
+{
+  "colors": {
+    "accent": "#CEEAF1",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "thermal"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "thermal:entity.blitz.ambient"
+    }
+  },
+  "entity": {
+    "type": "thermal:blitz"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "thermal"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#CEEAF1",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.thermal.blitz"
+      }
+    ]
+  }
+}

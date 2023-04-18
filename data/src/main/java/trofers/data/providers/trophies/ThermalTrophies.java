@@ -1,28 +1,17 @@
 package trofers.data.providers.trophies;
 
-import cofh.thermal.core.init.TCoreReferences;
-import net.minecraft.world.entity.EntityType;
-import trofers.trophy.Trophy;
+import cofh.thermal.lib.common.ThermalIDs;
 
-import java.util.ArrayList;
-import java.util.List;
+public class ThermalTrophies extends EntityTrophyProvider {
 
-public class ThermalTrophies {
-
-    private static final List<EntityTrophyBuilder> TROPHIES = new ArrayList<>();
-
-    private static void add(EntityType<?> entityType, int color) {
-        EntityTrophyBuilder builder = new EntityTrophyBuilder(entityType, color);
-        TROPHIES.add(builder);
+    public ThermalTrophies() {
+        super("thermal");
     }
 
-    public static List<Trophy> createTrophies() {
-        TROPHIES.clear();
-
-        add(TCoreReferences.BASALZ_ENTITY, 0x41464b);
-        add(TCoreReferences.BLITZ_ENTITY, 0xceeaf1);
-        add(TCoreReferences.BLIZZ_ENTITY, 0xe0f3f0);
-
-        return TROPHIES.stream().map(EntityTrophyBuilder::createTrophy).toList();
+    @Override
+    public void addTrophies() {
+        builder(ThermalIDs.ID_BASALZ).accentColor(0x41464b);
+        builder(ThermalIDs.ID_BLITZ).accentColor(0xceeaf1);
+        builder(ThermalIDs.ID_BLIZZ).accentColor(0xe0f3f0);
     }
 }

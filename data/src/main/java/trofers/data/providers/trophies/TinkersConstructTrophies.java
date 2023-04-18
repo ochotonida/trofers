@@ -1,41 +1,43 @@
 package trofers.data.providers.trophies;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
-import slimeknights.tconstruct.TConstruct;
-import slimeknights.tconstruct.world.TinkerWorld;
-import trofers.trophy.Trophy;
+import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-public class TinkersConstructTrophies {
+public class TinkersConstructTrophies extends EntityTrophyProvider {
 
-    private static final List<EntityTrophyBuilder> TROPHIES = new ArrayList<>();
+    private static final String EARTH_SLIME = "earth_slime";
+    private static final String ENDER_SLIME = "ender_slime";
+    private static final String SKY_SLIME = "sky_slime";
+    private static final String TERRACUBE = "terracube";
 
-    private static EntityTrophyBuilder builder(EntityType<?> entityType, int color) {
-        EntityTrophyBuilder builder = new EntityTrophyBuilder(entityType, color);
-        TROPHIES.add(builder);
-        return builder;
+
+    public TinkersConstructTrophies() {
+        super("tconstruct");
     }
 
-    public static List<Trophy> createTrophies() {
-        TROPHIES.clear();
-        builder(TinkerWorld.enderSlimeEntity.get(), 0xa46de9)
+    @Override
+    public void addTrophies() {
+        builder(ENDER_SLIME)
+                .accentColor(0xa46de9)
                 .sound(SoundEvents.SLIME_SQUISH)
-                .getTag().putInt("Size", 1);
-        builder(TinkerWorld.skySlimeEntity.get(), 0x62c3b4)
+                .putInt("Size", 1);
+        builder(SKY_SLIME)
+                .accentColor(0x62c3b4)
                 .sound(SoundEvents.SLIME_SQUISH)
-                .getTag().putInt("Size", 1);
-        builder(TinkerWorld.terracubeEntity.get(), 0x98a1b1)
+                .putInt("Size", 1);
+        builder(TERRACUBE)
+                .accentColor(0x98a1b1)
                 .sound(SoundEvents.SLIME_SQUISH)
-                .getTag().putInt("Size", 1);
-        return TROPHIES.stream().map(EntityTrophyBuilder::createTrophy).toList();
+                .putInt("Size", 1);
     }
 
-    public static void addExtraTrophies(Map<String, Map<EntityType<?>, Trophy>> trophies) {
-        Trophy slimeTrophy = trophies.get("minecraft").get(EntityType.SLIME);
-        trophies.get(TConstruct.MOD_ID).put(TinkerWorld.earthSlimeEntity.get(), slimeTrophy);
+    @Override
+    public void addExtraTrophies(Map<String, Map<ResourceLocation, ResourceLocation>> trophies) {
+        ResourceLocation slimeTrophy = trophies.get(ResourceLocation.DEFAULT_NAMESPACE).get(ForgeRegistries.ENTITY_TYPES.getKey(EntityType.SLIME));
+        trophies.get(getModId()).put(id(EARTH_SLIME), slimeTrophy);
     }
 }

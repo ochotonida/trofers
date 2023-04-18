@@ -2,177 +2,244 @@ package trofers.data.providers.trophies;
 
 import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.CatVariant;
 import net.minecraft.world.entity.animal.FrogVariant;
 import net.minecraft.world.item.Items;
-import trofers.trophy.Trophy;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
-public class VanillaTrophies {
+public class VanillaTrophies extends EntityTrophyProvider {
 
-    private static final List<EntityTrophyBuilder> TROPHIES = new ArrayList<>();
-
-    private static EntityTrophyBuilder builder(EntityType<?> entityType, int color) {
-        EntityTrophyBuilder builder = new EntityTrophyBuilder(entityType, color);
-        TROPHIES.add(builder);
-        return builder;
+    public VanillaTrophies() {
+        super(ResourceLocation.DEFAULT_NAMESPACE);
     }
 
-    public static List<Trophy> createTrophies() {
-        TROPHIES.clear();
-        builder(EntityType.ALLAY, 0x68ffff)
+    @SuppressWarnings("ConstantConditions")
+    @Override
+    public void addTrophies() {
+        builder(EntityType.ALLAY)
+                .accentColor(0x68ffff)
                 .sound(SoundEvents.ALLAY_ITEM_GIVEN);
-        builder(EntityType.AXOLOTL, 0xfbc1e2)
+        builder(EntityType.AXOLOTL)
+                .accentColor(0xfbc1e2)
                 .sound(SoundEvents.AXOLOTL_IDLE_AIR)
-                .getTag().putInt("Variant", 0);
-        builder(EntityType.BAT, 0x75653f)
-                .effect(MobEffects.NIGHT_VISION, 20)
+                .putInt("Variant", 0);
+        builder(EntityType.BAT)
+                .accentColor(0x75653f)
+                .mobEffect(MobEffects.NIGHT_VISION, 20)
                 .cooldown(0);
-        builder(EntityType.BEE, 0xebc542)
+        builder(EntityType.BEE)
+                .accentColor(0xebc542)
                 .sound(SoundEvents.BEE_POLLINATE);
-        builder(EntityType.BLAZE, 0xede746);
-        EntityTrophyBuilder cat = builder(EntityType.CAT, 0xcccccc);
-        cat.getTag().putString("variant", BuiltInRegistries.CAT_VARIANT.getOptional(CatVariant.BLACK).orElseThrow().toString());
-        cat.getTag().putBoolean("Sitting", true);
-        builder(EntityType.CAVE_SPIDER, 0x147b6a)
+        builder(EntityType.BLAZE)
+                .accentColor(0xede746);
+        builder(EntityType.CAT)
+                .accentColor(0xcccccc)
+                .putString("variant", BuiltInRegistries.CAT_VARIANT.getOptional(CatVariant.BLACK).orElseThrow().toString())
+                .putBoolean("Sitting", true);
+        builder(EntityType.CAVE_SPIDER)
+                .accentColor(0x147b6a)
                 .sound(SoundEvents.SPIDER_AMBIENT);
-        builder(EntityType.CHICKEN, 0xffffff);
-        builder(EntityType.COD, 0xb6986c)
+        builder(EntityType.CHICKEN)
+                .accentColor(0xffffff);
+        builder(EntityType.COD)
+                .accentColor(0xb6986c)
                 .offset(-3/8D, 1, 0)
                 .rotate(0, 0, -90)
                 .sound(SoundEvents.COD_FLOP);
-        builder(EntityType.COW, 0x6c5234)
-                .getTag().putUUID("UUID", Util.NIL_UUID);
-        builder(EntityType.CREEPER, 0x48b23a)
+        builder(EntityType.COW)
+                .accentColor(0x6c5234)
+                .putUUID("UUID", Util.NIL_UUID);
+        builder(EntityType.CREEPER)
+                .accentColor(0x48b23a)
                 .sound(SoundEvents.CREEPER_PRIMED);
-        builder(EntityType.DOLPHIN, 0xb0c4d8)
-                .effect(MobEffects.DOLPHINS_GRACE, 20)
+        builder(EntityType.DOLPHIN)
+                .accentColor(0xb0c4d8)
+                .mobEffect(MobEffects.DOLPHINS_GRACE, 20)
                 .cooldown(0);
-        builder(EntityType.DONKEY, 0x817164);
-        builder(EntityType.DROWNED, 0x56847e);
-        builder(EntityType.ELDER_GUARDIAN, 0xbfbbaa)
+        builder(EntityType.DONKEY)
+                .accentColor(0x817164);
+        builder(EntityType.DROWNED)
+                .accentColor(0x56847e);
+        builder(EntityType.ELDER_GUARDIAN)
+                .accentColor(0xbfbbaa)
                 .scale(0.10625);
-        builder(EntityType.ENDERMAN, 0xa14fb6)
-                .getTag("carriedBlockState").putString("Name", "minecraft:tnt");
-        builder(EntityType.ENDERMITE, 0x644b84);
-        builder(EntityType.EVOKER, 0x959c9c);
-        EntityTrophyBuilder fox = builder(EntityType.FOX, 0xe37c21)
+        builder(EntityType.ENDERMAN)
+                .accentColor(0xa14fb6)
+                .tag("carriedBlockState", tag -> tag.putString("Name", "minecraft:tnt"));
+        builder(EntityType.ENDERMITE)
+                .accentColor(0x644b84);
+        builder(EntityType.EVOKER)
+                .accentColor(0x959c9c);
+        builder(EntityType.FOX)
+                .accentColor(0xe37c21)
                 .offset(0.75, 0, 0.5)
-                .rotate(0, -90, 0);
-        fox.getTag().putBoolean("Sleeping", true);
-        fox.getTag().putString("Type", "red");
-        //noinspection ConstantConditions
-        builder(EntityType.FROG, 0x669530)
-                .getTag().putString("variant", BuiltInRegistries.FROG_VARIANT.getKey(FrogVariant.COLD).toString());
-        builder(EntityType.GHAST, 0xf0f0f0)
+                .rotate(0, -90, 0)
+                .putBoolean("Sleeping", true)
+                .putString("Type", "red");
+        builder(EntityType.FROG)
+                .accentColor(0x669530)
+                .putString("variant", BuiltInRegistries.FROG_VARIANT.getKey(FrogVariant.COLD).toString());
+        builder(EntityType.GHAST)
+                .accentColor(0xf0f0f0)
                 .offset(0, 5, 0)
                 .scale(0.075);
-        builder(EntityType.GLOW_SQUID, 0x32a1a1)
+        builder(EntityType.GLOW_SQUID)
+                .accentColor(0x32a1a1)
                 .offset(0, 5, 0)
-                .getTag().putInt("DarkTicksRemaining", 1);
-        builder(EntityType.GOAT, 0xc2ab8e);
-        builder(EntityType.GUARDIAN, 0x6a9087);
-        builder(EntityType.HOGLIN, 0xd5957b)
-                .getTag().putBoolean("IsImmuneToZombification", true);
-        builder(EntityType.HORSE, 0x926633)
-                .getTag().putInt("Variant", 1 | 1 << 8);
-        builder(EntityType.HUSK, 0xc7ab6f);
-        builder(EntityType.IRON_GOLEM, 0xcdb297)
+                .putInt("DarkTicksRemaining", 1);
+        builder(EntityType.GOAT)
+                .accentColor(0xc2ab8e);
+        builder(EntityType.GUARDIAN)
+                .accentColor(0x6a9087);
+        builder(EntityType.HOGLIN)
+                .accentColor(0xd5957b)
+                .putBoolean("IsImmuneToZombification", true);
+        builder(EntityType.HORSE)
+                .accentColor(0x926633)
+                .putInt("Variant", 1 | 1 << 8);
+        builder(EntityType.HUSK)
+                .accentColor(0xc7ab6f);
+        builder(EntityType.IRON_GOLEM)
+                .accentColor(0xcdb297)
                 .sound(SoundEvents.IRON_GOLEM_REPAIR)
-                .getTag().putUUID("UUID", Util.NIL_UUID);
-        EntityTrophyBuilder llama = builder(EntityType.LLAMA, 0xe3e4d4);
-        llama.getTag().putInt("Variant", 3);
-        builder(EntityType.MAGMA_CUBE, 0xff4600)
+                .putUUID("UUID", Util.NIL_UUID);
+        builder(EntityType.LLAMA)
+                .accentColor(0xe3e4d4)
+                .putInt("Variant", 3);
+        builder(EntityType.MAGMA_CUBE)
+                .accentColor(0xff4600)
                 .sound(SoundEvents.MAGMA_CUBE_SQUISH)
-                .getTag().putInt("Size", 1);
-        builder(EntityType.MOOSHROOM, 0xa41012)
+                .putInt("Size", 1);
+        builder(EntityType.MOOSHROOM)
+                .accentColor(0xa41012)
                 .sound(SoundEvents.COW_AMBIENT);
-        builder(EntityType.MULE, 0x89492c);
-        builder(EntityType.OCELOT, 0xedb262);
-        builder(EntityType.PANDA, 0xe4e4e4)
-                .getTag().putString("MainGene", "playful");
-        builder(EntityType.PARROT, 0xe60000)
-                .getTag().putInt("Variant", 0);
-        builder(EntityType.PHANTOM, 0x5161a5)
+        builder(EntityType.MULE)
+                .accentColor(0x89492c);
+        builder(EntityType.OCELOT)
+                .accentColor(0xedb262);
+        builder(EntityType.PANDA)
+                .accentColor(0xe4e4e4)
+                .putString("MainGene", "playful");
+        builder(EntityType.PARROT)
+                .accentColor(0xe60000)
+                .putInt("Variant", 0);
+        builder(EntityType.PHANTOM)
+                .accentColor(0x5161a5)
                 .offset(0, 1, 0);
-        builder(EntityType.PIG, 0xf1a3a4)
-                .getTag().putUUID("UUID", new UUID(2, 0));
-        builder(EntityType.PIGLIN, 0xefb987)
-                .getTag().putBoolean("IsImmuneToZombification", true);
-        builder(EntityType.PIGLIN_BRUTE, 0xefb987)
+        builder(EntityType.PIG)
+                .accentColor(0xf1a3a4)
+                .putUUID("UUID", new UUID(2, 0));
+        builder(EntityType.PIGLIN)
+                .accentColor(0xefb987)
+                .putBoolean("IsImmuneToZombification", true);
+        builder(EntityType.PIGLIN_BRUTE)
+                .accentColor(0xefb987)
                 .putHandItem(Items.GOLDEN_AXE);
-        builder(EntityType.PILLAGER, 0x929c9c).putHandItem(Items.CROSSBOW);
-        builder(EntityType.POLAR_BEAR, 0xf2f2f4);
-        builder(EntityType.PUFFERFISH, 0xe3970b)
+        builder(EntityType.PILLAGER)
+                .accentColor(0x929c9c).putHandItem(Items.CROSSBOW);
+        builder(EntityType.POLAR_BEAR)
+                .accentColor(0xf2f2f4);
+        builder(EntityType.PUFFERFISH)
+                .accentColor(0xe3970b)
                 .sound(SoundEvents.PUFFER_FISH_BLOW_UP)
-                .getTag().putInt("PuffState", 2);
-        builder(EntityType.RABBIT, 0xa28b72)
-                .getTag().putInt("RabbitType", 0);
-        builder(EntityType.RAVAGER, 0x91acab)
+                .putInt("PuffState", 2);
+        builder(EntityType.RABBIT)
+                .accentColor(0xa28b72)
+                .putInt("RabbitType", 0);
+        builder(EntityType.RAVAGER)
+                .accentColor(0x91acab)
                 .scale(0.175);
-        builder(EntityType.SALMON, 0xa83735)
+        builder(EntityType.SALMON)
+                .accentColor(0xa83735)
                 .offset(-3/8D, 1, 0)
                 .rotate(0, 0, -90)
                 .sound(SoundEvents.SALMON_FLOP);
-        builder(EntityType.SHEEP, 0xffffff);
-        builder(EntityType.SHULKER, 0x986a97)
-                .effect(MobEffects.LEVITATION, 5)
+        builder(EntityType.SHEEP)
+                .accentColor(0xffffff);
+        builder(EntityType.SHULKER)
+                .accentColor(0x986a97)
+                .mobEffect(MobEffects.LEVITATION, 5)
                 .cooldown(0);
-        builder(EntityType.SILVERFISH, 0x778c99);
-        builder(EntityType.SKELETON, 0xbdbdbd)
+        builder(EntityType.SILVERFISH)
+                .accentColor(0x778c99);
+        builder(EntityType.SKELETON)
+                .accentColor(0xbdbdbd)
                 .putHandItem(Items.BOW);
-        builder(EntityType.SKELETON_HORSE, 0xd0d0d2);
-        builder(EntityType.SLIME, 0x77c264)
+        builder(EntityType.SKELETON_HORSE)
+                .accentColor(0xd0d0d2);
+        builder(EntityType.SLIME)
+                .accentColor(0x77c264)
                 .sound(SoundEvents.SLIME_SQUISH)
-                .getTag().putInt("Size", 1);
-        builder(EntityType.SNOW_GOLEM, 0xffffff)
+                .putInt("Size", 1);
+        builder(EntityType.SNOW_GOLEM)
+                .accentColor(0xffffff)
                 .sound(SoundEvents.SNOW_PLACE);
-        builder(EntityType.SPIDER, 0x7a6755);
-        builder(EntityType.SQUID, 0x546d80)
+        builder(EntityType.SPIDER)
+                .accentColor(0x7a6755);
+        builder(EntityType.SQUID)
+                .accentColor(0x546d80)
                 .offset(0, 5, 0);
-        builder(EntityType.STRAY, 0x607576)
+        builder(EntityType.STRAY)
+                .accentColor(0x607576)
                 .putHandItem(Items.BOW);
-        builder(EntityType.STRIDER, 0xb44040);
-        builder(EntityType.TADPOLE, 0x71563f)
+        builder(EntityType.STRIDER)
+                .accentColor(0xb44040);
+        builder(EntityType.TADPOLE)
+                .accentColor(0x71563f)
                 .sound(SoundEvents.TADPOLE_FLOP);
-        builder(EntityType.TRADER_LLAMA, 0x425f90)
+        builder(EntityType.TRADER_LLAMA)
+                .accentColor(0x425f90)
                 .sound(SoundEvents.LLAMA_AMBIENT)
-                .getTag().putInt("Variant", 2);
-        builder(EntityType.TROPICAL_FISH, 0xFF4040)
+                .putInt("Variant", 2);
+        builder(EntityType.TROPICAL_FISH)
+                .accentColor(0xFF4040)
                 .offset(-3/8D, 1, 0)
                 .rotate(0, 0, -90)
                 .sound(SoundEvents.TROPICAL_FISH_FLOP)
-                .getTag().putInt("Variant", 1 | 1 << 8 | 14 << 16 | 14 << 24);
-        builder(EntityType.TURTLE, 0x3ea240)
+                .putInt("Variant", 1 | 1 << 8 | 14 << 16 | 14 << 24);
+        builder(EntityType.TURTLE)
+                .accentColor(0x3ea240)
                 .sound(SoundEvents.TURTLE_AMBIENT_LAND);
-        builder(EntityType.VEX, 0x89a0b6);
-        EntityTrophyBuilder villager = builder(EntityType.VILLAGER, 0xbf886d);
-        villager.getTag("VillagerData").putInt("level", 1);
-        villager.getTag("VillagerData").putString("profession", "minecraft:weaponsmith");
-        villager.getTag("VillagerData").putString("type", "minecraft:plains");
-        builder(EntityType.VINDICATOR, 0x929c9c);
-        builder(EntityType.WANDERING_TRADER, 0x425f90);
-        builder(EntityType.WITCH, 0xa39482);
-        builder(EntityType.WITHER_SKELETON, 0x626565)
+        builder(EntityType.VEX)
+                .accentColor(0x89a0b6);
+        builder(EntityType.VILLAGER)
+                .accentColor(0xbf886d)
+                .tag("VillagerData", villagerData -> {
+                    villagerData.putInt("level", 1);
+                    villagerData.putString("profession", "minecraft:weaponsmith");
+                    villagerData.putString("type", "minecraft:plains");
+                });
+        builder(EntityType.VINDICATOR)
+                .accentColor(0x929c9c);
+        builder(EntityType.WANDERING_TRADER)
+                .accentColor(0x425f90);
+        builder(EntityType.WITCH)
+                .accentColor(0xa39482);
+        builder(EntityType.WITHER_SKELETON)
+                .accentColor(0x626565)
                 .putHandItem(Items.STONE_SWORD);
-        EntityTrophyBuilder wolf = builder(EntityType.WOLF, 0xdcdadb);
-        wolf.getTag().putBoolean("Sitting", true);
-        wolf.getTag().putUUID("Owner", Util.NIL_UUID);
-        builder(EntityType.ZOGLIN, 0xe59796);
-        builder(EntityType.ZOMBIE, 0x70955c);
-        EntityTrophyBuilder zombie_villager = builder(EntityType.ZOMBIE_VILLAGER, 0x76a045);
-        zombie_villager.getTag("VillagerData").putInt("level", 1);
-        zombie_villager.getTag("VillagerData").putString("profession", "minecraft:weaponsmith");
-        zombie_villager.getTag("VillagerData").putString("type", "minecraft:plains");
-        builder(EntityType.ZOMBIFIED_PIGLIN, 0xe59796)
+        builder(EntityType.WOLF)
+                .accentColor(0xdcdadb)
+                .putBoolean("Sitting", true)
+                .putUUID("Owner", Util.NIL_UUID);
+        builder(EntityType.ZOGLIN)
+                .accentColor(0xe59796);
+        builder(EntityType.ZOMBIE)
+                .accentColor(0x70955c);
+        builder(EntityType.ZOMBIE_VILLAGER)
+                .accentColor(0x76a045)
+                .tag("VillagerData", villagerData -> {
+                    villagerData.putInt("level", 1);
+                    villagerData.putString("profession", "minecraft:weaponsmith");
+                    villagerData.putString("type", "minecraft:plains");
+                });
+        builder(EntityType.ZOMBIFIED_PIGLIN)
+                .accentColor(0xe59796)
                 .putHandItem(Items.GOLDEN_SWORD);
-
-        return TROPHIES.stream().map(EntityTrophyBuilder::createTrophy).toList();
     }
 }
