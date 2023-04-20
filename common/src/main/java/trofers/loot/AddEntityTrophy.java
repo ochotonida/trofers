@@ -29,7 +29,7 @@ public class AddEntityTrophy extends AbstractLootModifier {
                             .fieldOf("trophyBase").forGetter(m -> m.trophyBase))
                     .and(Codec.unboundedMap(ResourceLocation.CODEC, ResourceLocation.CODEC)
                             .fieldOf("trophies").forGetter(m -> m.trophies))
-                    .apply(instance, AddEntityTrophy::new)
+                    .apply(instance, AddEntityTrophy::create)
             )
     );
 
@@ -37,18 +37,27 @@ public class AddEntityTrophy extends AbstractLootModifier {
     private final Map<ResourceLocation, ResourceLocation> trophies;
     private final Set<EntityType<?>> entities;
 
-    public AddEntityTrophy(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies) {
+    private AddEntityTrophy(LootItemCondition[] conditions, Item trophyBase, Map<ResourceLocation, ResourceLocation> trophies, Set<EntityType<?>> entities) {
         super(conditions);
-        this.trophyBase = trophyBase.asItem();
+        this.trophyBase = trophyBase;
         this.trophies = trophies;
-        entities = new HashSet<>();
+        this.entities = entities;
+    }
+
+    public static AddEntityTrophy create(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies, boolean logMissingEntities) {
+        Set<EntityType<?>> entities = new HashSet<>();
         for (ResourceLocation entityTypeId : trophies.keySet()) {
             if (BuiltInRegistries.ENTITY_TYPE.containsKey(entityTypeId)) {
                 entities.add(BuiltInRegistries.ENTITY_TYPE.get(entityTypeId));
-            } else {
+            } else if (logMissingEntities) {
                 Trofers.LOGGER.debug("Skipping trophy loot modifier entry for missing entity type " + entityTypeId);
             }
         }
+        return new AddEntityTrophy(conditions, trophyBase.asItem(), trophies, entities);
+    }
+
+    public static AddEntityTrophy create(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies) {
+        return create(conditions, trophyBase, trophies, true);
     }
 
     @Override

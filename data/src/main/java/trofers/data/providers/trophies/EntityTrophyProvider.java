@@ -26,6 +26,10 @@ import java.util.stream.Collectors;
 
 public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyProvider.EntityTrophyWithLootBuilder> {
 
+    private static final String AMBIENT = "ambient";
+    private static final String HURT = "hurt";
+    private static final String ATTACK = "attack";
+
     private final List<LootTableProvider.SubProviderEntry> lootTables = new ArrayList<>();
     private final String modId;
 
@@ -58,7 +62,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyPr
     }
 
     protected String getDefaultSoundName() {
-        return "ambient";
+        return AMBIENT;
     }
 
     protected int getDefaultLootCooldown() {
@@ -98,12 +102,24 @@ public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyPr
             super(entityId);
             baseColor(0x606060);
             scale(0.25);
-            sound(getDefaultSoundName())
+            entitySound(getDefaultSoundName())
             .requiresMod(getModId());
         }
 
-        public EntityTrophyWithLootBuilder sound(String entitySoundName) {
+        public EntityTrophyWithLootBuilder entitySound(String entitySoundName) {
             return sound(getEntitySound(getEntityId().getPath(), entitySoundName));
+        }
+
+        public EntityTrophyWithLootBuilder ambientSound() {
+            return entitySound(AMBIENT);
+        }
+
+        public EntityTrophyWithLootBuilder hurtSound() {
+            return entitySound(HURT);
+        }
+
+        public EntityTrophyWithLootBuilder attackSound() {
+            return entitySound(ATTACK);
         }
 
         @Override

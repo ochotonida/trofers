@@ -42,7 +42,7 @@ public class LootModifiers extends GlobalLootModifierProvider {
                     RandomTrophyChanceCondition.randomTrophyChance().build()
             };
 
-            AddEntityTrophy modifier = new AddEntityTrophy(conditions, ModBlocks.SMALL_PLATE.get(), trophies.get(modId));
+            AddEntityTrophy modifier = AddEntityTrophy.create(conditions, ModBlocks.SMALL_PLATE.get(), trophies.get(modId), false);
 
             String name = modId.equals("minecraft") ? "vanilla" : modId;
             name = name + "_trophies";

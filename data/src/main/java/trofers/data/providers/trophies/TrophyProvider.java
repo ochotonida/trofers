@@ -32,6 +32,8 @@ public abstract class TrophyProvider<T extends TrophyBuilder<T>> {
                     throw new IllegalStateException("Invalid sound event: " + sound.soundEvent().toString());
                 }
             }
+        } else {
+            Trofers.LOGGER.warn("Skipping trophy validation for mod: %s".formatted(getModId()));
         }
     }
 

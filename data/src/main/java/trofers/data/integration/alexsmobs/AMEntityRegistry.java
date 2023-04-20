@@ -1,0 +1,103 @@
+package trofers.data.integration.alexsmobs;
+
+import com.google.common.base.Suppliers;
+import net.minecraft.resources.ResourceLocation;
+import trofers.data.integration.Compat;
+
+import java.util.function.Supplier;
+
+public class AMEntityRegistry {
+
+    public static final Supplier<ResourceLocation> ALLIGATOR_SNAPPING_TURTLE = create("alligator_snapping_turtle");
+    public static final Supplier<ResourceLocation> ANACONDA = create("anaconda");
+    public static final Supplier<ResourceLocation> ANTEATER = create("anteater");
+    public static final Supplier<ResourceLocation> BALD_EAGLE = create("bald_eagle");
+    public static final Supplier<ResourceLocation> BANANA_SLUG = create("banana_slug");
+    public static final Supplier<ResourceLocation> BLOBFISH = create("blobfish");
+    public static final Supplier<ResourceLocation> BLUE_JAY = create("blue_jay");
+    public static final Supplier<ResourceLocation> BISON = create("bison");
+    public static final Supplier<ResourceLocation> BONE_SERPENT = create("bone_serpent");
+    public static final Supplier<ResourceLocation> BUNFUNGUS = create("bunfungus");
+    public static final Supplier<ResourceLocation> CACHALOT_WHALE = create("cachalot_whale");
+    public static final Supplier<ResourceLocation> CAIMAN = create("caiman");
+    public static final Supplier<ResourceLocation> CAPUCHIN_MONKEY = create("capuchin_monkey");
+    public static final Supplier<ResourceLocation> CATFISH = create("catfish");
+    public static final Supplier<ResourceLocation> CENTIPEDE_HEAD = create("centipede_head");
+    public static final Supplier<ResourceLocation> COCKROACH = create("cockroach");
+    public static final Supplier<ResourceLocation> COMB_JELLY = create("comb_jelly");
+    public static final Supplier<ResourceLocation> COSMAW = create("cosmaw");
+    public static final Supplier<ResourceLocation> COSMIC_COD = create("cosmic_cod");
+    public static final Supplier<ResourceLocation> CRIMSON_MOSQUITO = create("crimson_mosquito");
+    public static final Supplier<ResourceLocation> CROCODILE = create("crocodile");
+    public static final Supplier<ResourceLocation> CROW = create("crow");
+    public static final Supplier<ResourceLocation> DEVILS_HOLE_PUPFISH = create("devils_hole_pupfish");
+    public static final Supplier<ResourceLocation> DROPBEAR = create("dropbear");
+    public static final Supplier<ResourceLocation> ELEPHANT = create("elephant");
+    public static final Supplier<ResourceLocation> EMU = create("emu");
+    public static final Supplier<ResourceLocation> ENDERGRADE = create("endergrade");
+    public static final Supplier<ResourceLocation> ENDERIOPHAGE = create("enderiophage");
+    public static final Supplier<ResourceLocation> FARSEER = create("farseer");
+    public static final Supplier<ResourceLocation> FLUTTER = create("flutter");
+    public static final Supplier<ResourceLocation> FLY = create("fly");
+    public static final Supplier<ResourceLocation> FLYING_FISH = create("flying_fish");
+    public static final Supplier<ResourceLocation> FRILLED_SHARK = create("frilled_shark");
+    public static final Supplier<ResourceLocation> FROSTSTALKER = create("froststalker");
+    public static final Supplier<ResourceLocation> GAZELLE = create("gazelle");
+    public static final Supplier<ResourceLocation> GELADA_MONKEY = create("gelada_monkey");
+    public static final Supplier<ResourceLocation> GIANT_SQUID = create("giant_squid");
+    public static final Supplier<ResourceLocation> GORILLA = create("gorilla");
+    public static final Supplier<ResourceLocation> GRIZZLY_BEAR = create("grizzly_bear");
+    public static final Supplier<ResourceLocation> GUSTER = create("guster");
+    public static final Supplier<ResourceLocation> HAMMERHEAD_SHARK = create("hammerhead_shark");
+    public static final Supplier<ResourceLocation> HUMMINGBIRD = create("hummingbird");
+    public static final Supplier<ResourceLocation> JERBOA = create("jerboa");
+    public static final Supplier<ResourceLocation> KANGAROO = create("kangaroo");
+    public static final Supplier<ResourceLocation> KOMODO_DRAGON = create("komodo_dragon");
+    public static final Supplier<ResourceLocation> LAVIATHAN = create("laviathan");
+    public static final Supplier<ResourceLocation> LEAFCUTTER_ANT = create("leafcutter_ant");
+    public static final Supplier<ResourceLocation> LOBSTER = create("lobster");
+    public static final Supplier<ResourceLocation> MANED_WOLF = create("maned_wolf");
+    public static final Supplier<ResourceLocation> MANTIS_SHRIMP = create("mantis_shrimp");
+    public static final Supplier<ResourceLocation> MIMIC_OCTOPUS = create("mimic_octopus");
+    public static final Supplier<ResourceLocation> MIMICUBE = create("mimicube");
+    public static final Supplier<ResourceLocation> MOOSE = create("moose");
+    public static final Supplier<ResourceLocation> MUDSKIPPER = create("mudskipper");
+    public static final Supplier<ResourceLocation> MUNGUS = create("mungus");
+    public static final Supplier<ResourceLocation> MURMUR_HEAD = create("murmur_head");
+    public static final Supplier<ResourceLocation> POTOO = create("potoo");
+    public static final Supplier<ResourceLocation> ORCA = create("orca");
+    public static final Supplier<ResourceLocation> PLATYPUS = create("platypus");
+    public static final Supplier<ResourceLocation> RACCOON = create("raccoon");
+    public static final Supplier<ResourceLocation> RAIN_FROG = create("rain_frog");
+    public static final Supplier<ResourceLocation> RATTLESNAKE = create("rattlesnake");
+    public static final Supplier<ResourceLocation> RHINOCEROS = create("rhinoceros");
+    public static final Supplier<ResourceLocation> ROADRUNNER = create("roadrunner");
+    public static final Supplier<ResourceLocation> ROCKY_ROLLER = create("rocky_roller");
+    public static final Supplier<ResourceLocation> SEAGULL = create("seagull");
+    public static final Supplier<ResourceLocation> SEAL = create("seal");
+    public static final Supplier<ResourceLocation> SHOEBILL = create("shoebill");
+    public static final Supplier<ResourceLocation> SKELEWAG = create("skelewag");
+    public static final Supplier<ResourceLocation> SKREECHER = create("skreecher");
+    public static final Supplier<ResourceLocation> SKUNK = create("skunk");
+    public static final Supplier<ResourceLocation> SNOW_LEOPARD = create("snow_leopard");
+    public static final Supplier<ResourceLocation> SOUL_VULTURE = create("soul_vulture");
+    public static final Supplier<ResourceLocation> SPECTRE = create("spectre");
+    public static final Supplier<ResourceLocation> STRADDLER = create("straddler");
+    public static final Supplier<ResourceLocation> STRADPOLE = create("stradpole");
+    public static final Supplier<ResourceLocation> SUGAR_GLIDER = create("sugar_glider");
+    public static final Supplier<ResourceLocation> SUNBIRD = create("sunbird");
+    public static final Supplier<ResourceLocation> TARANTULA_HAWK = create("tarantula_hawk");
+    public static final Supplier<ResourceLocation> TASMANIAN_DEVIL = create("tasmanian_devil");
+    public static final Supplier<ResourceLocation> TERRAPIN = create("terrapin");
+    public static final Supplier<ResourceLocation> TIGER = create("tiger");
+    public static final Supplier<ResourceLocation> TOUCAN = create("toucan");
+    public static final Supplier<ResourceLocation> TRIOPS = create("triops");
+    public static final Supplier<ResourceLocation> TUSKLIN = create("tusklin");
+    public static final Supplier<ResourceLocation> UNDERMINER = create("underminer");
+    public static final Supplier<ResourceLocation> WARPED_MOSCO = create("warped_mosco");
+    public static final Supplier<ResourceLocation> WARPED_TOAD = create("warped_toad");
+
+    private static Supplier<ResourceLocation> create(String name) {
+        return Suppliers.ofInstance(new ResourceLocation(Compat.ALEXS_MOBS, name));
+    }
+}

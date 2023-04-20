@@ -1,11 +1,12 @@
 package trofers.data.providers.trophies;
 
 import cofh.thermal.lib.common.ThermalIDs;
+import trofers.data.integration.Compat;
 
 public class ThermalTrophies extends EntityTrophyProvider {
 
     public ThermalTrophies() {
-        super("thermal");
+        super(Compat.THERMAL);
     }
 
     @Override
