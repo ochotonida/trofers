@@ -11,9 +11,9 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
 import trofers.util.JsonHelper;
 
-import javax.annotation.Nullable;
 import java.util.UUID;
 import java.util.function.Function;
 
@@ -59,7 +59,6 @@ public class EntityInfo {
         }
 
         CompoundTag entityTag = this.nbt.copy();
-        // noinspection ConstantConditions
         entityTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(getType()).toString());
         if (!entityTag.hasUUID("UUID")) {
             entityTag.putUUID("UUID", new UUID(1L, 1L));
@@ -69,7 +68,6 @@ public class EntityInfo {
     }
 
     public void toNetwork(FriendlyByteBuf buffer) {
-        // noinspection ConstantConditions
         buffer.writeResourceLocation(BuiltInRegistries.ENTITY_TYPE.getKey(getType()));
         buffer.writeNbt(nbt);
         buffer.writeBoolean(isAnimated);

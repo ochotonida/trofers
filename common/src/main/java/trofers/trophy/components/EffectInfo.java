@@ -9,9 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import org.jetbrains.annotations.Nullable;
 import trofers.util.JsonHelper;
-
-import javax.annotation.Nullable;
 
 public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
 

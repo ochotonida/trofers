@@ -9,12 +9,12 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.trophy.Trophy;
 import trofers.trophy.components.*;
 import trofers.util.JsonHelper;
 
-import javax.annotation.Nullable;
 import java.util.*;
 
 @SuppressWarnings({"unchecked", "unused", "UnusedReturnValue"})

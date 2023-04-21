@@ -28,14 +28,13 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import org.apache.logging.log4j.Level;
+import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.registry.ModBlockEntityTypes;
-import trofers.trophy.components.EffectInfo;
 import trofers.trophy.Trophy;
 import trofers.trophy.TrophyManager;
-
-import javax.annotation.Nullable;
+import trofers.trophy.components.EffectInfo;
 
 public class TrophyBlockEntity extends BlockEntity {
 

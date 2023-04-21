@@ -16,13 +16,13 @@ loom {
         convertAccessWideners = true
         extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
 
-        mixinConfig("mixins.${mod_id}.common.json", "mixins.${mod_id}.forge.json")
+        mixinConfig("mixins.${mod_id}.forge.json")
     }
 }
 
 configurations {
     common
-    shadowCommon // Don't use shadow from the shadow plugin because we don't want IDEA to index this.
+    shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
     developmentForge.extendsFrom common
@@ -32,13 +32,13 @@ dependencies {
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
     modApi "dev.architectury:architectury-forge:${rootProject.architectury_version}"
 
+    common(project(path: ":common", configuration: "namedElements")) { transitive false }
+    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
+
     modRuntimeOnly "curse.maven:citadel-331936:4473245"
     modRuntimeOnly "curse.maven:alexsmobs-426558:4476475"
 
     modImplementation "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
-
-    common(project(path: ":common", configuration: "namedElements")) { transitive false }
-    shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
 
 processResources {

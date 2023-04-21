@@ -4,10 +4,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 import trofers.block.entity.TrophyBlockEntity;
 import trofers.trophy.Trophy;
-
-import javax.annotation.Nullable;
 
 public class TrofersClient {
 

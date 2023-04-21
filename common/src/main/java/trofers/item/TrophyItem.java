@@ -11,8 +11,6 @@ import trofers.block.TrophyBlock;
 import trofers.block.entity.TrophyBlockEntity;
 import trofers.trophy.Trophy;
 
-import javax.annotation.Nonnull;
-
 public class TrophyItem extends BlockItem {
 
     public TrophyItem(TrophyBlock block, Properties properties) {
@@ -35,7 +33,6 @@ public class TrophyItem extends BlockItem {
         return false;
     }
 
-    @Nonnull
     @Override
     public Component getName(ItemStack stack) {
         Trophy trophy = Trophy.getTrophy(stack);

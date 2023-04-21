@@ -27,13 +27,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.block.entity.TrophyBlockEntity;
-import trofers.screen.TrophySelectionScreen;
 import trofers.registry.ModBlockEntityTypes;
+import trofers.screen.TrophySelectionScreen;
 import trofers.trophy.Trophy;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class TrophyBlock extends BaseEntityBlock {
