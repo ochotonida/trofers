@@ -49,6 +49,10 @@ allprojects {
             url = "https://maven.covers1624.net/"
         }
         maven {
+            name = "Ad Astra"
+            url = "https://nexus.resourcefulbees.com/repository/maven-public/"
+        }
+        maven {
             name = "Modrinth"
             url = "https://api.modrinth.com/maven"
         }

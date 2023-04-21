@@ -1,0 +1,26 @@
+{
+  "type": "trofers:add_entity_trophy",
+  "conditions": [
+    {
+      "condition": "minecraft:killed_by_player"
+    },
+    {
+      "condition": "trofers:random_trophy_chance"
+    }
+  ],
+  "trophies": {
+    "ad_astra:corrupted_lunarian": "trofers:ad_astra/corrupted_lunarian",
+    "ad_astra:glacian_ram": "trofers:ad_astra/glacian_ram",
+    "ad_astra:lunarian": "trofers:ad_astra/lunarian",
+    "ad_astra:lunarian_wandering_trader": "trofers:ad_astra/lunarian_wandering_trader",
+    "ad_astra:martian_raptor": "trofers:ad_astra/martian_raptor",
+    "ad_astra:mogler": "trofers:ad_astra/mogler",
+    "ad_astra:pygro": "trofers:ad_astra/pygro",
+    "ad_astra:pygro_brute": "trofers:ad_astra/pygro_brute",
+    "ad_astra:star_crawler": "trofers:ad_astra/star_crawler",
+    "ad_astra:sulfur_creeper": "trofers:ad_astra/sulfur_creeper",
+    "ad_astra:zombified_mogler": "trofers:ad_astra/zombified_mogler",
+    "ad_astra:zombified_pygro": "trofers:ad_astra/zombified_pygro"
+  },
+  "trophyBase": "trofers:small_plate"
+}

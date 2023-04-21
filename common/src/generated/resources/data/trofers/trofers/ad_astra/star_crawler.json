@@ -1,0 +1,43 @@
+{
+  "colors": {
+    "accent": "#6FEAE6",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ],
+  "display": {
+    "rotation": {
+      "y": 45.0
+    },
+    "scale": 0.1666
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.turtle.hurt"
+    }
+  },
+  "entity": {
+    "type": "ad_astra:star_crawler"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ad_astra"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#6FEAE6",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.ad_astra.star_crawler"
+      }
+    ]
+  }
+}

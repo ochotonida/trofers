@@ -1,4 +1,16 @@
-// 1.19.4	2023-04-19T01:17:20.1513025	Trophies
+// 1.19.4	2023-04-21T01:04:48.8241808	Trophies
+dba1e14a2bb875daa41ac0951a015bce47c8bac6 data/trofers/trofers/ad_astra/corrupted_lunarian.json
+8561f712440d2ae14c69df2750412494d4ca43a3 data/trofers/trofers/ad_astra/glacian_ram.json
+9c48e290d5002013c604abeb97983dd7e697310d data/trofers/trofers/ad_astra/lunarian.json
+2f2beec9db8528463f3912f26e2ebd98363794b7 data/trofers/trofers/ad_astra/lunarian_wandering_trader.json
+f662823f51d88e4a6fc1459d8959e18105ae9a7d data/trofers/trofers/ad_astra/martian_raptor.json
+31416dd2461bd1987ec5ae8075c8e25e6bdf716f data/trofers/trofers/ad_astra/mogler.json
+63cf79392b62489d68e96c0bc1d211838e9ff7c7 data/trofers/trofers/ad_astra/pygro.json
+da6d5bb12c4109d90fc347a429659f7e20757b5d data/trofers/trofers/ad_astra/pygro_brute.json
+d5bb91b51fd35287530f647b6a7810c099412ace data/trofers/trofers/ad_astra/star_crawler.json
+b61ea75b7198d8f7935dafec205c38aefb4df47a data/trofers/trofers/ad_astra/sulfur_creeper.json
+c139fb16454de706238c664749f90d76445f9e28 data/trofers/trofers/ad_astra/zombified_mogler.json
+384d93674b8784898fce6f61757b5255aa957be7 data/trofers/trofers/ad_astra/zombified_pygro.json
 ba62cf38df0846c9011eb02f01f7e5faa094ede2 data/trofers/trofers/alexsmobs/alligator_snapping_turtle.json
 71734588e9ff5b58151f214478db027d5707cf44 data/trofers/trofers/alexsmobs/anaconda.json
 b4810429ebde58ac2588cf028f9d93c3eb2465a2 data/trofers/trofers/alexsmobs/anteater.json

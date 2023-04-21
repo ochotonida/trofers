@@ -1,0 +1,43 @@
+{
+  "colors": {
+    "accent": "#D9BECD",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ],
+  "display": {
+    "offset": {
+      "z": -1.0
+    },
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.goat.ambient"
+    }
+  },
+  "entity": {
+    "type": "ad_astra:glacian_ram"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ad_astra"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#D9BECD",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.ad_astra.glacian_ram"
+      }
+    ]
+  }
+}

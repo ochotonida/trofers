@@ -1,0 +1,41 @@
+{
+  "colors": {
+    "accent": "#B88C41",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.zombified_piglin.ambient"
+    }
+  },
+  "entity": {
+    "type": "ad_astra:zombified_pygro",
+    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_sword\",tag:{Damage:0}},{}]}"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ad_astra"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#B88C41",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.ad_astra.zombified_pygro"
+      }
+    ]
+  }
+}

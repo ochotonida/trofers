@@ -1,0 +1,40 @@
+{
+  "colors": {
+    "accent": "#B88C41",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.piglin.ambient"
+    }
+  },
+  "entity": {
+    "type": "ad_astra:pygro"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ad_astra"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#B88C41",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.ad_astra.pygro"
+      }
+    ]
+  }
+}

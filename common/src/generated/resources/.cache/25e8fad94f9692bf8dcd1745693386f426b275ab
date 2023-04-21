@@ -1,5 +1,6 @@
-// 1.19.4	2023-04-19T00:01:59.194925	Global Loot Modifiers : trofers
-e2f1c5e150262779d1a792e377efeb50cd02fd7b data/forge/loot_modifiers/global_loot_modifiers.json
+// 1.19.4	2023-04-21T00:00:45.9347979	Global Loot Modifiers : trofers
+940b4c8b29d2b6be336bba60f2af851cd773ea5f data/forge/loot_modifiers/global_loot_modifiers.json
+fc23a75648c163aec9f1449eb22fc6949948227e data/trofers/loot_modifiers/ad_astra_trophies.json
 43ab48692b26cd43de29a425dfc6da582b754bae data/trofers/loot_modifiers/alexsmobs_trophies.json
 0b854ed59629bdea667e21b479aa9ddf1b718dd1 data/trofers/loot_modifiers/quark_trophies.json
 411371224fe326a168ad98ea673d296bc07b6afd data/trofers/loot_modifiers/tconstruct_trophies.json

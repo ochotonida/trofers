@@ -1,0 +1,40 @@
+{
+  "colors": {
+    "accent": "#6B8F85",
+    "base": "#606060"
+  },
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ],
+  "display": {
+    "scale": 0.25
+  },
+  "effects": {
+    "sound": {
+      "soundEvent": "minecraft:entity.zombie_villager.ambient"
+    }
+  },
+  "entity": {
+    "type": "ad_astra:corrupted_lunarian"
+  },
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "ad_astra"
+      ]
+    }
+  ],
+  "name": {
+    "color": "#6B8F85",
+    "translate": "trophy.trofers.composed",
+    "with": [
+      {
+        "translate": "entity.ad_astra.corrupted_lunarian"
+      }
+    ]
+  }
+}

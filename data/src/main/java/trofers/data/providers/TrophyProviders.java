@@ -19,22 +19,17 @@ public class TrophyProviders implements DataProvider {
 
     private final PackOutput packOutput;
 
-    public final List<EntityTrophyProvider> entityTrophies = createEntityTrophyProviders();
+    public final List<EntityTrophyProvider> entityTrophies = List.of(
+                new VanillaTrophies(),
+                new AlexsMobsTrophies(),
+                new QuarkTrophies(),
+                new ThermalTrophies(),
+                new TinkersConstructTrophies(),
+                new AdAstraTrophies()
+        );
 
     public TrophyProviders(PackOutput packOutput) {
         this.packOutput = packOutput;
-    }
-
-    protected List<EntityTrophyProvider> createEntityTrophyProviders() {
-        List<EntityTrophyProvider> result = new ArrayList<>();
-
-        result.add(new VanillaTrophies());
-        result.add(new AlexsMobsTrophies());
-        result.add(new QuarkTrophies());
-        result.add(new ThermalTrophies());
-        result.add(new TinkersConstructTrophies());
-
-        return result;
     }
 
     protected List<TrophyProvider<?>> getTrophyProviders() {
