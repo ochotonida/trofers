@@ -53,8 +53,8 @@ dependencies {
     implementation(project(path: ':common', configuration: 'namedElements')) { transitive false }
     implementation(project(path: ':forge', configuration: 'namedElements')) { transitive false }
 
-    implementation fg.deobf("curse.maven:citadel-331936:4473245")
-    implementation fg.deobf("curse.maven:alexsmobs-426558:4476475")
+    // compileOnly fg.deobf("curse.maven:citadel-331936:4473245")
+    // compileOnly fg.deobf("curse.maven:alexsmobs-426558:4476475")
 
     compileOnly fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
     minecraftLibrary fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")

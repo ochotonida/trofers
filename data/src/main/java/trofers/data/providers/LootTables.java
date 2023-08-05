@@ -60,6 +60,6 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
 
     @Override
     protected void validate(Map<ResourceLocation, LootTable> map, ValidationContext validationTracker) {
-        map.forEach((location, lootTable) -> net.minecraft.world.level.storage.loot.LootTables.validate(validationTracker, location, lootTable));
+        map.forEach((location, lootTable) -> lootTable.validate(validationTracker));
     }
 }
