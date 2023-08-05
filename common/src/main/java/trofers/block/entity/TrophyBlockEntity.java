@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -146,7 +146,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
-        if (player.level.isClientSide()) {
+        if (player.level().isClientSide()) {
             return;
         } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable() == null)
                 && (!Trofers.CONFIG.general.enableTrophyEffects || rewards.statusEffect().isEmpty())) {
@@ -205,27 +205,25 @@ public class TrophyBlockEntity extends BlockEntity {
             ResourceLocation lootTableLocation = rewards.lootTable();
             if (lootTableLocation != null) {
                 // noinspection ConstantConditions
-                LootTable lootTable = level.getServer().getLootTables().get(lootTableLocation);
+                LootTable lootTable = level.getServer().getLootData().getLootTable(lootTableLocation);
                 if (lootTable == LootTable.EMPTY) {
                     Trofers.LOGGER.log(Level.ERROR, "Invalid loot table: {}", lootTableLocation);
                     return;
                 }
-                LootContext.Builder builder = createLootContext(player, player.getItemInHand(hand));
-                LootContext context = builder.create(LootContextParamSets.BLOCK);
-                lootTable.getRandomItems(context).forEach(this::spawnAtLocation);
+                LootParams parameters = createLootContext(player, player.getItemInHand(hand));
+                lootTable.getRandomItems(parameters).forEach(this::spawnAtLocation);
             }
         }
     }
 
-    private LootContext.Builder createLootContext(Player player, ItemStack stack) {
-        // noinspection ConstantConditions
-        return (new LootContext.Builder((ServerLevel) level))
-                .withRandom(level.getRandom())
+    private LootParams createLootContext(Player player, ItemStack stack) {
+        return (new LootParams.Builder((ServerLevel) level))
                 .withParameter(LootContextParams.BLOCK_ENTITY, this)
                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(getBlockPos()))
                 .withParameter(LootContextParams.THIS_ENTITY, player)
                 .withParameter(LootContextParams.BLOCK_STATE, getBlockState())
-                .withParameter(LootContextParams.TOOL, stack);
+                .withParameter(LootContextParams.TOOL, stack)
+                .create(LootContextParamSets.BLOCK);
     }
 
     @Nullable

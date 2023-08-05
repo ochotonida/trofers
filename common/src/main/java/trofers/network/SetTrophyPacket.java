@@ -34,8 +34,8 @@ public class SetTrophyPacket {
         if (context.get().getPlayer() instanceof ServerPlayer player) {
             context.get().queue(() -> {
                 if (player.isCreative()
-                        && player.level.isLoaded(blockPos)
-                        && player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity
+                        && player.level().isLoaded(blockPos)
+                        && player.level().getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity
                 ) {
                     blockEntity.setTrophy(trophy);
                 }

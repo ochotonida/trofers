@@ -29,7 +29,7 @@ dependencies {
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }
 
-    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:base:${rootProject.porting_lib_version}+${rootProject.minecraft_version}"))
+    modImplementation(include("io.github.fabricators_of_create.Porting-Lib:loot:${rootProject.porting_lib_version}"))
 
     modImplementation("com.terraformersmc:modmenu:${rootProject.mod_menu_version}") {
         transitive = false

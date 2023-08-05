@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[45,)"
+loaderVersion="[47,)"
 license="MIT"
 issueTrackerURL="https://github.com/ochotonida/trofers/issues"
 
@@ -16,27 +16,27 @@ description='''Adds trophies that can be customized through data packs'''
 [[dependencies.trofers]]
 modId="forge"
 mandatory=true
-versionRange="[45,)"
+versionRange="[47,)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.trofers]]
 modId="minecraft"
 mandatory=true
-versionRange="[1.19.4,1.20)"
+versionRange="[1.20.1,1.21)"
 ordering="NONE"
 side="BOTH"
 
 [[dependencies.trofers]]
 modId = "architectury"
 mandatory = true
-versionRange = "[8.1.79,)"
+versionRange = "[9.0.8,)"
 ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.trofers]]
 modId = "cloth_config"
 mandatory = true
-versionRange = "[10.0.96,)"
+versionRange = "[11.0.99,)"
 ordering = "NONE"
 side = "BOTH"

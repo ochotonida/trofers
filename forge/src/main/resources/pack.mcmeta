@@ -1,8 +1,8 @@
 {
   "pack": {
-    "description": "Trofers' resources",
-    "pack_format": 13,
-    "forge:resource_pack_format": 13,
-    "forge:data_pack_format": 12
+    "description": {
+      "text": "Trofers' resources"
+    },
+    "pack_format": 15
   }
 }

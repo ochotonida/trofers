@@ -7,6 +7,7 @@ import net.minecraft.CrashReport;
 import net.minecraft.CrashReportCategory;
 import net.minecraft.ReportedException;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
@@ -80,9 +81,9 @@ public class TrophySelectionScreen extends Screen {
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-        renderBackground(poseStack);
-        super.render(poseStack, mouseX, mouseY, partialTicks);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+        renderBackground(guiGraphics);
+        super.render(guiGraphics, mouseX, mouseY, partialTicks);
     }
 
     @Override
@@ -256,7 +257,7 @@ public class TrophySelectionScreen extends Screen {
         private void setTrophy(Trophy trophy) {
             NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophy, blockPos));
             if (Minecraft.getInstance().player != null) {
-                if (Minecraft.getInstance().player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
+                if (Minecraft.getInstance().player.level().getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
                     blockEntity.setTrophy(trophy);
                 }
             }
@@ -272,11 +273,11 @@ public class TrophySelectionScreen extends Screen {
         }
 
         @Override
-        public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
-            super.renderWidget(poseStack, mouseX, mouseY, partialTicks);
+        public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+            super.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
 
             tryRenderScaledGuiItem(
-                    poseStack,
+                    guiGraphics.pose(),
                     item,
                     x + (int) (width - 16 * ITEM_SCALE) / 2,
                     y + (int) (height - 16 * ITEM_SCALE) / 2,
@@ -287,7 +288,8 @@ public class TrophySelectionScreen extends Screen {
         @SuppressWarnings("SameParameterValue")
         private void tryRenderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale) {
             if (!item.isEmpty()) {
-                BakedModel bakedmodel = itemRenderer.getModel(item, null, Minecraft.getInstance().player, 0);
+                //noinspection ConstantConditions
+                BakedModel bakedmodel = minecraft.getItemRenderer().getModel(item, null, Minecraft.getInstance().player, 0);
                 poseStack.pushPose();
                 poseStack.translate(0, 0, 50);
                 try {
@@ -323,7 +325,8 @@ public class TrophySelectionScreen extends Screen {
             modelViewStack.pushPose();
             modelViewStack.mulPoseMatrix(poseStack.last().pose());
             RenderSystem.applyModelViewMatrix();
-            itemRenderer.render(item, ItemDisplayContext.GUI, false, new PoseStack(), bufferSource, 15728880, OverlayTexture.NO_OVERLAY, model);
+            //noinspection ConstantConditions
+            minecraft.getItemRenderer().render(item, ItemDisplayContext.GUI, false, new PoseStack(), bufferSource, 15728880, OverlayTexture.NO_OVERLAY, model);
             bufferSource.endBatch();
             RenderSystem.enableDepthTest();
             if (usesFlatLighting) {

@@ -47,7 +47,7 @@ public class EntityInfo {
 
     @Nullable
     public Entity getOrCreateEntity(Level level) {
-        if (entity == null || entity.level != level) {
+        if (entity == null || entity.level() != level) {
             createEntity(level);
         }
         return entity;

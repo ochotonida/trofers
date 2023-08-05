@@ -30,6 +30,7 @@ public class Trofers {
 
         NetworkHandler.register();
 
+        ModBlocks.CREATIVE_MODE_TABS.register();
         ModBlocks.BLOCKS.register();
         ModBlocks.ITEMS.register();
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register();
