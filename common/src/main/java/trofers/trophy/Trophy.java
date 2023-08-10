@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 import trofers.trophy.components.*;
 import trofers.util.JsonHelper;
@@ -51,6 +52,17 @@ public record Trophy(
         }
 
         return null;
+    }
+
+
+    public ItemStack createItem(ItemLike trophyBase) {
+        return createItem(trophyBase, id());
+    }
+
+    public static ItemStack createItem(ItemLike trophyBase, ResourceLocation id) {
+        ItemStack stack = new ItemStack(trophyBase);
+        stack.getOrCreateTagElement("BlockEntityTag").putString("Trophy", id.toString());
+        return stack;
     }
 
     public void toNetwork(FriendlyByteBuf buffer) {

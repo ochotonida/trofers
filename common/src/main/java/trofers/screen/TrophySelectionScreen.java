@@ -208,9 +208,8 @@ public class TrophySelectionScreen extends Screen {
                     break;
                 }
 
-                ItemStack stack = new ItemStack(blockState.getBlock());
                 Trophy trophy = trophies.get(index++);
-                stack.getOrCreateTagElement("BlockEntityTag").putString("Trophy", trophy.id().toString());
+                ItemStack stack = trophy.createItem(blockState.getBlock());
 
                 int x = columnStart + column * (TROPHY_BUTTON_SIZE + BUTTON_SPACING);
                 int y = rowStart + row * (TROPHY_BUTTON_SIZE + BUTTON_SPACING);

@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
+import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.network.NetworkHandler;
 import trofers.network.TrophySyncPacket;
@@ -27,6 +28,7 @@ public class TrophyManager extends SimpleJsonResourceReloadListener {
         super(GSON, "trofers");
     }
 
+    @Nullable
     public static Trophy get(ResourceLocation id) {
         return trophies.getOrDefault(id, null);
     }

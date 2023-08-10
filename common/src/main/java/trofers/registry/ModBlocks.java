@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.item.TrophyItem;
+import trofers.trophy.Trophy;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -60,9 +61,6 @@ public class ModBlocks {
     }
 
     private static ItemStack makeIcon() {
-        ItemStack result = new ItemStack(MEDIUM_PILLAR.get());
-        result.getOrCreateTagElement("BlockEntityTag")
-                .putString("Trophy", Trofers.id("panda").toString());
-        return result;
+        return Trophy.createItem(MEDIUM_PILLAR.get(), Trofers.id("panda"));
     }
 }

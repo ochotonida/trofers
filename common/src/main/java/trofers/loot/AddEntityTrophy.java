@@ -14,6 +14,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import trofers.Trofers;
+import trofers.trophy.Trophy;
 import trofers.trophy.TrophyManager;
 
 import java.util.HashSet;
@@ -72,12 +73,11 @@ public class AddEntityTrophy extends AbstractLootModifier {
             if (entities.contains(entityTypeId)) {
                 ResourceLocation trophyId = trophies.get(BuiltInRegistries.ENTITY_TYPE.getKey(entityTypeId));
                 if (trophyId != null) {
-                    if (TrophyManager.get(trophyId) == null) {
+                    Trophy trophy = TrophyManager.get(trophyId);
+                    if (trophy == null) {
                         Trofers.LOGGER.error("Failed to find trophy with invalid id '{}'", trophyId);
                     } else {
-                        ItemStack stack = new ItemStack(trophyBase);
-                        stack.getOrCreateTagElement("BlockEntityTag").putString("Trophy", trophyId.toString());
-                        generatedLoot.add(stack);
+                        generatedLoot.add(trophy.createItem(trophyBase));
                     }
                 }
             }
