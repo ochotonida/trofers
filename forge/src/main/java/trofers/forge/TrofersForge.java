@@ -15,7 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.Trofers;
 import trofers.config.ModConfig;
 import trofers.forge.data.ResourceReloadListenerForge;
-import trofers.forge.platform.ForgePlatformHelper;
+import trofers.forge.registry.ModLootModifiers;
 import trofers.registry.ModResourceLoaders;
 
 @Mod(Trofers.MOD_ID)
@@ -31,7 +31,7 @@ public class TrofersForge {
 
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        ForgePlatformHelper.LOOT_MODIFIERS.register(modEventBus);
+        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(this::onDataPackReload);

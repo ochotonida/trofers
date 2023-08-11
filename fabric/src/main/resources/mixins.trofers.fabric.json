@@ -6,8 +6,7 @@
     "TrophySearchTreeManagerMixin"
   ],
   "mixins": [
-    "LivingEntityMixin",
-    "TrophyManagerMixin"
+    "LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

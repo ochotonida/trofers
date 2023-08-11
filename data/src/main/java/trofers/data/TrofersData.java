@@ -25,7 +25,7 @@ public class TrofersData {
         TrophyProviders trophyProviders = new TrophyProviders(packOutput);
         generator.addProvider(event.includeServer(), trophyProviders);
         generator.addProvider(event.includeServer(), new LootTables(packOutput, trophyProviders));
-        generator.addProvider(event.includeServer(), new LootModifiers(packOutput, trophyProviders));
+        generator.addProvider(event.includeServer(), new EntityDropsProvider(packOutput, trophyProviders));
         generator.addProvider(event.includeServer(), new BlockTags(packOutput, lookupProvider, helper));
 
         BlockStates blockStates = new BlockStates(packOutput, helper);

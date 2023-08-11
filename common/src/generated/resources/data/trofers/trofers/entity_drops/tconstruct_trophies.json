@@ -1,6 +1,5 @@
 {
-  "type": "trofers:add_entity_trophy",
-  "conditions": [
+  "loot_conditions": [
     {
       "condition": "minecraft:killed_by_player"
     },

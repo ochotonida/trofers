@@ -4,8 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
+import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +30,15 @@ public abstract class ResourceLoader<T> {
 
     public String getDirectory() {
         return directory;
+    }
+
+    @Nullable
+    public T get(ResourceLocation id) {
+        return resources.getOrDefault(id, null);
+    }
+
+    public Collection<T> getAllResources() {
+        return resources.values();
     }
 
     public void deserializeResources(Map<ResourceLocation, JsonElement> resources) {

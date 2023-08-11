@@ -3,7 +3,6 @@ package trofers.trophy;
 import com.google.gson.JsonElement;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.data.ResourceLoader;
 import trofers.network.NetworkHandler;
@@ -16,11 +15,6 @@ public class TrophyManager extends ResourceLoader<Trophy> {
 
     public TrophyManager() {
         super(Trofers.id("trophy_manager"), "trofers/trophies");
-    }
-
-    @Nullable
-    public Trophy get(ResourceLocation id) {
-        return resources.getOrDefault(id, null);
     }
 
     public Collection<Trophy> values() {
