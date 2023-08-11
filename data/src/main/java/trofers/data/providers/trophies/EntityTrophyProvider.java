@@ -102,8 +102,8 @@ public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyPr
             super(entityId);
             baseColor(0x606060);
             scale(0.25);
-            entitySound(getDefaultSoundName())
-            .requiresMod(getModId());
+            entitySound(getDefaultSoundName());
+            requiresMod(getModId());
         }
 
         public EntityTrophyWithLootBuilder entitySound(String entitySoundName) {

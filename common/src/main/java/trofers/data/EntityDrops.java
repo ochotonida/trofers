@@ -12,6 +12,7 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import trofers.Trofers;
+import trofers.registry.ModResourceLoaders;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -35,25 +36,38 @@ public class EntityDrops extends ConditionalTrophyDrops {
         this.entities = entities;
     }
 
-    public static EntityDrops create(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies, boolean logMissingEntities) {
+    public static EntityDrops create(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies) {
         Set<EntityType<?>> entities = new HashSet<>();
         for (ResourceLocation entityTypeId : trophies.keySet()) {
             if (BuiltInRegistries.ENTITY_TYPE.containsKey(entityTypeId)) {
                 entities.add(BuiltInRegistries.ENTITY_TYPE.get(entityTypeId));
-            } else if (logMissingEntities) {
-                Trofers.LOGGER.debug("Skipping entity trophy drops entry for missing entity type " + entityTypeId);
             }
         }
         return new EntityDrops(conditions, trophyBase.asItem(), trophies, entities);
     }
 
-    public static EntityDrops create(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies) {
-        return create(conditions, trophyBase, trophies, true);
-    }
-
     public void apply(Consumer<ItemStack> generatedLoot, LootContext context) {
         if (matchesConditions(context)) {
             doApply(generatedLoot, context);
+        }
+    }
+
+    public static void onDataPackLoaded() {
+        for (EntityDrops entityDrops : ModResourceLoaders.ENTITY_DROPS.getAllResources()) {
+            entityDrops.validate();
+        }
+    }
+
+    private void validate() {
+        for (ResourceLocation entityTypeId : trophies.keySet()) {
+            if (!BuiltInRegistries.ENTITY_TYPE.containsKey(entityTypeId)) {
+                Trofers.LOGGER.error("Skipping entity trophy drops entry for missing entity '%s'".formatted(entityTypeId));
+            } else {
+                ResourceLocation trophyId = trophies.get(entityTypeId);
+                if (ModResourceLoaders.TROPHIES.get(trophyId) == null) {
+                    Trofers.LOGGER.error("Skipping entity trophy drops entry for entity type '%s': invalid trophy id '%s'".formatted(entityTypeId, trophyId));
+                }
+            }
         }
     }
 

@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import trofers.Trofers;
 import trofers.registry.ModResourceLoaders;
 
 import java.util.Map;
@@ -48,6 +50,25 @@ public class AdvancementDrops extends ConditionalTrophyDrops {
 
         for (AdvancementDrops advancementDrops : ModResourceLoaders.ADVANCEMENT_DROPS.getAllResources()) {
             advancementDrops.onAdvancementEarned(player, advancement, lootContext);
+        }
+    }
+
+    public static void onDataPackLoaded(MinecraftServer server) {
+        for (AdvancementDrops advancementDrops : ModResourceLoaders.ADVANCEMENT_DROPS.getAllResources()) {
+            advancementDrops.validate(server);
+        }
+    }
+
+    private void validate(MinecraftServer server) {
+        for (ResourceLocation advancementId : trophies.keySet()) {
+            if (server.getAdvancements().getAdvancement(advancementId) == null) {
+                Trofers.LOGGER.error("Skipping advancement trophy drops entry for missing advancement '%s'".formatted(advancementId));
+            } else {
+                ResourceLocation trophyId = trophies.get(advancementId);
+                if (ModResourceLoaders.TROPHIES.get(trophyId) == null) {
+                    Trofers.LOGGER.error("Skipping advancement trophy drops entry for advancement '%s': invalid trophy id '%s'".formatted(advancementId, trophyId));
+                }
+            }
         }
     }
 

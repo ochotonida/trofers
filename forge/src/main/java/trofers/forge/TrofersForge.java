@@ -7,6 +7,7 @@ import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.OnDatapackSyncEvent;
+import net.minecraftforge.event.server.ServerAboutToStartEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -35,6 +36,7 @@ public class TrofersForge {
 
         MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
         MinecraftForge.EVENT_BUS.addListener(this::onDataPackReload);
+        MinecraftForge.EVENT_BUS.addListener(this::onServerAboutToStart);
     }
 
     private void registerConfig() {
@@ -55,6 +57,11 @@ public class TrofersForge {
             ModResourceLoaders.TROPHIES.sync(event.getPlayer());
         } else {
             event.getPlayerList().getPlayers().forEach(ModResourceLoaders.TROPHIES::sync);
+            Trofers.onDataPackLoaded(event.getPlayerList().getServer());
         }
+    }
+
+    public void onServerAboutToStart(ServerAboutToStartEvent event) {
+        Trofers.onDataPackLoaded(event.getServer());
     }
 }

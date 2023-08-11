@@ -2,6 +2,7 @@ package trofers.data.providers;
 
 import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
 import cpw.mods.modlauncher.api.LamdbaExceptionUtils;
 import net.minecraft.data.CachedOutput;
@@ -16,6 +17,7 @@ import trofers.data.providers.trophies.EntityTrophyProvider;
 import trofers.loot.RandomTrophyChanceCondition;
 import trofers.registry.ModBlocks;
 import trofers.registry.ModResourceLoaders;
+import trofers.util.JsonHelper;
 
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -51,11 +53,9 @@ public class EntityDropsProvider implements DataProvider {
                     RandomTrophyChanceCondition.randomTrophyChance().build()
             };
 
-            EntityDrops entityDrops = EntityDrops.create(conditions, ModBlocks.SMALL_PLATE.get(), trophies.get(modId), false);
+            EntityDrops entityDrops = EntityDrops.create(conditions, ModBlocks.SMALL_PLATE.get(), trophies.get(modId));
 
-            String name = modId.equals("minecraft") ? "vanilla" : modId;
-            name = name + "_trophies";
-            add(name, entityDrops);
+            add(modId, entityDrops);
         }
     }
 
@@ -72,9 +72,13 @@ public class EntityDropsProvider implements DataProvider {
         return CompletableFuture.allOf(futuresBuilder.build().toArray(CompletableFuture[]::new));
     }
 
-    public void add(String id, EntityDrops instance) {
-        JsonElement json = EntityDrops.CODEC.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, s -> {});
-        toSerialize.put(id, json);
+    public void add(String modId, EntityDrops instance) {
+        JsonObject json = EntityDrops.CODEC.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, s -> {}).getAsJsonObject();
+        if (!modId.equals(ResourceLocation.DEFAULT_NAMESPACE)) {
+            JsonHelper.addModLoadedConditions(json, modId);
+        }
+        String name = "%s_trophies".formatted(modId.equals(ResourceLocation.DEFAULT_NAMESPACE) ? "vanilla" : modId);
+        toSerialize.put(name, json);
     }
 
     @Override

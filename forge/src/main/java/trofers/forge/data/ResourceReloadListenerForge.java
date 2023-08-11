@@ -38,7 +38,10 @@ public class ResourceReloadListenerForge extends SimpleJsonResourceReloadListene
             }
         }
         loader.deserializeResources(result);
-        Trofers.LOGGER.info("{}: Skipping loading {} resources as their conditions were not met", loader.getId(), amountSkipped);
+
+        if (amountSkipped > 0) {
+            Trofers.LOGGER.info("{}: Skipping loading {} resources as their conditions were not met", loader.getId(), amountSkipped);
+        }
     }
 
     private static boolean matchesConditions(JsonElement element) {
