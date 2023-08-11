@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Map;
 
 @SuppressWarnings("SameParameterValue")
-public abstract class TrophyProvider<T extends TrophyBuilder<T>> {
+public abstract class TrophyProvider {
 
-    private final Map<ResourceLocation, T> trophies = new HashMap<>();
+    private final Map<ResourceLocation, TrophyBuilder<?>> trophies = new HashMap<>();
 
     public abstract void addTrophies();
 
@@ -41,14 +41,14 @@ public abstract class TrophyProvider<T extends TrophyBuilder<T>> {
         return Collections.emptyList();
     }
 
-    protected void addTrophy(ResourceLocation id, T builder) {
+    protected void addTrophy(ResourceLocation id, TrophyBuilder<?> builder) {
         if (trophies.containsKey(id)) {
             throw new IllegalStateException("Duplicate trophy: " + id.toString());
         }
         trophies.put(id, builder);
     }
 
-    public Map<ResourceLocation, T> getTrophies() {
+    public Map<ResourceLocation, TrophyBuilder<?>> getTrophies() {
         return ImmutableMap.copyOf(trophies);
     }
 

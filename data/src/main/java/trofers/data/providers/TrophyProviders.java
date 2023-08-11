@@ -33,14 +33,14 @@ public class TrophyProviders implements DataProvider {
         this.packOutput = packOutput;
     }
 
-    protected List<TrophyProvider<?>> getTrophyProviders() {
+    protected List<TrophyProvider> getTrophyProviders() {
         return new ArrayList<>(entityTrophies);
     }
 
     @Override
     public CompletableFuture<?> run(CachedOutput cache) {
-        List<TrophyProvider<?>> trophyProviders = getTrophyProviders();
-        for (TrophyProvider<?> trophyProvider : trophyProviders) {
+        List<TrophyProvider> trophyProviders = getTrophyProviders();
+        for (TrophyProvider trophyProvider : trophyProviders) {
             trophyProvider.addTrophies();
             trophyProvider.validateTrophies();
         }
@@ -50,7 +50,7 @@ public class TrophyProviders implements DataProvider {
         Path outputFolder = packOutput.getOutputFolder();
         Set<ResourceLocation> resourceLocations = Sets.newHashSet();
 
-        for (TrophyProvider<?> trophyProvider : trophyProviders) {
+        for (TrophyProvider trophyProvider : trophyProviders) {
             Map<ResourceLocation, ? extends TrophyBuilder<?>> trophies = trophyProvider.getTrophies();
             for (ResourceLocation trophyId : trophies.keySet()) {
                 if (!resourceLocations.add(trophyId)) {

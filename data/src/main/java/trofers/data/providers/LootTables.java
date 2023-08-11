@@ -34,7 +34,7 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
     public List<SubProviderEntry> getTables() {
         lootTables.clear();
         addBlockLootTables();
-        for (TrophyProvider<?> provider : trophyProviders.getTrophyProviders()) {
+        for (TrophyProvider provider : trophyProviders.getTrophyProviders()) {
             lootTables.addAll(provider.getLootTables());
         }
         return lootTables;

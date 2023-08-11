@@ -18,13 +18,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.trophy.builder.EntityTrophyBuilder;
+import trofers.trophy.builder.ItemTrophyBuilder;
+import trofers.trophy.builder.TrophyBuilder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyProvider.EntityTrophyWithLootBuilder> {
+public abstract class EntityTrophyProvider extends TrophyProvider {
 
     private static final String AMBIENT = "ambient";
     private static final String HURT = "hurt";
@@ -32,6 +34,8 @@ public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyPr
 
     private final List<LootTableProvider.SubProviderEntry> lootTables = new ArrayList<>();
     private final String modId;
+
+    private final Map<ResourceLocation, ResourceLocation> entityToTrophy = new HashMap<>();
 
     public EntityTrophyProvider(String modId) {
         this.modId = modId;
@@ -43,14 +47,17 @@ public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyPr
     }
 
     public Map<ResourceLocation, ResourceLocation> getEntityToTrophyMap() {
-        return getTrophies().entrySet()
-                .stream()
-                .collect(Collectors.toMap(entry -> entry.getValue().getEntityId(), Map.Entry::getKey));
+        return new HashMap<>(entityToTrophy);
     }
 
     @Override
     public List<LootTableProvider.SubProviderEntry> getLootTables() {
         return lootTables;
+    }
+
+    protected void addTrophy(ResourceLocation id, TrophyBuilder<?> builder, ResourceLocation entityTypeId) {
+        entityToTrophy.put(entityTypeId, id);
+        addTrophy(id, builder);
     }
 
     public void addExtraTrophies(Map<String, Map<ResourceLocation, ResourceLocation>> trophies) {
@@ -79,7 +86,24 @@ public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyPr
 
     protected EntityTrophyWithLootBuilder builder(ResourceLocation entityType) {
         EntityTrophyWithLootBuilder builder = new EntityTrophyWithLootBuilder(entityType);
-        addTrophy(createEntityTrophyId(entityType), builder);
+        addTrophy(createEntityTrophyId(entityType), builder, entityType);
+        return builder;
+    }
+
+    @SuppressWarnings({"ConstantConditions", "unused"})
+    protected ItemTrophyBuilder itemTrophyBuilder(EntityType<?> entityType) {
+        ResourceLocation entityTypeId = ForgeRegistries.ENTITY_TYPES.getKey(entityType);
+        ItemTrophyBuilder builder = new ItemTrophyBuilder();
+        addTrophy(createEntityTrophyId(entityTypeId), builder, entityTypeId);
+        defaultTrophySettings(builder, entityTypeId);
+        return builder;
+    }
+
+    @SuppressWarnings("unused")
+    protected ItemTrophyBuilder itemTrophyBuilder(ResourceLocation entityType) {
+        ItemTrophyBuilder builder = new ItemTrophyBuilder();
+        addTrophy(createEntityTrophyId(entityType), builder, entityType);
+        defaultTrophySettings(builder, entityType);
         return builder;
     }
 
@@ -95,15 +119,23 @@ public abstract class EntityTrophyProvider extends TrophyProvider<EntityTrophyPr
         return Component.translatable(Util.makeDescriptionId("entity", entityId));
     }
 
+    protected void defaultTrophySettings(TrophyBuilder<?> builder, ResourceLocation entityId) {
+        builder.baseColor(0x606060);
+        builder.scale(0.25);
+        builder.requiresMod(modId);
+        defaultSound(builder, entityId);
+    }
+
+    protected void defaultSound(TrophyBuilder<?> builder, ResourceLocation entityId) {
+        builder.sound(getEntitySound(entityId.getPath(), getDefaultSoundName()));
+    }
+
     @SuppressWarnings("UnusedReturnValue")
     public class EntityTrophyWithLootBuilder extends EntityTrophyBuilder<EntityTrophyWithLootBuilder> {
 
         protected EntityTrophyWithLootBuilder(ResourceLocation entityId) {
             super(entityId);
-            baseColor(0x606060);
-            scale(0.25);
-            entitySound(getDefaultSoundName());
-            requiresMod(getModId());
+            defaultTrophySettings(this, entityId);
         }
 
         public EntityTrophyWithLootBuilder entitySound(String entitySoundName) {
