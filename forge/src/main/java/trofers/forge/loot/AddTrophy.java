@@ -1,4 +1,4 @@
-package trofers.loot;
+package trofers.forge.loot;
 
 import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
@@ -10,14 +10,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraftforge.common.loot.LootModifier;
 import trofers.Trofers;
 import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
 
 import java.util.function.Supplier;
 
-public class AddTrophy extends AbstractLootModifier {
+public class AddTrophy extends LootModifier {
 
+    @SuppressWarnings("deprecation")
     public static final Supplier<Codec<AddTrophy>> CODEC = Suppliers.memoize(
             () -> RecordCodecBuilder.create(instance -> codecStart(instance)
                     .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("trophyBase").forGetter(m -> m.trophyBase))
@@ -36,7 +38,7 @@ public class AddTrophy extends AbstractLootModifier {
     }
 
     @Override
-    public Codec<? extends AbstractLootModifier> codec() {
+    public Codec<AddTrophy> codec() {
         return CODEC.get();
     }
 
