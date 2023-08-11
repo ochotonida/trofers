@@ -15,7 +15,7 @@ import java.util.Map;
 public class TrophyManager extends ResourceLoader<Trophy> {
 
     public TrophyManager() {
-        super(Trofers.id("trophy_manager"), "trofers");
+        super(Trofers.id("trophy_manager"), "trofers/trophies");
     }
 
     @Nullable

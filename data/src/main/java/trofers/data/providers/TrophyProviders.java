@@ -6,6 +6,7 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import trofers.data.providers.trophies.*;
+import trofers.registry.ModResourceLoaders;
 import trofers.trophy.builder.TrophyBuilder;
 
 import java.nio.file.Path;
@@ -64,7 +65,7 @@ public class TrophyProviders implements DataProvider {
     }
 
     private static Path createPath(Path path, ResourceLocation trophyId) {
-        return path.resolve("data/" + trophyId.getNamespace() + "/trofers/" + trophyId.getPath() + ".json");
+        return path.resolve("data/" + trophyId.getNamespace() + "/" + ModResourceLoaders.TROPHIES.getDirectory() + "/" + trophyId.getPath() + ".json");
     }
 
     @Override
