@@ -3,11 +3,16 @@ package trofers.data;
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
+import org.jetbrains.annotations.Nullable;
+import trofers.Trofers;
+import trofers.registry.ModResourceLoaders;
+import trofers.trophy.Trophy;
 
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -31,11 +36,18 @@ public abstract class ConditionalTrophyDrops {
                         .fieldOf("trophyBase").forGetter(drops -> drops.trophyBase));
     }
 
-    public void apply(Consumer<ItemStack> generatedLoot, LootContext context) {
-        if (combinedConditions.test(context)) {
-            doApply(generatedLoot, context);
-        }
+    public boolean matchesConditions(LootContext lootContext) {
+        return combinedConditions.test(lootContext);
     }
 
-    protected abstract void doApply(Consumer<ItemStack> generatedLoot, LootContext context);
+    public void awardTrophy(@Nullable ResourceLocation trophyId, Consumer<ItemStack> consumer) {
+        if (trophyId != null) {
+            Trophy trophy = ModResourceLoaders.TROPHIES.get(trophyId);
+            if (trophy == null) {
+                Trofers.LOGGER.error("Failed to find trophy with invalid id '{}'", trophyId);
+            } else {
+                consumer.accept(trophy.createItem(trophyBase));
+            }
+        }
+    }
 }

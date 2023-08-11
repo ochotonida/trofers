@@ -12,8 +12,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import trofers.Trofers;
-import trofers.registry.ModResourceLoaders;
-import trofers.trophy.Trophy;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -53,19 +51,18 @@ public class EntityDrops extends ConditionalTrophyDrops {
         return create(conditions, trophyBase, trophies, true);
     }
 
-    protected void doApply(Consumer<ItemStack> generatedLoot, LootContext context) {
+    public void apply(Consumer<ItemStack> generatedLoot, LootContext context) {
+        if (matchesConditions(context)) {
+            doApply(generatedLoot, context);
+        }
+    }
+
+    private void doApply(Consumer<ItemStack> generatedLoot, LootContext context) {
         if (context.hasParam(LootContextParams.THIS_ENTITY)) {
             EntityType<?> entityType = context.getParam(LootContextParams.THIS_ENTITY).getType();
             if (entities.contains(entityType)) {
                 ResourceLocation trophyId = trophies.get(BuiltInRegistries.ENTITY_TYPE.getKey(entityType));
-                if (trophyId != null) {
-                    Trophy trophy = ModResourceLoaders.TROPHIES.get(trophyId);
-                    if (trophy == null) {
-                        Trofers.LOGGER.error("Failed to find trophy with invalid id '{}'", trophyId);
-                    } else {
-                        generatedLoot.accept(trophy.createItem(trophyBase));
-                    }
-                }
+                awardTrophy(trophyId, generatedLoot);
             }
         }
     }

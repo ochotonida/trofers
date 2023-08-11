@@ -23,6 +23,10 @@ public class ModConfig extends PartitioningSerializer.GlobalData {
         public final Double trophyChance = 1 / 1000D;
 
         @ConfigEntry.Gui.Tooltip
+        @Comment("Whether trophies can be awarded when specific advancements are earned")
+        public final Boolean enableAdvancementDrops = true;
+
+        @ConfigEntry.Gui.Tooltip
         @Comment("Whether trophies can drop loot when right-clicked")
         public final Boolean enableTrophyLoot = true;
 
