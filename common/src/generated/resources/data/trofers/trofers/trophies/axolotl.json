@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.axolotl.idle_air"
+      "sound_event": "minecraft:entity.axolotl.idle_air"
     }
   },
   "entity": {

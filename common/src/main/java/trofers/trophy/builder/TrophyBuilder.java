@@ -198,7 +198,7 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         }
 
         if (isHidden) {
-            result.addProperty("isHidden", true);
+            result.addProperty("is_hidden", true);
         }
 
         return result;

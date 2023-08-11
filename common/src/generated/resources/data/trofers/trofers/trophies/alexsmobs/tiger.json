@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:tiger_idle"
+      "sound_event": "alexsmobs:tiger_idle"
     }
   },
   "entity": {

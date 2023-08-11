@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:flutter_idle"
+      "sound_event": "alexsmobs:flutter_idle"
     }
   },
   "entity": {

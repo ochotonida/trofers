@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:mosquito_loop"
+      "sound_event": "alexsmobs:mosquito_loop"
     }
   },
   "entity": {

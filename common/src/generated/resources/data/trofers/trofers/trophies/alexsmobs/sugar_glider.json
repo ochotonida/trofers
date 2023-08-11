@@ -15,10 +15,10 @@
   "effects": {
     "rewards": {
       "cooldown": 9600,
-      "lootTable": "trofers:trophies/alexsmobs/sugar_glider"
+      "loot_table": "trofers:trophies/alexsmobs/sugar_glider"
     },
     "sound": {
-      "soundEvent": "alexsmobs:sugar_glider_idle"
+      "sound_event": "alexsmobs:sugar_glider_idle"
     }
   },
   "entity": {

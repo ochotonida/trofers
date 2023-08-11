@@ -17,7 +17,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:cosmaw_idle"
+      "sound_event": "alexsmobs:cosmaw_idle"
     }
   },
   "entity": {

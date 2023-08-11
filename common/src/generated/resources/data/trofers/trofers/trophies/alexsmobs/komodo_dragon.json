@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:komodo_dragon_idle"
+      "sound_event": "alexsmobs:komodo_dragon_idle"
     }
   },
   "entity": {

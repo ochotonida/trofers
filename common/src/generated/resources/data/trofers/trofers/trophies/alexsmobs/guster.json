@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:guster_idle"
+      "sound_event": "alexsmobs:guster_idle"
     }
   },
   "entity": {

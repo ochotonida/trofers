@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:leafcutter_ant_hurt"
+      "sound_event": "alexsmobs:leafcutter_ant_hurt"
     }
   },
   "entity": {

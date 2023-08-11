@@ -15,10 +15,10 @@
   "effects": {
     "rewards": {
       "cooldown": 9600,
-      "lootTable": "trofers:trophies/quark/toretoise"
+      "loot_table": "trofers:trophies/quark/toretoise"
     },
     "sound": {
-      "soundEvent": "quark:entity.toretoise.idle"
+      "sound_event": "quark:entity.toretoise.idle"
     }
   },
   "entity": {

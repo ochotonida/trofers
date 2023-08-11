@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.parrot.ambient"
+      "sound_event": "minecraft:entity.parrot.ambient"
     }
   },
   "entity": {

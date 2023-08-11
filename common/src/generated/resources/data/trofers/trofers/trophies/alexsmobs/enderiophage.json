@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:enderiophage_squish"
+      "sound_event": "alexsmobs:enderiophage_squish"
     }
   },
   "entity": {

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.slime.squish"
+      "sound_event": "minecraft:entity.slime.squish"
     }
   },
   "entity": {

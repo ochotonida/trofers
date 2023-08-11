@@ -22,8 +22,8 @@ public class AddTrophy extends LootModifier {
     @SuppressWarnings("deprecation")
     public static final Supplier<Codec<AddTrophy>> CODEC = Suppliers.memoize(
             () -> RecordCodecBuilder.create(instance -> codecStart(instance)
-                    .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("trophyBase").forGetter(m -> m.trophyBase))
-                    .and(ResourceLocation.CODEC.fieldOf("trophyId").forGetter(m -> m.trophyId))
+                    .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("trophy_base").forGetter(m -> m.trophyBase))
+                    .and(ResourceLocation.CODEC.fieldOf("trophy_id").forGetter(m -> m.trophyId))
                     .apply(instance, AddTrophy::new)
             )
     );

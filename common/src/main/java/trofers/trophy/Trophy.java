@@ -170,8 +170,8 @@ public record Trophy(
         }
 
         boolean isHidden = false;
-        if (object.has("isHidden")) {
-            isHidden = GsonHelper.getAsBoolean(object, "isHidden");
+        if (object.has("is_hidden")) {
+            isHidden = GsonHelper.getAsBoolean(object, "is_hidden");
         }
 
         return new Trophy(

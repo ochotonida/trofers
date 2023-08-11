@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.polar_bear.ambient"
+      "sound_event": "minecraft:entity.polar_bear.ambient"
     }
   },
   "entity": {

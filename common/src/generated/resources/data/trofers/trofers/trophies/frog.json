@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.frog.ambient"
+      "sound_event": "minecraft:entity.frog.ambient"
     }
   },
   "entity": {

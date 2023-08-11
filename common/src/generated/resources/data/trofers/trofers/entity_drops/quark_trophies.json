@@ -30,5 +30,5 @@
     "quark:toretoise": "trofers:quark/toretoise",
     "quark:wraith": "trofers:quark/wraith"
   },
-  "trophyBase": "trofers:small_plate"
+  "trophy_base": "trofers:small_plate"
 }

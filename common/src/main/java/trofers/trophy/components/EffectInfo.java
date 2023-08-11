@@ -77,7 +77,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
 
         private JsonObject toJson() {
             JsonObject result = new JsonObject();
-            result.addProperty("soundEvent", soundEvent().toString());
+            result.addProperty("sound_event", soundEvent().toString());
             if (volume() != 1) {
                 result.addProperty("volume", volume());
             }
@@ -88,7 +88,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         }
 
         private static SoundInfo fromJson(JsonObject object) {
-            ResourceLocation soundEvent = new ResourceLocation(GsonHelper.getAsString(object, "soundEvent"));
+            ResourceLocation soundEvent = new ResourceLocation(GsonHelper.getAsString(object, "sound_event"));
             float volume = JsonHelper.readOptionalFloat(object, "volume", 1);
             float pitch = JsonHelper.readOptionalFloat(object, "pitch", 1);
 
@@ -130,13 +130,13 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
         private JsonObject toJson() {
             JsonObject result = new JsonObject();
             if (lootTable() != null) {
-                result.addProperty("lootTable", lootTable().toString());
+                result.addProperty("loot_table", lootTable().toString());
             }
             if (!statusEffect().isEmpty()) {
                 MobEffectInstance effect = MobEffectInstance.load(statusEffect());
                 if (effect != null) {
                     JsonObject statusEffect = new JsonObject();
-                    result.add("statusEffect", statusEffect);
+                    result.add("status_effect", statusEffect);
                     // noinspection ConstantConditions
                     statusEffect.addProperty("effect", BuiltInRegistries.MOB_EFFECT.getKey(effect.getEffect()).toString());
                     statusEffect.addProperty("duration", effect.getDuration());
@@ -153,12 +153,12 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
 
         private static RewardInfo fromJson(JsonObject object) {
             ResourceLocation lootTable = null;
-            if (object.has("lootTable")) {
-                lootTable = new ResourceLocation(GsonHelper.getAsString(object, "lootTable"));
+            if (object.has("loot_table")) {
+                lootTable = new ResourceLocation(GsonHelper.getAsString(object, "loot_table"));
             }
             CompoundTag statusEffect = new CompoundTag();
-            if (object.has("statusEffect")) {
-                JsonObject effectObject = GsonHelper.getAsJsonObject(object, "statusEffect");
+            if (object.has("status_effect")) {
+                JsonObject effectObject = GsonHelper.getAsJsonObject(object, "status_effect");
                 ResourceLocation effectID = new ResourceLocation(GsonHelper.getAsString(effectObject, "effect"));
                 if (!BuiltInRegistries.MOB_EFFECT.containsKey(effectID)) {
                     throw new JsonParseException(String.format("Unknown effect: %s", effectID));

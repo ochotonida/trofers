@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:mimic_octopus_idle"
+      "sound_event": "alexsmobs:mimic_octopus_idle"
     }
   },
   "entity": {

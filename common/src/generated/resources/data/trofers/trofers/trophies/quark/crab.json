@@ -17,7 +17,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "quark:entity.crab.idle"
+      "sound_event": "quark:entity.crab.idle"
     }
   },
   "entity": {

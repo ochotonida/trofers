@@ -18,7 +18,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:skelewag_idle"
+      "sound_event": "alexsmobs:skelewag_idle"
     }
   },
   "entity": {

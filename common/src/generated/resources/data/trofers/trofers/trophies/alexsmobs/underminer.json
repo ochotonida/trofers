@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:underminer_idle"
+      "sound_event": "alexsmobs:underminer_idle"
     }
   },
   "entity": {

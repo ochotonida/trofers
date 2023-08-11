@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.bee.pollinate"
+      "sound_event": "minecraft:entity.bee.pollinate"
     }
   },
   "entity": {

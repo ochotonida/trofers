@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:capuchin_monkey_idle"
+      "sound_event": "alexsmobs:capuchin_monkey_idle"
     }
   },
   "entity": {

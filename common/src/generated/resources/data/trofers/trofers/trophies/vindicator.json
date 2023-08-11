@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.vindicator.ambient"
+      "sound_event": "minecraft:entity.vindicator.ambient"
     }
   },
   "entity": {

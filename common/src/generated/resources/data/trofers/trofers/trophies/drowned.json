@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.drowned.ambient"
+      "sound_event": "minecraft:entity.drowned.ambient"
     }
   },
   "entity": {

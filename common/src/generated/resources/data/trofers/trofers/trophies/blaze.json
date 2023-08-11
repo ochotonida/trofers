@@ -9,10 +9,10 @@
   "effects": {
     "rewards": {
       "cooldown": 19200,
-      "lootTable": "trofers:trophies/blaze"
+      "loot_table": "trofers:trophies/blaze"
     },
     "sound": {
-      "soundEvent": "minecraft:entity.blaze.ambient"
+      "sound_event": "minecraft:entity.blaze.ambient"
     }
   },
   "entity": {

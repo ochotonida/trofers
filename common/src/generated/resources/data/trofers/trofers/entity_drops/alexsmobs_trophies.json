@@ -111,5 +111,5 @@
     "alexsmobs:warped_mosco": "trofers:alexsmobs/warped_mosco",
     "alexsmobs:warped_toad": "trofers:alexsmobs/warped_toad"
   },
-  "trophyBase": "trofers:small_plate"
+  "trophy_base": "trofers:small_plate"
 }

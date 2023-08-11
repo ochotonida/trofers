@@ -8,13 +8,13 @@
   },
   "effects": {
     "rewards": {
-      "statusEffect": {
+      "status_effect": {
         "duration": 400,
         "effect": "minecraft:night_vision"
       }
     },
     "sound": {
-      "soundEvent": "minecraft:entity.bat.ambient"
+      "sound_event": "minecraft:entity.bat.ambient"
     }
   },
   "entity": {

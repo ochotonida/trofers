@@ -83,5 +83,5 @@
     "minecraft:zombie_villager": "trofers:zombie_villager",
     "minecraft:zombified_piglin": "trofers:zombified_piglin"
   },
-  "trophyBase": "trofers:small_plate"
+  "trophy_base": "trofers:small_plate"
 }

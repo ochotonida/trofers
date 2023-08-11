@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:froststalker_idle"
+      "sound_event": "alexsmobs:froststalker_idle"
     }
   },
   "entity": {

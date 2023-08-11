@@ -9,10 +9,10 @@
   "effects": {
     "rewards": {
       "cooldown": 19200,
-      "lootTable": "trofers:trophies/enderman"
+      "loot_table": "trofers:trophies/enderman"
     },
     "sound": {
-      "soundEvent": "minecraft:entity.enderman.teleport"
+      "sound_event": "minecraft:entity.enderman.teleport"
     }
   },
   "entity": {

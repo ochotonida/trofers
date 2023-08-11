@@ -35,5 +35,5 @@
     "ad_astra:zombified_mogler": "trofers:ad_astra/zombified_mogler",
     "ad_astra:zombified_pygro": "trofers:ad_astra/zombified_pygro"
   },
-  "trophyBase": "trofers:small_plate"
+  "trophy_base": "trofers:small_plate"
 }

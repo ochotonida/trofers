@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:soul_vulture_idle"
+      "sound_event": "alexsmobs:soul_vulture_idle"
     }
   },
   "entity": {

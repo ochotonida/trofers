@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.skeleton_horse.ambient"
+      "sound_event": "minecraft:entity.skeleton_horse.ambient"
     }
   },
   "entity": {

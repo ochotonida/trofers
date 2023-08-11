@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.wandering_trader.ambient"
+      "sound_event": "minecraft:entity.wandering_trader.ambient"
     }
   },
   "entity": {

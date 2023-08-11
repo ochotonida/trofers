@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.zoglin.ambient"
+      "sound_event": "minecraft:entity.zoglin.ambient"
     }
   },
   "entity": {

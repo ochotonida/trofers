@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:platypus_idle"
+      "sound_event": "alexsmobs:platypus_idle"
     }
   },
   "entity": {

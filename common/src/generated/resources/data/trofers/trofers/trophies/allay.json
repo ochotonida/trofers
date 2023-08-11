@@ -9,10 +9,10 @@
   "effects": {
     "rewards": {
       "cooldown": 9600,
-      "lootTable": "trofers:trophies/allay"
+      "loot_table": "trofers:trophies/allay"
     },
     "sound": {
-      "soundEvent": "minecraft:entity.allay.item_given"
+      "sound_event": "minecraft:entity.allay.item_given"
     }
   },
   "entity": {

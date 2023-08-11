@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:block.snow.place"
+      "sound_event": "minecraft:block.snow.place"
     }
   },
   "entity": {

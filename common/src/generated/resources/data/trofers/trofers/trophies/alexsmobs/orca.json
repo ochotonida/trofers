@@ -18,7 +18,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:orca_idle"
+      "sound_event": "alexsmobs:orca_idle"
     }
   },
   "entity": {

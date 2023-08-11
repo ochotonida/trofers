@@ -33,7 +33,7 @@ public abstract class ConditionalTrophyDrops {
         return instance.group(Codecs.LOOT_CONDITIONS_CODEC
                         .fieldOf("loot_conditions").forGetter(drops -> drops.conditions))
                 .and(BuiltInRegistries.ITEM.byNameCodec()
-                        .fieldOf("trophyBase").forGetter(drops -> drops.trophyBase));
+                        .fieldOf("trophy_base").forGetter(drops -> drops.trophyBase));
     }
 
     public boolean matchesConditions(LootContext lootContext) {

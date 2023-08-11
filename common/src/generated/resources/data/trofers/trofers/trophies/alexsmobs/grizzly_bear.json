@@ -15,10 +15,10 @@
   "effects": {
     "rewards": {
       "cooldown": 9600,
-      "lootTable": "trofers:trophies/alexsmobs/grizzly_bear"
+      "loot_table": "trofers:trophies/alexsmobs/grizzly_bear"
     },
     "sound": {
-      "soundEvent": "alexsmobs:grizzly_bear_idle"
+      "sound_event": "alexsmobs:grizzly_bear_idle"
     }
   },
   "entity": {

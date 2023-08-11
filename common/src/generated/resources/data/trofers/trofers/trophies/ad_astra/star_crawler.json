@@ -17,7 +17,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.turtle.hurt"
+      "sound_event": "minecraft:entity.turtle.hurt"
     }
   },
   "entity": {

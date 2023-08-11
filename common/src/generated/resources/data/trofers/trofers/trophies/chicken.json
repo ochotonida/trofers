@@ -9,10 +9,10 @@
   "effects": {
     "rewards": {
       "cooldown": 9600,
-      "lootTable": "trofers:trophies/chicken"
+      "loot_table": "trofers:trophies/chicken"
     },
     "sound": {
-      "soundEvent": "minecraft:entity.chicken.ambient"
+      "sound_event": "minecraft:entity.chicken.ambient"
     }
   },
   "entity": {

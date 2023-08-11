@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:straddler_idle"
+      "sound_event": "alexsmobs:straddler_idle"
     }
   },
   "entity": {

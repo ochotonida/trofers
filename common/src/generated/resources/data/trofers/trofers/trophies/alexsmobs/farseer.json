@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:farseer_idle"
+      "sound_event": "alexsmobs:farseer_idle"
     }
   },
   "entity": {

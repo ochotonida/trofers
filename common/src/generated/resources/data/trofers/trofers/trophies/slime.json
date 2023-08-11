@@ -9,10 +9,10 @@
   "effects": {
     "rewards": {
       "cooldown": 9600,
-      "lootTable": "trofers:trophies/slime"
+      "loot_table": "trofers:trophies/slime"
     },
     "sound": {
-      "soundEvent": "minecraft:entity.slime.squish"
+      "sound_event": "minecraft:entity.slime.squish"
     }
   },
   "entity": {

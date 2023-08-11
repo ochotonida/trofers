@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:snow_leopard_idle"
+      "sound_event": "alexsmobs:snow_leopard_idle"
     }
   },
   "entity": {

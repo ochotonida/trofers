@@ -8,13 +8,13 @@
   },
   "effects": {
     "rewards": {
-      "statusEffect": {
+      "status_effect": {
         "duration": 100,
         "effect": "minecraft:poison"
       }
     },
     "sound": {
-      "soundEvent": "minecraft:entity.puffer_fish.blow_up"
+      "sound_event": "minecraft:entity.puffer_fish.blow_up"
     }
   },
   "entity": {

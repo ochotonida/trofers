@@ -11,7 +11,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.phantom.ambient"
+      "sound_event": "minecraft:entity.phantom.ambient"
     }
   },
   "entity": {

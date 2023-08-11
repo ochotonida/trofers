@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:fly_idle"
+      "sound_event": "alexsmobs:fly_idle"
     }
   },
   "entity": {

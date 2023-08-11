@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.wolf.ambient"
+      "sound_event": "minecraft:entity.wolf.ambient"
     }
   },
   "entity": {

@@ -8,13 +8,13 @@
   },
   "effects": {
     "rewards": {
-      "statusEffect": {
+      "status_effect": {
         "duration": 400,
         "effect": "minecraft:dolphins_grace"
       }
     },
     "sound": {
-      "soundEvent": "minecraft:entity.dolphin.ambient"
+      "sound_event": "minecraft:entity.dolphin.ambient"
     }
   },
   "entity": {

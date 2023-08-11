@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:warped_toad_idle"
+      "sound_event": "alexsmobs:warped_toad_idle"
     }
   },
   "entity": {

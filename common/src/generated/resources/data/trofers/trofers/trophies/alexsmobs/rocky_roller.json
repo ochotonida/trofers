@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:rocky_roller_idle"
+      "sound_event": "alexsmobs:rocky_roller_idle"
     }
   },
   "entity": {

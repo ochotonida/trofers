@@ -15,7 +15,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.salmon.flop"
+      "sound_event": "minecraft:entity.salmon.flop"
     }
   },
   "entity": {

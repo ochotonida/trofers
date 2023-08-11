@@ -26,5 +26,5 @@
     "thermal:blitz": "trofers:thermal/blitz",
     "thermal:blizz": "trofers:thermal/blizz"
   },
-  "trophyBase": "trofers:small_plate"
+  "trophy_base": "trofers:small_plate"
 }

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "thermal:entity.blitz.ambient"
+      "sound_event": "thermal:entity.blitz.ambient"
     }
   },
   "entity": {

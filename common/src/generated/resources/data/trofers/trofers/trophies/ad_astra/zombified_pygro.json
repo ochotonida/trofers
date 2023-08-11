@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.zombified_piglin.ambient"
+      "sound_event": "minecraft:entity.zombified_piglin.ambient"
     }
   },
   "entity": {

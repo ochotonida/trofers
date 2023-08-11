@@ -17,7 +17,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:anaconda_attack"
+      "sound_event": "alexsmobs:anaconda_attack"
     }
   },
   "entity": {

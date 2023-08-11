@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:rhinoceros_idle"
+      "sound_event": "alexsmobs:rhinoceros_idle"
     }
   },
   "entity": {

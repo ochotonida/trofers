@@ -27,5 +27,5 @@
     "tconstruct:sky_slime": "trofers:tconstruct/sky_slime",
     "tconstruct:terracube": "trofers:tconstruct/terracube"
   },
-  "trophyBase": "trofers:small_plate"
+  "trophy_base": "trofers:small_plate"
 }

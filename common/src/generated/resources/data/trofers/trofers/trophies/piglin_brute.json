@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.piglin_brute.ambient"
+      "sound_event": "minecraft:entity.piglin_brute.ambient"
     }
   },
   "entity": {

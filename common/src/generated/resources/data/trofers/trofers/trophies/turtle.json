@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.turtle.ambient_land"
+      "sound_event": "minecraft:entity.turtle.ambient_land"
     }
   },
   "entity": {

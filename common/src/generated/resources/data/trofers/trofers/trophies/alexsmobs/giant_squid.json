@@ -21,7 +21,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:giant_squid_games"
+      "sound_event": "alexsmobs:giant_squid_games"
     }
   },
   "entity": {

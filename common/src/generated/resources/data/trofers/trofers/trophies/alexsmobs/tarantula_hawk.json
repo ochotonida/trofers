@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:tarantula_hawk_wing"
+      "sound_event": "alexsmobs:tarantula_hawk_wing"
     }
   },
   "entity": {

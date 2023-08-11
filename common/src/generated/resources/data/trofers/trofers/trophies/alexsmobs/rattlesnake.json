@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:rattlesnake_loop"
+      "sound_event": "alexsmobs:rattlesnake_loop"
     }
   },
   "entity": {

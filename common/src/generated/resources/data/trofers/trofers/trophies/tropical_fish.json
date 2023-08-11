@@ -15,7 +15,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "minecraft:entity.tropical_fish.flop"
+      "sound_event": "minecraft:entity.tropical_fish.flop"
     }
   },
   "entity": {

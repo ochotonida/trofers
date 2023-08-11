@@ -17,7 +17,7 @@
   },
   "effects": {
     "sound": {
-      "soundEvent": "alexsmobs:centipede_attack"
+      "sound_event": "alexsmobs:centipede_attack"
     }
   },
   "entity": {
