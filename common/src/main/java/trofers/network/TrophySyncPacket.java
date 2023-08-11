@@ -3,8 +3,8 @@ package trofers.network;
 import dev.architectury.networking.NetworkManager;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
-import trofers.trophy.TrophyManager;
 import trofers.trophy.TrophySearchTreeManager;
 
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public class TrophySyncPacket {
 
     void apply(Supplier<NetworkManager.PacketContext> context) {
         context.get().queue(() -> {
-            TrophyManager.setTrophies(trophies);
+            ModResourceLoaders.TROPHIES.setTrophies(trophies);
             TrophySearchTreeManager.createSearchTree();
         });
     }

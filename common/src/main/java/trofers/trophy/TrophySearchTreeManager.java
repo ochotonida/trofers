@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import trofers.block.TrophyBlock;
+import trofers.registry.ModResourceLoaders;
 
 import java.util.Comparator;
 import java.util.List;
@@ -36,7 +37,7 @@ public class TrophySearchTreeManager implements ResourceManagerReloadListener {
                         ).trim()
                 ),
                 trophy -> Stream.of(trophy.id()),
-                TrophyManager.values()
+                ModResourceLoaders.TROPHIES.values()
                         .stream()
                         .filter(trophy -> !trophy.isHidden())
                         .sorted(Comparator.comparing(trophy -> trophy.id().toString()))

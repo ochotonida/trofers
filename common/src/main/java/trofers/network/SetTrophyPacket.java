@@ -5,8 +5,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import trofers.block.entity.TrophyBlockEntity;
+import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
-import trofers.trophy.TrophyManager;
 
 import java.util.function.Supplier;
 
@@ -16,7 +16,7 @@ public class SetTrophyPacket {
     private final BlockPos blockPos;
 
     public SetTrophyPacket(FriendlyByteBuf buffer) {
-        this.trophy = TrophyManager.get(buffer.readResourceLocation());
+        this.trophy = ModResourceLoaders.TROPHIES.get(buffer.readResourceLocation());
         this.blockPos = buffer.readBlockPos();
     }
 

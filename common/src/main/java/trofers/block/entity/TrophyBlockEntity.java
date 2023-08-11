@@ -32,8 +32,8 @@ import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.registry.ModBlockEntityTypes;
+import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
-import trofers.trophy.TrophyManager;
 import trofers.trophy.components.EffectInfo;
 
 public class TrophyBlockEntity extends BlockEntity {
@@ -53,7 +53,7 @@ public class TrophyBlockEntity extends BlockEntity {
 
     @Nullable
     public Trophy getTrophy() {
-        return TrophyManager.get(trophyID);
+        return ModResourceLoaders.TROPHIES.get(trophyID);
     }
 
     public void setTrophy(@Nullable Trophy trophy) {
@@ -282,7 +282,7 @@ public class TrophyBlockEntity extends BlockEntity {
                 Trofers.LOGGER.error(String.format("Failed to load trophy for block entity at %s", getBlockPos()), exception);
             }
 
-            Trophy trophy = TrophyManager.get(trophyID);
+            Trophy trophy = ModResourceLoaders.TROPHIES.get(trophyID);
             if (trophy == null) {
                 Trofers.LOGGER.error(String.format("Invalid trophy id for block entity at %s: %s", getBlockPos(), trophyID));
             }

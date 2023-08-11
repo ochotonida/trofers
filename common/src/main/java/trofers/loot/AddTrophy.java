@@ -11,8 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import trofers.Trofers;
+import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
-import trofers.trophy.TrophyManager;
 
 import java.util.function.Supplier;
 
@@ -42,7 +42,7 @@ public class AddTrophy extends AbstractLootModifier {
 
     @Override
     public ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        Trophy trophy = TrophyManager.get(trophyId);
+        Trophy trophy = ModResourceLoaders.TROPHIES.get(trophyId);
         if (trophy == null) {
             Trofers.LOGGER.error("Failed to find trophy with invalid id '{}'", trophyId);
         } else {

@@ -13,6 +13,7 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
+import trofers.registry.ModResourceLoaders;
 import trofers.trophy.components.*;
 import trofers.util.JsonHelper;
 
@@ -47,13 +48,12 @@ public record Trophy(
         }
 
         try {
-            return TrophyManager.get(new ResourceLocation(blockEntityTag.getString("Trophy")));
+            return ModResourceLoaders.TROPHIES.get(new ResourceLocation(blockEntityTag.getString("Trophy")));
         } catch (ResourceLocationException ignored) {
         }
 
         return null;
     }
-
 
     public ItemStack createItem(ItemLike trophyBase) {
         return createItem(trophyBase, id());

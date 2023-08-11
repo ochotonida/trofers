@@ -14,8 +14,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import trofers.Trofers;
 import trofers.config.ModConfig;
+import trofers.forge.data.ResourceReloadListenerForge;
 import trofers.forge.platform.ForgePlatformHelper;
-import trofers.trophy.TrophyManager;
+import trofers.registry.ModResourceLoaders;
 
 @Mod(Trofers.MOD_ID)
 public class TrofersForge {
@@ -46,14 +47,14 @@ public class TrofersForge {
     }
 
     public void onAddReloadListener(AddReloadListenerEvent event) {
-        event.addListener(new TrophyManager());
+        ModResourceLoaders.getLoaders().forEach(loader -> event.addListener(new ResourceReloadListenerForge(loader)));
     }
 
     public void onDataPackReload(OnDatapackSyncEvent event) {
         if (event.getPlayer() != null) {
-            TrophyManager.sync(event.getPlayer());
+            ModResourceLoaders.TROPHIES.sync(event.getPlayer());
         } else {
-            event.getPlayerList().getPlayers().forEach(TrophyManager::sync);
+            event.getPlayerList().getPlayers().forEach(ModResourceLoaders.TROPHIES::sync);
         }
     }
 }

@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import trofers.Trofers;
 import trofers.registry.ModBlocks;
+import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
-import trofers.trophy.TrophyManager;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
@@ -38,7 +38,7 @@ public abstract class LivingEntityMixin extends Entity {
         }
 
         ResourceLocation trophyId = Trofers.id(type.getPath());
-        Trophy trophy = TrophyManager.get(trophyId);
+        Trophy trophy = ModResourceLoaders.TROPHIES.get(trophyId);
 
         if (trophy != null && lastHurtByPlayer != null && random.nextDouble() < Trofers.CONFIG.general.getTrophyChance()) {
             ItemStack stack = new ItemStack(ModBlocks.SMALL_PLATE.get());
