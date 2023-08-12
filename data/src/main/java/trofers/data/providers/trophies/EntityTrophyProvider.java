@@ -35,7 +35,8 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
     private final List<LootTableProvider.SubProviderEntry> lootTables = new ArrayList<>();
     private final String modId;
 
-    private final Map<ResourceLocation, ResourceLocation> entityToTrophy = new HashMap<>();
+    private final Map<ResourceLocation, ResourceLocation> entityDrops = new HashMap<>();
+    private final Map<ResourceLocation, ResourceLocation> advancementDrops = new HashMap<>();
 
     public EntityTrophyProvider(String modId) {
         this.modId = modId;
@@ -46,8 +47,12 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
         return modId;
     }
 
-    public Map<ResourceLocation, ResourceLocation> getEntityToTrophyMap() {
-        return new HashMap<>(entityToTrophy);
+    public Map<ResourceLocation, ResourceLocation> getEntityDrops() {
+        return new HashMap<>(entityDrops);
+    }
+
+    public Map<ResourceLocation, ResourceLocation> getAdvancementDrops() {
+        return new HashMap<>(advancementDrops);
     }
 
     @Override
@@ -56,11 +61,11 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
     }
 
     protected void addTrophy(ResourceLocation id, TrophyBuilder<?> builder, ResourceLocation entityTypeId) {
-        entityToTrophy.put(entityTypeId, id);
+        entityDrops.put(entityTypeId, id);
         addTrophy(id, builder);
     }
 
-    public void addExtraTrophies(Map<String, Map<ResourceLocation, ResourceLocation>> trophies) {
+    public void addExtraEntityDrops(Map<String, Map<ResourceLocation, ResourceLocation>> trophies) {
 
     }
 
@@ -128,6 +133,18 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
 
     protected void defaultSound(TrophyBuilder<?> builder, ResourceLocation entityId) {
         builder.sound(getEntitySound(entityId.getPath(), getDefaultSoundName()));
+    }
+
+    protected void dropsFromAdvancement(EntityType<?> entityType, ResourceLocation advancementId) {
+        dropsFromAdvancement(ForgeRegistries.ENTITY_TYPES.getKey(entityType), advancementId);
+    }
+
+    protected void dropsFromAdvancement(ResourceLocation entityId, ResourceLocation advancementId) {
+        if (!entityDrops.containsKey(entityId)) {
+            throw new IllegalStateException();
+        }
+        advancementDrops.put(advancementId, entityDrops.get(entityId));
+        entityDrops.remove(entityId);
     }
 
     @SuppressWarnings("UnusedReturnValue")

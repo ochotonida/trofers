@@ -36,7 +36,7 @@ public class TinkersConstructTrophies extends EntityTrophyProvider {
     }
 
     @Override
-    public void addExtraTrophies(Map<String, Map<ResourceLocation, ResourceLocation>> trophies) {
+    public void addExtraEntityDrops(Map<String, Map<ResourceLocation, ResourceLocation>> trophies) {
         ResourceLocation slimeTrophy = trophies.get(ResourceLocation.DEFAULT_NAMESPACE).get(ForgeRegistries.ENTITY_TYPES.getKey(EntityType.SLIME));
         trophies.get(getModId()).put(id(EARTH_SLIME), slimeTrophy);
     }
