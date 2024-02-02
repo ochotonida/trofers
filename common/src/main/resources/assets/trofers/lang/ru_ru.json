@@ -1,0 +1,19 @@
+{
+  "block.trofers.trophy": "Трофей",
+  "message.trofers.reward_cooldown": "Следующая награда доступна через %s",
+  "text.autoconfig.trofers.option.general.trophyChance": "Шанс получить трофей",
+  "text.autoconfig.trofers.option.general.trophyChance.@Tooltip": "Вероятность того, что объект выпадет трофей при убийстве",
+  "text.autoconfig.trofers.option.general.enableTrophyLoot": "Включить добычу трофеев",
+  "text.autoconfig.trofers.option.general.enableTrophyLoot.@Tooltip": "Могут ли трофеи выпадать при щелчке правой кнопкой мыши",
+  "text.autoconfig.trofers.option.general.enableTrophyEffects": "Включить эффекты трофеев",
+  "text.autoconfig.trofers.option.general.enableTrophyEffects.@Tooltip": "Могут ли трофеи применять эффекты зелий при щелчке правой кнопкой мыши",
+  "text.autoconfig.trofers.title": "Trofers Конфигурации",
+  "time.trofers.hour": "1 час",
+  "time.trofers.hours": "%s часов",
+  "time.trofers.minute": "1 минута",
+  "time.trofers.minutes": "%s минут",
+  "time.trofers.second": "1 секунда",
+  "time.trofers.seconds": "%s секунд",
+  "trofers.creative_tab": "Трофей",
+  "trophy.trofers.composed": "%s Трофей"
+}
