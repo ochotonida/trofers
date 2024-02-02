@@ -50,7 +50,7 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
     * `cooldown`: The amount of time it takes in ticks before the reward(s) can be claimed again
 * `hidden`: (_default = false_) Whether the trophy should be hidden from trophy selection screen in creative mode
 
-For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/HEAD/src/generated/resources/data/trofers/trofers).
+For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/HEAD/common/src/generated/resources/data/trofers/trofers).
 
 ## Adding a trophy to a trophy base
 Trofers currently adds 6 trophy bases. 
@@ -58,7 +58,7 @@ Placing one down and right-clicking it while in creative will open a menu that a
 You can also set the trophy by changing the item's NBT: `{BlockEntityTag:{Trophy:"namespace:path"}}`.
 Changes made to your data pack will apply to any existing trophies.
 
-## Making entities drop trophies
+## Making entities drop trophies (Forge only)
 Because overriding loot tables can be annoying, Trofers adds a loot modifier which can be used to make entities drop trophies.
 
 *Note: the data pack format for this loot modifier has changed in update 3.0.0, the 1.18 README can be found [here](https://github.com/ochotonida/trofers/blob/1.18/README.md).*
@@ -72,13 +72,13 @@ The loot modifier should be placed in the `data/<namespace>/loot_modifiers` fold
 
 If all trophies have the same drop conditions, you only need a single file.
 
-[Example loot modifiers](https://github.com/ochotonida/trofers/tree/HEAD/src/generated/resources/data/trofers/loot_modifiers)
+[Example loot modifiers](https://github.com/ochotonida/trofers/tree/HEAD/common/src/generated/resources/data/trofers/loot_modifiers)
 
 After creating your loot modifier you need to register it to forge, more information on how to register a loot modifier (and loot modifiers in general) found [here](https://forge.gemwire.uk/wiki/Dynamic_Loot_Modification). (The wiki page is mostly aimed at mod developers, you can ignore the last section)
 
-[Example registration](https://github.com/ochotonida/trofers/blob/HEAD/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json)
+[Example registration](https://github.com/ochotonida/trofers/blob/HEAD/common/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json)
 
-## Adding trophies to any loot table
+## Adding trophies to any loot table (Forge only)
 If you want to add trophies to chests rather than entities, you can use the `add_trophy` loot modifier.
 This loot modifier is a bit different from the `add_entity_trophy` loot modifier, as you will need a separate loot modifier file for every trophy.
 
