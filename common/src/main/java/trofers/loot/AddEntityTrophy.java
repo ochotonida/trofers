@@ -4,7 +4,7 @@ import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -26,7 +26,7 @@ public class AddEntityTrophy extends AbstractLootModifier {
 
     public static final Supplier<Codec<AddEntityTrophy>> CODEC = Suppliers.memoize(
             () -> RecordCodecBuilder.create(instance -> codecStart(instance)
-                    .and(BuiltInRegistries.ITEM.byNameCodec()
+                    .and(Registry.ITEM.byNameCodec()
                             .fieldOf("trophyBase").forGetter(m -> m.trophyBase))
                     .and(Codec.unboundedMap(ResourceLocation.CODEC, ResourceLocation.CODEC)
                             .fieldOf("trophies").forGetter(m -> m.trophies))
@@ -48,8 +48,8 @@ public class AddEntityTrophy extends AbstractLootModifier {
     public static AddEntityTrophy create(LootItemCondition[] conditions, ItemLike trophyBase, Map<ResourceLocation, ResourceLocation> trophies, boolean logMissingEntities) {
         Set<EntityType<?>> entities = new HashSet<>();
         for (ResourceLocation entityTypeId : trophies.keySet()) {
-            if (BuiltInRegistries.ENTITY_TYPE.containsKey(entityTypeId)) {
-                entities.add(BuiltInRegistries.ENTITY_TYPE.get(entityTypeId));
+            if (Registry.ENTITY_TYPE.containsKey(entityTypeId)) {
+                entities.add(Registry.ENTITY_TYPE.get(entityTypeId));
             } else if (logMissingEntities) {
                 Trofers.LOGGER.debug("Skipping trophy loot modifier entry for missing entity type " + entityTypeId);
             }
@@ -71,7 +71,7 @@ public class AddEntityTrophy extends AbstractLootModifier {
         if (context.hasParam(LootContextParams.THIS_ENTITY)) {
             EntityType<?> entityTypeId = context.getParam(LootContextParams.THIS_ENTITY).getType();
             if (entities.contains(entityTypeId)) {
-                ResourceLocation trophyId = trophies.get(BuiltInRegistries.ENTITY_TYPE.getKey(entityTypeId));
+                ResourceLocation trophyId = trophies.get(Registry.ENTITY_TYPE.getKey(entityTypeId));
                 if (trophyId != null) {
                     Trophy trophy = TrophyManager.get(trophyId);
                     if (trophy == null) {

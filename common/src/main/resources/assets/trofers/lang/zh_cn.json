@@ -1,5 +1,5 @@
 {
-  "trofers.creative_tab": "Trofers",
+  "itemGroup.trofers.main": "Trofers",
   "block.trofers.trophy": "奖杯",
   "text.autoconfig.trofers.option.general.trophyChance": "奖杯掉落机率",
   "text.autoconfig.trofers.option.general.enableTrophyLoot": "启用奖杯战利品",

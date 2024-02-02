@@ -1,6 +1,6 @@
 package trofers.fabric.mixin;
 
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -32,7 +32,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "dropFromLootTable", at = @At("TAIL"))
     protected void dropFromLootTable(DamageSource damageSource, boolean bl, CallbackInfo ci) {
-        ResourceLocation type = BuiltInRegistries.ENTITY_TYPE.getKey(getType());
+        ResourceLocation type = Registry.ENTITY_TYPE.getKey(getType());
         if (!type.getNamespace().equals("minecraft")) {
             return;
         }

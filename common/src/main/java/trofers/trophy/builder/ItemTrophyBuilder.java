@@ -7,6 +7,7 @@ import trofers.util.JsonHelper;
 
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public class ItemTrophyBuilder extends TrophyBuilder<ItemTrophyBuilder> {
 
     private final ItemStack item;

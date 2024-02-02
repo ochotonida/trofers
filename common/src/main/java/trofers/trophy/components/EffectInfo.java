@@ -2,7 +2,7 @@ package trofers.trophy.components;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -138,7 +138,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
                     JsonObject statusEffect = new JsonObject();
                     result.add("statusEffect", statusEffect);
                     // noinspection ConstantConditions
-                    statusEffect.addProperty("effect", BuiltInRegistries.MOB_EFFECT.getKey(effect.getEffect()).toString());
+                    statusEffect.addProperty("effect", Registry.MOB_EFFECT.getKey(effect.getEffect()).toString());
                     statusEffect.addProperty("duration", effect.getDuration());
                     if (effect.getAmplifier() != 0) {
                         statusEffect.addProperty("amplifier", effect.getAmplifier());
@@ -160,10 +160,10 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
             if (object.has("statusEffect")) {
                 JsonObject effectObject = GsonHelper.getAsJsonObject(object, "statusEffect");
                 ResourceLocation effectID = new ResourceLocation(GsonHelper.getAsString(effectObject, "effect"));
-                if (!BuiltInRegistries.MOB_EFFECT.containsKey(effectID)) {
+                if (!Registry.MOB_EFFECT.containsKey(effectID)) {
                     throw new JsonParseException(String.format("Unknown effect: %s", effectID));
                 }
-                MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(effectID);
+                MobEffect effect = Registry.MOB_EFFECT.get(effectID);
                 int duration = GsonHelper.getAsInt(effectObject, "duration");
                 int amplifier = 0;
                 if (effectObject.has("amplifier")) {

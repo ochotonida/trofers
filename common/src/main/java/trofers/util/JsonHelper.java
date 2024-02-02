@@ -2,7 +2,7 @@ package trofers.util;
 
 import com.google.gson.*;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.resources.ResourceLocation;
@@ -27,7 +27,6 @@ public abstract class JsonHelper {
             CompoundTag nbt = parseNBT(json.get("nbt"));
             CompoundTag itemTag = new CompoundTag();
             if (nbt.contains("ForgeCaps")) {
-                // noinspection ConstantConditions
                 itemTag.put("ForgeCaps", nbt.get("ForgeCaps"));
                 nbt.remove("ForgeCaps");
             }
@@ -56,11 +55,11 @@ public abstract class JsonHelper {
 
     public static Item getItem(String id) {
         ResourceLocation key = new ResourceLocation(id);
-        if (!BuiltInRegistries.ITEM.containsKey(key)) {
+        if (!Registry.ITEM.containsKey(key)) {
             throw new JsonSyntaxException("Unknown item '" + id + "'");
         }
 
-        Item item = BuiltInRegistries.ITEM.get(key);
+        Item item = Registry.ITEM.get(key);
         if (item == Items.AIR) {
             throw new JsonSyntaxException("Invalid item: " + id);
         }
@@ -69,7 +68,7 @@ public abstract class JsonHelper {
 
     public static JsonObject serializeItem(ItemStack item) {
         JsonObject result = new JsonObject();
-        result.addProperty("item", BuiltInRegistries.ITEM.getKey(item.getItem()).toString());
+        result.addProperty("item", Registry.ITEM.getKey(item.getItem()).toString());
         if (item.getCount() != 1) {
             result.addProperty("count", item.getCount());
         }

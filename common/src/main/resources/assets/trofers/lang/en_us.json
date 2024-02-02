@@ -14,6 +14,6 @@
   "time.trofers.minutes": "%s minutes",
   "time.trofers.second": "1 second",
   "time.trofers.seconds": "%s seconds",
-  "trofers.creative_tab": "Trofers",
+  "itemGroup.trofers.main": "Trofers",
   "trophy.trofers.composed": "%s Trophy"
 }

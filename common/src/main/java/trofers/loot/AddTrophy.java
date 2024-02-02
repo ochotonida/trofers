@@ -4,7 +4,7 @@ import com.google.common.base.Suppliers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +20,7 @@ public class AddTrophy extends AbstractLootModifier {
 
     public static final Supplier<Codec<AddTrophy>> CODEC = Suppliers.memoize(
             () -> RecordCodecBuilder.create(instance -> codecStart(instance)
-                    .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("trophyBase").forGetter(m -> m.trophyBase))
+                    .and(Registry.ITEM.byNameCodec().fieldOf("trophyBase").forGetter(m -> m.trophyBase))
                     .and(ResourceLocation.CODEC.fieldOf("trophyId").forGetter(m -> m.trophyId))
                     .apply(instance, AddTrophy::new)
             )

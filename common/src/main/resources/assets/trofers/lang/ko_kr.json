@@ -1,5 +1,5 @@
 {
-  "trofers.creative_tab": "트로퍼즈",
+  "itemGroup.trofers.main": "트로퍼즈",
   "block.trofers.trophy": "트로피",
   "trophy.trofers.composed": "%s 트로피"
 }

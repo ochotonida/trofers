@@ -37,10 +37,6 @@ allprojects {
 
     repositories {
         maven {
-            name = "Porting Lib"
-            url = "https://mvn.devos.one/snapshots/"
-        }
-        maven {
             name = "Mod Menu"
             url = "https://maven.terraformersmc.com"
         }

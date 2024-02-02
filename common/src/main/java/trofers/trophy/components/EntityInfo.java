@@ -3,7 +3,7 @@ package trofers.trophy.components;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -47,19 +47,19 @@ public class EntityInfo {
 
     @Nullable
     public Entity getOrCreateEntity(Level level) {
-        if (entity == null || entity.level() != level) {
+        if (entity == null || entity.level != level) {
             createEntity(level);
         }
         return entity;
     }
 
     private void createEntity(Level level) {
-        if (type == null || !type.requiredFeatures().isSubsetOf(level.enabledFeatures())) {
+        if (type == null) {
             return;
         }
 
         CompoundTag entityTag = this.nbt.copy();
-        entityTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(getType()).toString());
+        entityTag.putString("id", Registry.ENTITY_TYPE.getKey(getType()).toString());
         if (!entityTag.hasUUID("UUID")) {
             entityTag.putUUID("UUID", new UUID(1L, 1L));
         }
@@ -68,22 +68,22 @@ public class EntityInfo {
     }
 
     public void toNetwork(FriendlyByteBuf buffer) {
-        buffer.writeResourceLocation(BuiltInRegistries.ENTITY_TYPE.getKey(getType()));
+        buffer.writeResourceLocation(Registry.ENTITY_TYPE.getKey(getType()));
         buffer.writeNbt(nbt);
         buffer.writeBoolean(isAnimated);
     }
 
     public static EntityInfo fromNetwork(FriendlyByteBuf buffer) {
-        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(buffer.readResourceLocation());
+        EntityType<?> type = Registry.ENTITY_TYPE.get(buffer.readResourceLocation());
         return new EntityInfo(type, buffer.readNbt(), buffer.readBoolean());
     }
 
     public static EntityInfo fromJson(JsonObject object) {
         ResourceLocation typeID = new ResourceLocation(GsonHelper.getAsString(object, "type"));
-        if (!BuiltInRegistries.ENTITY_TYPE.containsKey(typeID)) {
+        if (!Registry.ENTITY_TYPE.containsKey(typeID)) {
             throw new JsonParseException(String.format("Unknown entity type %s", typeID));
         }
-        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(typeID);
+        EntityType<?> type = Registry.ENTITY_TYPE.get(typeID);
         CompoundTag nbt = new CompoundTag();
         if (object.has("nbt")) {
             JsonElement nbtElement = object.get("nbt");

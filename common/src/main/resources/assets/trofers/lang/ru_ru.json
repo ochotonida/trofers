@@ -14,6 +14,6 @@
   "time.trofers.minutes": "%s минут",
   "time.trofers.second": "1 секунда",
   "time.trofers.seconds": "%s секунд",
-  "trofers.creative_tab": "Трофей",
+  "itemGroup.trofers.main": "Трофей",
   "trophy.trofers.composed": "%s Трофей"
 }

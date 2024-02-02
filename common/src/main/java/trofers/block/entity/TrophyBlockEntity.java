@@ -2,16 +2,14 @@ package trofers.block.entity;
 
 import net.minecraft.ResourceLocationException;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+import net.minecraft.network.protocol.game.ClientboundCustomSoundPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -22,7 +20,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -140,13 +138,13 @@ public class TrophyBlockEntity extends BlockEntity {
             if (distance > maxDistance) {
                 continue;
             }
-            Holder<SoundEvent> holder = Holder.direct(SoundEvent.createVariableRangeEvent(sound));
-            player.connection.send(new ClientboundSoundPacket(holder, SoundSource.BLOCKS, pos.x(), pos.y(), pos.z(), volume, pitch, seed));
+
+            player.connection.send(new ClientboundCustomSoundPacket(sound, SoundSource.BLOCKS, pos, volume, pitch, seed));
         }
     }
 
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
-        if (player.level().isClientSide()) {
+        if (player.level.isClientSide()) {
             return;
         } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable() == null)
                 && (!Trofers.CONFIG.general.enableTrophyEffects || rewards.statusEffect().isEmpty())) {
@@ -205,28 +203,29 @@ public class TrophyBlockEntity extends BlockEntity {
             ResourceLocation lootTableLocation = rewards.lootTable();
             if (lootTableLocation != null) {
                 // noinspection ConstantConditions
-                LootTable lootTable = level.getServer().getLootData().getLootTable(lootTableLocation);
+                LootTable lootTable = level.getServer().getLootTables().get(lootTableLocation);
                 if (lootTable == LootTable.EMPTY) {
                     Trofers.LOGGER.log(Level.ERROR, "Invalid loot table: {}", lootTableLocation);
                     return;
                 }
-                LootParams parameters = createLootContext(player, player.getItemInHand(hand));
-                lootTable.getRandomItems(parameters).forEach(this::spawnAtLocation);
+                LootContext.Builder builder = createLootContext(player, player.getItemInHand(hand));
+                LootContext context = builder.create(LootContextParamSets.BLOCK);
+                lootTable.getRandomItems(context).forEach(this::spawnAtLocation);
             }
         }
     }
 
-    private LootParams createLootContext(Player player, ItemStack stack) {
-        return (new LootParams.Builder((ServerLevel) level))
+    private LootContext.Builder createLootContext(Player player, ItemStack stack) {
+        // noinspection ConstantConditions
+        return (new LootContext.Builder((ServerLevel) level))
+                .withRandom(level.getRandom())
                 .withParameter(LootContextParams.BLOCK_ENTITY, this)
                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(getBlockPos()))
                 .withParameter(LootContextParams.THIS_ENTITY, player)
                 .withParameter(LootContextParams.BLOCK_STATE, getBlockState())
-                .withParameter(LootContextParams.TOOL, stack)
-                .create(LootContextParamSets.BLOCK);
+                .withParameter(LootContextParams.TOOL, stack);
     }
 
-    @Nullable
     public void spawnAtLocation(ItemStack stack) {
         if (!stack.isEmpty() && level != null && !level.isClientSide) {
             ItemEntity item = new ItemEntity(

@@ -7,25 +7,20 @@ import net.minecraft.CrashReport;
 import net.minecraft.CrashReportCategory;
 import net.minecraft.ReportedException;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.tooltip.BelowOrAboveWidgetTooltipPositioner;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import org.joml.Matrix4f;
 import trofers.block.entity.TrophyBlockEntity;
 import trofers.network.NetworkHandler;
 import trofers.network.SetTrophyPacket;
@@ -35,6 +30,7 @@ import trofers.trophy.TrophySearchTreeManager;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Consumer;
 
 public class TrophySelectionScreen extends Screen {
 
@@ -81,9 +77,9 @@ public class TrophySelectionScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        renderBackground(guiGraphics);
-        super.render(guiGraphics, mouseX, mouseY, partialTicks);
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+        renderBackground(poseStack);
+        super.render(poseStack, mouseX, mouseY, partialTicks);
     }
 
     @Override
@@ -143,7 +139,7 @@ public class TrophySelectionScreen extends Screen {
     public boolean mouseClicked(double pMouseX, double pMouseY, int pButton) {
         boolean result = super.mouseClicked(pMouseX, pMouseY, pButton);
         if (getFocused() != searchBox) {
-            searchBox.setFocused(false);
+            searchBox.setFocus(false);
         }
         return result;
     }
@@ -151,24 +147,16 @@ public class TrophySelectionScreen extends Screen {
     private void createUpperButtons() {
         int xPos = width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - NAVIGATION_BUTTON_SIZE;
 
-        previousButton = Button.builder(Component.literal("<"), button -> setCurrentPage(currentPage - 1))
-                .pos(xPos, VERTICAL_PADDING)
-                .width(NAVIGATION_BUTTON_SIZE)
-                .build();
+
+        previousButton = new Button(xPos, VERTICAL_PADDING, NAVIGATION_BUTTON_SIZE, NAVIGATION_BUTTON_SIZE, Component.literal("<"), button -> setCurrentPage(currentPage - 1));
         addRenderableWidget(previousButton);
 
         xPos += NAVIGATION_BUTTON_SIZE + BUTTON_SPACING;
-        Button cancelButton = Button.builder(CommonComponents.GUI_CANCEL, button -> onClose())
-                .pos(xPos, VERTICAL_PADDING)
-                .width(CANCEL_BUTTON_WIDTH)
-                .build();
+        Button cancelButton = new Button(xPos, VERTICAL_PADDING, CANCEL_BUTTON_WIDTH, NAVIGATION_BUTTON_SIZE, CommonComponents.GUI_CANCEL, button -> onClose());
         addRenderableWidget(cancelButton);
 
         xPos += CANCEL_BUTTON_WIDTH + BUTTON_SPACING;
-        nextButton = Button.builder(Component.literal(">"), button -> setCurrentPage(currentPage + 1))
-                .pos(xPos, VERTICAL_PADDING)
-                .width(NAVIGATION_BUTTON_SIZE)
-                .build();
+        nextButton = new Button(xPos, VERTICAL_PADDING, NAVIGATION_BUTTON_SIZE, NAVIGATION_BUTTON_SIZE, Component.literal(">"), button -> setCurrentPage(currentPage + 1));
         addRenderableWidget(nextButton);
 
         int searchBoxX = width / 2 - CANCEL_BUTTON_WIDTH / 2 - BUTTON_SPACING - NAVIGATION_BUTTON_SIZE;
@@ -240,8 +228,18 @@ public class TrophySelectionScreen extends Screen {
         private final int y;
 
         private TrophyButton(int xPos, int yPos, int size, ItemStack item, Trophy trophy) {
-            super(xPos, yPos, size, size, Component.empty(), button -> {}, supplier -> item.getHoverName().copy());
-            setTooltip(Tooltip.create(item.getHoverName()));
+            super(xPos, yPos, size, size, Component.empty(), button -> {
+            }, new OnTooltip() {
+                @Override
+                public void onTooltip(Button button, PoseStack poseStack, int i, int j) {
+                    TrophySelectionScreen.this.renderTooltip(poseStack, item.getHoverName(), i, j);
+                }
+
+                @Override
+                public void narrateTooltip(Consumer<Component> consumer) {
+                    consumer.accept(item.getHoverName());
+                }
+            });
             this.trophy = trophy;
             this.item = item;
             this.x = xPos;
@@ -256,7 +254,7 @@ public class TrophySelectionScreen extends Screen {
         private void setTrophy(Trophy trophy) {
             NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophy, blockPos));
             if (Minecraft.getInstance().player != null) {
-                if (Minecraft.getInstance().player.level().getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
+                if (Minecraft.getInstance().player.level.getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
                     blockEntity.setTrophy(trophy);
                 }
             }
@@ -264,19 +262,14 @@ public class TrophySelectionScreen extends Screen {
         }
 
         @Override
-        protected ClientTooltipPositioner createTooltipPositioner() {
-            if (!isHovered && isFocused() && Minecraft.getInstance().getLastInputType().isKeyboard()) {
-                return new BelowOrAboveWidgetTooltipPositioner(this);
+        public void renderButton(PoseStack poseStack, int mouseX, int mouseY, float partialTicks) {
+            renderButtonParts(poseStack, mouseX, mouseY);
+            if (this.isHoveredOrFocused()) {
+                this.renderToolTip(poseStack, mouseX, mouseY);
             }
-            return DefaultTooltipPositioner.INSTANCE;
-        }
-
-        @Override
-        public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-            super.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
 
             tryRenderScaledGuiItem(
-                    guiGraphics.pose(),
+                    poseStack,
                     item,
                     x + (int) (width - 16 * ITEM_SCALE) / 2,
                     y + (int) (height - 16 * ITEM_SCALE) / 2,
@@ -284,11 +277,31 @@ public class TrophySelectionScreen extends Screen {
             );
         }
 
+        public void renderButtonParts(PoseStack poseStack, int i, int j) {
+            renderButtonPart(poseStack, i, j, 16, 0, 0);
+            renderButtonPart(poseStack, i, j, 8, 16, 4);
+            renderButtonPart(poseStack, i, j, 16, 24, 4);
+        }
+
+        public void renderButtonPart(PoseStack poseStack, int i, int j, int size, int offset, int textureOffset) {
+            Minecraft minecraft = Minecraft.getInstance();
+            RenderSystem.setShader(GameRenderer::getPositionTexShader);
+            RenderSystem.setShaderTexture(0, WIDGETS_LOCATION);
+            RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
+            int k = this.getYImage(this.isHoveredOrFocused());
+            RenderSystem.enableBlend();
+            RenderSystem.defaultBlendFunc();
+            RenderSystem.enableDepthTest();
+            this.blit(poseStack, this.x, this.y + offset, 0, 46 + k * 20 + textureOffset, this.width / 2, size);
+            this.blit(poseStack, this.x + this.width / 2, this.y + offset, 200 - this.width / 2, 46 + k * 20 + textureOffset, this.width / 2, size);
+            this.renderBg(poseStack, minecraft, i, j);
+        }
+
+
         @SuppressWarnings("SameParameterValue")
         private void tryRenderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale) {
             if (!item.isEmpty()) {
-                //noinspection ConstantConditions
-                BakedModel bakedmodel = minecraft.getItemRenderer().getModel(item, null, Minecraft.getInstance().player, 0);
+                BakedModel bakedmodel = itemRenderer.getModel(item, null, Minecraft.getInstance().player, 0);
                 poseStack.pushPose();
                 poseStack.translate(0, 0, 50);
                 try {
@@ -297,7 +310,7 @@ public class TrophySelectionScreen extends Screen {
                     CrashReport crashReport = CrashReport.forThrowable(exception, "Rendering item");
                     CrashReportCategory category = crashReport.addCategory("Item being rendered");
                     category.setDetail("Item Type", () -> String.valueOf(item.getItem()));
-                    category.setDetail("Registry Name", () -> String.valueOf(BuiltInRegistries.ITEM.getKey(item.getItem())));
+                    category.setDetail("Registry Name", () -> String.valueOf(Registry.ITEM.getKey(item.getItem())));
                     category.setDetail("Item Damage", () -> String.valueOf(item.getDamageValue()));
                     category.setDetail("Item NBT", () -> String.valueOf(item.getTag()));
                     category.setDetail("Item Foil", () -> String.valueOf(item.hasFoil()));
@@ -311,7 +324,7 @@ public class TrophySelectionScreen extends Screen {
             poseStack.pushPose();
             poseStack.translate(x, y, 100);
             poseStack.translate(16 * scale / 2, 16 * scale / 2, 0);
-            poseStack.mulPoseMatrix((new Matrix4f()).scaling(1, -1, 1));
+            poseStack.scale(1, -1, 1);
             poseStack.scale(scale, scale, scale);
             poseStack.scale(16, 16, 16);
             MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
@@ -324,8 +337,7 @@ public class TrophySelectionScreen extends Screen {
             modelViewStack.pushPose();
             modelViewStack.mulPoseMatrix(poseStack.last().pose());
             RenderSystem.applyModelViewMatrix();
-            //noinspection ConstantConditions
-            minecraft.getItemRenderer().render(item, ItemDisplayContext.GUI, false, new PoseStack(), bufferSource, 15728880, OverlayTexture.NO_OVERLAY, model);
+            itemRenderer.render(item, ItemTransforms.TransformType.GUI, false, new PoseStack(), bufferSource, 15728880, OverlayTexture.NO_OVERLAY, model);
             bufferSource.endBatch();
             RenderSystem.enableDepthTest();
             if (usesFlatLighting) {

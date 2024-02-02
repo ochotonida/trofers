@@ -1,16 +1,16 @@
 package trofers.block.entity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import trofers.trophy.components.Animation;
 import trofers.trophy.components.EntityInfo;
@@ -33,7 +33,7 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         poseStack.translate(0.5, 0, 0.5);
 
         Direction direction = blockEntity.getBlockState().getValue(BlockStateProperties.HORIZONTAL_FACING).getOpposite();
-        poseStack.mulPose(Axis.YP.rotationDegrees(-direction.toYRot()));
+        poseStack.mulPose(Vector3f.YP.rotationDegrees(-direction.toYRot()));
 
         Trophy trophy = blockEntity.getTrophy();
 
@@ -64,7 +64,7 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
             poseStack.scale(0.5F, 0.5F, 0.5F);
         }
 
-        Minecraft.getInstance().getItemRenderer().renderStatic(trophy.item(), ItemDisplayContext.FIXED, light, overlay, poseStack, multiBufferSource, Minecraft.getInstance().level, 0);
+        Minecraft.getInstance().getItemRenderer().renderStatic(trophy.item(), ItemTransforms.TransformType.FIXED, light, overlay, poseStack, multiBufferSource, 0);
 
         poseStack.popPose();
     }
@@ -87,7 +87,7 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
             ticks = 0;
         }
 
-        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+        poseStack.mulPose(Vector3f.YP.rotationDegrees(180));
 
         Minecraft.getInstance().getEntityRenderDispatcher().render(entity, 0, 0, 0, 0, ticks, poseStack, multiBufferSource, light);
         poseStack.popPose();
@@ -100,20 +100,20 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         poseStack.translate(0, (trophyHeight + trophy.display().yOffset()) / 16D, 0);
         poseStack.translate(0, yRotationOffset, 0);
         if (trophy.animation().type() == Animation.Type.SPINNING) {
-            poseStack.mulPose(Axis.YP.rotationDegrees(animationProgress));
+            poseStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress));
         } else if (trophy.animation().type() == Animation.Type.TUMBLING) {
-            poseStack.mulPose(Axis.YP.rotationDegrees(animationProgress));
-            poseStack.mulPose(Axis.XP.rotationDegrees(animationProgress * 0.8F));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(animationProgress * 0.6F));
+            poseStack.mulPose(Vector3f.YP.rotationDegrees(animationProgress));
+            poseStack.mulPose(Vector3f.XP.rotationDegrees(animationProgress * 0.8F));
+            poseStack.mulPose(Vector3f.ZP.rotationDegrees(animationProgress * 0.6F));
         }
         poseStack.translate(0, -yRotationOffset, 0);
 
         poseStack.translate(trophy.display().xOffset() / 16D, 0, 0);
         poseStack.translate(0, 0, trophy.display().zOffset() / 16D);
 
-        poseStack.mulPose(Axis.XP.rotationDegrees(trophy.display().xRotation()));
-        poseStack.mulPose(Axis.YP.rotationDegrees(trophy.display().yRotation()));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(trophy.display().zRotation()));
+        poseStack.mulPose(Vector3f.XP.rotationDegrees(trophy.display().xRotation()));
+        poseStack.mulPose(Vector3f.YP.rotationDegrees(trophy.display().yRotation()));
+        poseStack.mulPose(Vector3f.ZP.rotationDegrees(trophy.display().zRotation()));
 
         float scale = trophy.display().scale();
         poseStack.scale(scale, scale, scale);

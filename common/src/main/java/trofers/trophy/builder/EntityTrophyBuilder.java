@@ -1,7 +1,7 @@
 package trofers.trophy.builder;
 
 import com.google.gson.JsonObject;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-@SuppressWarnings({"unchecked", "UnusedReturnValue"})
+@SuppressWarnings({"unchecked", "UnusedReturnValue", "unused"})
 public class EntityTrophyBuilder<T extends EntityTrophyBuilder<T>> extends TrophyBuilder<T> {
 
     private final ResourceLocation entityId;
@@ -42,7 +42,7 @@ public class EntityTrophyBuilder<T extends EntityTrophyBuilder<T>> extends Troph
 
     @Override
     protected Optional<EntityInfo> getEntityInfo() {
-        return Optional.of(new EntityInfo(BuiltInRegistries.ENTITY_TYPE.get(entityId), entityTag, false));
+        return Optional.of(new EntityInfo(Registry.ENTITY_TYPE.get(entityId), entityTag, false));
     }
 
     @Override
