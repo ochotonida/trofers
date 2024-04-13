@@ -8,7 +8,8 @@ make sure you're reading this README on the branch for that version.*
 ---
 
 Trofers is a Minecraft mod that adds customizable trophies, which can be added using data packs.
-The data pack that comes with the mod includes a trophy for every vanilla mob, and supports some modded mobs as well. Entities have a small chance to drop these when killed by a player.
+The data pack that comes with the mod includes a trophy for every vanilla mob, and supports some modded mobs as well. 
+Entities have a small chance to drop these when killed by a player.
 The drop rate for the trophies that come with the mod can be changed in the config.
 
 ![image](https://user-images.githubusercontent.com/37985539/134405190-2076a728-fb77-4232-9936-42a4a8307bdd.png)
@@ -62,34 +63,48 @@ You can also set the trophy by changing the item's NBT: `{BlockEntityTag:{Trophy
 Changes made to your data pack will apply to any existing trophies.
 
 ## Making entities drop trophies (Forge only)
-Because overriding loot tables can be annoying, Trofers adds a loot modifier which can be used to make entities drop trophies.
-
-*Note: the data pack format for this loot modifier has changed in update 3.0.0, the 1.18 README can be found [here](https://github.com/ochotonida/trofers/blob/1.18/README.md).*
+Because overriding loot tables can be annoying, 
+Trofers adds a loot modifier which can be used to make entities drop trophies.
 
 The loot modifier should be placed in the `data/<namespace>/loot_modifiers` folder and uses the following structure:
 
-* `"type": "trofers:add_entity_trophy"`: required, this tells forge which loot modifier type to use
-* `conditions`: A list of loot conditions that determine when to apply the loot modifier. Trofers uses a `minecraft:killed_by_player` and a `trofers:random_trophy_chance` condition here. The `random_trophy_chance` condition ensures the loot modifier is applied with the trophy chance value specified in the config.
-* `trophyBase`: The ID of an item to use as the trophy base. (e.g. "trofers:small_plate")
-* `trophies`: An object with multiple key-value pairs. Each key should correspond with an entity type id, and its value the id of the trophy it should drop. (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
+* `type`: This should be set to `trofers:add_entity_trophy`, to tell Forge which loot modifier type to use.
+* `conditions`: A list of loot conditions that determine when to apply the loot modifier. 
+  Trofers uses a `minecraft:killed_by_player` and a `trofers:random_trophy_chance` condition here. 
+  The `random_trophy_chance` condition is a loot condition added by Trofers that succeeds if 
+  a randomly generated number is smaller than the trophy chance value set in the config.
+* `trophyBase`: The ID of an item to use as the trophy base. The available options are:
+  * `trofers:<size>_plate`
+  * `trofers:<size>_pillar`
+
+  where `<size>` can be either `small`, `medium` or `large`.
+   
+* `trophies`: An object with multiple key-value pairs. 
+  Each key should correspond with an entity type id, and its value the id of the trophy it should drop. (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
 
 If all trophies have the same drop conditions, you only need a single file.
 
 [Example loot modifiers](https://github.com/ochotonida/trofers/tree/HEAD/common/src/generated/resources/data/trofers/loot_modifiers)
 
-After creating your loot modifier you need to register it to forge, more information on how to register a loot modifier (and loot modifiers in general) found [here](https://forge.gemwire.uk/wiki/Dynamic_Loot_Modification). (The wiki page is mostly aimed at mod developers, you can ignore the last section)
+After creating your loot modifier, you need to register it to Forge. 
+More information on how to register a loot modifier can be found [here](https://forge.gemwire.uk/wiki/Dynamic_Loot_Modification). 
+The wiki page is mostly aimed at mod developers, you can ignore the last section.
 
 [Example registration](https://github.com/ochotonida/trofers/blob/HEAD/common/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json)
 
 ## Adding trophies to any loot table (Forge only)
 If you want to add trophies to chests rather than entities, you can use the `add_trophy` loot modifier.
-This loot modifier is a bit different from the `add_entity_trophy` loot modifier, as you will need a separate loot modifier file for every trophy.
+This loot modifier is a bit different from the `add_entity_trophy` loot modifier, 
+as you will need a separate loot modifier file for every trophy.
 
 * `"type": "trofers:add_trophy"`: required.
 * `conditions`: A list of loot conditions that determine when to apply the loot modifier.
-  To prevent the trophy from being generated when any loot table is rolled, you likely want to use a `forge:loot_table_id` condition here.
+  To prevent the trophy from being generated when any loot table is rolled, 
+  you likely want to use a `forge:loot_table_id` condition here.
 * `trophyBase`: The ID of an item to use as the trophy base.
-* `trophyId`: An object with multiple key-value pairs. Each key should correspond with an entity type id, and its value the id of the trophy it should drop. (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
+* `trophyId`: An object with multiple key-value pairs. 
+  Each key should correspond with an entity type id, and its value the id of the trophy it should drop. 
+  (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
 
 Example: The following loot modifier will add a creeper trophy to buried treasure chests with a 50% chance.
 ```json5
