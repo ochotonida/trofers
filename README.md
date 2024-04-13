@@ -19,7 +19,7 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
 (all fields are optional unless stated otherwise):
 
 * `name`: The name of the trophy as a text component (can be a string). 
-  Information on how to format these can be found [here](https://minecraft.fandom.com/wiki/Raw_JSON_text_format).
+  Information on how to format these can be found [here](https://minecraft.wiki/w/Raw_JSON_text_format).
 * `tooltip`: A list of text components, one component per line
 * `item`: An object describing the item the trophy should display. Contains the following fields:
   * `item`: (_required_) The item ID
