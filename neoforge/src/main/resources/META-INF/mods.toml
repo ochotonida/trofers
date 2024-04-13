@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="[2,)"
+license="MIT"
+issueTrackerURL="https://github.com/ochotonida/trofers/issues"
+
+[[mods]]
+modId="trofers"
+version="${version}"
+displayName="Trofers"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/trofers"
+logoFile= "../logo.png"
+authors="ochotonida"
+description='''Adds trophies that can be customized through data packs'''
+
+[[mixins]]
+config="mixins.artifacts.neoforge.json"
+
+[[dependencies.trofers]]
+modId="neoforge"
+type="required"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trofers]]
+modId="minecraft"
+type="required"
+versionRange="[1.20.4,1.21)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trofers]]
+modId = "architectury"
+type="required"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.trofers]]
+modId = "cloth_config"
+type="required"
+ordering = "NONE"
+side = "BOTH"
