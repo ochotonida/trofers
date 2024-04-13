@@ -1,13 +1,11 @@
 package trofers.neoforge.data;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import trofers.Trofers;
@@ -33,7 +31,7 @@ public class ResourceReloadListenerNeoForge<T> extends SimpleJsonResourceReloadL
 
         // TODO use neoforge:conditions
         // TODO fix this shit
-        Codec<Optional<Boolean>> codec = ConditionalOps.createConditionalCodec(Codec.unit(false), "conditions");
+        Codec<Optional<Boolean>> codec = ConditionalOps.createConditionalCodec(Codec.unit(false));
 
         for (ResourceLocation id : resources.keySet()) {
             JsonElement element = resources.get(id);

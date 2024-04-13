@@ -103,8 +103,9 @@ public abstract class JsonHelper {
     private static final String FABRIC_LOAD_CONDITIONS = new ResourceLocation(FABRIC, "load_conditions").toString();
     private static final String FABRIC_ALL_MODS_LOADED = new ResourceLocation(FABRIC, "all_mods_loaded").toString();
 
-    private static final String FORGE_CONDITIONS = "conditions";
-    private static final String FORGE_MOD_LOADED = new ResourceLocation("forge", "mod_loaded").toString();
+    private static final String NEOFORGE = "neoforge";
+    private static final String NEOFORGE_CONDITIONS = new ResourceLocation(NEOFORGE, "conditions").toString();
+    private static final String NEOFORGE_MOD_LOADED = new ResourceLocation(NEOFORGE, "mod_loaded").toString();
 
     private static JsonArray getOrCreateList(JsonObject object, String name) {
         if (object.has(name)) {
@@ -128,7 +129,7 @@ public abstract class JsonHelper {
     }
 
     private static JsonObject createForgeCondition(JsonObject object, String type) {
-        return createCondition(object, FORGE_CONDITIONS, "type", type);
+        return createCondition(object, NEOFORGE_CONDITIONS, "type", type);
     }
 
     public static void addModLoadedConditions(JsonObject object, String... modIds) {
@@ -150,7 +151,7 @@ public abstract class JsonHelper {
 
     private static void addForgeModLoadedCondition(JsonObject object, String... modIds) {
         for (String modId : modIds) {
-            createForgeCondition(object, FORGE_MOD_LOADED).addProperty("modid", modId);
+            createForgeCondition(object, NEOFORGE_MOD_LOADED).addProperty("modid", modId);
         }
     }
 }
