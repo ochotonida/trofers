@@ -1,12 +1,15 @@
 # Trofers [![CurseForge](http://cf.way2muchnoise.eu/full_482265_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/trofers) [![](https://discordapp.com/api/guilds/298798089068609537/widget.png?style=shield)](https://discord.gg/87pXJadaRr)
 
-*For information about Trofers 1.16.5-1.1.0 and below, click [here](https://github.com/ochotonida/trofers/blob/1.16-legacy/README.md).*
+*This README explains the data pack format for Trofers.
+The data pack format and this README can be subject to change between Minecraft updates.
+If you're using an older Minecraft version, 
+make sure you're reading this README on the branch for that version.*
 
 ---
 
-Trofers is a minecraft mod that adds customizable trophies, which can be added using data packs.
-The data pack that comes with the mod includes a trophy for every non-boss mob, entities have a small chance to drop these when killed by a player.
-(The drop rate can be changed in the config)
+Trofers is a Minecraft mod that adds customizable trophies, which can be added using data packs.
+The data pack that comes with the mod includes a trophy for every vanilla mob, and supports some modded mobs as well. Entities have a small chance to drop these when killed by a player.
+The drop rate for the trophies that come with the mod can be changed in the config.
 
 ![image](https://user-images.githubusercontent.com/37985539/134405190-2076a728-fb77-4232-9936-42a4a8307bdd.png)
 ## Customizing Trophies
