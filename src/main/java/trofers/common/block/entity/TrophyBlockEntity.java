@@ -208,7 +208,6 @@ public class TrophyBlockEntity extends TileEntity implements ITickableTileEntity
                 .withParameter(LootParameters.BLOCK_ENTITY, this)
                 .withParameter(LootParameters.ORIGIN, Vector3d.atCenterOf(getBlockPos()))
                 .withParameter(LootParameters.THIS_ENTITY, player)
-                .withParameter(LootParameters.BLOCK_STATE, getBlockState())
                 .withParameter(LootParameters.TOOL, stack);
     }
 
