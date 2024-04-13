@@ -20,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import trofers.data.EntityDrops;
 import trofers.registry.ModResourceLoaders;
 
+import java.util.Optional;
+
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity {
 
@@ -38,7 +40,7 @@ public abstract class LivingEntityMixin extends Entity {
             builder = builder.withParameter(LootContextParams.LAST_DAMAGE_PLAYER, this.lastHurtByPlayer).withLuck(this.lastHurtByPlayer.getLuck());
         }
         LootParams lootParams = builder.create(LootContextParamSets.ENTITY);
-        LootContext context = (new LootContext.Builder(lootParams)).create(null);
+        LootContext context = (new LootContext.Builder(lootParams)).create(Optional.empty());
         for (EntityDrops entityDrops : ModResourceLoaders.ENTITY_DROPS.getAllResources()) {
             entityDrops.apply(this::spawnAtLocation, context);
         }

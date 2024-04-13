@@ -2,7 +2,7 @@ package trofers.data;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -21,6 +21,7 @@ import trofers.Trofers;
 import trofers.registry.ModResourceLoaders;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class AdvancementDrops extends ConditionalTrophyDrops {
 
@@ -37,7 +38,7 @@ public class AdvancementDrops extends ConditionalTrophyDrops {
         this.trophies = trophies;
     }
 
-    public static void onAdvancementAwarded(Player player, Advancement advancement) {
+    public static void onAdvancementAwarded(Player player, AdvancementHolder advancement) {
         if (player.level().isClientSide()) {
             return;
         }
@@ -46,7 +47,7 @@ public class AdvancementDrops extends ConditionalTrophyDrops {
                 .withParameter(LootContextParams.THIS_ENTITY, player)
                 .withParameter(LootContextParams.ORIGIN, player.position())
                 .create(LootContextParamSets.ADVANCEMENT_REWARD);
-        LootContext lootContext = (new LootContext.Builder(lootParams)).create(null);
+        LootContext lootContext = (new LootContext.Builder(lootParams)).create(Optional.empty());
 
         for (AdvancementDrops advancementDrops : ModResourceLoaders.ADVANCEMENT_DROPS.getAllResources()) {
             advancementDrops.onAdvancementEarned(player, advancement, lootContext);
@@ -61,7 +62,7 @@ public class AdvancementDrops extends ConditionalTrophyDrops {
 
     private void validate(MinecraftServer server) {
         for (ResourceLocation advancementId : trophies.keySet()) {
-            if (server.getAdvancements().getAdvancement(advancementId) == null) {
+            if (server.getAdvancements().get(advancementId) == null) {
                 Trofers.LOGGER.error("Skipping advancement trophy drops entry for missing advancement '%s'".formatted(advancementId));
             } else {
                 ResourceLocation trophyId = trophies.get(advancementId);
@@ -72,9 +73,9 @@ public class AdvancementDrops extends ConditionalTrophyDrops {
         }
     }
 
-    private void onAdvancementEarned(Player player, Advancement advancement, LootContext lootContext) {
+    private void onAdvancementEarned(Player player, AdvancementHolder advancement, LootContext lootContext) {
         if (matchesConditions(lootContext)) {
-            ResourceLocation trophyId = trophies.get(advancement.getId());
+            ResourceLocation trophyId = trophies.get(advancement.id());
             awardTrophy(trophyId, stack -> giveItemToPlayer(player, stack));
         }
     }

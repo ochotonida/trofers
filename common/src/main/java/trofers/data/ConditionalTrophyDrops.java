@@ -14,6 +14,8 @@ import trofers.Trofers;
 import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -25,7 +27,7 @@ public abstract class ConditionalTrophyDrops {
 
     public ConditionalTrophyDrops(LootItemCondition[] conditions, Item trophyBase) {
         this.conditions = conditions;
-        this.combinedConditions = LootItemConditions.andConditions(conditions);
+        this.combinedConditions = LootItemConditions.andConditions(List.of(conditions));
         this.trophyBase = trophyBase;
     }
 

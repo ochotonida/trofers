@@ -2,7 +2,7 @@ package trofers.neoforge.mixin;
 
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import org.spongepowered.asm.mixin.Mixin;
 import trofers.neoforge.item.TrophyItemRendererNeoForge;
 import trofers.item.TrophyItem;

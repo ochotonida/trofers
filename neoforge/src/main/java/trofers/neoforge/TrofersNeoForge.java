@@ -1,18 +1,16 @@
 package trofers.neoforge;
 
-import dev.architectury.platform.forge.EventBuses;
 import me.shedaniel.autoconfig.AutoConfig;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.ConfigScreenHandler;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.AddReloadListenerEvent;
-import net.minecraftforge.event.OnDatapackSyncEvent;
-import net.minecraftforge.event.server.ServerAboutToStartEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.neoforge.client.ConfigScreenHandler;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.AddReloadListenerEvent;
+import net.neoforged.neoforge.event.OnDatapackSyncEvent;
+import net.neoforged.neoforge.event.server.ServerAboutToStartEvent;
 import trofers.Trofers;
 import trofers.config.ModConfig;
 import trofers.neoforge.data.ResourceReloadListenerNeoForge;
@@ -22,21 +20,19 @@ import trofers.registry.ModResourceLoaders;
 @Mod(Trofers.MOD_ID)
 public class TrofersNeoForge {
 
-    public TrofersNeoForge() {
-        EventBuses.registerModEventBus(Trofers.MOD_ID, FMLJavaModLoadingContext.get().getModEventBus());
-
+    public TrofersNeoForge(IEventBus modBus) {
         Trofers.init();
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> TrofersNeoForgeClient::new);
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            new TrofersNeoForgeClient(modBus);
+        }
 
         registerConfig();
 
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ModLootModifiers.LOOT_MODIFIERS.register(modBus);
 
-        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus);
-
-        MinecraftForge.EVENT_BUS.addListener(this::onAddReloadListener);
-        MinecraftForge.EVENT_BUS.addListener(this::onDataPackReload);
-        MinecraftForge.EVENT_BUS.addListener(this::onServerAboutToStart);
+        NeoForge.EVENT_BUS.addListener(this::onAddReloadListener);
+        NeoForge.EVENT_BUS.addListener(this::onDataPackReload);
+        NeoForge.EVENT_BUS.addListener(this::onServerAboutToStart);
     }
 
     private void registerConfig() {
@@ -49,7 +45,7 @@ public class TrofersNeoForge {
     }
 
     public void onAddReloadListener(AddReloadListenerEvent event) {
-        ModResourceLoaders.getLoaders().forEach(loader -> event.addListener(new ResourceReloadListenerNeoForge(loader)));
+        ModResourceLoaders.getLoaders().forEach(loader -> event.addListener(new ResourceReloadListenerNeoForge<>(loader)));
     }
 
     public void onDataPackReload(OnDatapackSyncEvent event) {

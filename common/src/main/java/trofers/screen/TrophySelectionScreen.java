@@ -12,9 +12,6 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.tooltip.BelowOrAboveWidgetTooltipPositioner;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
-import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
@@ -82,7 +79,7 @@ public class TrophySelectionScreen extends Screen {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-        renderBackground(guiGraphics);
+        renderBackground(guiGraphics, mouseX, mouseY, partialTicks);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
     }
 
@@ -181,11 +178,6 @@ public class TrophySelectionScreen extends Screen {
         addRenderableWidget(searchBox);
     }
 
-    @Override
-    public void tick() {
-        searchBox.tick();
-    }
-
     public void onEditSearchBox(String text) {
         List<Trophy> searchResult = TrophySearchTreeManager.search(text);
 
@@ -261,14 +253,6 @@ public class TrophySelectionScreen extends Screen {
                 }
             }
             onClose();
-        }
-
-        @Override
-        protected ClientTooltipPositioner createTooltipPositioner() {
-            if (!isHovered && isFocused() && Minecraft.getInstance().getLastInputType().isKeyboard()) {
-                return new BelowOrAboveWidgetTooltipPositioner(this);
-            }
-            return DefaultTooltipPositioner.INSTANCE;
         }
 
         @Override

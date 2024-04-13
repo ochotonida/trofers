@@ -1,8 +1,6 @@
 package trofers.loot;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
+import com.mojang.serialization.Codec;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -12,6 +10,7 @@ import trofers.registry.ModLootConditions;
 public class RandomTrophyChanceCondition implements LootItemCondition {
 
     private static final RandomTrophyChanceCondition INSTANCE = new RandomTrophyChanceCondition();
+    public static final Codec<RandomTrophyChanceCondition> CODEC = Codec.unit(INSTANCE);
 
     private RandomTrophyChanceCondition() { }
 
@@ -25,15 +24,5 @@ public class RandomTrophyChanceCondition implements LootItemCondition {
 
     public static LootItemCondition.Builder randomTrophyChance() {
         return () -> INSTANCE;
-    }
-
-    public static class Serializer implements net.minecraft.world.level.storage.loot.Serializer<RandomTrophyChanceCondition> {
-
-        public void serialize(JsonObject object, RandomTrophyChanceCondition condition, JsonSerializationContext context) { }
-
-        @Override
-        public RandomTrophyChanceCondition deserialize(JsonObject object, JsonDeserializationContext context) {
-            return INSTANCE;
-        }
     }
 }

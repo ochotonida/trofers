@@ -13,7 +13,7 @@ authors="ochotonida"
 description='''Adds trophies that can be customized through data packs'''
 
 [[mixins]]
-config="mixins.artifacts.neoforge.json"
+config="mixins.trofers.neoforge.json"
 
 [[dependencies.trofers]]
 modId="neoforge"

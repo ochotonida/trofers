@@ -14,9 +14,9 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemKilledByPlayerC
 import trofers.Trofers;
 import trofers.data.AdvancementDrops;
 import trofers.data.EntityDrops;
-import trofers.data.providers.trophies.EntityTrophyProvider;
 import trofers.loot.AdvancementDropsEnabledCondition;
 import trofers.loot.RandomTrophyChanceCondition;
+import trofers.neoforge.datagen.providers.trophies.EntityTrophyProvider;
 import trofers.registry.ModBlocks;
 import trofers.registry.ModResourceLoaders;
 import trofers.util.JsonHelper;

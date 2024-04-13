@@ -3,7 +3,7 @@ package trofers.neoforge.datagen.providers.trophies;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Items;
-import trofers.data.integration.Compat;
+import trofers.neoforge.datagen.integration.Compat;
 
 public class QuarkTrophies extends EntityTrophyProvider {
 

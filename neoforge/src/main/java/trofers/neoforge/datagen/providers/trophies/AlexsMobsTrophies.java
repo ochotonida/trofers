@@ -4,8 +4,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Items;
-import trofers.data.integration.Compat;
-import trofers.data.integration.alexsmobs.AMEntityRegistry;
+import trofers.neoforge.datagen.integration.Compat;
+import trofers.neoforge.datagen.integration.alexsmobs.AMEntityRegistry;
 
 public class AlexsMobsTrophies extends EntityTrophyProvider {
 

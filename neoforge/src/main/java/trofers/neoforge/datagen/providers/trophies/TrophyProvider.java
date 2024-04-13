@@ -1,11 +1,11 @@
 package trofers.neoforge.datagen.providers.trophies;
 
 import com.google.common.collect.ImmutableMap;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.fml.ModList;
 import trofers.Trofers;
 import trofers.trophy.Trophy;
 import trofers.trophy.builder.TrophyBuilder;
@@ -28,7 +28,7 @@ public abstract class TrophyProvider {
             for (ResourceLocation trophyId : trophies.keySet()) {
                 Trophy trophy = trophies.get(trophyId).build(trophyId);
                 EffectInfo.SoundInfo sound = trophy.effects().sound();
-                if (sound != null && !ForgeRegistries.SOUND_EVENTS.containsKey(sound.soundEvent())) {
+                if (sound != null && !BuiltInRegistries.SOUND_EVENT.containsKey(sound.soundEvent())) {
                     throw new IllegalStateException("Invalid sound event: " + sound.soundEvent().toString());
                 }
             }

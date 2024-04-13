@@ -2,24 +2,26 @@ package trofers.neoforge.data;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.util.profiling.ProfilerFiller;
-import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.common.crafting.conditions.ICondition;
+import net.neoforged.neoforge.common.conditions.ConditionalOps;
 import trofers.Trofers;
 import trofers.data.ResourceLoader;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
-public class ResourceReloadListenerNeoForge extends SimpleJsonResourceReloadListener {
+public class ResourceReloadListenerNeoForge<T> extends SimpleJsonResourceReloadListener {
 
-    private final ResourceLoader<?> loader;
+    private final ResourceLoader<T> loader;
 
-    public ResourceReloadListenerNeoForge(ResourceLoader<?> loader) {
+    public ResourceReloadListenerNeoForge(ResourceLoader<T> loader) {
         super(ResourceLoader.GSON, loader.getDirectory());
         this.loader = loader;
     }
@@ -29,26 +31,19 @@ public class ResourceReloadListenerNeoForge extends SimpleJsonResourceReloadList
         Map<ResourceLocation, JsonElement> result = new HashMap<>();
         int amountSkipped = 0;
 
+        // TODO use neoforge:conditions
+        // TODO fix this shit
+        Codec<Optional<Boolean>> codec = ConditionalOps.createConditionalCodec(Codec.unit(false), "conditions");
+
         for (ResourceLocation id : resources.keySet()) {
             JsonElement element = resources.get(id);
-            if (matchesConditions(element)) {
-                result.put(id, element);
-            } else {
-                amountSkipped++;
-            }
+            codec.decode(JsonOps.INSTANCE, element).resultOrPartial(err -> {
+            }).flatMap(Pair::getFirst).ifPresent(q -> result.put(id, element));
         }
         loader.deserializeResources(result);
 
         if (amountSkipped > 0) {
             Trofers.LOGGER.info("{}: Skipping loading {} resources as their conditions were not met", loader.getId(), amountSkipped);
         }
-    }
-
-    private static boolean matchesConditions(JsonElement element) {
-        if (!element.isJsonObject() || !element.getAsJsonObject().has("conditions")) {
-            return true;
-        }
-        JsonArray conditions = GsonHelper.getAsJsonArray(element.getAsJsonObject(), "conditions");
-        return CraftingHelper.processConditions(conditions, ICondition.IContext.EMPTY);
     }
 }

@@ -5,7 +5,7 @@ import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import trofers.data.providers.trophies.*;
+import trofers.neoforge.datagen.providers.trophies.*;
 import trofers.registry.ModResourceLoaders;
 import trofers.trophy.builder.TrophyBuilder;
 

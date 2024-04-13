@@ -1,6 +1,7 @@
 package trofers.neoforge.datagen.providers.trophies;
 
 import net.minecraft.Util;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
@@ -14,7 +15,6 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.trophy.builder.EntityTrophyBuilder;
@@ -86,7 +86,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
     }
 
     protected EntityTrophyWithLootBuilder builder(EntityType<?> entityType) {
-        return builder(ForgeRegistries.ENTITY_TYPES.getKey(entityType));
+        return builder(BuiltInRegistries.ENTITY_TYPE.getKey(entityType));
     }
 
     protected EntityTrophyWithLootBuilder builder(ResourceLocation entityType) {
@@ -97,7 +97,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
 
     @SuppressWarnings({"ConstantConditions", "unused"})
     protected ItemTrophyBuilder itemTrophyBuilder(EntityType<?> entityType) {
-        ResourceLocation entityTypeId = ForgeRegistries.ENTITY_TYPES.getKey(entityType);
+        ResourceLocation entityTypeId = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
         ItemTrophyBuilder builder = new ItemTrophyBuilder();
         addTrophy(createEntityTrophyId(entityTypeId), builder, entityTypeId);
         defaultTrophySettings(builder, entityTypeId);
@@ -136,7 +136,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
     }
 
     protected void dropsFromAdvancement(EntityType<?> entityType, ResourceLocation advancementId) {
-        dropsFromAdvancement(ForgeRegistries.ENTITY_TYPES.getKey(entityType), advancementId);
+        dropsFromAdvancement(BuiltInRegistries.ENTITY_TYPE.getKey(entityType), advancementId);
     }
 
     protected void dropsFromAdvancement(ResourceLocation entityId, ResourceLocation advancementId) {

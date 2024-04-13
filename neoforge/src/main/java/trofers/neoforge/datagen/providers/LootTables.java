@@ -12,7 +12,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
-import trofers.data.providers.trophies.TrophyProvider;
+import trofers.neoforge.datagen.providers.trophies.TrophyProvider;
 import trofers.registry.ModBlocks;
 
 import java.util.ArrayList;

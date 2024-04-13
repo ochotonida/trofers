@@ -1,11 +1,11 @@
 package trofers.neoforge.datagen.providers;
 
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelBuilder;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ModelBuilder;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.registry.ModBlocks;
@@ -26,9 +26,8 @@ public class BlockStates extends BlockStateProvider {
         createPlate(ModBlocks.LARGE_PLATE.get(), 8);
     }
 
-    @SuppressWarnings("ConstantConditions")
     private ModelBuilder<?> createBuilder(TrophyBlock block) {
-        String modelLocation = Trofers.MOD_ID + ":block/" + ForgeRegistries.BLOCKS.getKey(block).getPath();
+        String modelLocation = Trofers.MOD_ID + ":block/" + BuiltInRegistries.BLOCK.getKey(block).getPath();
         ModelBuilder<?> builder = models().withExistingParent(modelLocation, "block");
         horizontalBlock(block, state -> builder);
         return builder;
@@ -51,15 +50,13 @@ public class BlockStates extends BlockStateProvider {
                 .face(Direction.UP).tintindex(1).texture("#overlay");
 
         setTextures(builder, block);
-        // noinspection ConstantConditions
-        String overlayTexture = Trofers.MOD_ID + ":block/" + ForgeRegistries.BLOCKS.getKey(block).getPath() + "_overlay";
+        String overlayTexture = Trofers.MOD_ID + ":block/" + BuiltInRegistries.BLOCK.getKey(block).getPath() + "_overlay";
         builder.texture("overlay", overlayTexture);
         builder.renderType("cutout");
     }
 
     private static void setTextures(ModelBuilder<?> modelBuilder, TrophyBlock block) {
-        // noinspection ConstantConditions
-        String name = ForgeRegistries.BLOCKS.getKey(block).getPath();
+        String name = BuiltInRegistries.BLOCK.getKey(block).getPath();
         String texturePath = Trofers.MOD_ID + ":block/" + name.replace("plate", "pillar");
         modelBuilder
                 .texture("particle", "#top")

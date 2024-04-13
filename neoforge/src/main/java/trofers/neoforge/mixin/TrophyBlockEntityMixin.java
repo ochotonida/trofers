@@ -1,23 +1,17 @@
 package trofers.neoforge.mixin;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.neoforged.neoforge.client.extensions.IBlockEntityRendererExtension;
 import org.spongepowered.asm.mixin.Mixin;
 import trofers.block.entity.TrophyBlockEntity;
+import trofers.block.entity.TrophyBlockEntityRenderer;
 
-@Mixin(TrophyBlockEntity.class)
-public abstract class TrophyBlockEntityMixin extends BlockEntity {
+@Mixin(TrophyBlockEntityRenderer.class)
+public abstract class TrophyBlockEntityMixin implements IBlockEntityRendererExtension<TrophyBlockEntity> {
 
-    public TrophyBlockEntityMixin(BlockEntityType<?> blockEntityType, BlockPos blockPos, BlockState blockState) {
-        super(blockEntityType, blockPos, blockState);
-        throw new IllegalStateException();
-    }
 
     @Override
-    public AABB getRenderBoundingBox() {
-        return new AABB(getBlockPos().offset(-1, 0, -1), getBlockPos().offset(1, 16, 1));
+    public AABB getRenderBoundingBox(TrophyBlockEntity blockEntity) {
+        return new AABB(blockEntity.getBlockPos().offset(-1, 0, -1).getCenter(), blockEntity.getBlockPos().offset(1, 16, 1).getCenter());
     }
 }

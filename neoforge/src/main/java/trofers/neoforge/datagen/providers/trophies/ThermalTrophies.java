@@ -1,7 +1,6 @@
 package trofers.neoforge.datagen.providers.trophies;
 
-import cofh.thermal.lib.common.ThermalIDs;
-import trofers.data.integration.Compat;
+import trofers.neoforge.datagen.integration.Compat;
 
 public class ThermalTrophies extends EntityTrophyProvider {
 
@@ -11,11 +10,11 @@ public class ThermalTrophies extends EntityTrophyProvider {
 
     @Override
     public void addTrophies() {
-        builder(ThermalIDs.ID_BASALZ)
+        builder("basalz")
                 .accentColor(0x41464b);
-        builder(ThermalIDs.ID_BLITZ)
+        builder("blitz")
                 .accentColor(0xceeaf1);
-        builder(ThermalIDs.ID_BLIZZ)
+        builder("blizz")
                 .accentColor(0xe0f3f0);
     }
 }

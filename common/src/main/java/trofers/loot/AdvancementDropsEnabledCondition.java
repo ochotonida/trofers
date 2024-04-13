@@ -1,8 +1,6 @@
 package trofers.loot;
 
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
+import com.mojang.serialization.Codec;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -12,6 +10,7 @@ import trofers.registry.ModLootConditions;
 public class AdvancementDropsEnabledCondition implements LootItemCondition {
 
     private static final AdvancementDropsEnabledCondition INSTANCE = new AdvancementDropsEnabledCondition();
+    public static final Codec<AdvancementDropsEnabledCondition> CODEC = Codec.unit(INSTANCE);
 
     private AdvancementDropsEnabledCondition() { }
 
@@ -27,16 +26,5 @@ public class AdvancementDropsEnabledCondition implements LootItemCondition {
 
     public static LootItemCondition.Builder advancementDropsEnabled() {
         return () -> INSTANCE;
-    }
-
-    public static class Serializer implements net.minecraft.world.level.storage.loot.Serializer<AdvancementDropsEnabledCondition> {
-
-        @Override
-        public void serialize(JsonObject object, AdvancementDropsEnabledCondition condition, JsonSerializationContext context) { }
-
-        @Override
-        public AdvancementDropsEnabledCondition deserialize(JsonObject object, JsonDeserializationContext context) {
-            return INSTANCE;
-        }
     }
 }

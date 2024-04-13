@@ -1,5 +1,6 @@
 package trofers.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,6 +15,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -42,6 +44,7 @@ public class TrophyBlock extends BaseEntityBlock {
 
     private final int height;
     private final VoxelShape shape;
+    private final MapCodec<TrophyBlock> codec;
 
     private TrophyBlock(Properties properties, int height, VoxelShape shape) {
         super(properties);
@@ -52,6 +55,12 @@ public class TrophyBlock extends BaseEntityBlock {
                         .setValue(BlockStateProperties.WATERLOGGED, false)
                         .setValue(BlockStateProperties.HORIZONTAL_FACING, Direction.NORTH)
         );
+        codec = simpleCodec(p -> new TrophyBlock(p, height, shape));
+    }
+
+    @Override
+    protected MapCodec<? extends BaseEntityBlock> codec() {
+        return codec;
     }
 
     public static TrophyBlock createPillarTrophy(Properties properties, int size) {
@@ -168,7 +177,7 @@ public class TrophyBlock extends BaseEntityBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
         ItemStack result = super.getCloneItemStack(level, pos, state);
         if (level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
             if (blockEntity.getTrophyID() != null) {

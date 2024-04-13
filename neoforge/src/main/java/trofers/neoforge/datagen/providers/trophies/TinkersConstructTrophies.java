@@ -1,10 +1,10 @@
 package trofers.neoforge.datagen.providers.trophies;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
-import net.minecraftforge.registries.ForgeRegistries;
-import trofers.data.integration.Compat;
+import trofers.neoforge.datagen.integration.Compat;
 
 import java.util.Map;
 
@@ -37,7 +37,7 @@ public class TinkersConstructTrophies extends EntityTrophyProvider {
 
     @Override
     public void addExtraEntityDrops(Map<String, Map<ResourceLocation, ResourceLocation>> trophies) {
-        ResourceLocation slimeTrophy = trophies.get(ResourceLocation.DEFAULT_NAMESPACE).get(ForgeRegistries.ENTITY_TYPES.getKey(EntityType.SLIME));
+        ResourceLocation slimeTrophy = trophies.get(ResourceLocation.DEFAULT_NAMESPACE).get(BuiltInRegistries.ENTITY_TYPE.getKey(EntityType.SLIME));
         trophies.get(getModId()).put(id(EARTH_SLIME), slimeTrophy);
     }
 }

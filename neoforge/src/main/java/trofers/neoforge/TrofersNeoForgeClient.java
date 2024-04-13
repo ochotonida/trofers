@@ -1,11 +1,10 @@
 package trofers.neoforge;
 
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import trofers.TrofersClient;
 import trofers.block.TrophyBlock;
 import trofers.block.entity.TrophyBlockEntityRenderer;
@@ -17,13 +16,11 @@ import java.util.function.Supplier;
 
 public class TrofersNeoForgeClient {
 
-    public TrofersNeoForgeClient() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-        modEventBus.addListener(this::onClientSetup);
-        modEventBus.addListener(this::onBlockColorHandler);
-        modEventBus.addListener(this::onItemColorHandler);
-        modEventBus.addListener(this::onRegisterClientReloadListeners);
+    public TrofersNeoForgeClient(IEventBus modBus) {
+        modBus.addListener(this::onClientSetup);
+        modBus.addListener(this::onBlockColorHandler);
+        modBus.addListener(this::onItemColorHandler);
+        modBus.addListener(this::onRegisterClientReloadListeners);
     }
 
     public void onClientSetup(FMLClientSetupEvent event) {
