@@ -2,6 +2,7 @@ package trofers.trophy.components;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.StringRepresentable;
 
 public record Animation(Type type, double speed) {
@@ -10,8 +11,8 @@ public record Animation(Type type, double speed) {
 
     public static final Codec<Type> TYPE_CODEC = StringRepresentable.fromEnum(Type::values);
     public static final Codec<Animation> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            TYPE_CODEC.optionalFieldOf("type", Type.FIXED).forGetter(Animation::type),
-            Codec.DOUBLE.optionalFieldOf("speed", 1D).forGetter(Animation::speed)
+            ExtraCodecs.strictOptionalField(TYPE_CODEC, "type", Type.FIXED).forGetter(Animation::type),
+            ExtraCodecs.strictOptionalField(Codec.DOUBLE, "speed", 1D).forGetter(Animation::speed)
     ).apply(instance, Animation::new));
 
     public enum Type implements StringRepresentable {

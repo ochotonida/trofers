@@ -19,7 +19,6 @@ import java.util.function.Supplier;
 
 public class AddTrophy extends LootModifier {
 
-    @SuppressWarnings("deprecation")
     public static final Supplier<Codec<AddTrophy>> CODEC = Suppliers.memoize(
             () -> RecordCodecBuilder.create(instance -> codecStart(instance)
                     .and(BuiltInRegistries.ITEM.byNameCodec().fieldOf("trophy_base").forGetter(m -> m.trophyBase))
@@ -48,7 +47,7 @@ public class AddTrophy extends LootModifier {
         if (trophy == null) {
             Trofers.LOGGER.error("Failed to find trophy with invalid id '{}'", trophyId);
         } else {
-            generatedLoot.add(trophy.createItem(trophyBase));
+            generatedLoot.add(Trophy.createItem(trophyBase, trophyId));
         }
         return generatedLoot;
     }

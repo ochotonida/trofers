@@ -1,7 +1,5 @@
 package trofers.trophy.builder;
 
-import com.google.gson.JsonObject;
-import com.mojang.serialization.JsonOps;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -10,7 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import trofers.Trofers;
 import trofers.trophy.components.EntityInfo;
 
 import java.util.Optional;
@@ -36,21 +33,8 @@ public class EntityTrophyBuilder<T extends EntityTrophyBuilder<T>> extends Troph
     }
 
     @Override
-    protected void displayItemToJson(JsonObject result) {
-        // no-op
-    }
-
-    @Override
     protected Optional<EntityInfo> getEntityInfo() {
         return Optional.of(entityInfo);
-    }
-
-    @Override
-    protected void entityInfoToJson(JsonObject result) {
-        result.add("entity", EntityInfo.CODEC
-                .encodeStart(JsonOps.INSTANCE, entityInfo)
-                .getOrThrow(false, Trofers.LOGGER::error)
-        );
     }
 
     public T tag(Consumer<CompoundTag> tagConsumer) {

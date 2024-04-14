@@ -37,6 +37,10 @@ public abstract class ResourceLoader<T> {
         return resources.getOrDefault(id, null);
     }
 
+    public Collection<ResourceLocation> keys() {
+        return resources.keySet();
+    }
+
     public Collection<T> getAllResources() {
         return resources.values();
     }

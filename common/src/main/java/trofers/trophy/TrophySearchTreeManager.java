@@ -4,6 +4,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.searchtree.FullTextSearchTree;
 import net.minecraft.client.searchtree.RefreshableSearchTree;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import trofers.block.TrophyBlock;
@@ -16,31 +17,31 @@ import java.util.stream.Stream;
 
 public class TrophySearchTreeManager implements ResourceManagerReloadListener {
 
-    private static RefreshableSearchTree<Trophy> searchTree;
+    private static RefreshableSearchTree<ResourceLocation> searchTree;
 
     @Override
     public void onResourceManagerReload(ResourceManager manager) {
         createSearchTree();
     }
 
-    public static List<Trophy> search(String text) {
+    public static List<ResourceLocation> search(String text) {
         return searchTree.search(text);
     }
 
     @SuppressWarnings("ConstantConditions")
     public static void createSearchTree() {
         searchTree = new FullTextSearchTree<>(
-                trophy -> Stream.of(
-                        ChatFormatting.stripFormatting(trophy.name()
+                trophyId -> Stream.of(
+                        ChatFormatting.stripFormatting(ModResourceLoaders.TROPHIES.get(trophyId).name()
                                 .orElse(Component.translatable(TrophyBlock.DESCRIPTION_ID))
                                 .getString()
                         ).trim()
                 ),
-                trophy -> Stream.of(trophy.id()),
-                ModResourceLoaders.TROPHIES.values()
+                Stream::of,
+                ModResourceLoaders.TROPHIES.keys()
                         .stream()
-                        .filter(trophy -> !trophy.isHidden())
-                        .sorted(Comparator.comparing(trophy -> trophy.id().toString()))
+                        .filter(trophyId -> !ModResourceLoaders.TROPHIES.get(trophyId).isHidden())
+                        .sorted(Comparator.comparing(ResourceLocation::toString))
                         .collect(Collectors.toList())
         );
 

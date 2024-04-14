@@ -13,9 +13,17 @@ public record ColorInfo(int base, int accent) {
     public static final ColorInfo NONE = new ColorInfo(0xFFFFFF, 0xFFFFFF);
 
     private static final Codec<Integer> HEX_COLOR_CODEC = Codec.STRING.comapFlatMap(
-            string -> string.startsWith("#") && string.length() == 7
-                    ? DataResult.success(Integer.parseInt(string.substring(1), 16))
-                    : DataResult.error(() -> "Couldn't parse color string '%s', expected '#rrggbb'"),
+            string -> {
+                try {
+                    // See TextColor.CODEC
+                    int i = Integer.parseInt(string.substring(1), 16);
+                    return i >= 0 && i <= 0xFFFFFF
+                            ? DataResult.success(i)
+                            : DataResult.error(() -> "Color value out of range: " + string);
+                } catch (NumberFormatException var2) {
+                    return DataResult.error(() -> "Invalid color value: " + string);
+                }
+            },
             color -> String.format("#%06X", color)
     );
 
@@ -29,7 +37,7 @@ public record ColorInfo(int base, int accent) {
     private static final Codec<Integer> COLOR_CODEC = ExtraCodecs.withAlternative(HEX_COLOR_CODEC, RGB_COLOR_CODEC);
 
     public static final Codec<ColorInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            COLOR_CODEC.optionalFieldOf("base", 0xFFFFFF).forGetter(ColorInfo::base),
-            COLOR_CODEC.optionalFieldOf("accent", 0xFFFFFF).forGetter(ColorInfo::accent)
+            ExtraCodecs.strictOptionalField(COLOR_CODEC, "base", 0xFFFFFF).forGetter(ColorInfo::base),
+            ExtraCodecs.strictOptionalField(COLOR_CODEC, "accent", 0xFFFFFF).forGetter(ColorInfo::accent)
     ).apply(instance, ColorInfo::new));
 }

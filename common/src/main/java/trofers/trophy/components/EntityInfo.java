@@ -6,6 +6,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
@@ -25,9 +26,10 @@ public class EntityInfo {
                     : DataResult.error(() -> String.format("Unknown entity type %s", id)),
             Function.identity()
     );
+
     public static final Codec<EntityInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ENTITY_ID_CODEC.fieldOf("id").forGetter(entityInfo -> entityInfo.id),
-            CompoundTag.CODEC.optionalFieldOf("tag", new CompoundTag()).forGetter(entityInfo -> entityInfo.tag)
+            ExtraCodecs.strictOptionalField(CompoundTag.CODEC, "tag", new CompoundTag()).forGetter(entityInfo -> entityInfo.tag)
     ).apply(instance, EntityInfo::new));
 
     @Nullable

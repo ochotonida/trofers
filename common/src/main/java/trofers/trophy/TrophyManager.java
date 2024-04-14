@@ -1,6 +1,7 @@
 package trofers.trophy;
 
 import com.google.gson.JsonElement;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import trofers.Trofers;
@@ -11,6 +12,7 @@ import trofers.network.TrophySyncPacket;
 import java.util.Collection;
 import java.util.Map;
 
+// TODO use a data pack registry
 public class TrophyManager extends ResourceLoader<Trophy> {
 
     public TrophyManager() {
@@ -27,7 +29,9 @@ public class TrophyManager extends ResourceLoader<Trophy> {
 
     @Override
     protected Trophy deserializeResource(ResourceLocation id, JsonElement element) {
-        return Trophy.fromJson(element, id);
+        return Trophy.CODEC.decode(JsonOps.INSTANCE, element) // TODO conditions
+                .getOrThrow(false, error -> {})
+                .getFirst();
     }
 
     public void sync(ServerPlayer player) {

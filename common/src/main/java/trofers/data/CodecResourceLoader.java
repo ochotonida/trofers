@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class CodecResourceLoader<T> extends ResourceLoader<T> {
 
+    // TODO merge this with ResourceLoader
     private final Codec<T> codec;
 
     public CodecResourceLoader(ResourceLocation id, String directory, Codec<T> codec) {
@@ -16,6 +17,6 @@ public class CodecResourceLoader<T> extends ResourceLoader<T> {
 
     @Override
     protected T deserializeResource(ResourceLocation id, JsonElement element) {
-        return codec.decode(JsonOps.INSTANCE, element).getOrThrow(false, s -> {}).getFirst();
+        return codec.decode(JsonOps.INSTANCE, element).getOrThrow(false, error -> {}).getFirst();
     }
 }

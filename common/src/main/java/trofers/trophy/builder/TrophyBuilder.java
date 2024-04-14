@@ -1,6 +1,5 @@
 package trofers.trophy.builder;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.network.chat.Component;
@@ -30,9 +29,8 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
 
     private final Set<String> requiredMods = new HashSet<>();
 
-    public Trophy build(ResourceLocation id) {
+    public Trophy build() {
         return new Trophy(
-                id,
                 name,
                 tooltipLines,
                 displayInfo,
@@ -47,11 +45,7 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
 
     protected abstract ItemStack getDisplayItem();
 
-    protected abstract void displayItemToJson(JsonObject result);
-
     protected abstract Optional<EntityInfo> getEntityInfo();
-
-    protected abstract void entityInfoToJson(JsonObject result);
 
     public T requiresMod(String modId) {
         if (!modId.equals(Trofers.MOD_ID) && !modId.equals(ResourceLocation.DEFAULT_NAMESPACE)) {
@@ -141,7 +135,7 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
     }
 
     public T mobEffect(MobEffect effect, int timeSeconds, int amplifier) {
-        return mobEffect(new EffectInfo.MobEffectInfo(effect, (byte) amplifier, timeSeconds * 20, false, false, false));
+        return mobEffect(new EffectInfo.MobEffectInfo(effect, (byte) amplifier, timeSeconds * 20, false, true, true));
     }
 
     public T mobEffect(MobEffect effect, int timeSeconds) {
@@ -162,51 +156,11 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
     }
 
     public JsonObject toJson() {
-        return toJson(new JsonObject());
-    }
+        JsonObject result = Trophy.CODEC.encodeStart(JsonOps.INSTANCE, build())
+                .getOrThrow(false, error -> {})
+                .getAsJsonObject();
 
-    public JsonObject toJson(JsonObject result) {
         JsonHelper.addModLoadedConditions(result, requiredMods.toArray(String[]::new));
-
-        name.ifPresent(component -> result.add("name", Component.Serializer.toJsonTree(component)));
-
-        if (!tooltipLines.isEmpty()) {
-            JsonArray tooltip = new JsonArray();
-            result.add("tooltip", tooltip);
-            for (Component line : tooltipLines) {
-                tooltip.add(Component.Serializer.toJsonTree(line));
-            }
-        }
-
-        if (!displayInfo.equals(DisplayInfo.NONE)) {
-            result.add("display", DisplayInfo.CODEC.encodeStart(JsonOps.INSTANCE, displayInfo)
-                    .getOrThrow(false, Trofers.LOGGER::error)
-                    .getAsJsonObject());
-        }
-
-        if (!animation.type().equals(Animation.Type.FIXED)) {
-            result.add("animation", Animation.CODEC.encodeStart(JsonOps.INSTANCE, animation)
-                    .getOrThrow(false, Trofers.LOGGER::error)
-                    .getAsJsonObject());
-        }
-
-        displayItemToJson(result);
-        entityInfoToJson(result);
-
-        if (!colorInfo.equals(ColorInfo.NONE)) {
-            result.add("colors", ColorInfo.CODEC.encodeStart(JsonOps.INSTANCE, colorInfo)
-                    .getOrThrow(false, Trofers.LOGGER::error));
-        }
-
-        if (!effectInfo.equals(EffectInfo.NONE)) {
-            result.add("effects", EffectInfo.CODEC.encodeStart(JsonOps.INSTANCE, effectInfo)
-                    .getOrThrow(false, Trofers.LOGGER::error)
-                    .getAsJsonObject());
-        }
-
-        if (isHidden) {
-            result.addProperty("is_hidden", true);
-        }
 
         return result;
     }

@@ -1,6 +1,5 @@
 package trofers.trophy.builder;
 
-import com.google.gson.JsonObject;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -52,25 +51,7 @@ public class ItemTrophyBuilder extends TrophyBuilder<ItemTrophyBuilder> {
     }
 
     @Override
-    protected void displayItemToJson(JsonObject result) {
-        JsonObject object = new JsonObject();
-        object.addProperty("item", itemId.toString());
-        if (count != 1) {
-            object.addProperty("count", count);
-        }
-        if (tag != null && !tag.isEmpty()) {
-            object.addProperty("nbt", tag.toString());
-        }
-        result.add("item", object);
-    }
-
-    @Override
     protected Optional<EntityInfo> getEntityInfo() {
         return Optional.empty();
-    }
-
-    @Override
-    protected void entityInfoToJson(JsonObject result) {
-        // no-op
     }
 }

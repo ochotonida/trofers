@@ -48,7 +48,7 @@ public abstract class ConditionalTrophyDrops {
             if (trophy == null) {
                 Trofers.LOGGER.error("Failed to find trophy with invalid id '{}'", trophyId);
             } else {
-                consumer.accept(trophy.createItem(trophyBase));
+                consumer.accept(Trophy.createItem(trophyBase, trophyId));
             }
         }
     }

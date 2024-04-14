@@ -19,6 +19,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -48,7 +49,7 @@ public class TrophySelectionScreen extends Screen {
     private static final int MAX_COLUMN_COUNT = 16;
     private static final float ITEM_SCALE = 2;
 
-    private List<Trophy> trophies;
+    private List<ResourceLocation> trophies;
 
     private EditBox searchBox;
     private Button previousButton;
@@ -122,7 +123,7 @@ public class TrophySelectionScreen extends Screen {
         int previousColumnCount = columnCount;
 
         String search = searchBox.getValue();
-        List<Trophy> trophies = this.trophies;
+        List<ResourceLocation> trophies = this.trophies;
 
         super.resize(minecraft, width, height);
 
@@ -179,7 +180,7 @@ public class TrophySelectionScreen extends Screen {
     }
 
     public void onEditSearchBox(String text) {
-        List<Trophy> searchResult = TrophySearchTreeManager.search(text);
+        List<ResourceLocation> searchResult = TrophySearchTreeManager.search(text);
 
         if (!searchResult.equals(trophies)) {
             trophies = searchResult;
@@ -200,12 +201,12 @@ public class TrophySelectionScreen extends Screen {
                     break;
                 }
 
-                Trophy trophy = trophies.get(index++);
-                ItemStack stack = trophy.createItem(blockState.getBlock());
+                ResourceLocation trophyId = trophies.get(index++);
+                ItemStack stack = Trophy.createItem(blockState.getBlock(), trophyId);
 
                 int x = columnStart + column * (TROPHY_BUTTON_SIZE + BUTTON_SPACING);
                 int y = rowStart + row * (TROPHY_BUTTON_SIZE + BUTTON_SPACING);
-                Button trophyButton = new TrophyButton(x, y, TROPHY_BUTTON_SIZE, stack, trophy);
+                Button trophyButton = new TrophyButton(x, y, TROPHY_BUTTON_SIZE, stack, trophyId);
                 trophyButtons.add(addRenderableWidget(trophyButton));
             }
         }
@@ -227,14 +228,14 @@ public class TrophySelectionScreen extends Screen {
     private class TrophyButton extends Button {
 
         private final ItemStack item;
-        private final Trophy trophy;
+        private final ResourceLocation trophyId;
         private final int x;
         private final int y;
 
-        private TrophyButton(int xPos, int yPos, int size, ItemStack item, Trophy trophy) {
+        private TrophyButton(int xPos, int yPos, int size, ItemStack item, ResourceLocation trophyId) {
             super(xPos, yPos, size, size, Component.empty(), button -> {}, supplier -> item.getHoverName().copy());
             setTooltip(Tooltip.create(item.getHoverName()));
-            this.trophy = trophy;
+            this.trophyId = trophyId;
             this.item = item;
             this.x = xPos;
             this.y = yPos;
@@ -242,14 +243,10 @@ public class TrophySelectionScreen extends Screen {
 
         @Override
         public void onClick(double x, double y) {
-            setTrophy(trophy);
-        }
-
-        private void setTrophy(Trophy trophy) {
-            NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophy, blockPos));
+            NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophyId, blockPos));
             if (Minecraft.getInstance().player != null) {
                 if (Minecraft.getInstance().player.level().getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
-                    blockEntity.setTrophy(trophy);
+                    blockEntity.setTrophy(trophyId);
                 }
             }
             onClose();

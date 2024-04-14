@@ -29,7 +29,6 @@ public class ResourceReloadListenerNeoForge<T> extends SimpleJsonResourceReloadL
         Map<ResourceLocation, JsonElement> result = new HashMap<>();
         int amountSkipped = 0;
 
-        // TODO use neoforge:conditions
         // TODO fix this shit
         Codec<Optional<Boolean>> codec = ConditionalOps.createConditionalCodec(Codec.unit(false));
 

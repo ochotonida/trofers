@@ -55,12 +55,8 @@ public class TrophyBlockEntity extends BlockEntity {
         return ModResourceLoaders.TROPHIES.get(trophyID);
     }
 
-    public void setTrophy(@Nullable Trophy trophy) {
-        if (trophy != null) {
-            trophyID = trophy.id();
-        } else {
-            trophyID = null;
-        }
+    public void setTrophy(@Nullable ResourceLocation trophyId) {
+        this.trophyID = trophyId;
         restartRewardCooldown();
         onContentsChanged();
     }

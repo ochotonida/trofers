@@ -17,9 +17,10 @@ public class TrophySyncPacket {
 
     public TrophySyncPacket(FriendlyByteBuf buffer) {
         trophies = new HashMap<>();
-        while(buffer.readBoolean()) {
-            Trophy trophy = Trophy.fromNetwork(buffer);
-            trophies.put(trophy.id(), trophy);
+        while (buffer.readBoolean()) {
+            ResourceLocation id = buffer.readResourceLocation();
+            Trophy trophy = buffer.readJsonWithCodec(Trophy.CODEC);
+            trophies.put(id, trophy);
         }
     }
 
@@ -28,9 +29,10 @@ public class TrophySyncPacket {
     }
 
     void encode(FriendlyByteBuf buffer) {
-        trophies.values().forEach(trophy -> {
+        trophies.forEach((id, trophy) -> {
             buffer.writeBoolean(true);
-            trophy.toNetwork(buffer);
+            buffer.writeResourceLocation(id);
+            buffer.writeJsonWithCodec(Trophy.CODEC, trophy);
         });
         buffer.writeBoolean(false);
     }
