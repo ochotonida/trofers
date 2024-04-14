@@ -1,71 +1,35 @@
 package trofers.trophy.components;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.google.gson.JsonPrimitive;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.util.GsonHelper;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.Util;
+import net.minecraft.util.ExtraCodecs;
+
+import java.util.List;
 
 public record ColorInfo(int base, int accent) {
 
     public static final ColorInfo NONE = new ColorInfo(0xFFFFFF, 0xFFFFFF);
 
-    public void toNetwork(FriendlyByteBuf buffer) {
-        buffer.writeInt(base);
-        buffer.writeInt(accent);
-    }
+    private static final Codec<Integer> HEX_COLOR_CODEC = Codec.STRING.comapFlatMap(
+            string -> string.startsWith("#") && string.length() == 7
+                    ? DataResult.success(Integer.parseInt(string.substring(1), 16))
+                    : DataResult.error(() -> "Couldn't parse color string '%s', expected '#rrggbb'"),
+            color -> String.format("#%06X", color)
+    );
 
-    public static ColorInfo fromNetwork(FriendlyByteBuf buffer) {
-        return new ColorInfo(buffer.readInt(), buffer.readInt());
-    }
+    private static final Codec<Integer> RGB_COLOR_CODEC = Codec.BYTE
+            .xmap(Byte::intValue, Integer::byteValue).listOf().comapFlatMap(
+                    list -> Util.fixedSize(list, 3)
+                            .map(colors -> colors.get(0) << 16 | colors.get(1) << 8 | colors.get(2)),
+                    color -> List.of((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF)
+            );
 
-    public JsonObject toJson() {
-        JsonObject result = new JsonObject();
-        if (base() != 0xFFFFFF) {
-            result.add("base", serializeColor(base()));
-        }
-        if (accent() != base()) {
-            result.add("accent", serializeColor(accent()));
-        }
-        return result;
-    }
+    private static final Codec<Integer> COLOR_CODEC = ExtraCodecs.withAlternative(HEX_COLOR_CODEC, RGB_COLOR_CODEC);
 
-    private static JsonElement serializeColor(int color) {
-        return new JsonPrimitive(String.format("#%06X", color));
-    }
-
-    public static ColorInfo fromJson(JsonObject object) {
-        int base, accent;
-        base = accent = 0xFFFFFF;
-        if (object.has("base")) {
-            base = accent = readColor(object.get("base"));
-        }
-        if (object.has("accent")) {
-            accent = readColor(object.get("accent"));
-        }
-
-        return new ColorInfo(base, accent);
-    }
-
-    private static int readColor(JsonElement element) {
-        if (element.isJsonObject()) {
-            JsonObject object = element.getAsJsonObject();
-            int red = GsonHelper.getAsInt(object, "red");
-            int green = GsonHelper.getAsInt(object, "green");
-            int blue = GsonHelper.getAsInt(object, "blue");
-            return red << 16 | green << 8 | blue;
-        } else if (element.isJsonPrimitive() && element.getAsJsonPrimitive().isString()) {
-            return parseColor(element.getAsString());
-        } else {
-            throw new JsonParseException(String.format("Expected color to be json object or string, got %s", element));
-        }
-    }
-
-    private static int parseColor(String string) {
-        if (string.startsWith("#")) {
-            return Integer.parseInt(string.substring(1), 16);
-        }
-        throw new JsonParseException(String.format("Couldn't parse color string: %s", string));
-    }
+    public static final Codec<ColorInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            COLOR_CODEC.optionalFieldOf("base", 0xFFFFFF).forGetter(ColorInfo::base),
+            COLOR_CODEC.optionalFieldOf("accent", 0xFFFFFF).forGetter(ColorInfo::accent)
+    ).apply(instance, ColorInfo::new));
 }

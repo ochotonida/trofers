@@ -76,7 +76,7 @@ public record Trophy(
         buffer.writeItem(item);
         buffer.writeBoolean(entity.isPresent());
         entity.ifPresent(entityInfo -> buffer.writeJsonWithCodec(EntityInfo.CODEC, entityInfo));
-        colors.toNetwork(buffer);
+        buffer.writeJsonWithCodec(ColorInfo.CODEC, colors);
         buffer.writeJsonWithCodec(EffectInfo.CODEC, effects);
         for (Component line : tooltip) {
             buffer.writeBoolean(true);
@@ -99,7 +99,7 @@ public record Trophy(
         if (buffer.readBoolean()) {
             entity = buffer.readJsonWithCodec(EntityInfo.CODEC);
         }
-        ColorInfo colors = ColorInfo.fromNetwork(buffer);
+        ColorInfo colors = buffer.readJsonWithCodec(ColorInfo.CODEC);
         EffectInfo effects = buffer.readJsonWithCodec(EffectInfo.CODEC);
         List<Component> tooltip = new ArrayList<>();
         while (buffer.readBoolean()) {
@@ -151,7 +151,9 @@ public record Trophy(
 
         ColorInfo colors = ColorInfo.NONE;
         if (object.has("colors")) {
-            colors = ColorInfo.fromJson(GsonHelper.getAsJsonObject(object, "colors"));
+            colors = ColorInfo.CODEC.decode(JsonOps.INSTANCE, GsonHelper.getAsJsonObject(object, "colors"))
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getFirst();
         }
 
         Component name = null;

@@ -194,7 +194,8 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         entityInfoToJson(result);
 
         if (!colorInfo.equals(ColorInfo.NONE)) {
-            result.add("colors", colorInfo.toJson());
+            result.add("colors", ColorInfo.CODEC.encodeStart(JsonOps.INSTANCE, colorInfo)
+                    .getOrThrow(false, Trofers.LOGGER::error));
         }
 
         if (!effectInfo.equals(EffectInfo.NONE)) {
