@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.sniffer.idle"
+      "id": "minecraft:entity.sniffer.idle"
     }
   },
   "entity": {

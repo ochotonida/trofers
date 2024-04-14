@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.panda.ambient"
+      "id": "minecraft:entity.panda.ambient"
     }
   },
   "entity": {

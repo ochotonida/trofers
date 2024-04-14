@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:endergrade_idle"
+      "id": "alexsmobs:endergrade_idle"
     }
   },
   "entity": {

@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.hoglin.ambient"
+      "id": "minecraft:entity.hoglin.ambient"
     }
   },
   "entity": {

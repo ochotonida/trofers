@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:comb_jelly_hurt"
+      "id": "alexsmobs:comb_jelly_hurt"
     }
   },
   "entity": {

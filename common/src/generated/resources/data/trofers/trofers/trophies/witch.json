@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.witch.ambient"
+      "id": "minecraft:entity.witch.ambient"
     }
   },
   "entity": {

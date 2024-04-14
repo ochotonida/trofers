@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.horse.ambient"
+      "id": "minecraft:entity.horse.ambient"
     }
   },
   "entity": {

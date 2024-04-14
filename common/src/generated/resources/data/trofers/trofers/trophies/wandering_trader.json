@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.wandering_trader.ambient"
+      "id": "minecraft:entity.wandering_trader.ambient"
     }
   },
   "entity": {

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "quark:entity.stoneling.meep"
+      "id": "quark:entity.stoneling.meep"
     }
   },
   "entity": {

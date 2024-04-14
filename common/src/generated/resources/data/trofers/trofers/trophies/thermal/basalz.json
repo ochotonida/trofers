@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "thermal:entity.basalz.ambient"
+      "id": "thermal:entity.basalz.ambient"
     }
   },
   "entity": {

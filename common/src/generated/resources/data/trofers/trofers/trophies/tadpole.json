@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.tadpole.flop"
+      "id": "minecraft:entity.tadpole.flop"
     }
   },
   "entity": {

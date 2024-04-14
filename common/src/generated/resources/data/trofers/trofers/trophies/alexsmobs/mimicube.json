@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:mimicube_jump"
+      "id": "alexsmobs:mimicube_jump"
     }
   },
   "entity": {

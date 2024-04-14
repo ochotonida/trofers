@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:cockroach_hurt"
+      "id": "alexsmobs:cockroach_hurt"
     }
   },
   "entity": {

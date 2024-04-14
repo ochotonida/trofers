@@ -12,7 +12,7 @@
       "loot_table": "trofers:trophies/blaze"
     },
     "sound": {
-      "sound_event": "minecraft:entity.blaze.ambient"
+      "id": "minecraft:entity.blaze.ambient"
     }
   },
   "entity": {

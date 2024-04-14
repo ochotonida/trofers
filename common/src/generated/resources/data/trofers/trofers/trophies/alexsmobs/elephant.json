@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:elephant_idle"
+      "id": "alexsmobs:elephant_idle"
     }
   },
   "entity": {

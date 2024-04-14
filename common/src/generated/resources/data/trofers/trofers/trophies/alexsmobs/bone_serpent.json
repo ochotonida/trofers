@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:bone_serpent_idle"
+      "id": "alexsmobs:bone_serpent_idle"
     }
   },
   "entity": {

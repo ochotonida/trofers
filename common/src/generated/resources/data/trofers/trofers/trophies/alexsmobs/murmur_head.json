@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:murmur_idle"
+      "id": "alexsmobs:murmur_idle"
     }
   },
   "entity": {

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:emu_idle"
+      "id": "alexsmobs:emu_idle"
     }
   },
   "entity": {

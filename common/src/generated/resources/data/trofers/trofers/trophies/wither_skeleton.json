@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.wither_skeleton.ambient"
+      "id": "minecraft:entity.wither_skeleton.ambient"
     }
   },
   "entity": {

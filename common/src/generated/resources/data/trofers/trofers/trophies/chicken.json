@@ -1,6 +1,5 @@
 {
   "colors": {
-    "accent": "#FFFFFF",
     "base": "#606060"
   },
   "display": {
@@ -12,7 +11,7 @@
       "loot_table": "trofers:trophies/chicken"
     },
     "sound": {
-      "sound_event": "minecraft:entity.chicken.ambient"
+      "id": "minecraft:entity.chicken.ambient"
     }
   },
   "entity": {

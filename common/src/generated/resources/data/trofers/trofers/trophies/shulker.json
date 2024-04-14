@@ -8,13 +8,13 @@
   },
   "effects": {
     "rewards": {
-      "status_effect": {
+      "mob_effect": {
         "duration": 100,
-        "effect": "minecraft:levitation"
+        "id": "minecraft:levitation"
       }
     },
     "sound": {
-      "sound_event": "minecraft:entity.shulker.ambient"
+      "id": "minecraft:entity.shulker.ambient"
     }
   },
   "entity": {

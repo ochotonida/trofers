@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:crocodile_idle"
+      "id": "alexsmobs:crocodile_idle"
     }
   },
   "entity": {

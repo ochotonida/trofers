@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.husk.ambient"
+      "id": "minecraft:entity.husk.ambient"
     }
   },
   "entity": {

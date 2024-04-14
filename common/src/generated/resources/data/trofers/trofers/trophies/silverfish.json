@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.silverfish.ambient"
+      "id": "minecraft:entity.silverfish.ambient"
     }
   },
   "entity": {

@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.cow.ambient"
+      "id": "minecraft:entity.cow.ambient"
     }
   },
   "entity": {

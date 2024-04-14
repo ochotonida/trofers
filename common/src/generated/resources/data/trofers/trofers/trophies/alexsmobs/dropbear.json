@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:dropbear_idle"
+      "id": "alexsmobs:dropbear_idle"
     }
   },
   "entity": {

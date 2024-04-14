@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:blue_jay_idle"
+      "id": "alexsmobs:blue_jay_idle"
     }
   },
   "entity": {

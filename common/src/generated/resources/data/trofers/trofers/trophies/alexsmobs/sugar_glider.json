@@ -18,7 +18,7 @@
       "loot_table": "trofers:trophies/alexsmobs/sugar_glider"
     },
     "sound": {
-      "sound_event": "alexsmobs:sugar_glider_idle"
+      "id": "alexsmobs:sugar_glider_idle"
     }
   },
   "entity": {

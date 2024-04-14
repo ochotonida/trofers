@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:lobster_hurt"
+      "id": "alexsmobs:lobster_hurt"
     }
   },
   "entity": {

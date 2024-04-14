@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.elder_guardian.ambient"
+      "id": "minecraft:entity.elder_guardian.ambient"
     }
   },
   "entity": {

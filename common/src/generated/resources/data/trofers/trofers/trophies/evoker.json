@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.evoker.ambient"
+      "id": "minecraft:entity.evoker.ambient"
     }
   },
   "entity": {

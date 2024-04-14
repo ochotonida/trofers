@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:warped_mosco_idle"
+      "id": "alexsmobs:warped_mosco_idle"
     }
   },
   "entity": {

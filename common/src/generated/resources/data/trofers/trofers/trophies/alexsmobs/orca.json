@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:orca_idle"
+      "id": "alexsmobs:orca_idle"
     }
   },
   "entity": {

@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:spectre_idle"
+      "id": "alexsmobs:spectre_idle"
     }
   },
   "entity": {

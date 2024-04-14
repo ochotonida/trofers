@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.spider.ambient"
+      "id": "minecraft:entity.spider.ambient"
     }
   },
   "entity": {

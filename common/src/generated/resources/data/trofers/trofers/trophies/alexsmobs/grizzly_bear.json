@@ -18,7 +18,7 @@
       "loot_table": "trofers:trophies/alexsmobs/grizzly_bear"
     },
     "sound": {
-      "sound_event": "alexsmobs:grizzly_bear_idle"
+      "id": "alexsmobs:grizzly_bear_idle"
     }
   },
   "entity": {

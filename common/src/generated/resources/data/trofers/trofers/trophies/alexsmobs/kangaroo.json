@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:kangaroo_idle"
+      "id": "alexsmobs:kangaroo_idle"
     }
   },
   "entity": {

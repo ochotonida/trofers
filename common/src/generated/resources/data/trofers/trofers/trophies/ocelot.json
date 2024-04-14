@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.ocelot.ambient"
+      "id": "minecraft:entity.ocelot.ambient"
     }
   },
   "entity": {

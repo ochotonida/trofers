@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:toucan_idle"
+      "id": "alexsmobs:toucan_idle"
     }
   },
   "entity": {

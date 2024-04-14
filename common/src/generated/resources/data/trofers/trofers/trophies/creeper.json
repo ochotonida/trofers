@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.creeper.primed"
+      "id": "minecraft:entity.creeper.primed"
     }
   },
   "entity": {

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.strider.hurt"
+      "id": "minecraft:entity.strider.hurt"
     }
   },
   "entity": {

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:mudskipper_hurt"
+      "id": "alexsmobs:mudskipper_hurt"
     }
   },
   "entity": {

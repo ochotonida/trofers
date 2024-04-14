@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.endermite.ambient"
+      "id": "minecraft:entity.endermite.ambient"
     }
   },
   "entity": {

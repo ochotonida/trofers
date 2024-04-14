@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:skelewag_idle"
+      "id": "alexsmobs:skelewag_idle"
     }
   },
   "entity": {

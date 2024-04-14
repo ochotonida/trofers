@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:triops_hurt"
+      "id": "alexsmobs:triops_hurt"
     }
   },
   "entity": {

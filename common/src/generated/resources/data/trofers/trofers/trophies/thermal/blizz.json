@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "thermal:entity.blizz.ambient"
+      "id": "thermal:entity.blizz.ambient"
     }
   },
   "entity": {

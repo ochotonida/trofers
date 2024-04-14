@@ -22,7 +22,7 @@
       "loot_table": "trofers:trophies/fox"
     },
     "sound": {
-      "sound_event": "minecraft:entity.fox.ambient"
+      "id": "minecraft:entity.fox.ambient"
     }
   },
   "entity": {

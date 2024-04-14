@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.warden.ambient"
+      "id": "minecraft:entity.warden.ambient"
     }
   },
   "entity": {

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:roadrunner_idle"
+      "id": "alexsmobs:roadrunner_idle"
     }
   },
   "entity": {

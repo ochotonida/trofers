@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:caiman_idle"
+      "id": "alexsmobs:caiman_idle"
     }
   },
   "entity": {

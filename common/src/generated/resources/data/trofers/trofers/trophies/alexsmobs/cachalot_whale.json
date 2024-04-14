@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:cachalot_whale_idle"
+      "id": "alexsmobs:cachalot_whale_idle"
     }
   },
   "entity": {

@@ -12,7 +12,7 @@
       "loot_table": "trofers:trophies/enderman"
     },
     "sound": {
-      "sound_event": "minecraft:entity.enderman.teleport"
+      "id": "minecraft:entity.enderman.teleport"
     }
   },
   "entity": {

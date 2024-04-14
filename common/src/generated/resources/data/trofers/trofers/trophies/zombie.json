@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.zombie.ambient"
+      "id": "minecraft:entity.zombie.ambient"
     }
   },
   "entity": {

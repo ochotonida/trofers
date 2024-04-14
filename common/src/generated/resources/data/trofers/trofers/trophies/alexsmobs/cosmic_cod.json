@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:cosmic_cod_hurt"
+      "id": "alexsmobs:cosmic_cod_hurt"
     }
   },
   "entity": {

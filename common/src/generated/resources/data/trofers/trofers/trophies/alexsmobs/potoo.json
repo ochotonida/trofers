@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:potoo_call"
+      "id": "alexsmobs:potoo_call"
     }
   },
   "entity": {

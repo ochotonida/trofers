@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.mule.ambient"
+      "id": "minecraft:entity.mule.ambient"
     }
   },
   "entity": {

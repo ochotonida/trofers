@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.goat.ambient"
+      "id": "minecraft:entity.goat.ambient"
     }
   },
   "entity": {

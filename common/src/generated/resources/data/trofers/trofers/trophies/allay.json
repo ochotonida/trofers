@@ -12,7 +12,7 @@
       "loot_table": "trofers:trophies/allay"
     },
     "sound": {
-      "sound_event": "minecraft:entity.allay.item_given"
+      "id": "minecraft:entity.allay.item_given"
     }
   },
   "entity": {

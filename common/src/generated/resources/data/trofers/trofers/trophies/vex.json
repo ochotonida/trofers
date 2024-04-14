@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.vex.ambient"
+      "id": "minecraft:entity.vex.ambient"
     }
   },
   "entity": {

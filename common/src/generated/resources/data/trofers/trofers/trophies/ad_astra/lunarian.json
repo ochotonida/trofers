@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.villager.ambient"
+      "id": "minecraft:entity.villager.ambient"
     }
   },
   "entity": {

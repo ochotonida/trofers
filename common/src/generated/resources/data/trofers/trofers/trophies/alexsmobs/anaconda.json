@@ -19,7 +19,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:anaconda_attack"
+      "id": "alexsmobs:anaconda_attack"
     }
   },
   "entity": {

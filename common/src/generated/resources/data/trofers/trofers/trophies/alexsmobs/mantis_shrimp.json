@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:mantis_shrimp_snap"
+      "id": "alexsmobs:mantis_shrimp_snap"
     }
   },
   "entity": {

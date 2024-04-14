@@ -18,7 +18,7 @@
       "loot_table": "trofers:trophies/quark/toretoise"
     },
     "sound": {
-      "sound_event": "quark:entity.toretoise.idle"
+      "id": "quark:entity.toretoise.idle"
     }
   },
   "entity": {

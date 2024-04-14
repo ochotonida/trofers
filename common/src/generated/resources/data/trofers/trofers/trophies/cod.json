@@ -18,7 +18,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.cod.flop"
+      "id": "minecraft:entity.cod.flop"
     }
   },
   "entity": {

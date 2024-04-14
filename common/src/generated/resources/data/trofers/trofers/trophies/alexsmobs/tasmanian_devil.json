@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:tasmanian_devil_idle"
+      "id": "alexsmobs:tasmanian_devil_idle"
     }
   },
   "entity": {

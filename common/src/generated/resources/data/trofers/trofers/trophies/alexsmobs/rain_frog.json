@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:rain_frog_idle"
+      "id": "alexsmobs:rain_frog_idle"
     }
   },
   "entity": {

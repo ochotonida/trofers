@@ -8,13 +8,13 @@
   },
   "effects": {
     "rewards": {
-      "status_effect": {
+      "mob_effect": {
         "duration": 400,
-        "effect": "minecraft:dolphins_grace"
+        "id": "minecraft:dolphins_grace"
       }
     },
     "sound": {
-      "sound_event": "minecraft:entity.dolphin.ambient"
+      "id": "minecraft:entity.dolphin.ambient"
     }
   },
   "entity": {

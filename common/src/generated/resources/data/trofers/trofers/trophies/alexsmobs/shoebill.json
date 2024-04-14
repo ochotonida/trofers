@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:shoebill_hurt"
+      "id": "alexsmobs:shoebill_hurt"
     }
   },
   "entity": {

@@ -12,7 +12,7 @@
       "loot_table": "trofers:trophies/magma_cube"
     },
     "sound": {
-      "sound_event": "minecraft:entity.magma_cube.squish"
+      "id": "minecraft:entity.magma_cube.squish"
     }
   },
   "entity": {

@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:bison_idle"
+      "id": "alexsmobs:bison_idle"
     }
   },
   "entity": {

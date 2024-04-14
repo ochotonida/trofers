@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:tusklin_idle"
+      "id": "alexsmobs:tusklin_idle"
     }
   },
   "entity": {

@@ -1,6 +1,5 @@
 {
   "colors": {
-    "accent": "#FFFFFF",
     "base": "#606060"
   },
   "display": {
@@ -8,7 +7,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.sheep.ambient"
+      "id": "minecraft:entity.sheep.ambient"
     }
   },
   "entity": {

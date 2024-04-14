@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.ravager.ambient"
+      "id": "minecraft:entity.ravager.ambient"
     }
   },
   "entity": {

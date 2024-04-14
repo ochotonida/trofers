@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.strider.ambient"
+      "id": "minecraft:entity.strider.ambient"
     }
   },
   "entity": {

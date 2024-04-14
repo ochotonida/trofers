@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.zombie_villager.ambient"
+      "id": "minecraft:entity.zombie_villager.ambient"
     }
   },
   "entity": {

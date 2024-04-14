@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.iron_golem.repair"
+      "id": "minecraft:entity.iron_golem.repair"
     }
   },
   "entity": {

@@ -13,7 +13,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.squid.ambient"
+      "id": "minecraft:entity.squid.ambient"
     }
   },
   "entity": {

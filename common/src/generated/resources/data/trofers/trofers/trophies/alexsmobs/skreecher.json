@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:skreecher_detect"
+      "id": "alexsmobs:skreecher_detect"
     }
   },
   "entity": {

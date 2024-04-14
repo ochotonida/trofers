@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "quark:entity.foxhound.ambient"
+      "id": "quark:entity.foxhound.ambient"
     }
   },
   "entity": {

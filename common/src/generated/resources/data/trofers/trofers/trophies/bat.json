@@ -8,13 +8,13 @@
   },
   "effects": {
     "rewards": {
-      "status_effect": {
+      "mob_effect": {
         "duration": 400,
-        "effect": "minecraft:night_vision"
+        "id": "minecraft:night_vision"
       }
     },
     "sound": {
-      "sound_event": "minecraft:entity.bat.ambient"
+      "id": "minecraft:entity.bat.ambient"
     }
   },
   "entity": {

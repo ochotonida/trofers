@@ -8,7 +8,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "minecraft:entity.donkey.ambient"
+      "id": "minecraft:entity.donkey.ambient"
     }
   },
   "entity": {

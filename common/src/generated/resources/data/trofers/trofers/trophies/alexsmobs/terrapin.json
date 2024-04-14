@@ -14,7 +14,7 @@
   },
   "effects": {
     "sound": {
-      "sound_event": "alexsmobs:terrapin_hurt"
+      "id": "alexsmobs:terrapin_hurt"
     }
   },
   "entity": {
