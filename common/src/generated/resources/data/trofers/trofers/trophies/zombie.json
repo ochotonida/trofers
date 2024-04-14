@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:zombie"
+    "id": "minecraft:zombie"
   },
   "name": {
     "color": "#70955C",

@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:drowned"
+    "id": "minecraft:drowned"
   },
   "name": {
     "color": "#56847E",

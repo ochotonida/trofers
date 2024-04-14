@@ -10,10 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "y": 1.0,
-      "z": 2.0
-    },
+    "offset": [
+      0.0,
+      1.0,
+      2.0
+    ],
     "scale": 0.1666
   },
   "effects": {
@@ -22,7 +23,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:skelewag"
+    "id": "alexsmobs:skelewag"
   },
   "fabric:load_conditions": [
     {

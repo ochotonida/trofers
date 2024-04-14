@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:flutter"
+    "id": "alexsmobs:flutter"
   },
   "fabric:load_conditions": [
     {

@@ -10,9 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "rotation": {
-      "y": 90.0
-    },
+    "rotation": [
+      0.0,
+      90.0,
+      0.0
+    ],
     "scale": 0.25
   },
   "effects": {
@@ -21,7 +23,7 @@
     }
   },
   "entity": {
-    "type": "quark:crab"
+    "id": "quark:crab"
   },
   "fabric:load_conditions": [
     {

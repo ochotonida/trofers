@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:dolphin"
+    "id": "minecraft:dolphin"
   },
   "name": {
     "color": "#B0C4D8",

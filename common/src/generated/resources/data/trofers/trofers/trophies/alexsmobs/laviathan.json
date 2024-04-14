@@ -10,9 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "z": 1.0
-    },
+    "offset": [
+      0.0,
+      0.0,
+      1.0
+    ],
     "scale": 0.075
   },
   "effects": {
@@ -21,7 +23,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:laviathan"
+    "id": "alexsmobs:laviathan"
   },
   "fabric:load_conditions": [
     {

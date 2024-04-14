@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "ad_astra:pygro"
+    "id": "ad_astra:pygro"
   },
   "fabric:load_conditions": [
     {

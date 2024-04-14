@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:husk"
+    "id": "minecraft:husk"
   },
   "name": {
     "color": "#C7AB6F",

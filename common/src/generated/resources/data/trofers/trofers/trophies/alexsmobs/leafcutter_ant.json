@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:leafcutter_ant"
+    "id": "alexsmobs:leafcutter_ant"
   },
   "fabric:load_conditions": [
     {

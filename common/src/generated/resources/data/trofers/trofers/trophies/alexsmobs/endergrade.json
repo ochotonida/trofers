@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:endergrade"
+    "id": "alexsmobs:endergrade"
   },
   "fabric:load_conditions": [
     {

@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:blobfish",
-    "nbt": "{BlobfishScale:1.0f}"
+    "id": "alexsmobs:blobfish",
+    "tag": {
+      "BlobfishScale": 1.0
+    }
   },
   "fabric:load_conditions": [
     {

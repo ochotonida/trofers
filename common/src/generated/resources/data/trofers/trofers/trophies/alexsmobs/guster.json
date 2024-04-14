@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:guster"
+    "id": "alexsmobs:guster"
   },
   "fabric:load_conditions": [
     {

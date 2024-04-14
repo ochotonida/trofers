@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "ad_astra:lunarian"
+    "id": "ad_astra:lunarian"
   },
   "fabric:load_conditions": [
     {

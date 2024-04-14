@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:maned_wolf"
+    "id": "alexsmobs:maned_wolf"
   },
   "fabric:load_conditions": [
     {

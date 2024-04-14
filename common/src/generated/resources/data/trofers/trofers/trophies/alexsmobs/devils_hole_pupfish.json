@@ -10,9 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "y": 1.0
-    },
+    "offset": [
+      0.0,
+      1.0,
+      0.0
+    ],
     "scale": 0.25
   },
   "effects": {
@@ -21,8 +23,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:devils_hole_pupfish",
-    "nbt": "{PupfishScale:1.0f}"
+    "id": "alexsmobs:devils_hole_pupfish",
+    "tag": {
+      "PupfishScale": 1.0
+    }
   },
   "fabric:load_conditions": [
     {

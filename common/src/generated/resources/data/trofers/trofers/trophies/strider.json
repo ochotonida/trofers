@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:strider"
+    "id": "minecraft:strider"
   },
   "name": {
     "color": "#B44040",

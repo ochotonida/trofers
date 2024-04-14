@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:goat"
+    "id": "minecraft:goat"
   },
   "name": {
     "color": "#C2AB8E",

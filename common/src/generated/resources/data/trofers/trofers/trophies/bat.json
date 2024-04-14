@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:bat"
+    "id": "minecraft:bat"
   },
   "name": {
     "color": "#75653F",

@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:skeleton_horse"
+    "id": "minecraft:skeleton_horse"
   },
   "name": {
     "color": "#D0D0D2",

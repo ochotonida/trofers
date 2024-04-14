@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:cosmic_cod"
+    "id": "alexsmobs:cosmic_cod"
   },
   "fabric:load_conditions": [
     {

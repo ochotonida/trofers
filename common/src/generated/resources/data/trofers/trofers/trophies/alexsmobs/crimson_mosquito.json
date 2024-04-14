@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:crimson_mosquito"
+    "id": "alexsmobs:crimson_mosquito"
   },
   "fabric:load_conditions": [
     {

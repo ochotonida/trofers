@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:emu"
+    "id": "alexsmobs:emu"
   },
   "fabric:load_conditions": [
     {

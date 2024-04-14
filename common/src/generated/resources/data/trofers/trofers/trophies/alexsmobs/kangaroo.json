@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:kangaroo"
+    "id": "alexsmobs:kangaroo"
   },
   "fabric:load_conditions": [
     {

@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:trader_llama",
-    "nbt": "{Variant:2}"
+    "id": "minecraft:trader_llama",
+    "tag": {
+      "Variant": 2
+    }
   },
   "name": {
     "color": "#425F90",

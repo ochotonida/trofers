@@ -18,8 +18,38 @@
     }
   },
   "entity": {
-    "type": "quark:forgotten",
-    "nbt": "{ArmorItems:[{},{},{},{Count:1b,id:\"quark:forgotten_hat\",tag:{Damage:0}}],HandItems:[{Count:1b,id:\"minecraft:bow\",tag:{Damage:0}},{}],sheathed:{Count:1b,id:\"minecraft:iron_sword\",tag:{Damage:0}}}"
+    "id": "quark:forgotten",
+    "tag": {
+      "ArmorItems": [
+        {},
+        {},
+        {},
+        {
+          "Count": 1,
+          "id": "quark:forgotten_hat",
+          "tag": {
+            "Damage": 0
+          }
+        }
+      ],
+      "HandItems": [
+        {
+          "Count": 1,
+          "id": "minecraft:bow",
+          "tag": {
+            "Damage": 0
+          }
+        },
+        {}
+      ],
+      "sheathed": {
+        "Count": 1,
+        "id": "minecraft:iron_sword",
+        "tag": {
+          "Damage": 0
+        }
+      }
+    }
   },
   "fabric:load_conditions": [
     {

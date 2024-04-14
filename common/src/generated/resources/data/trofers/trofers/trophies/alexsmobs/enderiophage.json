@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:enderiophage"
+    "id": "alexsmobs:enderiophage"
   },
   "fabric:load_conditions": [
     {

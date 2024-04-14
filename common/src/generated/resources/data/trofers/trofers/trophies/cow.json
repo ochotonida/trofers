@@ -12,8 +12,15 @@
     }
   },
   "entity": {
-    "type": "minecraft:cow",
-    "nbt": "{UUID:[I;0,0,0,0]}"
+    "id": "minecraft:cow",
+    "tag": {
+      "UUID": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
   },
   "name": {
     "color": "#6C5234",

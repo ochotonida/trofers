@@ -10,9 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "z": -1.5
-    },
+    "offset": [
+      0.0,
+      0.0,
+      -1.5
+    ],
     "scale": 0.1666
   },
   "effects": {
@@ -21,7 +23,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:crocodile"
+    "id": "alexsmobs:crocodile"
   },
   "fabric:load_conditions": [
     {

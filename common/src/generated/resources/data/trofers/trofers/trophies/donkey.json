@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:donkey"
+    "id": "minecraft:donkey"
   },
   "name": {
     "color": "#817164",

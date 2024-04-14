@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:camel"
+    "id": "minecraft:camel"
   },
   "name": {
     "color": "#FBC268",

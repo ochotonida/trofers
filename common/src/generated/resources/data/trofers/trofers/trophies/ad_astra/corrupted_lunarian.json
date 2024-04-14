@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "ad_astra:corrupted_lunarian"
+    "id": "ad_astra:corrupted_lunarian"
   },
   "fabric:load_conditions": [
     {

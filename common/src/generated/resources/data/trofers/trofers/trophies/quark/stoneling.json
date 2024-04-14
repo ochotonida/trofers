@@ -18,8 +18,13 @@
     }
   },
   "entity": {
-    "type": "quark:stoneling",
-    "nbt": "{carryingItem:{Count:1b,id:\"minecraft:diamond\"}}"
+    "id": "quark:stoneling",
+    "tag": {
+      "carryingItem": {
+        "Count": 1,
+        "id": "minecraft:diamond"
+      }
+    }
   },
   "fabric:load_conditions": [
     {

@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:bald_eagle"
+    "id": "alexsmobs:bald_eagle"
   },
   "fabric:load_conditions": [
     {

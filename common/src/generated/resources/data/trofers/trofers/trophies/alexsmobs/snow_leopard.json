@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:snow_leopard"
+    "id": "alexsmobs:snow_leopard"
   },
   "fabric:load_conditions": [
     {

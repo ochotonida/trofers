@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:wandering_trader"
+    "id": "minecraft:wandering_trader"
   },
   "name": {
     "color": "#425F90",

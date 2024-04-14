@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:soul_vulture"
+    "id": "alexsmobs:soul_vulture"
   },
   "fabric:load_conditions": [
     {

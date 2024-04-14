@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:spider"
+    "id": "minecraft:spider"
   },
   "name": {
     "color": "#7A6755",

@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:triops",
-    "nbt": "{TriopsScale:1.0f}"
+    "id": "alexsmobs:triops",
+    "tag": {
+      "TriopsScale": 1.0
+    }
   },
   "fabric:load_conditions": [
     {

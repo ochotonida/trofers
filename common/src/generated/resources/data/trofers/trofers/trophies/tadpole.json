@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:tadpole"
+    "id": "minecraft:tadpole"
   },
   "name": {
     "color": "#71563F",

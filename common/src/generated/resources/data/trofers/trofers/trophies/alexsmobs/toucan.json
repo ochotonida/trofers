@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:toucan"
+    "id": "alexsmobs:toucan"
   },
   "fabric:load_conditions": [
     {

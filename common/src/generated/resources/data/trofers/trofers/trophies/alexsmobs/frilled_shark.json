@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:frilled_shark"
+    "id": "alexsmobs:frilled_shark"
   },
   "fabric:load_conditions": [
     {

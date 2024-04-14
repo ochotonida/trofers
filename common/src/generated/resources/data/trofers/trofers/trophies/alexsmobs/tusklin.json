@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:tusklin"
+    "id": "alexsmobs:tusklin"
   },
   "fabric:load_conditions": [
     {

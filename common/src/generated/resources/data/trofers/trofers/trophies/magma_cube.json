@@ -16,8 +16,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:magma_cube",
-    "nbt": "{Size:1}"
+    "id": "minecraft:magma_cube",
+    "tag": {
+      "Size": 1
+    }
   },
   "name": {
     "color": "#FF4600",

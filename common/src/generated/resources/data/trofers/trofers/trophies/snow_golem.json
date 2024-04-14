@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:snow_golem"
+    "id": "minecraft:snow_golem"
   },
   "name": {
     "color": "#FFFFFF",

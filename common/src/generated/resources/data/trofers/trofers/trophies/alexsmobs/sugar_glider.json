@@ -22,7 +22,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:sugar_glider"
+    "id": "alexsmobs:sugar_glider"
   },
   "fabric:load_conditions": [
     {

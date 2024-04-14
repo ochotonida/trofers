@@ -12,8 +12,15 @@
     }
   },
   "entity": {
-    "type": "minecraft:pig",
-    "nbt": "{UUID:[I;0,2,0,0]}"
+    "id": "minecraft:pig",
+    "tag": {
+      "UUID": [
+        0,
+        2,
+        0,
+        0
+      ]
+    }
   },
   "name": {
     "color": "#F1A3A4",

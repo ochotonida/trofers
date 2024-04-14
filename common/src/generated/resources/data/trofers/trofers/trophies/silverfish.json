@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:silverfish"
+    "id": "minecraft:silverfish"
   },
   "name": {
     "color": "#778C99",

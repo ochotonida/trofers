@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:tarantula_hawk"
+    "id": "alexsmobs:tarantula_hawk"
   },
   "fabric:load_conditions": [
     {

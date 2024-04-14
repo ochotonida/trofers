@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:straddler"
+    "id": "alexsmobs:straddler"
   },
   "fabric:load_conditions": [
     {

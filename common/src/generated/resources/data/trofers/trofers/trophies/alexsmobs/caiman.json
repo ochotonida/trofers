@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:caiman"
+    "id": "alexsmobs:caiman"
   },
   "fabric:load_conditions": [
     {

@@ -4,13 +4,16 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "x": 0.75,
-      "z": 0.5
-    },
-    "rotation": {
-      "y": -90.0
-    },
+    "offset": [
+      0.75,
+      0.0,
+      0.5
+    ],
+    "rotation": [
+      0.0,
+      -90.0,
+      0.0
+    ],
     "scale": 0.25
   },
   "effects": {
@@ -23,8 +26,11 @@
     }
   },
   "entity": {
-    "type": "minecraft:fox",
-    "nbt": "{Sleeping:1b,Type:\"red\"}"
+    "id": "minecraft:fox",
+    "tag": {
+      "Sleeping": 1,
+      "Type": "red"
+    }
   },
   "name": {
     "color": "#E37C21",

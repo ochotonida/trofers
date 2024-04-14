@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "ad_astra:martian_raptor"
+    "id": "ad_astra:martian_raptor"
   },
   "fabric:load_conditions": [
     {

@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:terrapin"
+    "id": "alexsmobs:terrapin"
   },
   "fabric:load_conditions": [
     {

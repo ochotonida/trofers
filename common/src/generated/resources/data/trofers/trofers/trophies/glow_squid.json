@@ -4,9 +4,11 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "y": 5.0
-    },
+    "offset": [
+      0.0,
+      5.0,
+      0.0
+    ],
     "scale": 0.25
   },
   "effects": {
@@ -15,8 +17,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:glow_squid",
-    "nbt": "{DarkTicksRemaining:1}"
+    "id": "minecraft:glow_squid",
+    "tag": {
+      "DarkTicksRemaining": 1
+    }
   },
   "name": {
     "color": "#32A1A1",

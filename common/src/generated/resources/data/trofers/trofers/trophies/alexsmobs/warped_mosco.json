@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:warped_mosco"
+    "id": "alexsmobs:warped_mosco"
   },
   "fabric:load_conditions": [
     {

@@ -18,8 +18,19 @@
     }
   },
   "entity": {
-    "type": "ad_astra:pygro_brute",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_axe\",tag:{Damage:0}},{}]}"
+    "id": "ad_astra:pygro_brute",
+    "tag": {
+      "HandItems": [
+        {
+          "Count": 1,
+          "id": "minecraft:golden_axe",
+          "tag": {
+            "Damage": 0
+          }
+        },
+        {}
+      ]
+    }
   },
   "fabric:load_conditions": [
     {

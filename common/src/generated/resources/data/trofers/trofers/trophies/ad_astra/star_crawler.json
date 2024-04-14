@@ -10,9 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "rotation": {
-      "y": 45.0
-    },
+    "rotation": [
+      0.0,
+      45.0,
+      0.0
+    ],
     "scale": 0.1666
   },
   "effects": {
@@ -21,7 +23,7 @@
     }
   },
   "entity": {
-    "type": "ad_astra:star_crawler"
+    "id": "ad_astra:star_crawler"
   },
   "fabric:load_conditions": [
     {

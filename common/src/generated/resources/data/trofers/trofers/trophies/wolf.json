@@ -12,8 +12,16 @@
     }
   },
   "entity": {
-    "type": "minecraft:wolf",
-    "nbt": "{Owner:[I;0,0,0,0],Sitting:1b}"
+    "id": "minecraft:wolf",
+    "tag": {
+      "Owner": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "Sitting": 1
+    }
   },
   "name": {
     "color": "#DCDADB",

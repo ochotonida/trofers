@@ -12,8 +12,15 @@
     }
   },
   "entity": {
-    "type": "minecraft:iron_golem",
-    "nbt": "{UUID:[I;0,0,0,0]}"
+    "id": "minecraft:iron_golem",
+    "tag": {
+      "UUID": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
   },
   "name": {
     "color": "#CDB297",

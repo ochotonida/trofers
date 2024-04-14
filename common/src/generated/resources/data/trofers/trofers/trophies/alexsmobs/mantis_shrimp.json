@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:mantis_shrimp"
+    "id": "alexsmobs:mantis_shrimp"
   },
   "fabric:load_conditions": [
     {

@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:shulker"
+    "id": "minecraft:shulker"
   },
   "name": {
     "color": "#986A97",

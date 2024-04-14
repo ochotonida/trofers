@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "tconstruct:ender_slime",
-    "nbt": "{Size:1}"
+    "id": "tconstruct:ender_slime",
+    "tag": {
+      "Size": 1
+    }
   },
   "fabric:load_conditions": [
     {

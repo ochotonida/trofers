@@ -10,9 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "z": 2.0
-    },
+    "offset": [
+      0.0,
+      0.0,
+      2.0
+    ],
     "scale": 0.25
   },
   "effects": {
@@ -21,7 +23,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:bone_serpent"
+    "id": "alexsmobs:bone_serpent"
   },
   "fabric:load_conditions": [
     {

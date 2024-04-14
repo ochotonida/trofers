@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:murmur_head"
+    "id": "alexsmobs:murmur_head"
   },
   "fabric:load_conditions": [
     {

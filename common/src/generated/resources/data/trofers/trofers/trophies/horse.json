@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:horse",
-    "nbt": "{Variant:257}"
+    "id": "minecraft:horse",
+    "tag": {
+      "Variant": 257
+    }
   },
   "name": {
     "color": "#926633",

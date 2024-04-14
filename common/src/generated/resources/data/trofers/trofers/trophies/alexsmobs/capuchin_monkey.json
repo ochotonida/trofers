@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:capuchin_monkey"
+    "id": "alexsmobs:capuchin_monkey"
   },
   "fabric:load_conditions": [
     {

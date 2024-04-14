@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:sniffer"
+    "id": "minecraft:sniffer"
   },
   "name": {
     "color": "#98331E",

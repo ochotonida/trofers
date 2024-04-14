@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "thermal:blizz"
+    "id": "thermal:blizz"
   },
   "fabric:load_conditions": [
     {

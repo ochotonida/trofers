@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:ravager"
+    "id": "minecraft:ravager"
   },
   "name": {
     "color": "#91ACAB",

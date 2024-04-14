@@ -16,8 +16,12 @@
     }
   },
   "entity": {
-    "type": "minecraft:enderman",
-    "nbt": "{carriedBlockState:{Name:\"minecraft:tnt\"}}"
+    "id": "minecraft:enderman",
+    "tag": {
+      "carriedBlockState": {
+        "Name": "minecraft:tnt"
+      }
+    }
   },
   "name": {
     "color": "#A14FB6",

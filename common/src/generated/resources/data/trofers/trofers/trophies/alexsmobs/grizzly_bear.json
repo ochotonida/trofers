@@ -22,8 +22,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:grizzly_bear",
-    "nbt": "{Honeyed:1b}"
+    "id": "alexsmobs:grizzly_bear",
+    "tag": {
+      "Honeyed": 1
+    }
   },
   "fabric:load_conditions": [
     {

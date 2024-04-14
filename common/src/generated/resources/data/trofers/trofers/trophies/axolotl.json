@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:axolotl",
-    "nbt": "{Variant:0}"
+    "id": "minecraft:axolotl",
+    "tag": {
+      "Variant": 0
+    }
   },
   "name": {
     "color": "#FBC1E2",

@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:vindicator"
+    "id": "minecraft:vindicator"
   },
   "name": {
     "color": "#929C9C",

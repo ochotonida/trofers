@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "ad_astra:lunarian_wandering_trader"
+    "id": "ad_astra:lunarian_wandering_trader"
   },
   "fabric:load_conditions": [
     {

@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:banana_slug"
+    "id": "alexsmobs:banana_slug"
   },
   "fabric:load_conditions": [
     {

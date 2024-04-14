@@ -10,9 +10,11 @@
     "base": "#606060"
   },
   "display": {
-    "offset": {
-      "y": 1.0
-    },
+    "offset": [
+      0.0,
+      1.0,
+      0.0
+    ],
     "scale": 0.25
   },
   "effects": {
@@ -21,7 +23,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:flying_fish"
+    "id": "alexsmobs:flying_fish"
   },
   "fabric:load_conditions": [
     {

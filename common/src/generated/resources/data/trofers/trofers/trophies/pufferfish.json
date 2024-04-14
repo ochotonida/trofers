@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:pufferfish",
-    "nbt": "{PuffState:2}"
+    "id": "minecraft:pufferfish",
+    "tag": {
+      "PuffState": 2
+    }
   },
   "name": {
     "color": "#E3970B",

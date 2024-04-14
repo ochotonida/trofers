@@ -22,8 +22,10 @@
     }
   },
   "entity": {
-    "type": "quark:toretoise",
-    "nbt": "{oreType:3b}"
+    "id": "quark:toretoise",
+    "tag": {
+      "oreType": 3
+    }
   },
   "fabric:load_conditions": [
     {

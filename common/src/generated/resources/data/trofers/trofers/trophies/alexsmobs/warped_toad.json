@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:warped_toad"
+    "id": "alexsmobs:warped_toad"
   },
   "fabric:load_conditions": [
     {

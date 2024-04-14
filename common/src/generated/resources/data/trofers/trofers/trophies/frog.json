@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:frog",
-    "nbt": "{variant:\"minecraft:cold\"}"
+    "id": "minecraft:frog",
+    "tag": {
+      "variant": "minecraft:cold"
+    }
   },
   "name": {
     "color": "#669530",

@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:raccoon",
-    "nbt": "{Carpet:-1}"
+    "id": "alexsmobs:raccoon",
+    "tag": {
+      "Carpet": -1
+    }
   },
   "fabric:load_conditions": [
     {

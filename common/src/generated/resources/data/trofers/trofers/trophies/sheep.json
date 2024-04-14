@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:sheep"
+    "id": "minecraft:sheep"
   },
   "name": {
     "color": "#FFFFFF",

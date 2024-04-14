@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:elephant",
-    "nbt": "{Carpet:-1}"
+    "id": "alexsmobs:elephant",
+    "tag": {
+      "Carpet": -1
+    }
   },
   "fabric:load_conditions": [
     {

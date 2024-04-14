@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:parrot",
-    "nbt": "{Variant:0}"
+    "id": "minecraft:parrot",
+    "tag": {
+      "Variant": 0
+    }
   },
   "name": {
     "color": "#E60000",

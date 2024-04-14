@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:polar_bear"
+    "id": "minecraft:polar_bear"
   },
   "name": {
     "color": "#F2F2F4",

@@ -18,8 +18,19 @@
     }
   },
   "entity": {
-    "type": "ad_astra:zombified_pygro",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:golden_sword\",tag:{Damage:0}},{}]}"
+    "id": "ad_astra:zombified_pygro",
+    "tag": {
+      "HandItems": [
+        {
+          "Count": 1,
+          "id": "minecraft:golden_sword",
+          "tag": {
+            "Damage": 0
+          }
+        },
+        {}
+      ]
+    }
   },
   "fabric:load_conditions": [
     {

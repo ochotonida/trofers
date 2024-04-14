@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:skreecher"
+    "id": "alexsmobs:skreecher"
   },
   "fabric:load_conditions": [
     {

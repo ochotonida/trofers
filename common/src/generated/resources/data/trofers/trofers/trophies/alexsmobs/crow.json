@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:crow"
+    "id": "alexsmobs:crow"
   },
   "fabric:load_conditions": [
     {

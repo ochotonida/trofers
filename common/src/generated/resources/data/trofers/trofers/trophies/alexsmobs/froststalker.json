@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:froststalker",
-    "nbt": "{Spiked:1b}"
+    "id": "alexsmobs:froststalker",
+    "tag": {
+      "Spiked": 1
+    }
   },
   "fabric:load_conditions": [
     {

@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:guardian"
+    "id": "minecraft:guardian"
   },
   "name": {
     "color": "#6A9087",

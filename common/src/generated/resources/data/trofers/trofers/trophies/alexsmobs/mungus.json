@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:mungus"
+    "id": "alexsmobs:mungus"
   },
   "fabric:load_conditions": [
     {

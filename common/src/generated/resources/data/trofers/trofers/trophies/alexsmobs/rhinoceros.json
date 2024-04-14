@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:rhinoceros"
+    "id": "alexsmobs:rhinoceros"
   },
   "fabric:load_conditions": [
     {

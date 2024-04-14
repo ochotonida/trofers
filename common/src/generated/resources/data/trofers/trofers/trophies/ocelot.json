@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:ocelot"
+    "id": "minecraft:ocelot"
   },
   "name": {
     "color": "#EDB262",

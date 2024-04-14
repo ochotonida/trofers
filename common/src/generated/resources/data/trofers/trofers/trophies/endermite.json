@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:endermite"
+    "id": "minecraft:endermite"
   },
   "name": {
     "color": "#644B84",

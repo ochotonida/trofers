@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:mule"
+    "id": "minecraft:mule"
   },
   "name": {
     "color": "#89492C",

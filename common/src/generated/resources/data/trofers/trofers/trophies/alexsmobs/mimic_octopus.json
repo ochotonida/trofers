@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:mimic_octopus"
+    "id": "alexsmobs:mimic_octopus"
   },
   "fabric:load_conditions": [
     {

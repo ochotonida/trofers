@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:evoker"
+    "id": "minecraft:evoker"
   },
   "name": {
     "color": "#959C9C",

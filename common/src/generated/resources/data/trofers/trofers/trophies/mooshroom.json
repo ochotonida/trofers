@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:mooshroom"
+    "id": "minecraft:mooshroom"
   },
   "name": {
     "color": "#A41012",

@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:warden"
+    "id": "minecraft:warden"
   },
   "name": {
     "color": "#00989B",

@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:bunfungus"
+    "id": "alexsmobs:bunfungus"
   },
   "fabric:load_conditions": [
     {

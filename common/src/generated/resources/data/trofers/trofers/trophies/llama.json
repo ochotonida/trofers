@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:llama",
-    "nbt": "{Variant:3}"
+    "id": "minecraft:llama",
+    "tag": {
+      "Variant": 3
+    }
   },
   "name": {
     "color": "#E3E4D4",

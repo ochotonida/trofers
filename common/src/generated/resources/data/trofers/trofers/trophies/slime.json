@@ -16,8 +16,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:slime",
-    "nbt": "{Size:1}"
+    "id": "minecraft:slime",
+    "tag": {
+      "Size": 1
+    }
   },
   "name": {
     "color": "#77C264",

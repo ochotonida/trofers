@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:platypus",
-    "nbt": "{CustomName:'\"perry\"'}"
+    "id": "alexsmobs:platypus",
+    "tag": {
+      "CustomName": "\"perry\""
+    }
   },
   "fabric:load_conditions": [
     {

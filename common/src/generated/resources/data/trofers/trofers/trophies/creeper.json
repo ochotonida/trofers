@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:creeper"
+    "id": "minecraft:creeper"
   },
   "name": {
     "color": "#48B23A",

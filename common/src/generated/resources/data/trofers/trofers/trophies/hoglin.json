@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:hoglin",
-    "nbt": "{IsImmuneToZombification:1b}"
+    "id": "minecraft:hoglin",
+    "tag": {
+      "IsImmuneToZombification": 1
+    }
   },
   "name": {
     "color": "#D5957B",

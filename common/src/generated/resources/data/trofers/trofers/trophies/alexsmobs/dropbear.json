@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:dropbear"
+    "id": "alexsmobs:dropbear"
   },
   "fabric:load_conditions": [
     {

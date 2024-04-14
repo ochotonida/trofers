@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:comb_jelly",
-    "nbt": "{JellyScale:1.0f}"
+    "id": "alexsmobs:comb_jelly",
+    "tag": {
+      "JellyScale": 1.0
+    }
   },
   "fabric:load_conditions": [
     {

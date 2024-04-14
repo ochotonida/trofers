@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:bee"
+    "id": "minecraft:bee"
   },
   "name": {
     "color": "#EBC542",

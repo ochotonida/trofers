@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:blue_jay"
+    "id": "alexsmobs:blue_jay"
   },
   "fabric:load_conditions": [
     {

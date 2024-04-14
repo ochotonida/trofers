@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:gelada_monkey"
+    "id": "alexsmobs:gelada_monkey"
   },
   "fabric:load_conditions": [
     {

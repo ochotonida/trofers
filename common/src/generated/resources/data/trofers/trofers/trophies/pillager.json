@@ -12,8 +12,19 @@
     }
   },
   "entity": {
-    "type": "minecraft:pillager",
-    "nbt": "{HandItems:[{Count:1b,id:\"minecraft:crossbow\",tag:{Damage:0}},{}]}"
+    "id": "minecraft:pillager",
+    "tag": {
+      "HandItems": [
+        {
+          "Count": 1,
+          "id": "minecraft:crossbow",
+          "tag": {
+            "Damage": 0
+          }
+        },
+        {}
+      ]
+    }
   },
   "name": {
     "color": "#929C9C",

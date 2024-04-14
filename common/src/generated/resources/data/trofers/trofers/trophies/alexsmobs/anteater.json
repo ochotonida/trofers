@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:anteater"
+    "id": "alexsmobs:anteater"
   },
   "fabric:load_conditions": [
     {

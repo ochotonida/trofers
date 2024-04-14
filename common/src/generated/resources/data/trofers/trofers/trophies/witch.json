@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:witch"
+    "id": "minecraft:witch"
   },
   "name": {
     "color": "#A39482",

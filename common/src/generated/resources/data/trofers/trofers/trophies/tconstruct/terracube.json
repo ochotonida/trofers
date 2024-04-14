@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "tconstruct:terracube",
-    "nbt": "{Size:1}"
+    "id": "tconstruct:terracube",
+    "tag": {
+      "Size": 1
+    }
   },
   "fabric:load_conditions": [
     {

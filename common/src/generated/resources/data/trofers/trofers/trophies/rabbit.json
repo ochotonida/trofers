@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:rabbit",
-    "nbt": "{RabbitType:0}"
+    "id": "minecraft:rabbit",
+    "tag": {
+      "RabbitType": 0
+    }
   },
   "name": {
     "color": "#A28B72",

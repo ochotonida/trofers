@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:zoglin"
+    "id": "minecraft:zoglin"
   },
   "name": {
     "color": "#E59796",

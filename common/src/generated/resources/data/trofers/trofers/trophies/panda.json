@@ -12,8 +12,10 @@
     }
   },
   "entity": {
-    "type": "minecraft:panda",
-    "nbt": "{MainGene:\"playful\"}"
+    "id": "minecraft:panda",
+    "tag": {
+      "MainGene": "playful"
+    }
   },
   "name": {
     "color": "#E4E4E4",

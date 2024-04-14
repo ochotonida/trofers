@@ -12,8 +12,14 @@
     }
   },
   "entity": {
-    "type": "minecraft:villager",
-    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
+    "id": "minecraft:villager",
+    "tag": {
+      "VillagerData": {
+        "type": "minecraft:plains",
+        "level": 1,
+        "profession": "minecraft:weaponsmith"
+      }
+    }
   },
   "name": {
     "color": "#BF886D",

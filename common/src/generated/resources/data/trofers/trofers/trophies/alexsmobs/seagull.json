@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:seagull"
+    "id": "alexsmobs:seagull"
   },
   "fabric:load_conditions": [
     {

@@ -12,8 +12,14 @@
     }
   },
   "entity": {
-    "type": "minecraft:zombie_villager",
-    "nbt": "{VillagerData:{level:1,profession:\"minecraft:weaponsmith\",type:\"minecraft:plains\"}}"
+    "id": "minecraft:zombie_villager",
+    "tag": {
+      "VillagerData": {
+        "type": "minecraft:plains",
+        "level": 1,
+        "profession": "minecraft:weaponsmith"
+      }
+    }
   },
   "name": {
     "color": "#76A045",

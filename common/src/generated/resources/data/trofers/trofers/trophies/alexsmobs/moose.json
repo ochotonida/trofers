@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:moose",
-    "nbt": "{Antlered:1b}"
+    "id": "alexsmobs:moose",
+    "tag": {
+      "Antlered": 1
+    }
   },
   "fabric:load_conditions": [
     {

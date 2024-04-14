@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:seal"
+    "id": "alexsmobs:seal"
   },
   "fabric:load_conditions": [
     {

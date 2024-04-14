@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:komodo_dragon"
+    "id": "alexsmobs:komodo_dragon"
   },
   "fabric:load_conditions": [
     {

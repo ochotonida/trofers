@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:cave_spider"
+    "id": "minecraft:cave_spider"
   },
   "name": {
     "color": "#147B6A",

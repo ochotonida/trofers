@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:mimicube"
+    "id": "alexsmobs:mimicube"
   },
   "fabric:load_conditions": [
     {

@@ -18,8 +18,10 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:rain_frog",
-    "nbt": "{Variant:2}"
+    "id": "alexsmobs:rain_frog",
+    "tag": {
+      "Variant": 2
+    }
   },
   "fabric:load_conditions": [
     {

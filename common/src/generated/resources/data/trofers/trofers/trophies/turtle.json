@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:turtle"
+    "id": "minecraft:turtle"
   },
   "name": {
     "color": "#3EA240",

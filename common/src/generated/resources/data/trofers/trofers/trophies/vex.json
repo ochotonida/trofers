@@ -12,7 +12,7 @@
     }
   },
   "entity": {
-    "type": "minecraft:vex"
+    "id": "minecraft:vex"
   },
   "name": {
     "color": "#89A0B6",

@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "alexsmobs:gazelle"
+    "id": "alexsmobs:gazelle"
   },
   "fabric:load_conditions": [
     {

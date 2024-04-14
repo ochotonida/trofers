@@ -18,7 +18,7 @@
     }
   },
   "entity": {
-    "type": "quark:wraith"
+    "id": "quark:wraith"
   },
   "fabric:load_conditions": [
     {
