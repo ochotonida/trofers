@@ -3,12 +3,10 @@ package trofers.trophy.builder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
@@ -109,13 +107,13 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         return color(colorInfo.base(), color);
     }
 
-    private T effectInfo(@Nullable EffectInfo.SoundInfo soundInfo, EffectInfo.RewardInfo rewardInfo) {
+    private T effectInfo(Optional<EffectInfo.SoundInfo> soundInfo, EffectInfo.RewardInfo rewardInfo) {
         effectInfo = new EffectInfo(soundInfo, rewardInfo);
         return (T) this;
     }
 
     public T sound(ResourceLocation sound, float volume, float pitch) {
-        return effectInfo(new EffectInfo.SoundInfo(sound, volume, pitch), effectInfo.rewards());
+        return effectInfo(Optional.of(new EffectInfo.SoundInfo(sound, volume, pitch)), effectInfo.rewards());
     }
 
     public T sound(ResourceLocation sound) {
@@ -130,20 +128,20 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         return sound(soundEvent, 1, 1);
     }
 
-    private T rewardInfo(Optional<ResourceLocation> lootTable, CompoundTag statusEffect, int cooldown) {
-        return effectInfo(effectInfo.sound(), new EffectInfo.RewardInfo(lootTable, statusEffect, cooldown));
+    private T rewardInfo(Optional<ResourceLocation> lootTable, Optional<EffectInfo.MobEffectInfo> mobEffect, int cooldown) {
+        return effectInfo(effectInfo.sound(), new EffectInfo.RewardInfo(lootTable, mobEffect, cooldown));
     }
 
     public T lootTable(Optional<ResourceLocation> lootTable) {
-        return rewardInfo(lootTable, effectInfo.rewards().statusEffect(), effectInfo.rewards().cooldown());
+        return rewardInfo(lootTable, effectInfo.rewards().mobEffect(), effectInfo.rewards().cooldown());
     }
 
-    public T mobEffect(CompoundTag mobEffect) {
-        return rewardInfo(effectInfo.rewards().lootTable(), mobEffect, effectInfo.rewards().cooldown());
+    public T mobEffect(EffectInfo.MobEffectInfo mobEffect) {
+        return rewardInfo(effectInfo.rewards().lootTable(), Optional.of(mobEffect), effectInfo.rewards().cooldown());
     }
 
     public T mobEffect(MobEffect effect, int timeSeconds, int amplifier) {
-        return mobEffect(new MobEffectInstance(effect, timeSeconds * 20, amplifier).save(new CompoundTag()));
+        return mobEffect(new EffectInfo.MobEffectInfo(effect, (byte) amplifier, timeSeconds * 20, false, false, false));
     }
 
     public T mobEffect(MobEffect effect, int timeSeconds) {
@@ -151,7 +149,7 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
     }
 
     public T cooldown(int timeSeconds) {
-        return rewardInfo(effectInfo.rewards().lootTable(), effectInfo.rewards().statusEffect(), timeSeconds * 20);
+        return rewardInfo(effectInfo.rewards().lootTable(), effectInfo.rewards().mobEffect(), timeSeconds * 20);
     }
 
     public T setHidden(boolean isHidden) {
@@ -200,7 +198,9 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         }
 
         if (!effectInfo.equals(EffectInfo.NONE)) {
-            result.add("effects", effectInfo.toJson());
+            result.add("effects", EffectInfo.CODEC.encodeStart(JsonOps.INSTANCE, effectInfo)
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getAsJsonObject());
         }
 
         if (isHidden) {

@@ -14,7 +14,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -114,18 +113,19 @@ public class TrophyBlockEntity extends BlockEntity {
             return false;
         }
         EffectInfo.RewardInfo rewards = trophy.effects().rewards();
-        EffectInfo.SoundInfo sound = trophy.effects().sound();
 
-        if (sound != null && level instanceof ServerLevel serverLevel) {
-            Vec3 pos = Vec3.atCenterOf(getBlockPos());
-            playSound(serverLevel, sound.soundEvent(), pos, sound.volume(), sound.pitch());
-        }
+        trophy.effects().sound().ifPresent(sound -> {
+            if (level instanceof ServerLevel serverLevel) {
+                Vec3 pos = Vec3.atCenterOf(getBlockPos());
+                playSound(serverLevel, sound.soundEvent(), pos, sound.volume(), sound.pitch());
+            }
+        });
 
         giveRewards(rewards, player, hand);
 
-        return sound != null
+        return trophy.effects().sound().isPresent()
                 || rewards.lootTable().isPresent() && Trofers.CONFIG.general.enableTrophyLoot
-                || !rewards.statusEffect().isEmpty() && Trofers.CONFIG.general.enableTrophyEffects;
+                || rewards.mobEffect().isPresent() && Trofers.CONFIG.general.enableTrophyEffects;
     }
 
     private static void playSound(ServerLevel level, ResourceLocation sound, Vec3 pos, float volume, float pitch) {
@@ -149,7 +149,7 @@ public class TrophyBlockEntity extends BlockEntity {
         if (player.level().isClientSide()) {
             return;
         } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable().isEmpty())
-                && (!Trofers.CONFIG.general.enableTrophyEffects || rewards.statusEffect().isEmpty())) {
+                && (!Trofers.CONFIG.general.enableTrophyEffects || rewards.mobEffect().isEmpty())) {
             return;
         }
 
@@ -193,10 +193,9 @@ public class TrophyBlockEntity extends BlockEntity {
 
     private void rewardMobEffect(EffectInfo.RewardInfo rewards, Player player) {
         if (Trofers.CONFIG.general.enableTrophyEffects) {
-            MobEffectInstance mobEffect = rewards.createMobEffect();
-            if (mobEffect != null) {
-                player.addEffect(mobEffect);
-            }
+            rewards.mobEffect()
+                    .map(EffectInfo.MobEffectInfo::createInstance)
+                    .ifPresent(player::addEffect);
         }
     }
 

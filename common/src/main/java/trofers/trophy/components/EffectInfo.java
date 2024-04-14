@@ -1,190 +1,44 @@
 package trofers.trophy.components;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
+import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import org.jetbrains.annotations.Nullable;
-import trofers.util.JsonHelper;
 
 import java.util.Optional;
 import java.util.function.Function;
 
-public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
+public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
 
-    public static final EffectInfo NONE = new EffectInfo(null, RewardInfo.NONE);
+    public static final EffectInfo NONE = new EffectInfo(Optional.empty(), RewardInfo.NONE);
 
-    public void toNetwork(FriendlyByteBuf buffer) {
-        buffer.writeBoolean(sound() != null);
-        if (sound() != null) {
-            sound().toNetwork(buffer);
-        }
-        rewards().toNetwork(buffer);
-    }
-
-    public static EffectInfo fromNetwork(FriendlyByteBuf buffer) {
-        SoundInfo sound = null;
-        if (buffer.readBoolean()) {
-            sound = SoundInfo.fromNetwork(buffer);
-        }
-        RewardInfo rewards = RewardInfo.fromNetwork(buffer);
-        return new EffectInfo(
-                sound,
-                rewards
-        );
-    }
-
-    public JsonObject toJson() {
-        JsonObject object = new JsonObject();
-        if (sound() != null) {
-            object.add("sound", sound().toJson());
-        }
-        if (!rewards().equals(RewardInfo.NONE)) {
-            object.add("rewards", rewards().toJson());
-        }
-        return object;
-    }
-
-    public static EffectInfo fromJson(JsonObject object) {
-        SoundInfo sound = null;
-        if (object.has("sound")) {
-            sound = SoundInfo.fromJson(GsonHelper.getAsJsonObject(object, "sound"));
-        }
-        RewardInfo rewards = RewardInfo.NONE;
-        if (object.has("rewards")) {
-            rewards = RewardInfo.fromJson(GsonHelper.getAsJsonObject(object, "rewards"));
-        }
-        return new EffectInfo(sound, rewards);
-    }
+    public static final Codec<EffectInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            SoundInfo.CODEC.optionalFieldOf("sound").forGetter(EffectInfo::sound),
+            RewardInfo.CODEC.optionalFieldOf("rewards", RewardInfo.NONE).forGetter(EffectInfo::rewards)
+    ).apply(instance, EffectInfo::new));
 
     public record SoundInfo(ResourceLocation soundEvent, float volume, float pitch) {
 
-        private void toNetwork(FriendlyByteBuf buffer) {
-            buffer.writeResourceLocation(soundEvent());
-            buffer.writeFloat(volume());
-            buffer.writeFloat(pitch());
-        }
-
-        private static SoundInfo fromNetwork(FriendlyByteBuf buffer) {
-            return new SoundInfo(
-                    buffer.readResourceLocation(),
-                    buffer.readFloat(),
-                    buffer.readFloat()
-            );
-        }
-
-        private JsonObject toJson() {
-            JsonObject result = new JsonObject();
-            result.addProperty("sound_event", soundEvent().toString());
-            if (volume() != 1) {
-                result.addProperty("volume", volume());
-            }
-            if (pitch() != 1) {
-                result.addProperty("pitch", pitch());
-            }
-            return result;
-        }
-
-        private static SoundInfo fromJson(JsonObject object) {
-            ResourceLocation soundEvent = new ResourceLocation(GsonHelper.getAsString(object, "sound_event"));
-            float volume = JsonHelper.readOptionalFloat(object, "volume", 1);
-            float pitch = JsonHelper.readOptionalFloat(object, "pitch", 1);
-
-            return new SoundInfo(soundEvent, volume, pitch);
-        }
+        public static final Codec<SoundInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                ResourceLocation.CODEC.fieldOf("id").forGetter(SoundInfo::soundEvent),
+                Codec.FLOAT.optionalFieldOf("volume", 1F).forGetter(SoundInfo::volume),
+                Codec.FLOAT.optionalFieldOf("pitch", 1F).forGetter(SoundInfo::pitch)
+        ).apply(instance, SoundInfo::new));
     }
 
-    public record RewardInfo(Optional<ResourceLocation> lootTable, CompoundTag statusEffect, int cooldown) {
+    public record RewardInfo(Optional<ResourceLocation> lootTable, Optional<MobEffectInfo> mobEffect, int cooldown) {
 
-        public static RewardInfo NONE = new RewardInfo(Optional.empty(), new CompoundTag(), 0);
+        public static final RewardInfo NONE = new RewardInfo(Optional.empty(), Optional.empty(), 0);
 
-        @Nullable
-        public MobEffectInstance createMobEffect() {
-            if (!statusEffect().isEmpty()) {
-                return MobEffectInstance.load(statusEffect());
-            }
-            return null;
-        }
-
-        private void toNetwork(FriendlyByteBuf buffer) {
-            buffer.writeBoolean(lootTable().isPresent());
-            if (lootTable().isPresent()) {
-                buffer.writeResourceLocation(lootTable().get());
-            }
-            buffer.writeNbt(statusEffect());
-            buffer.writeInt(cooldown());
-        }
-
-        private static RewardInfo fromNetwork(FriendlyByteBuf buffer) {
-            Optional<ResourceLocation> lootTable = Optional.empty();
-            if (buffer.readBoolean()) {
-                lootTable = Optional.of(buffer.readResourceLocation());
-            }
-            CompoundTag statusEffect = buffer.readNbt();
-            int cooldown = buffer.readInt();
-            return new RewardInfo(lootTable, statusEffect, cooldown);
-        }
-
-        private JsonObject toJson() {
-            JsonObject result = new JsonObject();
-            if (lootTable().isPresent()) {
-                result.addProperty("loot_table", lootTable().get().toString());
-            }
-            if (!statusEffect().isEmpty()) {
-                MobEffectInstance effect = MobEffectInstance.load(statusEffect());
-                if (effect != null) {
-                    JsonObject statusEffect = new JsonObject();
-                    result.add("status_effect", statusEffect);
-                    // noinspection ConstantConditions
-                    statusEffect.addProperty("effect", BuiltInRegistries.MOB_EFFECT.getKey(effect.getEffect()).toString());
-                    statusEffect.addProperty("duration", effect.getDuration());
-                    if (effect.getAmplifier() != 0) {
-                        statusEffect.addProperty("amplifier", effect.getAmplifier());
-                    }
-                }
-            }
-            if (cooldown() != 0) {
-                result.addProperty("cooldown", cooldown());
-            }
-            return result;
-        }
-
-        private static RewardInfo fromJson(JsonObject object) {
-            Optional<ResourceLocation> lootTable = Optional.empty();
-            if (object.has("loot_table")) {
-                lootTable = Optional.of(new ResourceLocation(GsonHelper.getAsString(object, "loot_table")));
-            }
-            CompoundTag statusEffect = new CompoundTag();
-            if (object.has("status_effect")) {
-                JsonObject effectObject = GsonHelper.getAsJsonObject(object, "status_effect");
-                ResourceLocation effectID = new ResourceLocation(GsonHelper.getAsString(effectObject, "effect"));
-                if (!BuiltInRegistries.MOB_EFFECT.containsKey(effectID)) {
-                    throw new JsonParseException(String.format("Unknown effect: %s", effectID));
-                }
-                MobEffect effect = BuiltInRegistries.MOB_EFFECT.get(effectID);
-                int duration = GsonHelper.getAsInt(effectObject, "duration");
-                int amplifier = 0;
-                if (effectObject.has("amplifier")) {
-                    amplifier = GsonHelper.getAsInt(effectObject, "amplifier");
-                }
-
-                // noinspection ConstantConditions
-                statusEffect = new MobEffectInstance(effect, duration, amplifier).save(new CompoundTag());
-            }
-            int cooldown = 0;
-            if (object.has("cooldown")) {
-                cooldown = GsonHelper.getAsInt(object, "cooldown");
-            }
-            return new RewardInfo(lootTable, statusEffect, cooldown);
-        }
+        public static final Codec<RewardInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+                ResourceLocation.CODEC.optionalFieldOf("loot_table").forGetter(RewardInfo::lootTable),
+                MobEffectInfo.CODEC.optionalFieldOf("mob_effect").forGetter(RewardInfo::mobEffect),
+                ExtraCodecs.POSITIVE_INT.fieldOf("cooldown").forGetter(RewardInfo::cooldown)
+        ).apply(instance, RewardInfo::new));
     }
 
     public record MobEffectInfo(MobEffect mobEffect, byte amplifier, int duration, boolean ambient, boolean showParticles, boolean showIcon) {
@@ -209,19 +63,7 @@ public record EffectInfo(@Nullable SoundInfo sound, RewardInfo rewards) {
                 Codec.BOOL.optionalFieldOf("show_icon", true).forGetter(MobEffectInfo::showIcon)
         ).apply(instance, MobEffectInfo::new));
 
-        private CompoundTag asTag() {
-            CompoundTag result = new CompoundTag();
-            //noinspection ConstantConditions
-            result.putString("id", BuiltInRegistries.MOB_EFFECT.getKey(mobEffect).toString());
-            result.putByte("amplifier", amplifier);
-            result.putInt("duration", duration);
-            result.putBoolean("ambient", ambient);
-            result.putBoolean("show_particles", showParticles);
-            result.putBoolean("show_icon", showIcon);
-            return result;
-        }
-
-        private MobEffectInstance createMobEffect() {
+        public MobEffectInstance createInstance() {
             return new MobEffectInstance(mobEffect, amplifier, duration, ambient, showParticles, showIcon);
         }
     }

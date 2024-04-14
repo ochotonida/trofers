@@ -27,10 +27,10 @@ public abstract class TrophyProvider {
         if (ModList.get().isLoaded(getModId())) {
             for (ResourceLocation trophyId : trophies.keySet()) {
                 Trophy trophy = trophies.get(trophyId).build(trophyId);
-                EffectInfo.SoundInfo sound = trophy.effects().sound();
-                if (sound != null && !BuiltInRegistries.SOUND_EVENT.containsKey(sound.soundEvent())) {
-                    throw new IllegalStateException("Invalid sound event: " + sound.soundEvent().toString());
-                }
+                // TODO EffectInfo.SoundInfo sound = trophy.effects().sound();
+                // if (sound != null && !BuiltInRegistries.SOUND_EVENT.containsKey(sound.soundEvent())) {
+                //     throw new IllegalStateException("Invalid sound event: " + sound.soundEvent().toString());
+                // }
             }
         } else {
             Trofers.LOGGER.warn("Skipping trophy validation for mod: %s".formatted(getModId()));

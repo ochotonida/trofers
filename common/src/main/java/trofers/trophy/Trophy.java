@@ -77,7 +77,7 @@ public record Trophy(
         buffer.writeBoolean(entity.isPresent());
         entity.ifPresent(entityInfo -> buffer.writeJsonWithCodec(EntityInfo.CODEC, entityInfo));
         colors.toNetwork(buffer);
-        effects.toNetwork(buffer);
+        buffer.writeJsonWithCodec(EffectInfo.CODEC, effects);
         for (Component line : tooltip) {
             buffer.writeBoolean(true);
             buffer.writeComponent(line);
@@ -100,7 +100,7 @@ public record Trophy(
             entity = buffer.readJsonWithCodec(EntityInfo.CODEC);
         }
         ColorInfo colors = ColorInfo.fromNetwork(buffer);
-        EffectInfo effects = EffectInfo.fromNetwork(buffer);
+        EffectInfo effects = buffer.readJsonWithCodec(EffectInfo.CODEC);
         List<Component> tooltip = new ArrayList<>();
         while (buffer.readBoolean()) {
             tooltip.add(buffer.readComponent());
@@ -174,7 +174,9 @@ public record Trophy(
 
         EffectInfo effects = EffectInfo.NONE;
         if (object.has("effects")) {
-            effects = EffectInfo.fromJson(GsonHelper.getAsJsonObject(object, "effects"));
+            effects = EffectInfo.CODEC.decode(JsonOps.INSTANCE, GsonHelper.getAsJsonObject(object, "effects"))
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getFirst();
         }
 
         boolean isHidden = false;
