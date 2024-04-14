@@ -1,14 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "thermal"
+    }
+  ],
   "colors": {
     "accent": "#41464B",
     "base": "#606060"
   },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "thermal"
-    }
-  ],
   "display": {
     "scale": 0.25
   },

@@ -1,14 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "tconstruct"
+    }
+  ],
   "colors": {
     "accent": "#62C3B4",
     "base": "#606060"
   },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "tconstruct"
-    }
-  ],
   "display": {
     "scale": 0.25
   },

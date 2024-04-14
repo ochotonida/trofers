@@ -1,14 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
   "colors": {
     "accent": "#62BDBA",
     "base": "#606060"
   },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "alexsmobs"
-    }
-  ],
   "display": {
     "scale": 0.25
   },
@@ -19,7 +19,7 @@
   },
   "entity": {
     "type": "alexsmobs:platypus",
-    "nbt": "{CustomName:'{\"text\":\"perry\"}'}"
+    "nbt": "{CustomName:'\"perry\"'}"
   },
   "fabric:load_conditions": [
     {

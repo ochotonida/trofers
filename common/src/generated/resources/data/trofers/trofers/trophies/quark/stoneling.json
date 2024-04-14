@@ -1,14 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "quark"
+    }
+  ],
   "colors": {
     "accent": "#AEB2B2",
     "base": "#606060"
   },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "quark"
-    }
-  ],
   "display": {
     "scale": 0.25
   },

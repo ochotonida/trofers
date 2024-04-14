@@ -1,14 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ],
   "colors": {
     "accent": "#6B8F85",
     "base": "#606060"
   },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "ad_astra"
-    }
-  ],
   "display": {
     "scale": 0.25
   },

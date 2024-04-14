@@ -1,14 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "ad_astra"
+    }
+  ],
   "colors": {
     "accent": "#6FEAE6",
     "base": "#606060"
   },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "ad_astra"
-    }
-  ],
   "display": {
     "rotation": {
       "y": 45.0

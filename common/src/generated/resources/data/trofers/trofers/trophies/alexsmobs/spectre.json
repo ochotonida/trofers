@@ -1,14 +1,14 @@
 {
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "alexsmobs"
+    }
+  ],
   "colors": {
     "accent": "#C0C6FF",
     "base": "#606060"
   },
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "alexsmobs"
-    }
-  ],
   "display": {
     "offset": {
       "z": -1.5
