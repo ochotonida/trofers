@@ -1,48 +1,49 @@
 package trofers.trophy.components;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
-import trofers.util.JsonHelper;
 
 import java.util.UUID;
 import java.util.function.Function;
 
 public class EntityInfo {
 
-    private final EntityType<?> type;
-    private final CompoundTag nbt;
-    private final boolean isAnimated;
+    private final ResourceLocation id;
+    private final CompoundTag tag;
+
+    private static final Codec<ResourceLocation> ENTITY_ID_CODEC = ResourceLocation.CODEC.comapFlatMap(id ->
+            BuiltInRegistries.ENTITY_TYPE.containsKey(id)
+                    ? DataResult.success(id)
+                    : DataResult.error(() -> String.format("Unknown entity type %s", id)),
+            Function.identity()
+    );
+    public static final Codec<EntityInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            ENTITY_ID_CODEC.fieldOf("id").forGetter(entityInfo -> entityInfo.id),
+            CompoundTag.CODEC.optionalFieldOf("tag", new CompoundTag()).forGetter(entityInfo -> entityInfo.tag)
+    ).apply(instance, EntityInfo::new));
 
     @Nullable
     private Entity entity;
 
-    public EntityInfo(EntityType<?> type, CompoundTag nbt, boolean isAnimated) {
-        this.type = type;
-        this.nbt = nbt;
-        this.isAnimated = isAnimated;
+    public EntityInfo(ResourceLocation id, CompoundTag tag) {
+        this.id = id;
+        this.tag = tag;
     }
 
-    @Nullable
-    public EntityType<?> getType() {
-        return type;
+    public ResourceLocation id() {
+        return id;
     }
 
-    public CompoundTag getTag() {
-        return nbt;
-    }
-
-    public boolean isAnimated() {
-        return isAnimated;
+    public CompoundTag tag() {
+        return tag;
     }
 
     @Nullable
@@ -54,45 +55,20 @@ public class EntityInfo {
     }
 
     private void createEntity(Level level) {
-        if (type == null || !type.requiredFeatures().isSubsetOf(level.enabledFeatures())) {
+        if (!BuiltInRegistries.ENTITY_TYPE.containsKey(id)) {
+            return;
+        }
+        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(id);
+        if (!type.requiredFeatures().isSubsetOf(level.enabledFeatures())) {
             return;
         }
 
-        CompoundTag entityTag = this.nbt.copy();
-        entityTag.putString("id", BuiltInRegistries.ENTITY_TYPE.getKey(getType()).toString());
+        CompoundTag entityTag = this.tag.copy();
+        entityTag.putString("id", id.toString());
         if (!entityTag.hasUUID("UUID")) {
             entityTag.putUUID("UUID", new UUID(1L, 1L));
         }
 
         entity = EntityType.loadEntityRecursive(entityTag, level, Function.identity());
-    }
-
-    public void toNetwork(FriendlyByteBuf buffer) {
-        buffer.writeResourceLocation(BuiltInRegistries.ENTITY_TYPE.getKey(getType()));
-        buffer.writeNbt(nbt);
-        buffer.writeBoolean(isAnimated);
-    }
-
-    public static EntityInfo fromNetwork(FriendlyByteBuf buffer) {
-        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(buffer.readResourceLocation());
-        return new EntityInfo(type, buffer.readNbt(), buffer.readBoolean());
-    }
-
-    public static EntityInfo fromJson(JsonObject object) {
-        ResourceLocation typeID = new ResourceLocation(GsonHelper.getAsString(object, "type"));
-        if (!BuiltInRegistries.ENTITY_TYPE.containsKey(typeID)) {
-            throw new JsonParseException(String.format("Unknown entity type %s", typeID));
-        }
-        EntityType<?> type = BuiltInRegistries.ENTITY_TYPE.get(typeID);
-        CompoundTag nbt = new CompoundTag();
-        if (object.has("nbt")) {
-            JsonElement nbtElement = object.get("nbt");
-            nbt = JsonHelper.deserializeNBT(nbtElement);
-        }
-        boolean isAnimated = false;
-        if (object.has("animated")) {
-            isAnimated = GsonHelper.getAsBoolean(object, "animated");
-        }
-        return new EntityInfo(type, nbt, isAnimated);
     }
 }

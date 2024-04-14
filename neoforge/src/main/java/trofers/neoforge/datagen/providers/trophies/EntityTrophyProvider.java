@@ -15,16 +15,12 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.trophy.builder.EntityTrophyBuilder;
 import trofers.trophy.builder.ItemTrophyBuilder;
 import trofers.trophy.builder.TrophyBuilder;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public abstract class EntityTrophyProvider extends TrophyProvider {
 
@@ -95,7 +91,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
         return builder;
     }
 
-    @SuppressWarnings({"ConstantConditions", "unused"})
+    @SuppressWarnings({"unused"})
     protected ItemTrophyBuilder itemTrophyBuilder(EntityType<?> entityType) {
         ResourceLocation entityTypeId = BuiltInRegistries.ENTITY_TYPE.getKey(entityType);
         ItemTrophyBuilder builder = new ItemTrophyBuilder();
@@ -172,7 +168,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
         }
 
         @Override
-        public EntityTrophyWithLootBuilder lootTable(@Nullable ResourceLocation lootTable) {
+        public EntityTrophyWithLootBuilder lootTable(Optional<ResourceLocation> lootTable) {
             cooldown(getDefaultLootCooldown());
             return super.lootTable(lootTable);
         }
@@ -184,7 +180,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
             lootTables.add(new LootTableProvider.SubProviderEntry(
                     () -> builder -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS)
             );
-            lootTable(location);
+            lootTable(Optional.of(location));
             return this;
         }
 

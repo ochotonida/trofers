@@ -56,7 +56,7 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         BakedModel model = renderer.getModel(trophy.item(), Minecraft.getInstance().level, null, 0);
 
         float yOffset = 0.25F;
-        translateRotate(poseStack, trophy, trophyHeight, yOffset, ticks);
+        applyDisplayTransforms(poseStack, trophy, trophyHeight, yOffset, ticks);
 
         poseStack.translate(0, 0.25, 0);
 
@@ -81,23 +81,19 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         poseStack.pushPose();
 
         float entityHeight = entity.getBbHeight();
-        translateRotate(poseStack, trophy, trophyHeight, entityHeight / 2, ticks);
-
-        if (!entityInfo.isAnimated()) {
-            ticks = 0;
-        }
+        applyDisplayTransforms(poseStack, trophy, trophyHeight, entityHeight / 2, ticks);
 
         poseStack.mulPose(Axis.YP.rotationDegrees(180));
 
-        Minecraft.getInstance().getEntityRenderDispatcher().render(entity, 0, 0, 0, 0, ticks, poseStack, multiBufferSource, light);
+        Minecraft.getInstance().getEntityRenderDispatcher().render(entity, 0, 0, 0, 0, 0, poseStack, multiBufferSource, light);
         poseStack.popPose();
     }
 
-    private static void translateRotate(PoseStack poseStack, Trophy trophy, int trophyHeight, float yRotationOffset, float ticks) {
+    private static void applyDisplayTransforms(PoseStack poseStack, Trophy trophy, int trophyHeight, float yRotationOffset, float ticks) {
         yRotationOffset *= trophy.display().scale();
-        float animationProgress = 6 * ticks * trophy.animation().speed();
+        float animationProgress = 6 * ticks * (float) trophy.animation().speed();
 
-        poseStack.translate(0, (trophyHeight + trophy.display().yOffset()) / 16D, 0);
+        poseStack.translate(0, (trophyHeight + trophy.display().offset().y()) / 16D, 0);
         poseStack.translate(0, yRotationOffset, 0);
         if (trophy.animation().type() == Animation.Type.SPINNING) {
             poseStack.mulPose(Axis.YP.rotationDegrees(animationProgress));
@@ -108,14 +104,14 @@ public class TrophyBlockEntityRenderer implements BlockEntityRenderer<TrophyBloc
         }
         poseStack.translate(0, -yRotationOffset, 0);
 
-        poseStack.translate(trophy.display().xOffset() / 16D, 0, 0);
-        poseStack.translate(0, 0, trophy.display().zOffset() / 16D);
+        poseStack.translate(trophy.display().offset().x() / 16D, 0, 0);
+        poseStack.translate(0, 0, trophy.display().offset().z() / 16D);
 
-        poseStack.mulPose(Axis.XP.rotationDegrees(trophy.display().xRotation()));
-        poseStack.mulPose(Axis.YP.rotationDegrees(trophy.display().yRotation()));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(trophy.display().zRotation()));
+        poseStack.mulPose(Axis.XP.rotationDegrees((float) trophy.display().rotation().x()));
+        poseStack.mulPose(Axis.YP.rotationDegrees((float) trophy.display().rotation().y()));
+        poseStack.mulPose(Axis.ZP.rotationDegrees((float) trophy.display().rotation().z()));
 
-        float scale = trophy.display().scale();
+        float scale = (float) trophy.display().scale();
         poseStack.scale(scale, scale, scale);
     }
 }

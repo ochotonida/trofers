@@ -2,6 +2,7 @@ package trofers.trophy.builder;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +10,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.trophy.Trophy;
@@ -71,17 +73,17 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
     }
 
     public T offset(double xOffset, double yOffset, double zOffset) {
-        displayInfo = new DisplayInfo((float) xOffset, (float) yOffset, (float) zOffset, displayInfo.xRotation(), displayInfo.yRotation(), displayInfo.zRotation(), displayInfo.scale());
+        displayInfo = new DisplayInfo(new Vec3(xOffset, yOffset, zOffset), displayInfo.rotation(), displayInfo.scale());
         return (T) this;
     }
 
     public T rotate(double xRotation, double yRotation, double zRotation) {
-        displayInfo = new DisplayInfo(displayInfo.xOffset(), displayInfo.yOffset(), displayInfo.zOffset(), (float) xRotation, (float) yRotation, (float) zRotation, displayInfo.scale());
+        displayInfo = new DisplayInfo(displayInfo.offset(), new Vec3(xRotation, yRotation, zRotation), displayInfo.scale());
         return (T) this;
     }
 
     public T scale(double scale) {
-        displayInfo = new DisplayInfo(displayInfo.xOffset(), displayInfo.yOffset(), displayInfo.zOffset(), displayInfo.xRotation(), displayInfo.yRotation(), displayInfo.zRotation(), (float) scale);
+        displayInfo = new DisplayInfo(displayInfo.offset(), displayInfo.rotation(), scale);
         return (T) this;
     }
 
@@ -128,11 +130,11 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         return sound(soundEvent, 1, 1);
     }
 
-    private T rewardInfo(@Nullable ResourceLocation lootTable, CompoundTag statusEffect, int cooldown) {
+    private T rewardInfo(Optional<ResourceLocation> lootTable, CompoundTag statusEffect, int cooldown) {
         return effectInfo(effectInfo.sound(), new EffectInfo.RewardInfo(lootTable, statusEffect, cooldown));
     }
 
-    public T lootTable(@Nullable ResourceLocation lootTable) {
+    public T lootTable(Optional<ResourceLocation> lootTable) {
         return rewardInfo(lootTable, effectInfo.rewards().statusEffect(), effectInfo.rewards().cooldown());
     }
 
@@ -179,11 +181,15 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         }
 
         if (!displayInfo.equals(DisplayInfo.NONE)) {
-            result.add("display", displayInfo.toJson());
+            result.add("display", DisplayInfo.CODEC.encodeStart(JsonOps.INSTANCE, displayInfo)
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getAsJsonObject());
         }
 
         if (!animation.type().equals(Animation.Type.FIXED)) {
-            result.add("animation", animation.toJson());
+            result.add("animation", Animation.CODEC.encodeStart(JsonOps.INSTANCE, animation)
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getAsJsonObject());
         }
 
         displayItemToJson(result);

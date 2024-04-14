@@ -3,6 +3,7 @@ package trofers.trophy;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.ResourceLocationException;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -13,6 +14,7 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
+import trofers.Trofers;
 import trofers.registry.ModResourceLoaders;
 import trofers.trophy.components.*;
 import trofers.util.JsonHelper;
@@ -69,11 +71,11 @@ public record Trophy(
         buffer.writeResourceLocation(id);
         buffer.writeBoolean(name.isPresent());
         name.ifPresent(buffer::writeComponent);
-        display.toNetwork(buffer);
-        animation.toNetwork(buffer);
+        buffer.writeJsonWithCodec(DisplayInfo.CODEC, display);
+        buffer.writeJsonWithCodec(Animation.CODEC, animation);
         buffer.writeItem(item);
         buffer.writeBoolean(entity.isPresent());
-        entity.ifPresent(entityInfo -> entityInfo.toNetwork(buffer));
+        entity.ifPresent(entityInfo -> buffer.writeJsonWithCodec(EntityInfo.CODEC, entityInfo));
         colors.toNetwork(buffer);
         effects.toNetwork(buffer);
         for (Component line : tooltip) {
@@ -90,12 +92,12 @@ public record Trophy(
         if (buffer.readBoolean()) {
             name = buffer.readComponent();
         }
-        DisplayInfo display = DisplayInfo.fromNetwork(buffer);
-        Animation animation = Animation.fromNetwork(buffer);
+        DisplayInfo display = buffer.readJsonWithCodec(DisplayInfo.CODEC);
+        Animation animation = buffer.readJsonWithCodec(Animation.CODEC);
         ItemStack item = buffer.readItem();
         EntityInfo entity = null;
         if (buffer.readBoolean()) {
-            entity = EntityInfo.fromNetwork(buffer);
+            entity = buffer.readJsonWithCodec(EntityInfo.CODEC);
         }
         ColorInfo colors = ColorInfo.fromNetwork(buffer);
         EffectInfo effects = EffectInfo.fromNetwork(buffer);
@@ -123,7 +125,9 @@ public record Trophy(
 
         EntityInfo entity = null;
         if (object.has("entity")) {
-            entity = EntityInfo.fromJson(GsonHelper.getAsJsonObject(object, "entity"));
+            entity = EntityInfo.CODEC.decode(JsonOps.INSTANCE, GsonHelper.getAsJsonObject(object, "entity"))
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getFirst();
         }
 
         ItemStack item = ItemStack.EMPTY;
@@ -133,12 +137,16 @@ public record Trophy(
 
         Animation animation = Animation.STATIC;
         if (object.has("animation")) {
-            animation = Animation.fromJson(GsonHelper.getAsJsonObject(object, "animation"));
+            animation = Animation.CODEC.decode(JsonOps.INSTANCE, GsonHelper.getAsJsonArray(object, "animation"))
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getFirst();
         }
 
         DisplayInfo display = DisplayInfo.NONE;
         if (object.has("display")) {
-            display = DisplayInfo.fromJson(GsonHelper.getAsJsonObject(object, "display"));
+            display = DisplayInfo.CODEC.decode(JsonOps.INSTANCE, GsonHelper.getAsJsonObject(object, "display"))
+                    .getOrThrow(false, Trofers.LOGGER::error)
+                    .getFirst();
         }
 
         ColorInfo colors = ColorInfo.NONE;

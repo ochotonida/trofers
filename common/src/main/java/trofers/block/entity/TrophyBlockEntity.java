@@ -124,7 +124,7 @@ public class TrophyBlockEntity extends BlockEntity {
         giveRewards(rewards, player, hand);
 
         return sound != null
-                || rewards.lootTable() != null && Trofers.CONFIG.general.enableTrophyLoot
+                || rewards.lootTable().isPresent() && Trofers.CONFIG.general.enableTrophyLoot
                 || !rewards.statusEffect().isEmpty() && Trofers.CONFIG.general.enableTrophyEffects;
     }
 
@@ -148,7 +148,7 @@ public class TrophyBlockEntity extends BlockEntity {
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
         if (player.level().isClientSide()) {
             return;
-        } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable() == null)
+        } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable().isEmpty())
                 && (!Trofers.CONFIG.general.enableTrophyEffects || rewards.statusEffect().isEmpty())) {
             return;
         }
@@ -165,7 +165,7 @@ public class TrophyBlockEntity extends BlockEntity {
 
         restartRewardCooldown();
         rewardLoot(rewards, player, hand);
-        rewardPotionEffect(rewards, player);
+        rewardMobEffect(rewards, player);
     }
 
     private Component getTime(int ticks) {
@@ -191,19 +191,18 @@ public class TrophyBlockEntity extends BlockEntity {
         }
     }
 
-    private void rewardPotionEffect(EffectInfo.RewardInfo rewards, Player player) {
+    private void rewardMobEffect(EffectInfo.RewardInfo rewards, Player player) {
         if (Trofers.CONFIG.general.enableTrophyEffects) {
-            MobEffectInstance potionEffect = rewards.createStatusEffect();
-            if (potionEffect != null) {
-                player.addEffect(potionEffect);
+            MobEffectInstance mobEffect = rewards.createMobEffect();
+            if (mobEffect != null) {
+                player.addEffect(mobEffect);
             }
         }
     }
 
     private void rewardLoot(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
         if (Trofers.CONFIG.general.enableTrophyLoot) {
-            ResourceLocation lootTableLocation = rewards.lootTable();
-            if (lootTableLocation != null) {
+            rewards.lootTable().ifPresent(lootTableLocation -> {
                 // noinspection ConstantConditions
                 LootTable lootTable = level.getServer().getLootData().getLootTable(lootTableLocation);
                 if (lootTable == LootTable.EMPTY) {
@@ -212,7 +211,7 @@ public class TrophyBlockEntity extends BlockEntity {
                 }
                 LootParams parameters = createLootContext(player, player.getItemInHand(hand));
                 lootTable.getRandomItems(parameters).forEach(this::spawnAtLocation);
-            }
+            });
         }
     }
 
@@ -226,7 +225,6 @@ public class TrophyBlockEntity extends BlockEntity {
                 .create(LootContextParamSets.BLOCK);
     }
 
-    @Nullable
     public void spawnAtLocation(ItemStack stack) {
         if (!stack.isEmpty() && level != null && !level.isClientSide) {
             ItemEntity item = new ItemEntity(
