@@ -30,7 +30,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .sound(SoundEvents.AXOLOTL_IDLE_AIR)
                 .putInt("Variant", 0);
         builder(EntityType.BAT)
-                .accentColor(0x75653f)
+                .accentColor(0x835f80)
                 .mobEffect(MobEffects.NIGHT_VISION, 20);
         builder(EntityType.BEE)
                 .accentColor(0xebc542)
@@ -39,6 +39,9 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .loot(Items.BLAZE_POWDER)
                 .cooldown(16 * 60)
                 .accentColor(0xede746);
+        builder(EntityType.BREEZE)
+                .accentColor(0x9a8cbd)
+                .sound(SoundEvents.BREEZE_JUMP);
         builder(EntityType.CAMEL)
                 .accentColor(0xfbc268);
         builder(EntityType.CAT)

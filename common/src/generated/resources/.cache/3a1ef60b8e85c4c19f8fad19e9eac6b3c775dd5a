@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-14T21:56:18.5031949	Trophies
+// 1.20.4	2024-04-15T18:37:34.1691849	Trophies
 ba170fb5ce776389d0d024a360c9aaddbf547fe9 data/trofers/trofers/trophies/ad_astra/corrupted_lunarian.json
 84328fd7abfea50d3004b6a42af933ccd21ddb1c data/trofers/trofers/trophies/ad_astra/glacian_ram.json
 633023db2e68650e6d1003e89352fc634e1945d6 data/trofers/trofers/trophies/ad_astra/lunarian.json
@@ -101,9 +101,10 @@ f28c116fb4b2eaf5a04ebabbf787af8bae65205e data/trofers/trofers/trophies/alexsmobs
 64fd8962335b90b4a36550b1e67654db5098b7ca data/trofers/trofers/trophies/alexsmobs/warped_toad.json
 d6d3d1c3a2e503bc84e5bdd75be9b640048ec476 data/trofers/trofers/trophies/allay.json
 73decd175d0dede95625b57aa38cef2a6b2f203d data/trofers/trofers/trophies/axolotl.json
-0f0c5b7fc8013dcebbb1bb3af6126c1d1d32241f data/trofers/trofers/trophies/bat.json
+8595e9115983c351904c1da5f370588f1905ea09 data/trofers/trofers/trophies/bat.json
 cde6ca339507d7645a6a470549bcb88db8afdc6c data/trofers/trofers/trophies/bee.json
 e4d5f709be35d049e8c6f333088fa89d37ea4d03 data/trofers/trofers/trophies/blaze.json
+d3b0df332ff211a154b87ee8ed54bc24e9adc766 data/trofers/trofers/trophies/breeze.json
 f5f6e984601d067799b7d6d513121ec9156e2f52 data/trofers/trofers/trophies/camel.json
 897b133d8c66019afbd2b825e609785fb51a4f91 data/trofers/trofers/trophies/cat.json
 6f55542263330e05badaa9647e450aaa7a650e91 data/trofers/trofers/trophies/cave_spider.json

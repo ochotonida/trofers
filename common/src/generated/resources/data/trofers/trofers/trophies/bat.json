@@ -1,6 +1,6 @@
 {
   "colors": {
-    "accent": "#75653F",
+    "accent": "#835F80",
     "base": "#606060"
   },
   "display": {
@@ -21,7 +21,7 @@
     "id": "minecraft:bat"
   },
   "name": {
-    "color": "#75653F",
+    "color": "#835F80",
     "translate": "trophy.trofers.composed",
     "with": [
       {
