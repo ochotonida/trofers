@@ -17,6 +17,6 @@ public class CodecResourceLoader<T> extends ResourceLoader<T> {
 
     @Override
     protected T deserializeResource(ResourceLocation id, JsonElement element) {
-        return codec.decode(JsonOps.INSTANCE, element).getOrThrow(false, error -> {}).getFirst();
+        return codec.parse(JsonOps.INSTANCE, element).getOrThrow(false, error -> {});
     }
 }

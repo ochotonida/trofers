@@ -6,11 +6,11 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import trofers.data.ModCodecs;
 
 import java.util.UUID;
 import java.util.function.Function;
@@ -28,8 +28,8 @@ public class EntityInfo {
     );
 
     public static final Codec<EntityInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            ENTITY_ID_CODEC.fieldOf("id").forGetter(entityInfo -> entityInfo.id),
-            ExtraCodecs.strictOptionalField(CompoundTag.CODEC, "tag", new CompoundTag()).forGetter(entityInfo -> entityInfo.tag)
+            ModCodecs.requiredField("id", ENTITY_ID_CODEC).forGetter(entityInfo -> entityInfo.id),
+            ModCodecs.defaultField("tag", new CompoundTag(), CompoundTag.CODEC).forGetter(entityInfo -> entityInfo.tag)
     ).apply(instance, EntityInfo::new));
 
     @Nullable

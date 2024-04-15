@@ -8,25 +8,25 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import trofers.data.ModCodecs;
 
 import java.util.Optional;
-import java.util.function.Function;
 
 public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
 
     public static final EffectInfo NONE = new EffectInfo(Optional.empty(), RewardInfo.NONE);
 
     public static final Codec<EffectInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            ExtraCodecs.strictOptionalField(SoundInfo.CODEC, "sound").forGetter(EffectInfo::sound),
-            ExtraCodecs.strictOptionalField(RewardInfo.CODEC, "rewards", RewardInfo.NONE).forGetter(EffectInfo::rewards)
+            ModCodecs.optionalField("sound", SoundInfo.CODEC).forGetter(EffectInfo::sound),
+            ModCodecs.defaultField("rewards", RewardInfo.NONE, RewardInfo.CODEC).forGetter(EffectInfo::rewards)
     ).apply(instance, EffectInfo::new));
 
     public record SoundInfo(ResourceLocation soundEvent, float volume, float pitch) {
 
         public static final Codec<SoundInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                ResourceLocation.CODEC.fieldOf("id").forGetter(SoundInfo::soundEvent),
-                ExtraCodecs.strictOptionalField(Codec.FLOAT, "volume", 1F).forGetter(SoundInfo::volume),
-                ExtraCodecs.strictOptionalField(Codec.FLOAT, "pitch", 1F).forGetter(SoundInfo::pitch)
+                ModCodecs.requiredField("id", ResourceLocation.CODEC).forGetter(SoundInfo::soundEvent),
+                ModCodecs.defaultField("volume", 1F, Codec.FLOAT).forGetter(SoundInfo::volume),
+                ModCodecs.defaultField("pitch", 1F, Codec.FLOAT).forGetter(SoundInfo::pitch)
         ).apply(instance, SoundInfo::new));
     }
 
@@ -35,9 +35,9 @@ public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
         public static final RewardInfo NONE = new RewardInfo(Optional.empty(), Optional.empty(), 0);
 
         public static final Codec<RewardInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                ExtraCodecs.strictOptionalField(ResourceLocation.CODEC, "loot_table").forGetter(RewardInfo::lootTable),
-                ExtraCodecs.strictOptionalField(MobEffectInfo.CODEC, "mob_effect").forGetter(RewardInfo::mobEffect),
-                ExtraCodecs.strictOptionalField(ExtraCodecs.NON_NEGATIVE_INT, "cooldown", 0).forGetter(RewardInfo::cooldown)
+                ModCodecs.optionalField("loot_table", ResourceLocation.CODEC).forGetter(RewardInfo::lootTable),
+                ModCodecs.optionalField("mob_effect", MobEffectInfo.CODEC).forGetter(RewardInfo::mobEffect),
+                ModCodecs.defaultField("cooldown", 0, ExtraCodecs.NON_NEGATIVE_INT).forGetter(RewardInfo::cooldown)
         ).apply(instance, RewardInfo::new));
     }
 
@@ -51,18 +51,19 @@ public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
         );
 
         private static final Codec<MobEffectInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                MOB_EFFECT_CODEC.fieldOf("id").forGetter(MobEffectInfo::mobEffect),
-                ExtraCodecs.strictOptionalField(
-                        Codec.BYTE.comapFlatMap(amplifier -> amplifier >= 0
-                                ? DataResult.success(amplifier)
-                                : DataResult.error(() -> "Amplifier cannot be negative"),
-                                Function.identity()
-                        ),
-                "amplifier", (byte) 0).forGetter(MobEffectInfo::amplifier),
-                ExtraCodecs.POSITIVE_INT.fieldOf("duration").forGetter(MobEffectInfo::duration),
-                ExtraCodecs.strictOptionalField(Codec.BOOL, "ambient", false).forGetter(MobEffectInfo::ambient),
-                ExtraCodecs.strictOptionalField(Codec.BOOL, "show_particles", true).forGetter(MobEffectInfo::showParticles),
-                ExtraCodecs.strictOptionalField(Codec.BOOL, "show_icon", true).forGetter(MobEffectInfo::showIcon)
+                ModCodecs.requiredField("id", MOB_EFFECT_CODEC).forGetter(MobEffectInfo::mobEffect),
+                ModCodecs.defaultField("amplifier", (byte) 0,
+                        Codec.INT.comapFlatMap(
+                                amplifier -> amplifier >= 0 && amplifier <= 127
+                                        ? DataResult.success(amplifier.byteValue())
+                                        : DataResult.error(() -> "Amplifier out of range [0, 127]: " + amplifier),
+                                Byte::intValue
+                        )
+                ).forGetter(MobEffectInfo::amplifier),
+                ModCodecs.requiredField("duration", ExtraCodecs.POSITIVE_INT).forGetter(MobEffectInfo::duration),
+                ModCodecs.defaultField("ambient", false, Codec.BOOL).forGetter(MobEffectInfo::ambient),
+                ModCodecs.defaultField("show_particles", true, Codec.BOOL).forGetter(MobEffectInfo::showParticles),
+                ModCodecs.defaultField("show_icon", true, Codec.BOOL).forGetter(MobEffectInfo::showIcon)
         ).apply(instance, MobEffectInfo::new));
 
         public MobEffectInstance createInstance() {

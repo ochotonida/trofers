@@ -14,7 +14,6 @@ import trofers.Trofers;
 import trofers.registry.ModResourceLoaders;
 import trofers.trophy.Trophy;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -32,7 +31,7 @@ public abstract class ConditionalTrophyDrops {
     }
 
     protected static <T extends ConditionalTrophyDrops> Products.P2<RecordCodecBuilder.Mu<T>, LootItemCondition[], Item> codecStart(RecordCodecBuilder.Instance<T> instance) {
-        return instance.group(Codecs.LOOT_CONDITIONS_CODEC
+        return instance.group(ModCodecs.LOOT_CONDITIONS_CODEC
                         .fieldOf("loot_conditions").forGetter(drops -> drops.conditions))
                 .and(BuiltInRegistries.ITEM.byNameCodec()
                         .fieldOf("trophy_base").forGetter(drops -> drops.trophyBase));

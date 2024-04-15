@@ -8,10 +8,10 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentSerialization;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
+import trofers.data.ModCodecs;
 import trofers.registry.ModResourceLoaders;
 import trofers.trophy.components.*;
 
@@ -31,20 +31,20 @@ public record Trophy(
 ) {
 
     public static final Codec<Trophy> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            ExtraCodecs.strictOptionalField(ComponentSerialization.CODEC, "name").forGetter(Trophy::name),
-            ExtraCodecs.strictOptionalField(
-                    ExtraCodecs.<List<Component>>withAlternative(
+            ModCodecs.optionalField("name", ComponentSerialization.CODEC).forGetter(Trophy::name),
+            ModCodecs.defaultField("tooltip", List.of(),
+                    ModCodecs.<List<Component>>withAlternative(
                             ComponentSerialization.CODEC.xmap(List::of, list -> list.get(0)),
-                            ComponentSerialization.CODEC.listOf()
-                    ), "tooltip", List.of()
+                            ModCodecs.list(ComponentSerialization.CODEC)
+                    )
             ).forGetter(Trophy::tooltip),
-            ExtraCodecs.strictOptionalField(DisplayInfo.CODEC, "display", DisplayInfo.NONE).forGetter(Trophy::display),
-            ExtraCodecs.strictOptionalField(Animation.CODEC, "animation", Animation.STATIC).forGetter(Trophy::animation),
-            ExtraCodecs.strictOptionalField(ItemStack.CODEC, "item", ItemStack.EMPTY).forGetter(Trophy::item),
-            ExtraCodecs.strictOptionalField(EntityInfo.CODEC, "entity").forGetter(Trophy::entity),
-            ExtraCodecs.strictOptionalField(ColorInfo.CODEC, "colors", ColorInfo.NONE).forGetter(Trophy::colors),
-            ExtraCodecs.strictOptionalField(EffectInfo.CODEC, "effects", EffectInfo.NONE).forGetter(Trophy::effects),
-            ExtraCodecs.strictOptionalField(Codec.BOOL, "is_hidden", false).forGetter(Trophy::isHidden)
+            ModCodecs.defaultField("display", DisplayInfo.NONE, DisplayInfo.CODEC).forGetter(Trophy::display),
+            ModCodecs.defaultField("animation", Animation.STATIC, Animation.CODEC).forGetter(Trophy::animation),
+            ModCodecs.defaultField("item", ItemStack.EMPTY, ItemStack.CODEC).forGetter(Trophy::item),
+            ModCodecs.optionalField("entity", EntityInfo.CODEC).forGetter(Trophy::entity),
+            ModCodecs.defaultField("colors", ColorInfo.NONE, ColorInfo.CODEC).forGetter(Trophy::colors),
+            ModCodecs.defaultField("effects", EffectInfo.NONE, EffectInfo.CODEC).forGetter(Trophy::effects),
+            ModCodecs.defaultField("is_hidden", false, Codec.BOOL).forGetter(Trophy::isHidden)
     ).apply(instance, Trophy::new));
 
     @Nullable
