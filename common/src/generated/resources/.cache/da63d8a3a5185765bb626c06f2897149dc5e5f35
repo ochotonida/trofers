@@ -1,7 +1,7 @@
-// 1.20.4	2024-04-14T21:56:18.514195	Trophy Drops
-8c8ba7386580bacd36aa9afea482ec71f7e00b8e data/trofers/trofers/entity_drops/ad_astra_trophies.json
-039d84466a730d1198d3ae7513e2c50820d6806a data/trofers/trofers/entity_drops/alexsmobs_trophies.json
-76fb7ae29b1c86d124be111000d398d8b64f619b data/trofers/trofers/entity_drops/quark_trophies.json
-7781957bbaaf89bed901bc1ee8f48ccd287ba865 data/trofers/trofers/entity_drops/tconstruct_trophies.json
-3e93c990eafc4829333fd586c369202b9d6e3f7e data/trofers/trofers/entity_drops/thermal_trophies.json
-f44a781e4397a1437d8b1431eddb6e4ee241c7d1 data/trofers/trofers/entity_drops/vanilla_trophies.json
+// 1.20.4	2024-04-15T16:16:29.5372216	Trophy Drops
+2c9abb6aae06239817ad519da5a80ca787f83af9 data/trofers/trofers/entity_drops/ad_astra_trophies.json
+58b9b604c7630db432eb71cccd7c51cbd8cb1cae data/trofers/trofers/entity_drops/alexsmobs_trophies.json
+3240209789aac443eabcc78c94f126000ea1020a data/trofers/trofers/entity_drops/quark_trophies.json
+673a866e0e6fb3e031d90e9c9ab3d845e5b7f741 data/trofers/trofers/entity_drops/tconstruct_trophies.json
+cba45184e57195e0e1dbd0ddc1df6989ecb05a7c data/trofers/trofers/entity_drops/thermal_trophies.json
+8a50d9a8851091c9f6d22d4201d075107729929a data/trofers/trofers/entity_drops/vanilla_trophies.json

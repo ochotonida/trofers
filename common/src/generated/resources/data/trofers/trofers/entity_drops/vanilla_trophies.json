@@ -1,5 +1,5 @@
 {
-  "loot_conditions": [
+  "conditions": [
     {
       "condition": "minecraft:killed_by_player"
     },

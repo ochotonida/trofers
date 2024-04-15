@@ -32,7 +32,7 @@ public abstract class ConditionalTrophyDrops {
 
     protected static <T extends ConditionalTrophyDrops> Products.P2<RecordCodecBuilder.Mu<T>, LootItemCondition[], Item> codecStart(RecordCodecBuilder.Instance<T> instance) {
         return instance.group(ModCodecs.LOOT_CONDITIONS_CODEC
-                        .fieldOf("loot_conditions").forGetter(drops -> drops.conditions))
+                        .fieldOf("conditions").forGetter(drops -> drops.conditions))
                 .and(BuiltInRegistries.ITEM.byNameCodec()
                         .fieldOf("trophy_base").forGetter(drops -> drops.trophyBase));
     }
