@@ -55,9 +55,9 @@ public class TrophyBlockEntity extends BlockEntity {
         return ModResourceLoaders.TROPHIES.get(trophyID);
     }
 
-    public void setTrophy(@Nullable ResourceLocation trophyId) {
+    public void setTrophy(@Nullable ResourceLocation trophyId, ServerPlayer player) {
         this.trophyID = trophyId;
-        restartRewardCooldown();
+        resetRewardCooldown(player);
         onContentsChanged();
     }
 
@@ -81,17 +81,13 @@ public class TrophyBlockEntity extends BlockEntity {
         return 0;
     }
 
-    public void restartRewardCooldown() {
+    public void resetRewardCooldown(@Nullable ServerPlayer player) {
         Trophy trophy = getTrophy();
-        if (trophy != null && trophy.effects().rewards().cooldown() > 0) {
+        if ((player == null || !player.isCreative()) && trophy != null && trophy.effects().rewards().cooldown() > 0) {
             rewardCooldown = trophy.effects().rewards().cooldown();
         } else {
             rewardCooldown = 0;
         }
-    }
-
-    public void removeCooldown() {
-        rewardCooldown = 0;
     }
 
     public void tick() {
@@ -142,7 +138,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
-        if (player.level().isClientSide()) {
+        if (!(player instanceof ServerPlayer serverPlayer)) {
             return;
         } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable().isEmpty())
                 && (!Trofers.CONFIG.general.enableTrophyEffects || rewards.mobEffect().isEmpty())) {
@@ -159,7 +155,7 @@ public class TrophyBlockEntity extends BlockEntity {
             return;
         }
 
-        restartRewardCooldown();
+        resetRewardCooldown(serverPlayer);
         rewardLoot(rewards, player, hand);
         rewardMobEffect(rewards, player);
     }

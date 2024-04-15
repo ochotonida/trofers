@@ -246,7 +246,8 @@ public class TrophySelectionScreen extends Screen {
             NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophyId, blockPos));
             if (Minecraft.getInstance().player != null) {
                 if (Minecraft.getInstance().player.level().getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
-                    blockEntity.setTrophy(trophyId);
+                    // Don't wait on the server to sync the change back to the client
+                    blockEntity.setTrophy(trophyId, null);
                 }
             }
             onClose();

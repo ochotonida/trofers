@@ -36,7 +36,7 @@ public class SetTrophyPacket {
                         && player.level().isLoaded(blockPos)
                         && player.level().getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity
                 ) {
-                    blockEntity.setTrophy(trophyId);
+                    blockEntity.setTrophy(trophyId, player);
                 }
             });
         }

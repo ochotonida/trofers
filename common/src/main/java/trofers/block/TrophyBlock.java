@@ -5,6 +5,7 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -116,10 +117,8 @@ public class TrophyBlock extends BaseEntityBlock {
     @Override
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
         if (level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity
-                && placer instanceof Player player
-                && !level.isClientSide()
-                && player.isCreative()) {
-            blockEntity.removeCooldown();
+                && placer instanceof ServerPlayer player) {
+            blockEntity.resetRewardCooldown(player);
         }
     }
 
