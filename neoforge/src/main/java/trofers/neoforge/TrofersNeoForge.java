@@ -1,6 +1,7 @@
 package trofers.neoforge;
 
 import me.shedaniel.autoconfig.AutoConfig;
+import net.minecraft.server.level.ServerPlayer;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
@@ -45,16 +46,20 @@ public class TrofersNeoForge {
     }
 
     public void onAddReloadListener(AddReloadListenerEvent event) {
-        ModResourceLoaders.getLoaders().forEach(loader -> event.addListener(new ResourceReloadListenerNeoForge<>(loader)));
+        ModResourceLoaders.getLoaders().forEach(loader -> event.addListener(new ResourceReloadListenerNeoForge(loader)));
     }
 
     public void onDataPackReload(OnDatapackSyncEvent event) {
         if (event.getPlayer() != null) {
-            ModResourceLoaders.TROPHIES.sync(event.getPlayer());
+            syncResourceLoaders(event.getPlayer());
         } else {
-            event.getPlayerList().getPlayers().forEach(ModResourceLoaders.TROPHIES::sync);
+            event.getPlayerList().getPlayers().forEach(this::syncResourceLoaders);
             Trofers.onDataPackLoaded(event.getPlayerList().getServer());
         }
+    }
+
+    private void syncResourceLoaders(ServerPlayer player) {
+        ModResourceLoaders.getLoaders().forEach(loader -> loader.syncTo(player));
     }
 
     public void onServerAboutToStart(ServerAboutToStartEvent event) {

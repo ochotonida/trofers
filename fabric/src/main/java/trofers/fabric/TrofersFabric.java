@@ -14,16 +14,20 @@ public class TrofersFabric implements ModInitializer {
     public void onInitialize() {
         Trofers.init();
 
-        registerTrophyManager();
+        registerResourceLoaders();
 
-        ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register((player, joined) -> ModResourceLoaders.TROPHIES.sync(player));
+        ServerLifecycleEvents.SYNC_DATA_PACK_CONTENTS.register(
+                (player, joined) -> ModResourceLoaders.getLoaders().forEach(loader -> loader.syncTo(player))
+        );
 
         ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, resourceManager, success) -> Trofers.onDataPackLoaded(server));
         ServerLifecycleEvents.SERVER_STARTING.register(Trofers::onDataPackLoaded);
     }
 
-    public void registerTrophyManager() {
-        ModResourceLoaders.getLoaders().forEach(loader -> ResourceManagerHelper.get(PackType.SERVER_DATA)
-                .registerReloadListener(new ResourceReloadListenerFabric(loader)));
+    public void registerResourceLoaders() {
+        ModResourceLoaders.getLoaders().forEach(loader ->
+                ResourceManagerHelper.get(PackType.SERVER_DATA)
+                        .registerReloadListener(new ResourceReloadListenerFabric(loader))
+        );
     }
 }

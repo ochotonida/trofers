@@ -1,6 +1,7 @@
 package trofers.fabric.data;
 
 import com.google.gson.JsonElement;
+import com.mojang.serialization.Codec;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -9,6 +10,7 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import trofers.data.ResourceLoader;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class ResourceReloadListenerFabric extends SimpleJsonResourceReloadListener implements IdentifiableResourceReloadListener {
 
@@ -21,7 +23,11 @@ public class ResourceReloadListenerFabric extends SimpleJsonResourceReloadListen
 
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> resources, ResourceManager resourceManager, ProfilerFiller profilerFiller) {
-        loader.deserializeResources(resources);
+        loader.deserializeResources(resources, ResourceReloadListenerFabric::wrapCodec);
+    }
+
+    private static <T> Codec<Optional<T>> wrapCodec(Codec<T> codec) {
+        return codec.xmap(Optional::of, Optional::get);
     }
 
     @Override

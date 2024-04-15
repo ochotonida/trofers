@@ -9,6 +9,6 @@ public class NetworkHandler {
 
     public static void register() {
         CHANNEL.register(SetTrophyPacket.class, SetTrophyPacket::encode, SetTrophyPacket::new, SetTrophyPacket::apply);
-        CHANNEL.register(TrophySyncPacket.class, TrophySyncPacket::encode, TrophySyncPacket::new, TrophySyncPacket::apply);
+        CHANNEL.register(ResourceLoaderSyncPacket.class, ResourceLoaderSyncPacket::encode, ResourceLoaderSyncPacket::new, ResourceLoaderSyncPacket::apply);
     }
 }

@@ -1,34 +1,46 @@
 package trofers.registry;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.resources.ResourceLocation;
 import trofers.Trofers;
 import trofers.data.AdvancementDrops;
-import trofers.data.CodecResourceLoader;
 import trofers.data.EntityDrops;
 import trofers.data.ResourceLoader;
-import trofers.trophy.TrophyManager;
+import trofers.trophy.Trophy;
+import trofers.trophy.TrophySearchTreeManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
+// TODO use architectury api data pack registries
+@SuppressWarnings("SameParameterValue")
 public class ModResourceLoaders {
 
-    private static final List<ResourceLoader<?>> loaders = new ArrayList<>();
+    private static final Map<ResourceLocation, ResourceLoader<?>> loaders = new HashMap<>();
 
-    public static final TrophyManager TROPHIES = register(new TrophyManager());
-    public static final ResourceLoader<EntityDrops> ENTITY_DROPS = registerCodecLoader("entity_drops", EntityDrops.CODEC);
-    public static final ResourceLoader<AdvancementDrops> ADVANCEMENT_DROPS = registerCodecLoader("advancement_drops", AdvancementDrops.CODEC);
+    @SuppressWarnings("Convert2MethodRef")
+    public static final ResourceLoader<Trophy> TROPHIES = registerSynced("trophies", Trophy.CODEC, () -> TrophySearchTreeManager.createSearchTree());
+    public static final ResourceLoader<EntityDrops> ENTITY_DROPS = register("entity_drops", EntityDrops.CODEC);
+    public static final ResourceLoader<AdvancementDrops> ADVANCEMENT_DROPS = register("advancement_drops", AdvancementDrops.CODEC);
 
-    private static <T extends ResourceLoader<?>> T register(T loader) {
-        loaders.add(loader);
+    private static <T> ResourceLoader<T> register(String name, Codec<T> codec) {
+        ResourceLoader<T> loader = new ResourceLoader<>(Trofers.id(name), "%s/%s".formatted(Trofers.MOD_ID, name), codec);
+        loaders.put(Trofers.id(name), loader);
         return loader;
     }
 
-    private static <T> ResourceLoader<T> registerCodecLoader(String id, Codec<T> codec) {
-        return register(new CodecResourceLoader<>(Trofers.id(id), "trofers/%s".formatted(id), codec));
+    private static <T> ResourceLoader<T> registerSynced(String name, Codec<T> codec, Runnable onSyncToClient) {
+        ResourceLoader<T> loader = new ResourceLoader<>(Trofers.id(name), "%s/%s".formatted(Trofers.MOD_ID, name), codec, true, onSyncToClient);
+        loaders.put(Trofers.id(name), loader);
+        return loader;
     }
 
-    public static List<ResourceLoader<?>> getLoaders() {
-        return loaders;
+    public static Collection<ResourceLoader<?>> getLoaders() {
+        return loaders.values();
+    }
+
+    public static ResourceLoader<?> get(ResourceLocation id) {
+        return loaders.get(id);
     }
 }
