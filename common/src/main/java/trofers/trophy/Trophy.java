@@ -40,7 +40,7 @@ public record Trophy(
             ).forGetter(Trophy::tooltip),
             ModCodecs.defaultField("display", DisplayInfo.NONE, DisplayInfo.CODEC).forGetter(Trophy::display),
             ModCodecs.defaultField("animation", Animation.STATIC, Animation.CODEC).forGetter(Trophy::animation),
-            ModCodecs.defaultField("item", ItemStack.EMPTY, ItemStack.CODEC).forGetter(Trophy::item),
+            ModCodecs.defaultField("item", ItemStack.EMPTY, ModCodecs.ITEM_STACK_CODEC).forGetter(Trophy::item),
             ModCodecs.optionalField("entity", EntityInfo.CODEC).forGetter(Trophy::entity),
             ModCodecs.defaultField("colors", ColorInfo.NONE, ColorInfo.CODEC).forGetter(Trophy::colors),
             ModCodecs.defaultField("effects", EffectInfo.NONE, EffectInfo.CODEC).forGetter(Trophy::effects),

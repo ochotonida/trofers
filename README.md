@@ -20,39 +20,40 @@ Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following 
 
 * `name`: The name of the trophy as a text component (can be a string). 
   Information on how to format these can be found [here](https://minecraft.wiki/w/Raw_JSON_text_format).
-* `tooltip`: A list of text components, one component per line
+* `tooltip`: Either a single text component, or a list of text components, one for each tooltip line
 * `item`: An object describing the item the trophy should display. Contains the following fields:
-  * `item`: (_required_) The item ID
+  * `id`: (_required_) The item ID
   * `count`: The size of the item stack
-  * `nbt`: The NBT of the item stack, either as a JSON object or stringified NBT
+  * `tag`: The NBT tag of the item stack
 * `entity`: An object describing the entity the trophy should display. Contains the following fields:
-  * `type`: (_required_) The entity ID
-  * `nbt`: The NBT of the entity, either as a JSON object or stringified NBT
-* `display`: An object containing information about how to display the item/entity
-  * `offset`: An object describing the position of the item/entity
-    * `x`/`y`/`z`: Offset in 1/16-ths of a block
-  * `rotation`: An object describing the rotation of the item/entity
-    * `x`/`y`/`z`: Rotation in degrees
+  * `id`: (_required_) The entity ID
+  * `tag`: The NBT tag of the entity
+* `display`: An object containing information about how to display the item or entity
+  * `offset`: (_default = [0,0,0]_) Offset from the center of the trophy, as a list of 3 numbers. Distance is measured in 1/16-ths of a block
+  * `rotation`: (_default = [0,0,0]_ ) The rotation of the item or entity, as a list of 3 numbers. Each element is the rotation in degrees around that axis.
   * `scale`: (_default = 1_) The size of the item/entity
 * `animation`: An object describing the animation of the item/entity
   * `type`: (_default = "fixed"_) The animation type, either "fixed", "spinning" or "tumbling"
-  * `speed`: Affects the speed of the animation
+  * `speed`: (_default = 1_) Affects the speed of the animation
 * `colors`: An object describing the colors of the trophy base
-  * `base`/`accent`: A color, either in hexadecimal as a string (`"#RRGGBB"`), 
-    or as an object with `red`/`green`/`blue` fields between 0 and 255.
+  * `base`: (_default = "#FFFFFF"_) A color, either in hexadecimal as a string (`"#RRGGBB"`), 
+    or as a list of 3 integers between 0 and 255
+  * `accent` A color, formatted the same way as `base`
 * `effects`: An object describing effects that should apply when the trophy is right-clicked
   * `sound`: A sound to play when the trophy is right-clicked
-    * `soundEvent`: A sound event ID
+    * `id`: A sound event identifier
     * `volume`: (_default = 1_) the volume to play the sound event at
     * `pitch`: (_default = 1_) the pitch to play the sound event at
   * `rewards`: Rewards given to the player when the trophy is right-clicked
-    * `lootTable`: A loot table ID to generate loot from
-    * `statusEffect`: A potion effect to apply to the player
-      * `effect`: (_required_) The effect ID
+    * `loot_table`: A loot table ID to generate loot from
+    * `mob_effect`: A potion effect to apply to the player
+      * `id`: (_required_) The effect ID
       * `duration`: (_required_) The amount of time in ticks the effect should last
       * `amplifier`: (_default = 0_) The amplifier of the effect (effect level - 1)
-    * `cooldown`: The amount of time it takes in ticks before the reward(s) can be claimed again
-* `hidden`: (_default = false_) Whether the trophy should be hidden from trophy selection screen in creative mode
+      * `show_particles`: (_default = true_) Whether the effect should spawn particles around the player
+      * `show_icon`: (_default = true_) Whether the effect's icon should be shown in the HUD
+    * `cooldown`: (_default = 0_) The amount of time it takes in ticks before the reward(s) can be claimed again
+* `is_hidden`: (_default = false_) Whether the trophy should be hidden from trophy selection screen in creative mode
 
 For example trophies see the [default data pack](https://github.com/ochotonida/trofers/tree/HEAD/common/src/generated/resources/data/trofers/trofers).
 

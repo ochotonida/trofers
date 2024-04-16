@@ -52,13 +52,8 @@ public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
 
         private static final Codec<MobEffectInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
                 ModCodecs.requiredField("id", MOB_EFFECT_CODEC).forGetter(MobEffectInfo::mobEffect),
-                ModCodecs.defaultField("amplifier", (byte) 0,
-                        Codec.INT.comapFlatMap(
-                                amplifier -> amplifier >= 0 && amplifier <= 127
-                                        ? DataResult.success(amplifier.byteValue())
-                                        : DataResult.error(() -> "Amplifier out of range [0, 127]: " + amplifier),
-                                Byte::intValue
-                        )
+                ModCodecs.defaultField("amplifier", (byte) 0, ModCodecs.rangedInt(0, 127)
+                        .xmap(Integer::byteValue, Byte::intValue)
                 ).forGetter(MobEffectInfo::amplifier),
                 ModCodecs.requiredField("duration", ExtraCodecs.POSITIVE_INT).forGetter(MobEffectInfo::duration),
                 ModCodecs.defaultField("ambient", false, Codec.BOOL).forGetter(MobEffectInfo::ambient),

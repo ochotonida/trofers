@@ -6,12 +6,17 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.DynamicOps;
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.function.UnaryOperator;
 
 public class ModCodecs {
@@ -21,7 +26,20 @@ public class ModCodecs {
             .listOf()
             .xmap(list -> list.toArray(LootItemCondition[]::new), List::of);
 
+    public static final Codec<ItemStack> ITEM_STACK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            requiredField("id", BuiltInRegistries.ITEM.holderByNameCodec()).forGetter(ItemStack::getItemHolder),
+            defaultField("count", 1, rangedInt(1, 64)).forGetter(ItemStack::getCount),
+            optionalField("tag", CompoundTag.CODEC).forGetter(stack -> Optional.ofNullable(stack.getTag()))
+    ).apply(instance, ItemStack::new));
 
+    public static Codec<Integer> rangedInt(int min, int max) {
+        return Codec.INT.comapFlatMap(
+                i -> i >= min && i <= max
+                        ? DataResult.success(i)
+                        : DataResult.error(() -> "Integer of range [%s, %s]: %s".formatted(min, max, i)),
+                Function.identity()
+        );
+    }
 
     public static <T> MapCodec<T> requiredField(String name, Codec<T> codec) {
         return fieldContext(name, codec).fieldOf(name);

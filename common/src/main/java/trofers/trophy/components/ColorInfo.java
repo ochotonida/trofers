@@ -7,7 +7,6 @@ import net.minecraft.Util;
 import trofers.data.ModCodecs;
 
 import java.util.List;
-import java.util.function.Function;
 
 public record ColorInfo(int base, int accent) {
 
@@ -28,14 +27,8 @@ public record ColorInfo(int base, int accent) {
             color -> String.format("#%06X", color)
     );
 
-    private static final Codec<Integer> RGB_COLOR_CODEC = ModCodecs.list(Codec.INT.comapFlatMap(
-            i -> i >= 0 && i <= 255
-                    ? DataResult.success(i)
-                    : DataResult.error(() -> "RGB-component value out of range [0, 255]: " + i),
-            Function.identity()
-    )).comapFlatMap(
-            list -> Util.fixedSize(list, 3)
-                    .map(colors -> colors.get(0) << 16 | colors.get(1) << 8 | colors.get(2)),
+    private static final Codec<Integer> RGB_COLOR_CODEC = ModCodecs.list(ModCodecs.rangedInt(0, 255)).comapFlatMap(
+            list -> Util.fixedSize(list, 3).map(colors -> colors.get(0) << 16 | colors.get(1) << 8 | colors.get(2)),
             color -> List.of((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF)
     );
 
