@@ -15,7 +15,7 @@ The drop rate for the trophies that come with the mod can be changed in the conf
 ![image](https://user-images.githubusercontent.com/37985539/134405190-2076a728-fb77-4232-9936-42a4a8307bdd.png)
 ## Customizing Trophies
 
-Trophy JSONs are placed in the `data/<namespace>/trofers` folder. The following fields can be customized 
+Trophy JSONs are placed in the `data/<namespace>/trofers/trophies` folder. The following fields can be customized 
 (all fields are optional unless stated otherwise):
 
 * `name`: The name of the trophy as a text component (can be a string). 
@@ -61,67 +61,75 @@ For example trophies see the [default data pack](https://github.com/ochotonida/t
 Trofers currently adds 6 trophy bases. 
 Placing one down and right-clicking it while in creative will open a menu that allows you to pick any existing trophy.
 You can also set the trophy by changing the item's NBT: `{BlockEntityTag:{Trophy:"namespace:path"}}`.
-Changes made to your data pack will apply to any existing trophies.
+Changes made to your data pack will also apply to any existing trophies.
 
-## Making entities drop trophies (Forge only)
+## Making entities drop trophies
 Because overriding loot tables can be annoying, 
-Trofers adds a loot modifier which can be used to make entities drop trophies.
+Trofers adds a data pack resource type which can be used
+to make entities drop trophies.
+These are placed under `data/<namespace>/trofers/entity_drops`.
 
-The loot modifier should be placed in the `data/<namespace>/loot_modifiers` folder and uses the following structure:
+The file should have the following structure:
 
-* `type`: This should be set to `trofers:add_entity_trophy`, to tell Forge which loot modifier type to use.
 * `conditions`: A list of loot conditions that determine when to apply the loot modifier. 
   Trofers uses a `minecraft:killed_by_player` and a `trofers:random_trophy_chance` condition here. 
-  The `random_trophy_chance` condition is a loot condition added by Trofers that succeeds if 
+  The latter is a loot condition added by Trofers that succeeds if 
   a randomly generated number is smaller than the trophy chance value set in the config.
-* `trophyBase`: The ID of an item to use as the trophy base. The available options are:
+* `trophy_base`: The ID of an item to use as the trophy base. The available options are:
   * `trofers:<size>_plate`
   * `trofers:<size>_pillar`
 
   where `<size>` can be either `small`, `medium` or `large`.
    
 * `trophies`: An object with multiple key-value pairs. 
-  Each key should correspond with an entity type id, and its value the id of the trophy it should drop. (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
+  Each key should correspond with an entity type id, and its value the id of the trophy it should drop. (Note: for entities that can drop multiple trophies you will need multiple files)
 
-If all trophies have the same drop conditions, you only need a single file.
+If all trophies have the same drop conditions and trophy base, you only need a single file.
 
-[Example loot modifiers](https://github.com/ochotonida/trofers/tree/HEAD/common/src/generated/resources/data/trofers/loot_modifiers)
-
-After creating your loot modifier, you need to register it to Forge. 
-More information on how to register a loot modifier can be found [here](https://forge.gemwire.uk/wiki/Dynamic_Loot_Modification). 
-The wiki page is mostly aimed at mod developers, you can ignore the last section.
-
-[Example registration](https://github.com/ochotonida/trofers/blob/HEAD/common/src/generated/resources/data/forge/loot_modifiers/global_loot_modifiers.json)
-
-## Adding trophies to any loot table (Forge only)
-If you want to add trophies to chests rather than entities, you can use the `add_trophy` loot modifier.
-This loot modifier is a bit different from the `add_entity_trophy` loot modifier, 
-as you will need a separate loot modifier file for every trophy.
-
-* `"type": "trofers:add_trophy"`: required.
-* `conditions`: A list of loot conditions that determine when to apply the loot modifier.
-  To prevent the trophy from being generated when any loot table is rolled, 
-  you likely want to use a `forge:loot_table_id` condition here.
-* `trophyBase`: The ID of an item to use as the trophy base.
-* `trophyId`: An object with multiple key-value pairs. 
-  Each key should correspond with an entity type id, and its value the id of the trophy it should drop. 
-  (Note: for entities that can drop multiple trophies you will need multiple loot modifier files)
-
-Example: The following loot modifier will add a creeper trophy to buried treasure chests with a 50% chance.
+Example:
 ```json5
 {
-  "type": "trofers:add_trophy",
   "conditions": [
     {
-      "condition": "forge:loot_table_id",
-      "loot_table_id": "minecraft:chests/buried_treasure"
+      "condition": "minecraft:killed_by_player"
     },
     {
-      "chance": 0.5,
-      "condition": "minecraft:random_chance"
+      "condition": "trofers:random_trophy_chance"
     }
   ],
-  "trophyBase": "trofers:small_plate",
-  "trophyId": "trofers:creeper"
+  "trophy_base": "trofers:small_pillar",
+  "trophies": {
+    "minecraft:axolotl": "my_namespace:custom_axolotl_trophy",
+    "minecraft:creeper": "trofers:creeper",
+    "quark:crab": "trofers:quark/crab",
+  }
+}
+```
+
+## Making trophies drop from advancements
+
+It's also possible to make trophies drop from advancements.
+The files for these should be placed under `data/<namespace>/trofers/advancement_drops`,
+and use the following format:
+
+* `conditions`: Same as with entity drops.
+  Trofers uses the `trofers:advancement_drops_enabled` loot condition here,
+  which checks whether advancement drops are enabled in the config.
+* `trophy_base`: Same as with entity drops.
+* `trophies`: An object with multiple key-value pairs. Each key should correspond with
+  an advancement id, and its value with the id of the trophy it should drop.
+
+Example:
+
+```json5
+{
+  "conditions": [
+    "trofers:advancement_drops_enabled"
+  ],
+  "trophy_base": "trofers:large_plate",
+  "trophies": {
+    "minecraft:nether/uneasy_alliance" : "my_namespace:some_custom_trophy",
+    "minecraft:story/cure_zombie_villager" : "trofers:villager"
+  }
 }
 ```
