@@ -6,7 +6,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import trofers.Trofers;
 import trofers.neoforge.loot.AddEntityTrophies;
-import trofers.neoforge.loot.AddTrophy;
 
 public class ModLootModifiers {
 
@@ -14,6 +13,5 @@ public class ModLootModifiers {
 
     static {
         LOOT_MODIFIERS.register("add_entity_trophies", () -> AddEntityTrophies.CODEC);
-        LOOT_MODIFIERS.register("add_trophy", AddTrophy.CODEC);
     }
 }
