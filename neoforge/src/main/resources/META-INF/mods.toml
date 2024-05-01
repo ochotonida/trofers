@@ -8,7 +8,7 @@ modId="trofers"
 version="${version}"
 displayName="Trofers"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/trofers"
-logoFile= "../logo.png"
+logoFile= "logo.png"
 authors="ochotonida"
 description='''Adds trophies that can be customized through data packs'''
 
