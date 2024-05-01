@@ -2,11 +2,13 @@ package trofers.neoforge.datagen.providers.trophies;
 
 import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -168,17 +170,17 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
         }
 
         @Override
-        public EntityTrophyWithLootBuilder lootTable(Optional<ResourceLocation> lootTable) {
+        public EntityTrophyWithLootBuilder lootTable(Optional<ResourceKey<LootTable>> lootTable) {
             cooldown(getDefaultLootCooldown());
             return super.lootTable(lootTable);
         }
 
         public EntityTrophyWithLootBuilder loot(LootTable.Builder lootTable) {
             String modId = getEntityId().getNamespace().equals("minecraft") ? "" : getModId() + "/";
-            ResourceLocation location = Trofers.id(String.format("trophies/%s", modId + getEntityId().getPath()));
+            ResourceKey<LootTable> location = ResourceKey.create(Registries.LOOT_TABLE, Trofers.id(String.format("trophies/%s", modId + getEntityId().getPath())));
 
             lootTables.add(new LootTableProvider.SubProviderEntry(
-                    () -> builder -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS)
+                    () -> (provider, builder) -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS)
             );
             lootTable(Optional.of(location));
             return this;

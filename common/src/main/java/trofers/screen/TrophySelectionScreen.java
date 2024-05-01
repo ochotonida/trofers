@@ -1,8 +1,7 @@
 package trofers.screen;
 
 import com.mojang.blaze3d.platform.Lighting;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import dev.architectury.networking.NetworkManager;
 import net.minecraft.CrashReport;
 import net.minecraft.CrashReportCategory;
 import net.minecraft.ReportedException;
@@ -12,20 +11,16 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import org.joml.Matrix4f;
 import trofers.block.entity.TrophyBlockEntity;
-import trofers.network.NetworkHandler;
 import trofers.network.SetTrophyPacket;
 import trofers.trophy.Trophy;
 import trofers.trophy.TrophySearchTreeManager;
@@ -243,7 +238,7 @@ public class TrophySelectionScreen extends Screen {
 
         @Override
         public void onClick(double x, double y) {
-            NetworkHandler.CHANNEL.sendToServer(new SetTrophyPacket(trophyId, blockPos));
+            NetworkManager.sendToServer(new SetTrophyPacket(trophyId, blockPos));
             if (Minecraft.getInstance().player != null) {
                 if (Minecraft.getInstance().player.level().getBlockEntity(blockPos) instanceof TrophyBlockEntity blockEntity) {
                     // Don't wait on the server to sync the change back to the client
@@ -258,7 +253,7 @@ public class TrophySelectionScreen extends Screen {
             super.renderWidget(guiGraphics, mouseX, mouseY, partialTicks);
 
             tryRenderScaledGuiItem(
-                    guiGraphics.pose(),
+                    guiGraphics,
                     item,
                     x + (int) (width - 16 * ITEM_SCALE) / 2,
                     y + (int) (height - 16 * ITEM_SCALE) / 2,
@@ -267,56 +262,37 @@ public class TrophySelectionScreen extends Screen {
         }
 
         @SuppressWarnings("SameParameterValue")
-        private void tryRenderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale) {
-            if (!item.isEmpty()) {
-                //noinspection ConstantConditions
-                BakedModel bakedmodel = minecraft.getItemRenderer().getModel(item, null, Minecraft.getInstance().player, 0);
-                poseStack.pushPose();
-                poseStack.translate(0, 0, 50);
+        private void tryRenderScaledGuiItem(GuiGraphics graphics, ItemStack stack, int x, int y, float scale) {
+            if (!stack.isEmpty()) {
+                BakedModel bakedModel = Minecraft.getInstance().getItemRenderer().getModel(stack, Minecraft.getInstance().level, null, 0);
+                graphics.pose().pushPose();
+                graphics.pose().translate(x + (8 * scale), y + (8 * scale), 150);
+
                 try {
-                    renderScaledGuiItem(poseStack, item, x, y, scale, bakedmodel);
-                } catch (Exception exception) {
-                    CrashReport crashReport = CrashReport.forThrowable(exception, "Rendering item");
-                    CrashReportCategory category = crashReport.addCategory("Item being rendered");
-                    category.setDetail("Item Type", () -> String.valueOf(item.getItem()));
-                    category.setDetail("Registry Name", () -> String.valueOf(BuiltInRegistries.ITEM.getKey(item.getItem())));
-                    category.setDetail("Item Damage", () -> String.valueOf(item.getDamageValue()));
-                    category.setDetail("Item NBT", () -> String.valueOf(item.getTag()));
-                    category.setDetail("Item Foil", () -> String.valueOf(item.hasFoil()));
+                    graphics.pose().scale(16 * scale, -16 * scale, 16 * scale);
+                    boolean bl = !bakedModel.usesBlockLight();
+                    if (bl) {
+                        Lighting.setupForFlatItems();
+                    }
+
+                    Minecraft.getInstance()
+                            .getItemRenderer()
+                            .render(stack, ItemDisplayContext.GUI, false, graphics.pose(), graphics.bufferSource(), 15728880, OverlayTexture.NO_OVERLAY, bakedModel);
+                    graphics.flush();
+                    if (bl) {
+                        Lighting.setupFor3DItems();
+                    }
+                } catch (Throwable var12) {
+                    CrashReport crashReport = CrashReport.forThrowable(var12, "Rendering item");
+                    CrashReportCategory crashReportCategory = crashReport.addCategory("Item being rendered");
+                    crashReportCategory.setDetail("Item Type", () -> String.valueOf(stack.getItem()));
+                    crashReportCategory.setDetail("Item Components", () -> String.valueOf(stack.getComponents()));
+                    crashReportCategory.setDetail("Item Foil", () -> String.valueOf(stack.hasFoil()));
                     throw new ReportedException(crashReport);
                 }
-                poseStack.popPose();
-            }
-        }
 
-        protected void renderScaledGuiItem(PoseStack poseStack, ItemStack item, int x, int y, float scale, BakedModel model) {
-            poseStack.pushPose();
-            poseStack.translate(x, y, 100);
-            poseStack.translate(16 * scale / 2, 16 * scale / 2, 0);
-            poseStack.mulPoseMatrix((new Matrix4f()).scaling(1, -1, 1));
-            poseStack.scale(scale, scale, scale);
-            poseStack.scale(16, 16, 16);
-            MultiBufferSource.BufferSource bufferSource = Minecraft.getInstance().renderBuffers().bufferSource();
-            boolean usesFlatLighting = !model.usesBlockLight();
-            if (usesFlatLighting) {
-                Lighting.setupForFlatItems();
+                graphics.pose().popPose();
             }
-
-            PoseStack modelViewStack = RenderSystem.getModelViewStack();
-            modelViewStack.pushPose();
-            modelViewStack.mulPoseMatrix(poseStack.last().pose());
-            RenderSystem.applyModelViewMatrix();
-            //noinspection ConstantConditions
-            minecraft.getItemRenderer().render(item, ItemDisplayContext.GUI, false, new PoseStack(), bufferSource, 15728880, OverlayTexture.NO_OVERLAY, model);
-            bufferSource.endBatch();
-            RenderSystem.enableDepthTest();
-            if (usesFlatLighting) {
-                Lighting.setupFor3DItems();
-            }
-
-            poseStack.popPose();
-            modelViewStack.popPose();
-            RenderSystem.applyModelViewMatrix();
         }
     }
 }

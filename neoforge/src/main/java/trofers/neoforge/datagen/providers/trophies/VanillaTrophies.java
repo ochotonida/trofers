@@ -1,7 +1,6 @@
 package trofers.neoforge.datagen.providers.trophies;
 
 import net.minecraft.Util;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffects;
@@ -18,7 +17,6 @@ public class VanillaTrophies extends EntityTrophyProvider {
         super(ResourceLocation.DEFAULT_NAMESPACE);
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Override
     public void addTrophies() {
         builder(EntityType.ALLAY)
@@ -46,7 +44,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .accentColor(0xfbc268);
         builder(EntityType.CAT)
                 .accentColor(0xcccccc)
-                .putString("variant", BuiltInRegistries.CAT_VARIANT.getOptional(CatVariant.BLACK).orElseThrow().toString())
+                .putString("variant", CatVariant.BLACK.location().toString())
                 .putBoolean("Sitting", true);
         builder(EntityType.CAVE_SPIDER)
                 .accentColor(0x147b6a)
@@ -94,7 +92,7 @@ public class VanillaTrophies extends EntityTrophyProvider {
                 .putString("Type", "red");
         builder(EntityType.FROG)
                 .accentColor(0x669530)
-                .putString("variant", BuiltInRegistries.FROG_VARIANT.getKey(FrogVariant.COLD).toString());
+                .putString("variant", FrogVariant.COLD.location().toString());
         builder(EntityType.GHAST)
                 .accentColor(0xf0f0f0)
                 .offset(0, 5, 0)

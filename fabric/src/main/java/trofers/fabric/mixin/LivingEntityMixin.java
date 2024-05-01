@@ -17,8 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import trofers.data.EntityDrops;
-import trofers.registry.ModResourceLoaders;
+import trofers.registry.ModRegistries;
 
 import java.util.Optional;
 
@@ -41,8 +40,6 @@ public abstract class LivingEntityMixin extends Entity {
         }
         LootParams lootParams = builder.create(LootContextParamSets.ENTITY);
         LootContext context = (new LootContext.Builder(lootParams)).create(Optional.empty());
-        for (EntityDrops entityDrops : ModResourceLoaders.ENTITY_DROPS.getAllResources()) {
-            entityDrops.apply(this::spawnAtLocation, context);
-        }
+        ModRegistries.entityDrops().forEach(entityDrops -> entityDrops.apply(this::spawnAtLocation, context));
     }
 }

@@ -3,6 +3,8 @@ package trofers.block.entity;
 import net.minecraft.ResourceLocationException;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -13,7 +15,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -24,14 +25,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.Vec3;
 import org.apache.logging.log4j.Level;
 import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.registry.ModBlockEntityTypes;
-import trofers.registry.ModResourceLoaders;
+import trofers.registry.ModDataComponents;
+import trofers.registry.ModRegistries;
 import trofers.trophy.Trophy;
 import trofers.trophy.components.EffectInfo;
 
@@ -52,7 +53,7 @@ public class TrophyBlockEntity extends BlockEntity {
 
     @Nullable
     public Trophy getTrophy() {
-        return ModResourceLoaders.TROPHIES.get(trophyID);
+        return ModRegistries.get(ModRegistries.TROPHIES, trophyID);
     }
 
     public void setTrophy(@Nullable ResourceLocation trophyId, ServerPlayer player) {
@@ -61,9 +62,10 @@ public class TrophyBlockEntity extends BlockEntity {
         onContentsChanged();
     }
 
-    @Nullable
-    public ResourceLocation getTrophyID() {
-        return trophyID;
+    public ItemStack getItem() {
+        ItemStack stack = new ItemStack(getBlockState().getBlock().asItem());
+        stack.applyComponents(this.collectComponents());
+        return stack;
     }
 
     public float getAnimationOffset() {
@@ -99,7 +101,7 @@ public class TrophyBlockEntity extends BlockEntity {
         }
     }
 
-    public boolean applyEffect(Player player, InteractionHand hand) {
+    public boolean applyEffect(Player player) {
         Trophy trophy = getTrophy();
         if (trophy == null || level == null) {
             return false;
@@ -113,7 +115,7 @@ public class TrophyBlockEntity extends BlockEntity {
             }
         });
 
-        giveRewards(rewards, player, hand);
+        giveRewards(rewards, player);
 
         return trophy.effects().sound().isPresent()
                 || rewards.lootTable().isPresent() && Trofers.CONFIG.general.enableTrophyLoot
@@ -137,7 +139,7 @@ public class TrophyBlockEntity extends BlockEntity {
         }
     }
 
-    private void giveRewards(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
+    private void giveRewards(EffectInfo.RewardInfo rewards, Player player) {
         if (!(player instanceof ServerPlayer serverPlayer)) {
             return;
         } else if ((!Trofers.CONFIG.general.enableTrophyLoot || rewards.lootTable().isEmpty())
@@ -156,7 +158,7 @@ public class TrophyBlockEntity extends BlockEntity {
         }
 
         resetRewardCooldown(serverPlayer);
-        rewardLoot(rewards, player, hand);
+        rewardLoot(rewards);
         rewardMobEffect(rewards, player);
     }
 
@@ -191,29 +193,19 @@ public class TrophyBlockEntity extends BlockEntity {
         }
     }
 
-    private void rewardLoot(EffectInfo.RewardInfo rewards, Player player, InteractionHand hand) {
+    private void rewardLoot(EffectInfo.RewardInfo rewards) {
         if (Trofers.CONFIG.general.enableTrophyLoot) {
             rewards.lootTable().ifPresent(lootTableLocation -> {
                 // noinspection ConstantConditions
-                LootTable lootTable = level.getServer().getLootData().getLootTable(lootTableLocation);
+                LootTable lootTable = level.getServer().reloadableRegistries().getLootTable(lootTableLocation);
                 if (lootTable == LootTable.EMPTY) {
                     Trofers.LOGGER.log(Level.ERROR, "Invalid loot table: {}", lootTableLocation);
                     return;
                 }
-                LootParams parameters = createLootContext(player, player.getItemInHand(hand));
+                LootParams parameters = new LootParams.Builder((ServerLevel) level).create(LootContextParamSets.EMPTY);
                 lootTable.getRandomItems(parameters).forEach(this::spawnAtLocation);
             });
         }
-    }
-
-    private LootParams createLootContext(Player player, ItemStack stack) {
-        return (new LootParams.Builder((ServerLevel) level))
-                .withParameter(LootContextParams.BLOCK_ENTITY, this)
-                .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(getBlockPos()))
-                .withParameter(LootContextParams.THIS_ENTITY, player)
-                .withParameter(LootContextParams.BLOCK_STATE, getBlockState())
-                .withParameter(LootContextParams.TOOL, stack)
-                .create(LootContextParamSets.BLOCK);
     }
 
     public void spawnAtLocation(ItemStack stack) {
@@ -243,10 +235,8 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     @Override
-    public CompoundTag getUpdateTag() {
-        CompoundTag result = super.getUpdateTag();
-        saveAdditional(result);
-        return result;
+    public CompoundTag getUpdateTag(HolderLookup.Provider provider) {
+        return saveWithoutMetadata(provider);
     }
 
     @Nullable
@@ -256,7 +246,7 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag tag) {
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         loadTrophy(tag);
         rewardCooldown = tag.getInt("RewardCooldown");
     }
@@ -271,8 +261,8 @@ public class TrophyBlockEntity extends BlockEntity {
                 Trofers.LOGGER.error(String.format("Failed to load trophy for block entity at %s", getBlockPos()), exception);
             }
 
-            Trophy trophy = ModResourceLoaders.TROPHIES.get(trophyID);
-            if (trophy == null) {
+            Trophy trophy = ModRegistries.get(ModRegistries.TROPHIES, trophyID);
+            if (trophy == null && ModRegistries.trophies() != null) {
                 Trofers.LOGGER.error(String.format("Invalid trophy id for block entity at %s: %s", getBlockPos(), trophyID));
             }
         }
@@ -283,12 +273,30 @@ public class TrophyBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void saveAdditional(CompoundTag tag) {
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         if (trophyID != null) {
             tag.putString("Trophy", trophyID.toString());
         }
         if (rewardCooldown > 0) {
             tag.putInt("RewardCooldown", rewardCooldown);
         }
+    }
+
+    @Override
+    protected void applyImplicitComponents(BlockEntity.DataComponentInput dataComponentInput) {
+        super.applyImplicitComponents(dataComponentInput);
+        this.trophyID = dataComponentInput.getOrDefault(ModDataComponents.TROPHY.get(), null);
+    }
+
+    @Override
+    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+        super.collectImplicitComponents(builder);
+        builder.set(ModDataComponents.TROPHY.get(), this.trophyID);
+    }
+
+    @Override
+    @SuppressWarnings("deprecation")
+    public void removeComponentsFromTag(CompoundTag compoundTag) {
+        compoundTag.remove("trophy");
     }
 }

@@ -1,6 +1,6 @@
 package trofers.loot;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -10,7 +10,7 @@ import trofers.registry.ModLootConditions;
 public class RandomTrophyChanceCondition implements LootItemCondition {
 
     private static final RandomTrophyChanceCondition INSTANCE = new RandomTrophyChanceCondition();
-    public static final Codec<RandomTrophyChanceCondition> CODEC = Codec.unit(INSTANCE);
+    public static final MapCodec<RandomTrophyChanceCondition> CODEC = MapCodec.unit(INSTANCE);
 
     private RandomTrophyChanceCondition() { }
 

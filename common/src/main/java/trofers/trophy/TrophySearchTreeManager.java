@@ -8,7 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import trofers.block.TrophyBlock;
-import trofers.registry.ModResourceLoaders;
+import trofers.registry.ModRegistries;
 
 import java.util.Comparator;
 import java.util.List;
@@ -32,15 +32,15 @@ public class TrophySearchTreeManager implements ResourceManagerReloadListener {
     public static void createSearchTree() {
         searchTree = new FullTextSearchTree<>(
                 trophyId -> Stream.of(
-                        ChatFormatting.stripFormatting(ModResourceLoaders.TROPHIES.get(trophyId).name()
+                        ChatFormatting.stripFormatting(ModRegistries.trophies().get(trophyId).name()
                                 .orElse(Component.translatable(TrophyBlock.DESCRIPTION_ID))
                                 .getString()
                         ).trim()
                 ),
                 Stream::of,
-                ModResourceLoaders.TROPHIES.keys()
+                ModRegistries.trophies() == null ? List.of() : ModRegistries.trophies().keySet()
                         .stream()
-                        .filter(trophyId -> !ModResourceLoaders.TROPHIES.get(trophyId).isHidden())
+                        .filter(trophyId -> !ModRegistries.trophies().get(trophyId).isHidden())
                         .sorted(Comparator.comparing(ResourceLocation::toString))
                         .collect(Collectors.toList())
         );

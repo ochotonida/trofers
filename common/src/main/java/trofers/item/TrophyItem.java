@@ -1,6 +1,5 @@
 package trofers.item;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.BlockItem;
@@ -22,9 +21,8 @@ public class TrophyItem extends BlockItem {
     protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
         if (super.placeBlock(context, state)) {
             BlockEntity blockEntity = context.getLevel().getBlockEntity(context.getClickedPos());
-            CompoundTag tag = context.getItemInHand().getTag();
-            if (blockEntity instanceof TrophyBlockEntity trophy && tag != null) {
-                trophy.loadTrophy(tag.getCompound("BlockEntityTag"));
+            if (blockEntity instanceof TrophyBlockEntity trophy && !context.getItemInHand().isEmpty()) {
+                trophy.applyComponentsFromItemStack(context.getItemInHand());
                 if (context.getPlayer() instanceof ServerPlayer player) {
                     trophy.resetRewardCooldown(player);
                 }

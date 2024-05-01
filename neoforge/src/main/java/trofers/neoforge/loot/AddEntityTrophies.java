@@ -1,6 +1,6 @@
 package trofers.neoforge.loot;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.world.item.ItemStack;
@@ -9,12 +9,11 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import net.neoforged.neoforge.common.loot.LootModifier;
-import trofers.data.EntityDrops;
-import trofers.registry.ModResourceLoaders;
+import trofers.registry.ModRegistries;
 
 public class AddEntityTrophies extends LootModifier {
 
-    public static final Codec<AddEntityTrophies> CODEC = RecordCodecBuilder.create(instance -> codecStart(instance).apply(instance, AddEntityTrophies::new));
+    public static final MapCodec<AddEntityTrophies> CODEC = RecordCodecBuilder.mapCodec(instance -> codecStart(instance).apply(instance, AddEntityTrophies::new));
 
     protected AddEntityTrophies(LootItemCondition[] conditions) {
         super(conditions);
@@ -22,16 +21,14 @@ public class AddEntityTrophies extends LootModifier {
 
     @Override
     protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        if (context.hasParam(LootContextParams.THIS_ENTITY)) {
-            for (EntityDrops entityDrops : ModResourceLoaders.ENTITY_DROPS.getAllResources()) {
-                entityDrops.apply(generatedLoot::add, context);
-            }
+        if (context.hasParam(LootContextParams.THIS_ENTITY) && ModRegistries.entityDrops() != null) {
+            ModRegistries.entityDrops().forEach(entityDrops -> entityDrops.apply(generatedLoot::add, context));
         }
         return generatedLoot;
     }
 
     @Override
-    public Codec<? extends IGlobalLootModifier> codec() {
+    public MapCodec<? extends IGlobalLootModifier> codec() {
         return CODEC;
     }
 }

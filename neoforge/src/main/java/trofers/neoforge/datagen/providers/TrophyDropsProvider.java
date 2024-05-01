@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
-import cpw.mods.modlauncher.api.LamdbaExceptionUtils;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -18,11 +17,12 @@ import trofers.loot.AdvancementDropsEnabledCondition;
 import trofers.loot.RandomTrophyChanceCondition;
 import trofers.neoforge.datagen.providers.trophies.EntityTrophyProvider;
 import trofers.registry.ModBlocks;
-import trofers.registry.ModResourceLoaders;
-import trofers.util.JsonHelper;
+import trofers.registry.ModRegistries;
+import trofers.util.ConditionsHelper;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
@@ -56,21 +56,21 @@ public class TrophyDropsProvider implements DataProvider {
             if (entityDropsMap.get(modId).isEmpty()) {
                 continue;
             }
-            LootItemCondition[] conditions = new LootItemCondition[]{
+            List<LootItemCondition> conditions = List.of(
                     LootItemKilledByPlayerCondition.killedByPlayer().build(),
                     RandomTrophyChanceCondition.randomTrophyChance().build()
-            };
+            );
 
-            addEntityDrops(modId, EntityDrops.create(conditions, ModBlocks.SMALL_PLATE.get(), entityDropsMap.get(modId)));
+            addEntityDrops(modId, EntityDrops.create(conditions, ModBlocks.SMALL_PLATE.get(), entityDropsMap.get(modId), false));
         }
 
         for (String modId : advancementDropsMap.keySet()) {
             if (advancementDropsMap.get(modId).isEmpty()) {
                 continue;
             }
-            LootItemCondition[] conditions = new LootItemCondition[]{
+            List<LootItemCondition> conditions = List.of(
                     AdvancementDropsEnabledCondition.advancementDropsEnabled().build()
-            };
+            );
 
             addAdvancementDrops(modId, new AdvancementDrops(conditions, ModBlocks.SMALL_PLATE.get(), advancementDropsMap.get(modId)));
         }
@@ -80,33 +80,37 @@ public class TrophyDropsProvider implements DataProvider {
     public CompletableFuture<?> run(CachedOutput cache) {
         start();
 
-        Path entityDropsPath = this.packOutput.getOutputFolder(PackOutput.Target.DATA_PACK).resolve(Trofers.MOD_ID).resolve(ModResourceLoaders.ENTITY_DROPS.getDirectory());
-        Path advancementDropsPath = this.packOutput.getOutputFolder(PackOutput.Target.DATA_PACK).resolve(Trofers.MOD_ID).resolve(ModResourceLoaders.ADVANCEMENT_DROPS.getDirectory());
+        Path entityDropsPath = this.packOutput.getOutputFolder(PackOutput.Target.DATA_PACK)
+                .resolve(Trofers.MOD_ID)
+                .resolve(ModRegistries.ENTITY_DROPS.location().toString().replace(':', '/'));
+        Path advancementDropsPath = this.packOutput.getOutputFolder(PackOutput.Target.DATA_PACK)
+                .resolve(Trofers.MOD_ID)
+                .resolve(ModRegistries.ADVANCEMENT_DROPS.location().toString().replace(':', '/'));
         ImmutableList.Builder<CompletableFuture<?>> futuresBuilder = new ImmutableList.Builder<>();
-        entityDropsToSerialize.forEach(LamdbaExceptionUtils.rethrowBiConsumer((name, json) ->
+        entityDropsToSerialize.forEach((name, json) ->
                 futuresBuilder.add(DataProvider.saveStable(cache, json, entityDropsPath.resolve(name + ".json")))
-        ));
-        advancementDropsToSerialize.forEach(LamdbaExceptionUtils.rethrowBiConsumer((name, json) ->
+        );
+        advancementDropsToSerialize.forEach((name, json) ->
                 futuresBuilder.add(DataProvider.saveStable(cache, json, advancementDropsPath.resolve(name + ".json")))
-        ));
+        );
         return CompletableFuture.allOf(futuresBuilder.build().toArray(CompletableFuture[]::new));
     }
 
     private void addEntityDrops(String modId, EntityDrops instance) {
-        JsonObject object = EntityDrops.CODEC.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, s -> {}).getAsJsonObject();
+        JsonObject object = EntityDrops.CODEC.encodeStart(JsonOps.INSTANCE, instance).getOrThrow().getAsJsonObject();
 
         if (!modId.equals(ResourceLocation.DEFAULT_NAMESPACE)) {
-            JsonHelper.addModLoadedConditions(object, modId);
+            ConditionsHelper.addModLoadedConditions(object, modId);
         }
         String name = "%s_trophies".formatted(modId.equals(ResourceLocation.DEFAULT_NAMESPACE) ? "vanilla" : modId);
         entityDropsToSerialize.put(name, object);
     }
 
     private void addAdvancementDrops(String modId, AdvancementDrops instance) {
-        JsonObject object = AdvancementDrops.CODEC.encodeStart(JsonOps.INSTANCE, instance).getOrThrow(false, s -> {}).getAsJsonObject();
+        JsonObject object = AdvancementDrops.CODEC.encodeStart(JsonOps.INSTANCE, instance).getOrThrow().getAsJsonObject();
 
         if (!modId.equals(ResourceLocation.DEFAULT_NAMESPACE)) {
-            JsonHelper.addModLoadedConditions(object, modId);
+            ConditionsHelper.addModLoadedConditions(object, modId);
         }
         String name = "%s_trophies".formatted(modId.equals(ResourceLocation.DEFAULT_NAMESPACE) ? "vanilla" : modId);
         advancementDropsToSerialize.put(name, object);

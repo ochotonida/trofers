@@ -3,20 +3,14 @@ package trofers.neoforge;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
-import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
-import net.neoforged.fml.common.Mod;
-import trofers.Trofers;
 import trofers.neoforge.datagen.providers.*;
-import trofers.neoforge.datagen.providers.BlockTags;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(modid = Trofers.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class TrofersData {
 
-    @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
@@ -25,7 +19,7 @@ public class TrofersData {
 
         TrophyProviders trophyProviders = new TrophyProviders(packOutput);
         generator.addProvider(event.includeServer(), trophyProviders);
-        generator.addProvider(event.includeServer(), new LootTables(packOutput, trophyProviders));
+        generator.addProvider(event.includeServer(), new LootTables(packOutput, trophyProviders, lookupProvider));
         generator.addProvider(event.includeServer(), new TrophyDropsProvider(packOutput, trophyProviders));
         generator.addProvider(event.includeServer(), new BlockTags(packOutput, lookupProvider, helper));
 

@@ -1,13 +1,16 @@
 package trofers.trophy.components;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.level.storage.loot.LootTable;
 import trofers.data.ModCodecs;
 
 import java.util.Optional;
@@ -30,12 +33,12 @@ public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
         ).apply(instance, SoundInfo::new));
     }
 
-    public record RewardInfo(Optional<ResourceLocation> lootTable, Optional<MobEffectInfo> mobEffect, int cooldown) {
+    public record RewardInfo(Optional<ResourceKey<LootTable>> lootTable, Optional<MobEffectInfo> mobEffect, int cooldown) {
 
         public static final RewardInfo NONE = new RewardInfo(Optional.empty(), Optional.empty(), 0);
 
         public static final Codec<RewardInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                ModCodecs.optionalField("loot_table", ResourceLocation.CODEC).forGetter(RewardInfo::lootTable),
+                ModCodecs.optionalField("loot_table", ResourceKey.codec(Registries.LOOT_TABLE)).forGetter(RewardInfo::lootTable),
                 ModCodecs.optionalField("mob_effect", MobEffectInfo.CODEC).forGetter(RewardInfo::mobEffect),
                 ModCodecs.defaultField("cooldown", 0, ExtraCodecs.NON_NEGATIVE_INT).forGetter(RewardInfo::cooldown)
         ).apply(instance, RewardInfo::new));
@@ -43,15 +46,8 @@ public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
 
     public record MobEffectInfo(MobEffect mobEffect, byte amplifier, int duration, boolean ambient, boolean showParticles, boolean showIcon) {
 
-        private static final Codec<MobEffect> MOB_EFFECT_CODEC = ResourceLocation.CODEC.comapFlatMap(id ->
-                        BuiltInRegistries.MOB_EFFECT.containsKey(id)
-                                ? DataResult.success(BuiltInRegistries.MOB_EFFECT.get(id))
-                                : DataResult.error(() -> String.format("Unknown mob effect %s", id)),
-                BuiltInRegistries.MOB_EFFECT::getKey
-        );
-
         private static final Codec<MobEffectInfo> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-                ModCodecs.requiredField("id", MOB_EFFECT_CODEC).forGetter(MobEffectInfo::mobEffect),
+                ModCodecs.requiredField("id", BuiltInRegistries.MOB_EFFECT.byNameCodec()).forGetter(MobEffectInfo::mobEffect),
                 ModCodecs.defaultField("amplifier", (byte) 0, ModCodecs.rangedInt(0, 127)
                         .xmap(Integer::byteValue, Byte::intValue)
                 ).forGetter(MobEffectInfo::amplifier),
@@ -62,7 +58,7 @@ public record EffectInfo(Optional<SoundInfo> sound, RewardInfo rewards) {
         ).apply(instance, MobEffectInfo::new));
 
         public MobEffectInstance createInstance() {
-            return new MobEffectInstance(mobEffect, amplifier, duration, ambient, showParticles, showIcon);
+            return new MobEffectInstance(Holder.direct(mobEffect), amplifier, duration, ambient, showParticles, showIcon);
         }
     }
 }

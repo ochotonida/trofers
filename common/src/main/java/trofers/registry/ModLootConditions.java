@@ -1,6 +1,6 @@
 package trofers.registry;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
@@ -17,7 +17,7 @@ public class ModLootConditions {
     public static final RegistrySupplier<LootItemConditionType> RANDOM_TROPHY_CHANCE = register("random_trophy_chance", RandomTrophyChanceCondition.CODEC);
     public static final RegistrySupplier<LootItemConditionType> ADVANCEMENT_DROPS_ENABLED = register("advancement_drops_enabled", AdvancementDropsEnabledCondition.CODEC);
 
-    private static RegistrySupplier<LootItemConditionType> register(String id, Codec<? extends LootItemCondition> codec) {
+    private static RegistrySupplier<LootItemConditionType> register(String id, MapCodec<? extends LootItemCondition> codec) {
         return LOOT_CONDITION_TYPES.register(id, () -> new LootItemConditionType(codec));
     }
 }

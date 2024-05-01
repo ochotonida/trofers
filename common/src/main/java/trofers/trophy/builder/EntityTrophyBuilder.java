@@ -2,8 +2,8 @@ package trofers.trophy.builder;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
@@ -50,8 +50,8 @@ public class EntityTrophyBuilder<T extends EntityTrophyBuilder<T>> extends Troph
         return (T) this;
     }
 
-    public T putTag(String name, CompoundTag nbt) {
-        entityInfo.tag().put(name, nbt);
+    public T putTag(String name, Tag tag) {
+        entityInfo.tag().put(name, tag);
         return (T) this;
     }
 
@@ -86,18 +86,19 @@ public class EntityTrophyBuilder<T extends EntityTrophyBuilder<T>> extends Troph
     }
 
     public T putCustomName(String customName) {
-        return putString("CustomName", Component.Serializer.toJson(Component.literal(customName)));
+        // TODO use component serializer
+        return putString("CustomName", "\"%s\"".formatted(customName));
     }
 
     public T putItem(String tag, ItemStack stack) {
-        return putTag(tag, stack.save(new CompoundTag()));
+        return putTag(tag, itemStackToNbt(stack));
     }
 
     public T putItem(String tag, Item item) {
         return putItem(tag, new ItemStack(item));
     }
 
-    public T putEquipment(EquipmentSlot slot, CompoundTag item) {
+    public T putEquipment(EquipmentSlot slot, Tag item) {
         String tagName = slot.getType() == EquipmentSlot.Type.HAND ? "HandItems" : "ArmorItems";
         if (!entityInfo.tag().contains(tagName, Tag.TAG_LIST)) {
             ListTag slots = new ListTag();
@@ -113,7 +114,7 @@ public class EntityTrophyBuilder<T extends EntityTrophyBuilder<T>> extends Troph
     }
 
     public T putEquipment(EquipmentSlot slot, ItemStack itemStack) {
-        return putEquipment(slot, itemStack.save(new CompoundTag()));
+        return putEquipment(slot, itemStackToNbt(itemStack));
     }
 
     public T putEquipment(EquipmentSlot slot, Item item) {
@@ -122,5 +123,10 @@ public class EntityTrophyBuilder<T extends EntityTrophyBuilder<T>> extends Troph
 
     public T putHandItem(Item item) {
         return putEquipment(EquipmentSlot.MAINHAND, item);
+    }
+
+    private static Tag itemStackToNbt(ItemStack stack) {
+        // TODO: do this properly with ItemStack.save
+        return ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, stack).getOrThrow();
     }
 }

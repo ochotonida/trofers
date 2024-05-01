@@ -1,7 +1,7 @@
 package trofers.trophy.builder;
 
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
@@ -11,24 +11,24 @@ import java.util.Optional;
 
 public class ItemTrophyBuilder extends TrophyBuilder<ItemTrophyBuilder> {
 
-    private ResourceLocation itemId;
-    private int count;
-    private CompoundTag tag;
+    private ResourceLocation item;
+    private int count = 1;
+    private DataComponentMap components = DataComponentMap.EMPTY;
 
     public ItemTrophyBuilder setItem(ItemStack item) {
         setItem(item.getItem());
         setCount(item.getCount());
-        setTag(item.getTag());
+        setComponents(item.getComponents());
         return this;
     }
 
     public ItemTrophyBuilder setItem(ItemLike item) {
-        itemId = BuiltInRegistries.ITEM.getKey(item.asItem());
+        this.item = BuiltInRegistries.ITEM.getKey(item.asItem());
         return this;
     }
 
     public ItemTrophyBuilder setItem(ResourceLocation itemId) {
-        this.itemId = itemId;
+        this.item = itemId;
         return this;
     }
 
@@ -37,15 +37,15 @@ public class ItemTrophyBuilder extends TrophyBuilder<ItemTrophyBuilder> {
         return this;
     }
 
-    public ItemTrophyBuilder setTag(CompoundTag tag) {
-        this.tag = tag;
+    public ItemTrophyBuilder setComponents(DataComponentMap components) {
+        this.components = components;
         return this;
     }
 
     @Override
     public ItemStack getDisplayItem() {
-        ItemStack result = new ItemStack(BuiltInRegistries.ITEM.get(itemId));
-        result.setTag(tag);
+        ItemStack result = new ItemStack(BuiltInRegistries.ITEM.get(item));
+        result.applyComponents(components);
         result.setCount(count);
         return result;
     }

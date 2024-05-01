@@ -5,15 +5,14 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import trofers.config.ModConfig;
 import trofers.data.AdvancementDrops;
-import trofers.data.EntityDrops;
 import trofers.network.NetworkHandler;
 import trofers.registry.ModBlockEntityTypes;
 import trofers.registry.ModBlocks;
+import trofers.registry.ModDataComponents;
 import trofers.registry.ModLootConditions;
 
 public class Trofers {
@@ -38,12 +37,8 @@ public class Trofers {
         ModBlocks.ITEMS.register();
         ModBlockEntityTypes.BLOCK_ENTITY_TYPES.register();
         ModLootConditions.LOOT_CONDITION_TYPES.register();
+        ModDataComponents.DATA_COMPONENT_TYPES.register();
 
         PlayerEvent.PLAYER_ADVANCEMENT.register(AdvancementDrops::onAdvancementAwarded);
-    }
-
-    public static void onDataPackLoaded(MinecraftServer server) {
-        AdvancementDrops.onDataPackLoaded(server);
-        EntityDrops.onDataPackLoaded();
     }
 }

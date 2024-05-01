@@ -2,17 +2,20 @@ package trofers.trophy.builder;
 
 import com.google.gson.JsonObject;
 import com.mojang.serialization.JsonOps;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.trophy.Trophy;
 import trofers.trophy.components.*;
-import trofers.util.JsonHelper;
+import trofers.util.ConditionsHelper;
 
 import java.util.*;
 
@@ -122,11 +125,11 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         return sound(soundEvent, 1, 1);
     }
 
-    private T rewardInfo(Optional<ResourceLocation> lootTable, Optional<EffectInfo.MobEffectInfo> mobEffect, int cooldown) {
+    private T rewardInfo(Optional<ResourceKey<LootTable>> lootTable, Optional<EffectInfo.MobEffectInfo> mobEffect, int cooldown) {
         return effectInfo(effectInfo.sound(), new EffectInfo.RewardInfo(lootTable, mobEffect, cooldown));
     }
 
-    public T lootTable(Optional<ResourceLocation> lootTable) {
+    public T lootTable(Optional<ResourceKey<LootTable>> lootTable) {
         return rewardInfo(lootTable, effectInfo.rewards().mobEffect(), effectInfo.rewards().cooldown());
     }
 
@@ -134,11 +137,11 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
         return rewardInfo(effectInfo.rewards().lootTable(), Optional.of(mobEffect), effectInfo.rewards().cooldown());
     }
 
-    public T mobEffect(MobEffect effect, int timeSeconds, int amplifier) {
-        return mobEffect(new EffectInfo.MobEffectInfo(effect, (byte) amplifier, timeSeconds * 20, false, true, true));
+    public T mobEffect(Holder<MobEffect> effect, int timeSeconds, int amplifier) {
+        return mobEffect(new EffectInfo.MobEffectInfo(effect.value(), (byte) amplifier, timeSeconds * 20, false, true, true));
     }
 
-    public T mobEffect(MobEffect effect, int timeSeconds) {
+    public T mobEffect(Holder<MobEffect> effect, int timeSeconds) {
         return mobEffect(effect, timeSeconds, 0);
     }
 
@@ -157,10 +160,10 @@ public abstract class TrophyBuilder<T extends TrophyBuilder<T>> {
 
     public JsonObject toJson() {
         JsonObject result = Trophy.CODEC.encodeStart(JsonOps.INSTANCE, build())
-                .getOrThrow(false, error -> {})
+                .getOrThrow()
                 .getAsJsonObject();
 
-        JsonHelper.addModLoadedConditions(result, requiredMods.toArray(String[]::new));
+        ConditionsHelper.addModLoadedConditions(result, requiredMods.toArray(String[]::new));
 
         return result;
     }

@@ -6,7 +6,7 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import trofers.neoforge.datagen.providers.trophies.*;
-import trofers.registry.ModResourceLoaders;
+import trofers.registry.ModRegistries;
 import trofers.trophy.builder.TrophyBuilder;
 
 import java.nio.file.Path;
@@ -42,7 +42,6 @@ public class TrophyProviders implements DataProvider {
         List<TrophyProvider> trophyProviders = getTrophyProviders();
         for (TrophyProvider trophyProvider : trophyProviders) {
             trophyProvider.addTrophies();
-            trophyProvider.validateTrophies();
         }
 
         List<CompletableFuture<?>> futures = new ArrayList<>();
@@ -65,7 +64,7 @@ public class TrophyProviders implements DataProvider {
     }
 
     private static Path createPath(Path path, ResourceLocation trophyId) {
-        return path.resolve("data/" + trophyId.getNamespace() + "/" + ModResourceLoaders.TROPHIES.getDirectory() + "/" + trophyId.getPath() + ".json");
+        return path.resolve("data/" + trophyId.getNamespace() + "/" + ModRegistries.TROPHIES.location().toString().replace(':', '/') + "/" + trophyId.getPath() + ".json");
     }
 
     @Override

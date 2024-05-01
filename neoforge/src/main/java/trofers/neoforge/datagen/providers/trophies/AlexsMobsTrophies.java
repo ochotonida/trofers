@@ -278,7 +278,7 @@ public class AlexsMobsTrophies extends EntityTrophyProvider {
                 .scale(0.2);
         builder(AMEntityRegistry.UNDERMINER.get())
                 .accentColor(0x96bbc4)
-                .putEquipment(EquipmentSlot.MAINHAND, damageableItem("ghostly_pickaxe"))
+                .putEquipment(EquipmentSlot.MAINHAND, item("ghostly_pickaxe"))
                 .putBoolean("Dwarf", true);
         builder(AMEntityRegistry.WARPED_MOSCO.get())
                 .accentColor(0x20fcce)

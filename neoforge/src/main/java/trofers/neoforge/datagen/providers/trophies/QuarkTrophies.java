@@ -31,7 +31,7 @@ public class QuarkTrophies extends EntityTrophyProvider {
                 .rotate(0, 90, 0);
         builder(FORGOTTEN)
                 .accentColor(0x76615c)
-                .putEquipment(EquipmentSlot.HEAD, damageableItem("forgotten_hat"))
+                .putEquipment(EquipmentSlot.HEAD, item("forgotten_hat"))
                 .putHandItem(Items.BOW)
                 .putItem("sheathed", Items.IRON_SWORD)
                 .sound(SoundEvents.SKELETON_AMBIENT);

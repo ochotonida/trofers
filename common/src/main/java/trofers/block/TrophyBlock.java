@@ -6,10 +6,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -91,7 +91,6 @@ public class TrophyBlock extends BaseEntityBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return shape;
     }
@@ -106,8 +105,8 @@ public class TrophyBlock extends BaseEntityBlock {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, level, tooltip, flag);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, context, tooltip, flag);
         Trophy trophy = Trophy.getTrophy(stack);
         if (trophy != null) {
             tooltip.addAll(trophy.tooltip());
@@ -144,19 +143,16 @@ public class TrophyBlock extends BaseEntityBlock {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(BlockStateProperties.HORIZONTAL_FACING, rotation.rotate(state.getValue(BlockStateProperties.HORIZONTAL_FACING)));
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(BlockStateProperties.HORIZONTAL_FACING)));
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos pos, BlockPos facingPos) {
         if (state.getValue(BlockStateProperties.WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
@@ -164,7 +160,6 @@ public class TrophyBlock extends BaseEntityBlock {
         return super.updateShape(state, facing, facingState, level, pos, facingPos);
     }
 
-    @SuppressWarnings("deprecation")
     public FluidState getFluidState(BlockState state) {
         return state.getValue(BlockStateProperties.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
@@ -177,18 +172,14 @@ public class TrophyBlock extends BaseEntityBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        ItemStack result = super.getCloneItemStack(level, pos, state);
         if (level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
-            if (blockEntity.getTrophyID() != null) {
-                result.getOrCreateTagElement("BlockEntityTag").putString("Trophy", blockEntity.getTrophyID().toString());
-            }
+            return blockEntity.getItem();
         }
-        return result;
+        return super.getCloneItemStack(level, pos, state);
     }
 
     @Override
-    @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (player.isCreative()) {
             if (level.isClientSide()) {
                 TrophySelectionScreen.open(state, pos);
@@ -196,7 +187,7 @@ public class TrophyBlock extends BaseEntityBlock {
             return InteractionResult.sidedSuccess(level.isClientSide());
         }
         if (level.getBlockEntity(pos) instanceof TrophyBlockEntity blockEntity) {
-            if (blockEntity.applyEffect(player, hand)) {
+            if (blockEntity.applyEffect(player)) {
                 return InteractionResult.sidedSuccess(level.isClientSide());
             }
         }
