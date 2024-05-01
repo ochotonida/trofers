@@ -8,13 +8,9 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:copy_nbt",
-              "ops": [
-                {
-                  "op": "replace",
-                  "source": "Trophy",
-                  "target": "BlockEntityTag.Trophy"
-                }
+              "function": "minecraft:copy_components",
+              "include": [
+                "trofers:trophy"
               ],
               "source": "block_entity"
             }

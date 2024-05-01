@@ -23,11 +23,7 @@
       "Dwarf": 1,
       "HandItems": [
         {
-          "Count": 1,
-          "id": "alexsmobs:ghostly_pickaxe",
-          "tag": {
-            "Damage": 0
-          }
+          "id": "alexsmobs:ghostly_pickaxe"
         },
         {}
       ]

@@ -15,7 +15,7 @@
     "id": "minecraft:cat",
     "tag": {
       "Sitting": 1,
-      "variant": "CatVariant[texture=minecraft:textures/entity/cat/black.png]"
+      "variant": "minecraft:black"
     }
   },
   "name": {

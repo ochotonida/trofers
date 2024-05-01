@@ -1,4 +1,4 @@
-// 1.20.4	2024-04-15T18:37:34.1691849	Trophies
+// 1.20.5	2024-04-30T23:49:58.8944777	Trophies
 ba170fb5ce776389d0d024a360c9aaddbf547fe9 data/trofers/trofers/trophies/ad_astra/corrupted_lunarian.json
 84328fd7abfea50d3004b6a42af933ccd21ddb1c data/trofers/trofers/trophies/ad_astra/glacian_ram.json
 633023db2e68650e6d1003e89352fc634e1945d6 data/trofers/trofers/trophies/ad_astra/lunarian.json
@@ -6,11 +6,11 @@ e52eec32ac90d565555fcda4e8011dc79c913732 data/trofers/trofers/trophies/ad_astra/
 272723ceb565a7af6a6e406bd4a6815801bb3260 data/trofers/trofers/trophies/ad_astra/martian_raptor.json
 423fb5bcedd37cc65c4d28b561e04303953eef69 data/trofers/trofers/trophies/ad_astra/mogler.json
 bcddd9cb96506c585fb1bc812394d986e6692f30 data/trofers/trofers/trophies/ad_astra/pygro.json
-fe3bc8d6666500ad67e33c0fc051bca3320f3ac1 data/trofers/trofers/trophies/ad_astra/pygro_brute.json
+901db0b48e217bed2ca19ec696dd16e88134cafd data/trofers/trofers/trophies/ad_astra/pygro_brute.json
 f48e2cf5687ae0b5478fd7b6228f6bcd64a3405c data/trofers/trofers/trophies/ad_astra/star_crawler.json
 b9fcef021d271b627b05d47efd8837a1e669cdc5 data/trofers/trofers/trophies/ad_astra/sulfur_creeper.json
 f164790094c26b919f84916cf72285ebf195382a data/trofers/trofers/trophies/ad_astra/zombified_mogler.json
-c949975a94c6d92406be0893652aef222d929e68 data/trofers/trofers/trophies/ad_astra/zombified_pygro.json
+fcc4477a27da247241a36987c45b03889f5e14b6 data/trofers/trofers/trophies/ad_astra/zombified_pygro.json
 e25adc8ac3873aaa451849cfa4dacf4a8e09515f data/trofers/trofers/trophies/alexsmobs/alligator_snapping_turtle.json
 2dfce802f39c46ac5a485c290d9be715960964db data/trofers/trofers/trophies/alexsmobs/anaconda.json
 6eb413ec7ef5054fbcc8fab8706f8b362b150494 data/trofers/trofers/trophies/alexsmobs/anteater.json
@@ -96,7 +96,7 @@ b330b7287c24275341e7f494e2707298f62a4563 data/trofers/trofers/trophies/alexsmobs
 89f4c99e2582e7864cb8781289c20997f658e1a3 data/trofers/trofers/trophies/alexsmobs/toucan.json
 7e7517904f3201ed99ce8c36688f21bb205846e7 data/trofers/trofers/trophies/alexsmobs/triops.json
 9a0c86c7c15f7fe34377891b3085c1421b34974d data/trofers/trofers/trophies/alexsmobs/tusklin.json
-85562e047d4077d906d196635d49424a7992e04c data/trofers/trofers/trophies/alexsmobs/underminer.json
+114e8d14a51a6bc5554e2e3f457f33aa1c44ec81 data/trofers/trofers/trophies/alexsmobs/underminer.json
 f28c116fb4b2eaf5a04ebabbf787af8bae65205e data/trofers/trofers/trophies/alexsmobs/warped_mosco.json
 64fd8962335b90b4a36550b1e67654db5098b7ca data/trofers/trofers/trophies/alexsmobs/warped_toad.json
 d6d3d1c3a2e503bc84e5bdd75be9b640048ec476 data/trofers/trofers/trophies/allay.json
@@ -106,7 +106,7 @@ cde6ca339507d7645a6a470549bcb88db8afdc6c data/trofers/trofers/trophies/bee.json
 e4d5f709be35d049e8c6f333088fa89d37ea4d03 data/trofers/trofers/trophies/blaze.json
 d3b0df332ff211a154b87ee8ed54bc24e9adc766 data/trofers/trofers/trophies/breeze.json
 f5f6e984601d067799b7d6d513121ec9156e2f52 data/trofers/trofers/trophies/camel.json
-897b133d8c66019afbd2b825e609785fb51a4f91 data/trofers/trofers/trophies/cat.json
+ae28e2991c0eb613a724871637407e8383e4b036 data/trofers/trofers/trophies/cat.json
 6f55542263330e05badaa9647e450aaa7a650e91 data/trofers/trofers/trophies/cave_spider.json
 ffa244179d66fd89843babf0a1b8231cd99ae0b6 data/trofers/trofers/trophies/chicken.json
 3293fe392d6bcd8c34aff11ca33ede478093e6de data/trofers/trofers/trophies/cod.json
@@ -139,15 +139,15 @@ f45a390a73d2f7cc5483485b2eaca21d677caa23 data/trofers/trofers/trophies/parrot.js
 c6c6a0fe33ec7797b732625b9b45ee6b5987d8d7 data/trofers/trofers/trophies/phantom.json
 8bd6d6df8f9efd38b15cdbe1427fa5a8b7b75915 data/trofers/trofers/trophies/pig.json
 14353d0c3c19aea207921e31a15c2aaa17532faa data/trofers/trofers/trophies/piglin.json
-f56d4474008ae7f1f8e9a124325d11181814a5cf data/trofers/trofers/trophies/piglin_brute.json
-9fc70005036ea894b2d74153c3b4bad487f24ef8 data/trofers/trofers/trophies/pillager.json
+7ab45cfecd8ce0a9a40f15fa6837e52dc2b77d94 data/trofers/trofers/trophies/piglin_brute.json
+3f3a9f046f200137e2f64c3bf82f1d66a348453b data/trofers/trofers/trophies/pillager.json
 4fb5303e15f58fd6ee7f72ee82589178e35cbe4d data/trofers/trofers/trophies/polar_bear.json
 64f37e894ad75e04ab671cf577d12313c80300da data/trofers/trofers/trophies/pufferfish.json
 d33eaf8e3566729b87b9f4ea062b0769026c3c18 data/trofers/trofers/trophies/quark/crab.json
-42be6372145eb86ad244336392b0dc6f7a953e0b data/trofers/trofers/trophies/quark/forgotten.json
+07865e003eeebaae34bafc03f1036bceb3d410da data/trofers/trofers/trophies/quark/forgotten.json
 684290b6d5576de15c38ac3d1abd7ec5b75300d1 data/trofers/trofers/trophies/quark/foxhound.json
 fd10e12f364513cac725f82022f9744c574f9627 data/trofers/trofers/trophies/quark/shiba.json
-65b4cc39ebf559b23531a6bfc7908bbe88212597 data/trofers/trofers/trophies/quark/stoneling.json
+d39e88d19c815faa27352669fc4a8d6852863a49 data/trofers/trofers/trophies/quark/stoneling.json
 c04dc1b6659a4a63e2f081f111d3aff26608875c data/trofers/trofers/trophies/quark/toretoise.json
 d44f007ffdd950377fcd611148751fb5a5dec3d3 data/trofers/trofers/trophies/quark/wraith.json
 ecb803aa2e4d9066757b47ee4388def04cf0bda0 data/trofers/trofers/trophies/rabbit.json
@@ -156,14 +156,14 @@ af9e6a29d2c22c8d91e76793729b09ea7da74333 data/trofers/trofers/trophies/ravager.j
 4aaa90575ea19e5f9cc34090d6051ab4da8a22fe data/trofers/trofers/trophies/sheep.json
 791c26f4306da82e8ce2b0fb945c224b18df8f27 data/trofers/trofers/trophies/shulker.json
 aa24fdc9fe49acc739cad11b1fbdc33685d93477 data/trofers/trofers/trophies/silverfish.json
-7a8e7339874db4730dcf1ee7daa732d13afca094 data/trofers/trofers/trophies/skeleton.json
+6d82c1ba8a5d9942b4d07c10735305ddf3034df9 data/trofers/trofers/trophies/skeleton.json
 bd82083a45eaa9c6e3ad85b7e846831e88cd5dc0 data/trofers/trofers/trophies/skeleton_horse.json
 04f4a9aec6db8312ce67126b8ce7b25025e4595e data/trofers/trofers/trophies/slime.json
 292ef4b1eb0996c62b1fbf570c7b901d636a6d74 data/trofers/trofers/trophies/sniffer.json
 b8fe247b29d046e9e1e33e60bbbd338443f52df7 data/trofers/trofers/trophies/snow_golem.json
 daa8b847d5c84532821fee1a458f6177ca93bb24 data/trofers/trofers/trophies/spider.json
 b8edc42c83118508e3d9eed90f6a518540205c89 data/trofers/trofers/trophies/squid.json
-bf8e91af7ca5488e9c6726b286dd75072957ae45 data/trofers/trofers/trophies/stray.json
+ce2f38d3d9ec4c220181adb5a5cd023643212b13 data/trofers/trofers/trophies/stray.json
 03ca3668d57e74131b3a3f8b425c28185217126a data/trofers/trofers/trophies/strider.json
 415af5e11674c97637f7f607faa657ed15104050 data/trofers/trofers/trophies/tadpole.json
 883d123d9407ede2baa3f6b6b820fa1da8223528 data/trofers/trofers/trophies/tconstruct/ender_slime.json
@@ -181,9 +181,9 @@ fe1c3d0a163c3642493ff7d995e861f736c5767d data/trofers/trofers/trophies/vindicato
 aa318efb86dfcd473e82cdb9f07964c1f3c8c212 data/trofers/trofers/trophies/wandering_trader.json
 41fa14226f1526d341c9fc0f5f96fa4ef940cf52 data/trofers/trofers/trophies/warden.json
 7f8510810e17b95d9be7ecb5b731bf612f3b8dba data/trofers/trofers/trophies/witch.json
-68f828898b56f864eba3bb693f805d3fa9305896 data/trofers/trofers/trophies/wither_skeleton.json
+37ea5fff0e9b2210ef7e65c1c0900d3bead3fc63 data/trofers/trofers/trophies/wither_skeleton.json
 e29d59b6c53f75b5556182e40152d8e17c99fec6 data/trofers/trofers/trophies/wolf.json
 1f4333b77da51fdc505b811f0af7d8e11495e9e1 data/trofers/trofers/trophies/zoglin.json
 fc4f2fc15c38af8f179129503d2ce5fdab6850a5 data/trofers/trofers/trophies/zombie.json
 b43e6d61e902ed3d2e6ec34c99f0d1c67b5df0ce data/trofers/trofers/trophies/zombie_villager.json
-b7658ec3486cebb493068b3d8c318c372d33f497 data/trofers/trofers/trophies/zombified_piglin.json
+7881283cd147a672d0627d75b6c81b8283bb7f25 data/trofers/trofers/trophies/zombified_piglin.json

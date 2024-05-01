@@ -25,29 +25,19 @@
         {},
         {},
         {
-          "Count": 1,
-          "id": "quark:forgotten_hat",
-          "tag": {
-            "Damage": 0
-          }
+          "id": "quark:forgotten_hat"
         }
       ],
       "HandItems": [
         {
-          "Count": 1,
-          "id": "minecraft:bow",
-          "tag": {
-            "Damage": 0
-          }
+          "count": 1,
+          "id": "minecraft:bow"
         },
         {}
       ],
       "sheathed": {
-        "Count": 1,
-        "id": "minecraft:iron_sword",
-        "tag": {
-          "Damage": 0
-        }
+        "count": 1,
+        "id": "minecraft:iron_sword"
       }
     }
   },

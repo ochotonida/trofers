@@ -16,11 +16,8 @@
     "tag": {
       "HandItems": [
         {
-          "Count": 1,
-          "id": "minecraft:golden_sword",
-          "tag": {
-            "Damage": 0
-          }
+          "count": 1,
+          "id": "minecraft:golden_sword"
         },
         {}
       ]
