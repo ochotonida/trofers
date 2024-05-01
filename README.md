@@ -24,7 +24,7 @@ Trophy JSONs are placed in the `data/<namespace>/trofers/trophies` folder. The f
 * `item`: An object describing the item the trophy should display. Contains the following fields:
   * `id`: (_required_) The item ID
   * `count`: The size of the item stack
-  * `tag`: The NBT tag of the item stack
+  * `components`: The components item stack
 * `entity`: An object describing the entity the trophy should display. Contains the following fields:
   * `id`: (_required_) The entity ID
   * `tag`: The NBT tag of the entity
@@ -60,7 +60,7 @@ For example trophies see the [default data pack](https://github.com/ochotonida/t
 ## Adding a trophy to a trophy base
 Trofers currently adds 6 trophy bases. 
 Placing one down and right-clicking it while in creative will open a menu that allows you to pick any existing trophy.
-You can also set the trophy by changing the item's NBT: `{BlockEntityTag:{Trophy:"namespace:path"}}`.
+You can also set the trophy by setting the item's trophy component: `/give @a trofers:small_pillar[trofers:trophy="namespace:trophy_name"]`.
 Changes made to your data pack will also apply to any existing trophies.
 
 ## Making entities drop trophies
