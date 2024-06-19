@@ -9,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 import org.jetbrains.annotations.Nullable;
 import trofers.Trofers;
 import trofers.registry.ModRegistries;
@@ -32,7 +31,7 @@ public abstract class ConditionalTrophyDrops {
     }
 
     protected static <T extends ConditionalTrophyDrops> Products.P2<RecordCodecBuilder.Mu<T>, List<LootItemCondition>, Item> codecStart(RecordCodecBuilder.Instance<T> instance) {
-        return instance.group(LootItemConditions.DIRECT_CODEC.listOf()
+        return instance.group(LootItemCondition.DIRECT_CODEC.listOf()
                         .fieldOf("conditions").forGetter(drops -> drops.conditions))
                 .and(BuiltInRegistries.ITEM.byNameCodec()
                         .fieldOf("trophy_base").forGetter(drops -> drops.trophyBase));

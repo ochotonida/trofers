@@ -24,7 +24,7 @@ side="BOTH"
 [[dependencies.trofers]]
 modId="minecraft"
 type="required"
-versionRange="[1.20.5,)"
+versionRange="[1.21,)"
 ordering="NONE"
 side="BOTH"
 

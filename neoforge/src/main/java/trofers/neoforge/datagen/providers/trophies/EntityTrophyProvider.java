@@ -4,6 +4,7 @@ import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.Style;
@@ -23,6 +24,7 @@ import trofers.trophy.builder.ItemTrophyBuilder;
 import trofers.trophy.builder.TrophyBuilder;
 
 import java.util.*;
+import java.util.function.BiConsumer;
 
 public abstract class EntityTrophyProvider extends TrophyProvider {
 
@@ -180,7 +182,7 @@ public abstract class EntityTrophyProvider extends TrophyProvider {
             ResourceKey<LootTable> location = ResourceKey.create(Registries.LOOT_TABLE, Trofers.id(String.format("trophies/%s", modId + getEntityId().getPath())));
 
             lootTables.add(new LootTableProvider.SubProviderEntry(
-                    () -> (provider, builder) -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS)
+                    provider -> builder -> builder.accept(location, lootTable), LootContextParamSets.ALL_PARAMS)
             );
             lootTable(Optional.of(location));
             return this;

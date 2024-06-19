@@ -39,7 +39,7 @@ public abstract class TrophyProvider {
     }
 
     protected ResourceLocation id(String path) {
-        return new ResourceLocation(getModId(), path);
+        return ResourceLocation.fromNamespaceAndPath(getModId(), path);
     }
 
     protected CompoundTag item(String itemName) {

@@ -40,7 +40,7 @@ public class TrophyItemRenderer {
         }
 
         poseStack.translate(0, -0.5, 0);
-        float partialTicks = Minecraft.getInstance().getFrameTime() * (Minecraft.getInstance().isPaused() ? 0 : 1);
+        float partialTicks = Minecraft.getInstance().getTimer().getGameTimeDeltaPartialTick(true);
         float ticks = (Minecraft.getInstance().player.tickCount + partialTicks);
 
         int trophyHeight = ((TrophyBlock) ((BlockItem) stack.getItem()).getBlock()).getHeight();

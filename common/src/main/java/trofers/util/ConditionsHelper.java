@@ -8,12 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 public abstract class ConditionsHelper {
 
     private static final String FABRIC = "fabric";
-    private static final String FABRIC_LOAD_CONDITIONS = new ResourceLocation(FABRIC, "load_conditions").toString();
-    private static final String FABRIC_ALL_MODS_LOADED = new ResourceLocation(FABRIC, "all_mods_loaded").toString();
+    private static final String FABRIC_LOAD_CONDITIONS = ResourceLocation.fromNamespaceAndPath(FABRIC, "load_conditions").toString();
+    private static final String FABRIC_ALL_MODS_LOADED = ResourceLocation.fromNamespaceAndPath(FABRIC, "all_mods_loaded").toString();
 
     private static final String NEOFORGE = "neoforge";
-    private static final String NEOFORGE_CONDITIONS = new ResourceLocation(NEOFORGE, "conditions").toString();
-    private static final String NEOFORGE_MOD_LOADED = new ResourceLocation(NEOFORGE, "mod_loaded").toString();
+    private static final String NEOFORGE_CONDITIONS = ResourceLocation.fromNamespaceAndPath(NEOFORGE, "conditions").toString();
+    private static final String NEOFORGE_MOD_LOADED = ResourceLocation.fromNamespaceAndPath(NEOFORGE, "mod_loaded").toString();
 
     private static JsonArray getOrCreateList(JsonObject object, String name) {
         if (object.has(name)) {

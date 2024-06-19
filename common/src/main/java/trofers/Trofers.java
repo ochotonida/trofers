@@ -23,7 +23,7 @@ public class Trofers {
     public static ModConfig CONFIG;
 
     public static ResourceLocation id(String path) {
-        return new ResourceLocation(Trofers.MOD_ID, path);
+        return ResourceLocation.fromNamespaceAndPath(Trofers.MOD_ID, path);
     }
 
     public static void init() {

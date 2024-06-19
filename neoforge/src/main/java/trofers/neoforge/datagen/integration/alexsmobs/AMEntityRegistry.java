@@ -98,6 +98,6 @@ public class AMEntityRegistry {
     public static final Supplier<ResourceLocation> WARPED_TOAD = create("warped_toad");
 
     private static Supplier<ResourceLocation> create(String name) {
-        return Suppliers.ofInstance(new ResourceLocation(Compat.ALEXS_MOBS, name));
+        return Suppliers.ofInstance(ResourceLocation.fromNamespaceAndPath(Compat.ALEXS_MOBS, name));
     }
 }

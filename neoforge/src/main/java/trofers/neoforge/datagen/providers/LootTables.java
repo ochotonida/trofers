@@ -55,7 +55,7 @@ public class LootTables extends net.minecraft.data.loot.LootTableProvider {
                             ).apply(copyNbtBuilder)
                     )
             );
-            lootTables.add(new SubProviderEntry(() -> (provider, builder) -> builder.accept(location, lootTable), LootContextParamSets.BLOCK));
+            lootTables.add(new SubProviderEntry(provider -> builder -> builder.accept(location, lootTable), LootContextParamSets.BLOCK));
         }
     }
 }

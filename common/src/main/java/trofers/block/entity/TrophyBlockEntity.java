@@ -256,7 +256,7 @@ public class TrophyBlockEntity extends BlockEntity {
 
         if (tag.contains("Trophy", Tag.TAG_STRING)) {
             try {
-                trophyID = new ResourceLocation(tag.getString("Trophy"));
+                trophyID = ResourceLocation.parse(tag.getString("Trophy"));
             } catch (ResourceLocationException exception) {
                 Trofers.LOGGER.error(String.format("Failed to load trophy for block entity at %s", getBlockPos()), exception);
             }

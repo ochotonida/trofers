@@ -8,7 +8,6 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import trofers.Trofers;
 
 @Config(name = Trofers.MOD_ID)
-@Config.Gui.Background("minecraft:textures/block/quartz_pillar.png")
 public class ModConfig extends PartitioningSerializer.GlobalData {
 
     @ConfigEntry.Category("general")
@@ -23,7 +22,7 @@ public class ModConfig extends PartitioningSerializer.GlobalData {
         public final Double trophyChance = 1 / 1000D;
 
         @ConfigEntry.Gui.Tooltip
-        @Comment("Whether trophies can be awarded when specific advancements are earned")
+        @Comment("Whether trophies can be awarded when specific advancements are earned (Currently unused)")
         public final Boolean enableAdvancementDrops = true;
 
         @ConfigEntry.Gui.Tooltip
