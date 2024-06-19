@@ -4,7 +4,6 @@ import net.minecraft.Util;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.Style;
@@ -24,7 +23,6 @@ import trofers.trophy.builder.ItemTrophyBuilder;
 import trofers.trophy.builder.TrophyBuilder;
 
 import java.util.*;
-import java.util.function.BiConsumer;
 
 public abstract class EntityTrophyProvider extends TrophyProvider {
 
