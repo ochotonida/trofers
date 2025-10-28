@@ -3,10 +3,6 @@ repositories {
         name = 'Shedaniel'
         url = 'https://maven.shedaniel.me/'
     }
-    maven { // Porting Lib
-        name = 'Porting Lib'
-        url = 'https://mvn.devos.one/snapshots/'
-    }
     maven { // Mod Menu
         name = 'TerraformersMC'
         url = 'https://maven.terraformersmc.com'
