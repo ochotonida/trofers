@@ -1,0 +1,41 @@
+repositories {
+    maven { // Cloth Config
+        name = 'Shedaniel'
+        url = 'https://maven.shedaniel.me/'
+    }
+    maven { // Porting Lib
+        name = 'Porting Lib'
+        url = 'https://mvn.devos.one/snapshots/'
+    }
+    maven { // Mod Menu
+        name = 'TerraformersMC'
+        url = 'https://maven.terraformersmc.com'
+    }
+    maven { // Thermal
+        name = 'Thermal'
+        url = 'https://maven.covers1624.net/'
+    }
+    maven { // Ad Astra
+        name = 'Resourceful Bees'
+        url = 'https://nexus.resourcefulbees.com/repository/maven-public/'
+    }
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+    }
+    maven {
+        name = 'Cursemaven'
+        url = 'https://www.cursemaven.com'
+    }
+    maven {
+        url = 'https://jitpack.io'
+    }
+    maven {
+        name 'NeoForged'
+        url 'https://maven.neoforged.net/releases/'
+        content {
+            includeGroupByRegex 'net.neoforged.*'
+            includeGroup 'cpw.mods'
+        }
+    }
+}

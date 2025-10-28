@@ -2,23 +2,15 @@ architectury {
     common(rootProject.enabled_platforms.split(","))
 }
 
-loom {
-    accessWidenerPath = file("src/main/resources/trofers.accesswidener")
-}
-
-repositories {
-    maven { url "https://maven.shedaniel.me/" }
-    maven { url "https://maven.terraformersmc.com/releases/" }
-}
-
 dependencies {
-    // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
-    // Do NOT use other classes from fabric loader
+    // We depend on Fabric Loader here to use the Fabric @Environment annotations,
+    // which get remapped to the correct annotations on each platform.
+    // Do NOT use other classes from Fabric Loader.
     modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
-    // Remove the next line if you don't want to depend on the API
+
     modApi "dev.architectury:architectury:${rootProject.architectury_version}"
 
     modApi("me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+        exclude(group: 'net.fabricmc.fabric-api')
     }
 }
