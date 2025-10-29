@@ -21,8 +21,10 @@ public class AddEntityTrophies extends LootModifier {
 
     @Override
     protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-        if (context.hasParam(LootContextParams.THIS_ENTITY) && ModRegistries.entityDrops() != null) {
-            ModRegistries.entityDrops().forEach(entityDrops -> entityDrops.apply(generatedLoot::add, context));
+        if (context.hasParam(LootContextParams.THIS_ENTITY)) {
+            ModRegistries.entityDrops().ifPresent(
+                    entityDrops -> entityDrops.forEach(entry -> entry.apply(generatedLoot::add, context))
+            );
         }
         return generatedLoot;
     }

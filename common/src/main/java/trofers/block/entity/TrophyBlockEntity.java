@@ -262,7 +262,7 @@ public class TrophyBlockEntity extends BlockEntity {
             }
 
             Trophy trophy = ModRegistries.get(ModRegistries.TROPHIES, trophyID);
-            if (trophy == null && ModRegistries.trophies() != null) {
+            if (trophy == null && ModRegistries.trophies().isPresent()) {
                 Trofers.LOGGER.error(String.format("Invalid trophy id for block entity at %s: %s", getBlockPos(), trophyID));
             }
         }

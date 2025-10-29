@@ -45,18 +45,17 @@ public class AdvancementDrops extends ConditionalTrophyDrops {
     }
 
     public static void onAdvancementAwarded(Player player, AdvancementHolder advancement) {
-        if (player.level().isClientSide()) {
-            return;
+        if (!player.level().isClientSide()) {
+            ModRegistries.advancementDrops().ifPresent(advancementDrops -> {
+                LootParams lootParams = (new LootParams.Builder((ServerLevel) player.level()))
+                        .withParameter(LootContextParams.THIS_ENTITY, player)
+                        .withParameter(LootContextParams.ORIGIN, player.position())
+                        .create(LootContextParamSets.ADVANCEMENT_REWARD);
+                LootContext lootContext = (new LootContext.Builder(lootParams)).create(Optional.empty());
+
+                advancementDrops.stream().forEach(entry -> entry.onAdvancementEarned(player, advancement, lootContext));
+            });
         }
-
-        LootParams lootParams = (new LootParams.Builder((ServerLevel) player.level()))
-                .withParameter(LootContextParams.THIS_ENTITY, player)
-                .withParameter(LootContextParams.ORIGIN, player.position())
-                .create(LootContextParamSets.ADVANCEMENT_REWARD);
-        LootContext lootContext = (new LootContext.Builder(lootParams)).create(Optional.empty());
-
-        ModRegistries.advancementDrops().stream()
-                .forEach(advancementDrops -> advancementDrops.onAdvancementEarned(player, advancement, lootContext));
     }
 
     private void onAdvancementEarned(Player player, AdvancementHolder advancement, LootContext lootContext) {

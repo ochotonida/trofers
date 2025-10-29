@@ -40,6 +40,8 @@ public abstract class LivingEntityMixin extends Entity {
         }
         LootParams lootParams = builder.create(LootContextParamSets.ENTITY);
         LootContext context = (new LootContext.Builder(lootParams)).create(Optional.empty());
-        ModRegistries.entityDrops().forEach(entityDrops -> entityDrops.apply(this::spawnAtLocation, context));
+        ModRegistries.entityDrops().ifPresent(
+                entityDrops -> entityDrops.forEach(entry -> entry.apply(this::spawnAtLocation, context))
+        );
     }
 }
