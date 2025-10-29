@@ -1,4 +1,4 @@
-# Trofers [![CurseForge](http://cf.way2muchnoise.eu/full_482265_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/trofers) [![](https://discordapp.com/api/guilds/298798089068609537/widget.png?style=shield)](https://discord.gg/87pXJadaRr)
+# Trofers [![CurseForge](https://img.shields.io/curseforge/dt/482265?label=CurseForge&color=F16436&style=flat&logo=curseforge)](https://www.curseforge.com/minecraft/mc-mods/trofers) [![Modrinth](https://img.shields.io/modrinth/dt/trofers?color=00AF5C&label=Modrinth&style=flat)](https://modrinth.com/mod/trofers) [![](https://discordapp.com/api/guilds/298798089068609537/widget.png?style=shield)](https://discord.gg/87pXJadaRr)
 
 ⚠️ *This README explains the data pack format for Trofers.
 The data pack format and this README can be subject to change between Minecraft updates.
