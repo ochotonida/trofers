@@ -27,6 +27,10 @@ subprojects {
             silentMojangMappingsLicense()
         }
 
+        sourceSets {
+            main.resources.srcDirs = ['src/main/resources', 'src/generated/resources']
+        }
+
         dependencies {
             minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
             mappings loom.officialMojangMappings()
