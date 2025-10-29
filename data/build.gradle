@@ -1,15 +1,16 @@
 buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
-        mavenCentral()
-    }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.spongepowered:mixingradle:0.7.+'
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle'
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
 apply plugin: 'org.spongepowered.mixin'
 
 evaluationDependsOn(':common')
@@ -30,7 +31,6 @@ minecraft {
             args '--client', '--server', '--validate'
             args '--output', project(':common').file('src/generated/resources')
             args '--existing', project(':common').file('src/main/resources')
-            forceExit false
 
             mods {
                 "${rootProject.mod_id}" {
@@ -47,6 +47,10 @@ mixin {
     config "mixins.${mod_id}.forge.json"
 }
 
+repositories {
+    maven { url "https://maven.architectury.dev/" }
+}
+
 dependencies {
     minecraft "net.minecraftforge:forge:${rootProject.forge_version}"
     implementation fg.deobf("dev.architectury:architectury-forge:$architectury_version")
@@ -56,14 +60,14 @@ dependencies {
     // compileOnly fg.deobf("curse.maven:citadel-331936:4473245")
     // compileOnly fg.deobf("curse.maven:alexsmobs-426558:4476475")
 
-    compileOnly fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
-    minecraftLibrary fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
+    // compileOnly fg.deobf("com.teamcofh:cofh_core:1.18.2-1.6.3.19")
+    // minecraftLibrary fg.deobf("com.teamcofh:thermal_foundation:1.18.2-1.6.2.27")
 
-    compileOnly fg.deobf("curse.maven:mantle-74924:4353120")
-    compileOnly fg.deobf("curse.maven:tconstruct-74072:4395997")
+    // compileOnly fg.deobf("curse.maven:mantle-74924:4353120")
+    // compileOnly fg.deobf("curse.maven:tconstruct-74072:4395997")
 
-    compileOnly fg.deobf("curse.maven:autoreglib-250363:4100299")
-    compileOnly fg.deobf("curse.maven:quark-243121:4480516")
+    // compileOnly fg.deobf("curse.maven:autoreglib-250363:4100299")
+    // compileOnly fg.deobf("curse.maven:quark-243121:4480516")
 
     runtimeOnly "me.shedaniel.cloth:cloth-config-forge:${project.cloth_config_version}"
 }
