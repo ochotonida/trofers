@@ -37,7 +37,7 @@ public record Trophy(
             ModCodecs.optionalField("name", ComponentSerialization.CODEC).forGetter(Trophy::name),
             ModCodecs.defaultField("tooltip", List.of(),
                     ModCodecs.<List<Component>>withAlternative(
-                            ComponentSerialization.CODEC.xmap(List::of, list -> list.getFirst()),
+                            ComponentSerialization.CODEC.xmap(List::of, List::getFirst),
                             ModCodecs.list(ComponentSerialization.CODEC)
                     )
             ).forGetter(Trophy::tooltip),
