@@ -33,11 +33,12 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "dropFromLootTable", at = @At("TAIL"))
     protected void dropFromLootTable(DamageSource damageSource, boolean bl, CallbackInfo ci) {
         ResourceLocation type = BuiltInRegistries.ENTITY_TYPE.getKey(getType());
+        String path = type.getPath();
         if (!type.getNamespace().equals("minecraft")) {
-            return;
+            path = type.getNamespace() + '/' + path;
         }
 
-        ResourceLocation trophyId = Trofers.id(type.getPath());
+        ResourceLocation trophyId = Trofers.id(path);
         Trophy trophy = TrophyManager.get(trophyId);
 
         if (trophy != null && lastHurtByPlayer != null && random.nextDouble() < Trofers.CONFIG.general.getTrophyChance()) {
