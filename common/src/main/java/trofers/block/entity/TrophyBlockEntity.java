@@ -171,14 +171,14 @@ public class TrophyBlockEntity extends BlockEntity {
         }
 
         int minutes = seconds / 60;
-        if (minutes <= 1) {
+        if (minutes == 1) {
             return Component.translatable("time.trofers.minute");
         } else if (minutes < 60) {
             return Component.translatable("time.trofers.minutes", minutes);
         }
 
         int hours = minutes / 60;
-        if (hours <= 1) {
+        if (hours == 1) {
             return Component.translatable("time.trofers.hour");
         } else {
             return Component.translatable("time.trofers.hours", hours);

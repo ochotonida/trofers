@@ -8,7 +8,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
-import trofers.Trofers;
 import trofers.block.TrophyBlock;
 import trofers.registry.ModRegistries;
 
@@ -33,7 +32,6 @@ public class TrophySearchTreeManager implements ResourceManagerReloadListener {
 
     public static void createSearchTree() {
         if (ModRegistries.trophies().isEmpty()) {
-            Trofers.LOGGER.warn("Failed to create trophy search tree, registry not found");
             return;
         }
         searchTree = new FullTextSearchTree<>(
